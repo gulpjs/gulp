@@ -2,7 +2,7 @@ gulp = require '../'
 should = require 'should'
 require 'mocha'
 
-describe 'gulp', ->
+describe 'gulp tasks', ->
   describe 'task()', ->
     it 'should define a task', (done) ->
       fn = ->
