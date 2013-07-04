@@ -96,6 +96,21 @@ gulp.run('scripts', 'copyfiles', 'builddocs');
 
 Use gulp.run to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
 
+## Writing a plugin
+
+This is a simple plugin that mutates the contents of a file. I recommend event-stream as a simple stream utility. This example plugin takes an options object with a license attribute and prepends it to all files passed through it.
+
+```javascript
+var es = require('event-stream');
+
+module.exports = function(opt){
+  return es.map(function(file, cb){
+    file.contents = opt.license + file.contents;
+    cb(null, file);
+  });
+}
+```
+
 ## LICENSE
 
 (MIT License)
