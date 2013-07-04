@@ -16,8 +16,7 @@
       "async":"*",
       "glob":"*",
       "event-stream":"*",
-      "glob-stream":"*",
-      "colors":"*"
+      "glob-stream":"*"
    },
    "devDependencies":{
       "mocha":"*",
