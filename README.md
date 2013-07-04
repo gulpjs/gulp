@@ -81,7 +81,7 @@ Takes a folder path and represents it's structure. Can be piped to and from.
 
 All steps code must be defined within a task. Tasks that you want to run from the command line should not have spaces in them.
 
-Tasks can be executed by running `gulp <taskname>`
+Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`
 
 Just running `gulp` will execute the task you registered called default.
 
@@ -91,7 +91,7 @@ Just running `gulp` will execute the task you registered called default.
 Executes tasks in order.
 
 ```javascript
-gulp.run('script', 'copyfiles', 'docss');
+gulp.run('scripts', 'copyfiles', 'builddocs');
 ```
 
 Use gulp.run to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
