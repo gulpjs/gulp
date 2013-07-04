@@ -1,12 +1,15 @@
 {
    "name":"gulp",
-   "description":"DESCRIPTIONHERE",
+   "description":"Simple stream-y build helper",
    "version":"0.0.1",
    "homepage":"http://github.com/wearefractal/gulp",
    "repository":"git://github.com/wearefractal/gulp.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
    "main":"./index.js",
    
+   "bin":{
+      "gulp":"./bin/gulp"
+   },
    "dependencies":{
       "coffee-script":"*",
       "async":"*"

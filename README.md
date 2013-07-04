@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>DESCRIPTIONHERE</td>
+<td>Simple stream-y build helper</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -18,9 +18,83 @@
 
 ## Usage
 
-```coffee-script
-NOTHING HERE YET
+```javascript
+var gulp = require('gulp');
+var jade = require('gulp-jade');
+var coffee = require('gulp-coffee');
+var minify = require('gulp-minify');
+
+// compile, minify, and copy templates
+gulp.task('templates', function(){
+  gulp.folder("./client/templates")
+    .pipe(jade)
+    .pipe(minify)
+    .pipe(gulp.folder("./public/templates"));
+});
+
+gulp.task('scripts', function(){
+  
+  // compile, minify, and copy coffeescript
+  gulp.folder("./client/js", {ignore: ["vendor"]})
+    .pipe(coffee)
+    .pipe(minify)
+    .pipe(gulp.folder("./public/js"));
+
+  // copy vendor files
+  gulp.folder("./client/js/vendor")
+    .pipe(minify)
+    .pipe(gulp.folder("./public/js/vendor"));
+
+});
+
+// copy all static assets
+gulp.task('copy', function(){
+  gulp.folder("./client/img")
+    .pipe(gulp.folder("./public/img"));
+
+  gulp.folder("./client/css")
+    .pipe(gulp.folder("./public/css"));
+
+  gulp.files("./client/*.html")
+    .pipe(gulp.folder("./public"));
+
+  gulp.files("./client/*.ico")
+    .pipe(gulp.folder("./public"));
+
+});
+
+// default task gets called when you run the `gulp` command
+gulp.task('default', function(){
+  gulp.run('templates', 'scripts', 'copy');
+});
 ```
+
+### gulp.files(glob[, opt])
+
+Takes a glob and represents an array of files with no structure. Can be piped to a folder.
+
+### gulp.folder(path[, opt])
+
+Takes a folder path and represents it's structure. Can be piped to and from.
+
+### gulp.task(name, fn)
+
+All steps code must be defined within a task. Tasks that you want to run from the command line should not have spaces in them.
+
+Tasks can be executed by running `gulp <taskname>`
+
+Just running `gulp` will execute the task you registered called default.
+
+
+### gulp.run(tasks...)
+
+Executes tasks in order.
+
+```javascript
+gulp.run('script', 'copyfiles', 'docss');
+```
+
+Use gulp.run to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
 
 ## LICENSE
 
