@@ -5,17 +5,6 @@ require 'mocha'
 {join} = require 'path'
 
 describe 'gulp file utilities', ->
-  describe 'createGlobStream()', ->
-    it 'should return a file name stream from a glob', (done) ->
-      stream = gulp.createGlobStream join __dirname, "./fixtures/*.coffee"
-      should.exist stream
-      stream.on 'error', (err) -> throw err
-      stream.on 'data', (file) ->
-        should.exist file
-        String(file).should.equal join __dirname, "./fixtures/test.coffee"
-
-      stream.on 'end', -> done()
-
   describe 'readFile()', ->
     it 'should return a valid file struct', (done) ->
       fname = join __dirname, "./fixtures/test.coffee"

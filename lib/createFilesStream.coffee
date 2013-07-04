@@ -1,9 +1,9 @@
 es = require 'event-stream'
-createGlobStream = require './createGlobStream'
+gs = require 'glob-stream'
 readFile = require './readFile'
 
 module.exports = (glob, opt) ->
-  globStream = createGlobStream glob, opt
+  globStream = gs.create glob, opt
   stream = globStream.pipe es.map readFile
 
   return stream 

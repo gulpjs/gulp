@@ -14,7 +14,8 @@
       "coffee-script":"*",
       "async":"*",
       "glob":"*",
-      "event-stream":"*"
+      "event-stream":"*",
+      "glob-stream":"*"
    },
    "devDependencies":{
       "mocha":"*",
