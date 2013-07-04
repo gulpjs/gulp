@@ -1,0 +1,30 @@
+{
+   "name":"gulp",
+   "description":"DESCRIPTIONHERE",
+   "version":"0.0.1",
+   "homepage":"http://github.com/wearefractal/gulp",
+   "repository":"git://github.com/wearefractal/gulp.git",
+   "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+   "main":"./index.js",
+   
+   "dependencies":{
+      "coffee-script":"*",
+      "async":"*"
+   },
+   "devDependencies":{
+      "mocha":"*",
+      "should":"*"
+   },
+   "scripts":{
+      "test":"mocha --compilers coffee:coffee-script"
+   },
+   "engines":{
+      "node":">= 0.4.0"
+   },
+   "licenses":[
+      {
+         "type":"MIT",
+         "url":"http://github.com/wearefractal/gulp/raw/master/LICENSE"
+      }
+   ]
+}
