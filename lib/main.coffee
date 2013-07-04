@@ -1,7 +1,4 @@
 async = require 'async'
-#createFolderStream = require './createFolderStream'
-createFilesStream = require './createFilesStream'
-#createFileStream = require './createFileStream'
 
 module.exports = gulp =
   reset: ->
@@ -20,6 +17,9 @@ module.exports = gulp =
       fn.call gulp
     return @
 
-  #folder: createFolderStream
-  files: createFilesStream
-  #file: createFileStream
+  #folder: require('./createFolderStream')
+  files: require('./createFilesStream')
+  #file: require('./createFileStream')
+
+  # utils
+  createGlobStream: require('./createGlobStream')
