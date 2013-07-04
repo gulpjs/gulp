@@ -24,6 +24,10 @@ describe 'gulp', ->
       stream.on 'error', (err) -> throw err
       stream.on 'data', (file) ->
         should.exist file
-        String(file).should.equal "this is a test"
+        should.exist file.path
+        should.exist file.contents
+
+        file.path.should.equal join __dirname, "./fixtures/test.coffee"
+        String(file.contents).should.equal "this is a test"
 
       stream.on 'end', -> done()

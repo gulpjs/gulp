@@ -2,11 +2,16 @@ createGlobStream = require './createGlobStream'
 es = require 'event-stream'
 fs = require 'fs'
 
-module.exports = createFilesStream = (glob, opt) ->
-  throw new Error "Invalid or missing glob string" unless typeof glob is 'string'
+readFile = (fname, cb) ->
+  fs.readFile fname, (err, contents) ->
+    return cb err if err?
+    fileObj =
+      path: fname
+      contents: contents
+    cb null, fileObj
 
+module.exports = createFilesStream = (glob, opt) ->
   globStream = createGlobStream glob, opt
-  
-  stream = globStream.pipe es.map fs.readFile
+  stream = globStream.pipe es.map readFile
 
   return stream 
