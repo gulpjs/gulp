@@ -13,7 +13,7 @@ module.exports = gulp =
   run: (tasks...) ->
     for name in tasks
       fn = gulp.tasks[name]
-      throw new Error "No task nmed #{name}" unless fn?
+      throw new Error "No task named \"#{name}\"" unless fn?
       fn.call gulp
     return @
 

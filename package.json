@@ -6,7 +6,8 @@
    "repository":"git://github.com/wearefractal/gulp.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
    "main":"./index.js",
-   
+  
+   "preferGlobal":true,
    "bin":{
       "gulp":"./bin/gulp"
    },
@@ -15,7 +16,8 @@
       "async":"*",
       "glob":"*",
       "event-stream":"*",
-      "glob-stream":"*"
+      "glob-stream":"*",
+      "colors":"*"
    },
    "devDependencies":{
       "mocha":"*",
@@ -25,7 +27,7 @@
       "test":"mocha --compilers coffee:coffee-script"
    },
    "engines":{
-      "node":">= 0.4.0"
+      "node":">= 0.8"
    },
    "licenses":[
       {
