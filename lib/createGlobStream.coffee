@@ -4,8 +4,8 @@ glob = require 'glob'
 module.exports = (globb, opt={}) ->
   throw new Error "Invalid or missing glob string" unless typeof globb is 'string'
   
-  opt.silent = true
-  opt.nonull = false
+  opt.silent ?= true
+  opt.nonull ?= false
 
   stream = es.pause()
 
