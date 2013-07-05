@@ -6,15 +6,13 @@ require('mocha');
 describe('gulp file collection', function() {
   describe('files()', function() {
     it('should return a stream', function(done) {
-      var stream;
-      stream = gulp.files(join(__dirname, "./fixtures/*.coffee"));
+      var stream = gulp.files(join(__dirname, "./fixtures/*.coffee"));
       should.exist(stream);
       should.exist(stream.on);
       done();
     });
     it('should return a files stream from a flat glob', function(done) {
-      var stream;
-      stream = gulp.files(join(__dirname, "./fixtures/*.coffee"));
+      var stream = gulp.files(join(__dirname, "./fixtures/*.coffee"));
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
@@ -28,8 +26,7 @@ describe('gulp file collection', function() {
       });
     });
     it('should return a files stream from a deep glob', function(done) {
-      var stream;
-      stream = gulp.files(join(__dirname, "./fixtures/**/*.jade"));
+      var stream = gulp.files(join(__dirname, "./fixtures/**/*.jade"));
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
@@ -43,9 +40,8 @@ describe('gulp file collection', function() {
       });
     });
     it('should return a files stream from a deeper glob', function(done) {
-      var a, stream;
-      stream = gulp.files(join(__dirname, "./fixtures/**/*.dmc"));
-      a = 0;
+      var stream = gulp.files(join(__dirname, "./fixtures/**/*.dmc"));
+      var a = 0;
       stream.on('error', done);
       stream.on('data', function(file) {
         ++a;
