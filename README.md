@@ -27,8 +27,8 @@ var minify = require('gulp-minify');
 // compile, minify, and copy templates
 gulp.task('templates', function(){
   gulp.folder("./client/templates")
-    .pipe(jade)
-    .pipe(minify)
+    .pipe(jade())
+    .pipe(minify())
     .pipe(gulp.folder("./public/templates"));
 });
 
@@ -36,13 +36,13 @@ gulp.task('scripts', function(){
   
   // compile, minify, and copy coffeescript
   gulp.folder("./client/js", {ignore: ["vendor"]})
-    .pipe(coffee)
-    .pipe(minify)
+    .pipe(coffee())
+    .pipe(minify())
     .pipe(gulp.folder("./public/js"));
 
   // copy vendor files
   gulp.folder("./client/js/vendor")
-    .pipe(minify)
+    .pipe(minify())
     .pipe(gulp.folder("./public/js/vendor"));
 
 });
