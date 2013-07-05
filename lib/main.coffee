@@ -19,7 +19,7 @@ module.exports = gulp =
 
   #folder: require('./createFolderStream')
   files: require('./createFilesStream')
-  #file: require('./createFileStream')
+  file: require('./createFileStream')
 
   # utils
   createGlobStream: require('glob-stream').create
