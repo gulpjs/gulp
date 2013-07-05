@@ -1,4 +1,29 @@
 #!/usr/bin/env node
 
-require('coffee-script');
-require('./cli');
+var gulp = require('../'),
+  argv = require('optimist').argv,
+  join = require('path').join,
+  existsSync = require('fs').existsSync,
+  tasks = argv._,
+  gulpFilename = getGulpFile();
+
+if (!gulpFilename) {
+  throw new Error("Missing Gulpfile");
+}
+
+var theGulpfile = require(gulpFilename);
+
+if (tasks.length === 0) {
+  gulp.run('default');
+} else {
+  gulp.run.apply(gulp, tasks);
+}
+
+function getGulpFile() {
+  var gulpFiles = Object.keys(require.extensions).map(function(ext){
+    return join(process.cwd(), "Gulpfile" + ext);
+  }).filter(function(v){
+    return existsSync(v);
+  });
+  return gulpFiles[0];
+};

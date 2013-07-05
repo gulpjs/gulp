@@ -13,15 +13,11 @@ describe 'gulp single file collection', ->
       done()
 
     it 'should return a file stream from a flat path', (done) ->
-      stream = gulp.files join __dirname, "./fixtures/test.coffee"
+      stream = gulp.file join __dirname, "./fixtures/test.coffee"
 
       stream.on 'error', (err) -> throw err
       stream.on 'data', (file) ->
         should.exist file
-        should.exist file.path
-        should.exist file.contents
-
-        file.path.should.equal join __dirname, "./fixtures/test.coffee"
-        String(file.contents).should.equal "this is a test"
+        file.should.equal join __dirname, "./fixtures/test.coffee"
 
       stream.on 'end', -> done()
