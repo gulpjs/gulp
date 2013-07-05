@@ -18,7 +18,10 @@ describe('gulp single file collection', function() {
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
-        file.should.equal(join(__dirname, "./fixtures/test.coffee"));
+        should.exist(file.path);
+        should.exist(file.contents);
+        file.path.should.equal(join(__dirname, "./fixtures/test.coffee"));
+        String(file.contents).should.equal("this is a test");
       });
       stream.on('end', function() {
         done();
