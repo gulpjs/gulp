@@ -12,15 +12,16 @@ module.exports = gulp = {
     var tasks = [].slice.call(arguments, 0);
     tasks.forEach(function(name) {
       var fn = gulp.tasks[name];
-      if (fn == null) {
+      if (!fn) {
         throw new Error("No task named \"" + name + "\"");
       }
-      return fn.call(gulp);
+      fn.call(gulp);
     });
     return this;
   },
   files: require('./lib/createFilesStream'),
   file: require('./lib/createFileStream'),
   createGlobStream: require('glob-stream').create,
-  readFile: require('./lib/readFile')
+  readFile: require('./lib/readFile'),
+  normalize: require('./lib/normalize')
 };
