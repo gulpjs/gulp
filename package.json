@@ -6,8 +6,8 @@
    "repository":"git://github.com/wearefractal/gulp.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
    "main":"./index.js",
-  
    "preferGlobal":true,
+   
    "bin":{
       "gulp":"./bin/gulp"
    },
