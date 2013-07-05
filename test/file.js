@@ -12,9 +12,11 @@ describe('gulp single file collection', function() {
       done();
     });
     it('should return a file stream from a flat path', function(done) {
+      var a = 0;
       var stream = gulp.file(join(__dirname, "./fixtures/test.coffee"));
       stream.on('error', done);
       stream.on('data', function(file) {
+        ++a;
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -22,6 +24,7 @@ describe('gulp single file collection', function() {
         String(file.contents).should.equal("this is a test");
       });
       stream.on('end', function() {
+        a.should.equal(1);
         done();
       });
     });
