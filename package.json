@@ -14,7 +14,8 @@
    "dependencies":{
       "async":"*",
       "event-stream":"*",
-      "glob-stream":">= 0.0.3"
+      "glob-stream":">= 0.0.3",
+      "ensureDir":"*"
    },
    "devDependencies":{
       "mocha":"*",
