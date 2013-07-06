@@ -18,8 +18,9 @@
       "optimist":"0.6.0"
    },
    "devDependencies":{
-      "mocha":"1.12",
-      "should":"~1.2"
+      "mocha":"1.12.0",
+      "should":"1.2.2",
+      "rimraf":"2.2.0"
    },
    "scripts":{
       "test":"mocha"

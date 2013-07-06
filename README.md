@@ -26,7 +26,7 @@ var minify = require('gulp-minify');
 
 // compile, minify, and copy templates
 gulp.task('templates', function(){
-  gulp.folder("./client/templates")
+  gulp.files("./client/templates/*.jade")
     .pipe(jade())
     .pipe(minify())
     .pipe(gulp.folder("./public/templates"));
@@ -35,13 +35,13 @@ gulp.task('templates', function(){
 gulp.task('scripts', function(){
   
   // compile, minify, and copy coffeescript
-  gulp.folder("./client/js", {ignore: ["vendor"]})
+  gulp.files("./client/js/*.js", {ignore: ["vendor"]})
     .pipe(coffee())
     .pipe(minify())
     .pipe(gulp.folder("./public/js"));
 
   // copy vendor files
-  gulp.folder("./client/js/vendor")
+  gulp.files("./client/js/vendor/**")
     .pipe(minify())
     .pipe(gulp.folder("./public/js/vendor"));
 
@@ -49,10 +49,10 @@ gulp.task('scripts', function(){
 
 // copy all static assets
 gulp.task('copy', function(){
-  gulp.folder("./client/img")
+  gulp.files("./client/img/**")
     .pipe(gulp.folder("./public/img"));
 
-  gulp.folder("./client/css")
+  gulp.files("./client/css/**")
     .pipe(gulp.folder("./public/css"));
 
   gulp.files("./client/*.html")
@@ -75,7 +75,7 @@ Takes a glob and represents an array of files with no structure. Can be piped to
 
 ### gulp.folder(path[, opt])
 
-Takes a folder path and represents it's structure. Can be piped to and from.
+Takes a folder path and represents it's structure. Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
 
 ### gulp.task(name, fn)
 
