@@ -16,6 +16,8 @@
 </tr>
 </table>
 
+This project is in it's early stages. If something is not working or you would like a new feature please use the issues page.
+
 ## Usage
 
 ```javascript
@@ -66,6 +68,16 @@ gulp.task('copy', function(){
 // default task gets called when you run the `gulp` command
 gulp.task('default', function(){
   gulp.run('templates', 'scripts', 'copy');
+
+  // watch files and run scripts if they change
+  gulp.watch("./client/js/**", function(event){
+    gulp.run('scripts');
+  });
+
+  gulp.watch("./client/templates/**", function(event){
+    gulp.run('templates');
+  });
+
 });
 ```
 

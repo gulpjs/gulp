@@ -23,6 +23,7 @@ module.exports = gulp = {
   file: require('./lib/createFileStream'),
   folder: require('./lib/createFolderStream'),
 
+  watch: require('./lib/watchFile'),
   createGlobStream: require('glob-stream').create,
   readFile: require('./lib/readFile')
 };

@@ -3,7 +3,7 @@ var should = require('should');
 var join = require('path').join;
 require('mocha');
 
-describe('gulp file utilities', function() {
+describe('gulp readFile', function() {
   describe('readFile()', function() {
     it('should return a valid file struct', function(done) {
       var fname = join(__dirname, "./fixtures/test.coffee");
