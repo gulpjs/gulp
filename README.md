@@ -103,17 +103,17 @@ This is a simple plugin that mutates the contents of a file. I recommend event-s
 Tips:
 
 1. file.contents should always be a Buffer
-2. Use the copy module to copy options and copy the file object. Do not mutate the file object then pass it! Copy it then mutate it.
+2. Use the `clone` module to clone options and copy the file object. Do not mutate the file object then pass it! Clone it then mutate it.
 
 ```javascript
 var es = require('event-stream'),
-  copy = require('copy');
+  clone = require('clone');
 
 module.exports = function(opt){
-  // copy options
-  opt = copy(opt);
+  // clone options
+  opt = clone(opt);
   function modifyContents(file, cb){
-    var newFile = copy(file);
+    var newFile = clone(file);
     newFile.contents = new Buffer(opt.license+newFile.contents);
     cb(null, file);
   }
