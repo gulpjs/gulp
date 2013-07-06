@@ -12,15 +12,14 @@
       "gulp":"./bin/gulp"
    },
    "dependencies":{
-      "async":"*",
-      "event-stream":"*",
-      "glob-stream":">= 0.0.3",
-      "ensureDir":"*",
-      "optimist": "~0.6.0"
+      "event-stream":"3.0.15",
+      "glob-stream":"0.0.3",
+      "mkdirp":"0.3.5",
+      "optimist":"0.6.0"
    },
    "devDependencies":{
-      "mocha":"*",
-      "should":"*"
+      "mocha":"1.12",
+      "should":"~1.2"
    },
    "scripts":{
       "test":"mocha"
