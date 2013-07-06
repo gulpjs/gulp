@@ -111,8 +111,9 @@ var es = require('event-stream'),
 
 module.exports = function(opt){
   // clone options
-  opt = clone(opt);
+  opt = opt ? clone(opt) : {};
   function modifyContents(file, cb){
+    // clone the file so we arent mutating stuff
     var newFile = clone(file);
     newFile.contents = new Buffer(opt.license+newFile.contents);
     cb(null, file);
