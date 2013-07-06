@@ -7,7 +7,7 @@
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
    "main":"./index.js",
    "preferGlobal":true,
-   
+
    "bin":{
       "gulp":"./bin/gulp"
    },
@@ -15,7 +15,8 @@
       "async":"*",
       "event-stream":"*",
       "glob-stream":">= 0.0.3",
-      "ensureDir":"*"
+      "ensureDir":"*",
+      "optimist": "~0.6.0"
    },
    "devDependencies":{
       "mocha":"*",
