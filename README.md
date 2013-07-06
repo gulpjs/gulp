@@ -111,12 +111,16 @@ var es = require('event-stream'),
   clone = require('clone');
 
 module.exports = function(opt){
-  // clone options
-  opt = opt ? clone(opt) : {};
+  if (!opt) opt = {};
+  if (!opt.license) opt.license = "This is copyrighted";
+
   function modifyContents(file, cb){
     // clone the file so we arent mutating stuff
     var newFile = clone(file);
-    newFile.contents = new Buffer(opt.license+newFile.contents);
+    
+    // remember that contents is ALWAYS a buffer
+    var newContents = opt.license + String(newFile.contents);
+    newFile.contents = new Buffer(newContents);
     cb(null, file);
   }
   return es.map(modifyContents);
