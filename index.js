@@ -22,7 +22,7 @@ module.exports = gulp = {
   files: require('./lib/createFilesStream'),
   file: require('./lib/createFileStream'),
   folder: require('./lib/createFolderStream'),
+
   createGlobStream: require('glob-stream').create,
-  readFile: require('./lib/readFile'),
-  realBase: require('./lib/realBase')
+  readFile: require('./lib/readFile')
 };

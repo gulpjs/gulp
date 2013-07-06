@@ -20,16 +20,4 @@ describe('gulp file utilities', function() {
       });
     });
   });
-
-  describe('realBase()', function() {
-    it('should return a valid shortened name', function(done) {
-      var fname = join(__dirname, "./fixtures/test.coffee");
-      var dname = join(__dirname, "./fixtures/");
-      var shortened = gulp.realBase(dname, fname);
-      should.exist(shortened);
-      shortened.should.equal("test.coffee");
-      done();
-    });
-  });
-
 });

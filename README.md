@@ -104,6 +104,7 @@ Tips:
 
 1. file.contents should always be a Buffer
 2. Use the `clone` module to clone options and copy the file object. Do not mutate the file object then pass it! Clone it then mutate it.
+3. Make use of the gulp-util library. Do you need to change a file's extension or do something tedious? Try looking if it's there first.
 
 ```javascript
 var es = require('event-stream'),

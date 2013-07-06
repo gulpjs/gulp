@@ -15,7 +15,8 @@
       "event-stream":"3.0.15",
       "glob-stream":"0.0.3",
       "mkdirp":"0.3.5",
-      "optimist":"0.6.0"
+      "optimist":"0.6.0",
+      "gulp-util":"*"
    },
    "devDependencies":{
       "mocha":"1.12.0",
