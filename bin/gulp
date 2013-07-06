@@ -20,10 +20,15 @@ if (tasks.length === 0) {
 }
 
 function getGulpFile() {
-  var gulpFiles = Object.keys(require.extensions).map(function(ext){
+  var Gulpfiles = Object.keys(require.extensions).map(function(ext){
     return join(process.cwd(), "Gulpfile" + ext);
-  }).filter(function(v){
-    return existsSync(v);
   });
-  return gulpFiles[0];
-};
+
+  var gulpFiles = Object.keys(require.extensions).map(function(ext){
+    return join(process.cwd(), "gulpfile" + ext);
+  });
+
+  return gulpFiles.concat(Gulpfiles).filter(function(v){
+    return existsSync(v);
+  })[0];
+}
