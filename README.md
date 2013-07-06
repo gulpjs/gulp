@@ -102,9 +102,9 @@ This is a simple plugin that mutates the contents of a file. I recommend event-s
 
 Tips:
 
-1. file.contents should always be a Buffer
-2. Use the `clone` module to clone options and copy the file object. Do not mutate the file object then pass it! Clone it then mutate it.
-3. Make use of the gulp-util library. Do you need to change a file's extension or do something tedious? Try looking if it's there first.
+1. file.contents should always be a Buffer before passing it off
+2. Use the `clone` module to clone the file object. Do not mutate the file object before cloning it! The piece that passed it to you may still be using it for something.
+3. Make use of the gulp-util library. Do you need to change a file's extension or do some tedious path crap? Try looking there first and add it if it doesn't exist.
 
 ```javascript
 var es = require('event-stream'),
