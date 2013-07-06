@@ -83,15 +83,40 @@ gulp.task('default', function(){
 
 ### gulp.files(glob[, opt])
 
-Takes a glob and represents an array of files with no structure. Can be piped to a folder.
+Takes a glob and represents a file structure. Can be piped to plugins.
+
+```javascript
+gulp.files("./client/templates/*.jade")
+    .pipe(jade())
+    .pipe(minify())
+    .pipe(gulp.folder("./public/minified_templates"));
+```
 
 ### gulp.folder(path[, opt])
 
-Takes a folder path and represents it's structure. Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
+Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
+
+```javascript
+gulp.files("./client/templates/*.jade")
+    .pipe(jade())
+    .pipe(gulp.folder("./public/templates"))
+    .pipe(minify())
+    .pipe(gulp.folder("./public/minified_templates"));
+```
 
 ### gulp.task(name, fn)
 
 All steps code must be defined within a task. Tasks that you want to run from the command line should not have spaces in them.
+
+```javascript
+gulp.task('somename', function(){
+  // do stuff
+});
+
+gulp.task('default', function(){
+  gulp.run('somename');
+});
+```
 
 Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`
 
@@ -100,13 +125,23 @@ Just running `gulp` will execute the task you registered called default.
 
 ### gulp.run(tasks...)
 
-Executes tasks in order.
+Triggers tasks to be executed. Does not run in order.
 
 ```javascript
 gulp.run('scripts', 'copyfiles', 'builddocs');
 ```
 
 Use gulp.run to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
+
+### gulp.watch(glob, cb)
+
+glob can be a standard glob or an array of globs. cb is called on each fs change with an object describing the change.
+
+```javascript
+gulp.watch("js/**/*.js", function(event){
+  gulp.run('scripts', 'copyfiles');
+});
+```
 
 ## Writing a plugin
 

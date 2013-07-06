@@ -6,12 +6,11 @@ var rimraf = require('rimraf');
 
 require('mocha');
 
-var expectedName = join(__dirname, "./fixtures/stuff/temp.coffee");
-
 describe('gulp watch', function() {
   describe('watch()', function() {
     it('should return a valid file struct', function(done) {
-      var fname = join(__dirname, "./fixtures/**/*.coffee");
+      var expectedName = join(__dirname, "./fixtures/stuff/temp.coffee");
+      var fname = join(__dirname, "./fixtures/**/temp.coffee");
       fs.writeFileSync(expectedName, "testing");
 
       var watcher = gulp.watch(fname);
@@ -21,6 +20,9 @@ describe('gulp watch', function() {
         should.exist(evt.type);
         evt.type.should.equal('changed');
         evt.path.should.equal(expectedName);
+        watcher.end();
+      });
+      watcher.on('end', function(){
         rimraf.sync(expectedName);
         done();
       });
@@ -28,5 +30,29 @@ describe('gulp watch', function() {
         fs.writeFileSync(expectedName, "test test");
       }, 100);
     });
+
+    it('should return a valid file struct via vallback', function(done) {
+      var expectedName = join(__dirname, "./fixtures/stuff/test.coffee");
+      var fname = join(__dirname, "./fixtures/**/test.coffee");
+      fs.writeFileSync(expectedName, "testing");
+
+      var watcher = gulp.watch(fname, function(evt) {
+        should.exist(evt);
+        should.exist(evt.path);
+        should.exist(evt.type);
+        evt.type.should.equal('changed');
+        evt.path.should.equal(expectedName);
+        watcher.end();
+      });
+
+      watcher.on('end', function(){
+        rimraf.sync(expectedName);
+        done();
+      });
+      setTimeout(function(){
+        fs.writeFileSync(expectedName, "test test");
+      }, 200);
+    });
+
   });
 });
