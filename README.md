@@ -98,16 +98,26 @@ Use gulp.run to run tasks from other tasks. You will probably use this in your d
 
 ## Writing a plugin
 
-This is a simple plugin that mutates the contents of a file. I recommend event-stream as a simple stream utility. This example plugin takes an options object with a license attribute and prepends it to all files passed through it. file.contents should always be a Buffer.
+This is a simple plugin that mutates the contents of a file. I recommend event-stream as a simple stream utility. This example plugin takes an options object with a license attribute and prepends it to all files passed through it.
+
+Tips:
+
+1. file.contents should always be a Buffer
+2. Use the copy module to copy options and copy the file object. Do not mutate the file object then pass it! Copy it then mutate it.
 
 ```javascript
-var es = require('event-stream');
+var es = require('event-stream'),
+  copy = require('copy');
 
 module.exports = function(opt){
-  return es.map(function(file, cb){
-    file.contents = new Buffer(opt.license + file.contents);
+  // copy options
+  opt = copy(opt);
+  function modifyContents(file, cb){
+    var newFile = copy(file);
+    newFile.contents = new Buffer(opt.license+newFile.contents);
     cb(null, file);
-  });
+  }
+  return es.map(modifyContents);
 }
 ```
 
