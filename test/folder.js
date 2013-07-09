@@ -18,7 +18,7 @@ describe('gulp file collection', function() {
       var outpath = join(__dirname, "./out-fixtures");
       rimraf(outpath, function(err){
         should.not.exist(err);
-        var instream = gulp.files(join(__dirname, "./fixtures/*.coffee"));
+        var instream = gulp.files(join(__dirname, "./fixtures/**/*.txt"));
         var outstream = gulp.folder(outpath);
         instream.pipe(outstream);
 
@@ -28,11 +28,11 @@ describe('gulp file collection', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          file.path.should.equal(join(__dirname, "./fixtures/test.coffee"));
+          file.path.should.equal(join(__dirname, "./fixtures/copy/example.txt"));
           String(file.contents).should.equal("this is a test");
         });
         outstream.on('end', function() {
-          fs.readFile(join(outpath, "test.coffee"), function(err, contents){
+          fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents){
             should.not.exist(err);
             should.exist(contents);
             String(contents).should.equal("this is a test");
