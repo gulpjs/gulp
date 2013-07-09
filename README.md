@@ -152,7 +152,7 @@ Tips:
 1. file.contents should always be a Buffer before passing it off
 2. Use the `clone` module to clone the file object. Do not mutate the file object before cloning it! The piece that passed it to you may still be using it for something.
 3. Make use of the gulp-util library. Do you need to change a file's extension or do some tedious path crap? Try looking there first and add it if it doesn't exist.
-4. Remember: Your plugin should only do one thing! It should not compile and compress. It should not have a complex config object that makes it do multiple things. This is not grunt.
+4. Remember: Your plugin should only do one thing! It should not compile AND compress. It should not have a complex config object that makes it do multiple things. This is not grunt.
 
 ```javascript
 var es = require('event-stream'),
