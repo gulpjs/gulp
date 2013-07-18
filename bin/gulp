@@ -11,6 +11,9 @@ if (!gulpFilename) {
   throw new Error("Missing Gulpfile");
 }
 
+// Expose list of tasks and flags to other tasks
+gulp.env = argv;
+
 var theGulpfile = require(gulpFilename);
 
 if (tasks.length === 0) {

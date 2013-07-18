@@ -146,6 +146,10 @@ gulp.watch("js/**/*.js", function(event){
 });
 ```
 
+### gulp.env
+
+gulp.env is an optimist arguments object. Running `gulp test dostuff --production` will yield `{_:["test","dostuff"],production:true}`
+
 ## Writing a plugin
 
 This is a simple plugin that mutates the contents of a file. I recommend event-stream as a simple stream utility. This example plugin takes an options object with a license attribute and prepends it to all files passed through it.
