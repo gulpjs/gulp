@@ -31,40 +31,40 @@ var minify = require('gulp-minify');
 
 // compile, minify, and copy templates
 gulp.task('templates', function(){
-  gulp.files("./client/templates/*.jade")
+  gulp.src("./client/templates/*.jade")
     .pipe(jade())
     .pipe(minify())
-    .pipe(gulp.folder("./public/templates"));
+    .pipe(gulp.dest("./public/templates"));
 });
 
 gulp.task('scripts', function(){
   
   // compile, minify, and copy coffeescript
-  gulp.files("./client/js/*.js", {ignore: ["vendor"]})
+  gulp.src("./client/js/*.js", {ignore: ["vendor"]})
     .pipe(coffee())
     .pipe(minify())
-    .pipe(gulp.folder("./public/js"));
+    .pipe(gulp.dest("./public/js"));
 
   // copy vendor files
-  gulp.files("./client/js/vendor/**")
+  gulp.src("./client/js/vendor/**")
     .pipe(minify())
-    .pipe(gulp.folder("./public/js/vendor"));
+    .pipe(gulp.dest("./public/js/vendor"));
 
 });
 
 // copy all static assets
 gulp.task('copy', function(){
-  gulp.files("./client/img/**")
-    .pipe(gulp.folder("./public/img"));
+  gulp.src("./client/img/**")
+    .pipe(gulp.dest("./public/img"));
 
-  gulp.files("./client/css/**")
-    .pipe(gulp.folder("./public/css"));
+  gulp.src("./client/css/**")
+    .pipe(gulp.dest("./public/css"));
 
-  gulp.files("./client/*.html")
-    .pipe(gulp.folder("./public"));
+  gulp.src("./client/*.html")
+    .pipe(gulp.dest("./public"));
 
-  gulp.files("./client/*.ico")
-    .pipe(gulp.folder("./public"));
+  gulp.src("./client/*.ico")
+    .pipe(gulp.dest("./public"));
 
 });
 
@@ -84,27 +84,27 @@ gulp.task('default', function(){
 });
 ```
 
-### gulp.files(glob[, opt])
+### gulp.src(glob[, opt])
 
 Takes a glob and represents a file structure. Can be piped to plugins.
 
 ```javascript
-gulp.files("./client/templates/*.jade")
+gulp.src("./client/templates/*.jade")
     .pipe(jade())
     .pipe(minify())
-    .pipe(gulp.folder("./public/minified_templates"));
+    .pipe(gulp.dest("./public/minified_templates"));
 ```
 
-### gulp.folder(path[, opt])
+### gulp.dest(path[, opt])
 
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
 
 ```javascript
-gulp.files("./client/templates/*.jade")
+gulp.src("./client/templates/*.jade")
     .pipe(jade())
-    .pipe(gulp.folder("./public/templates"))
+    .pipe(gulp.dest("./public/templates"))
     .pipe(minify())
-    .pipe(gulp.folder("./public/minified_templates"));
+    .pipe(gulp.dest("./public/minified_templates"));
 ```
 
 ### gulp.task(name, fn)
