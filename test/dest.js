@@ -6,20 +6,20 @@ var fs = require('fs');
 
 require('mocha');
 
-describe('gulp file collection', function() {
-  describe('folder()', function() {
+describe('gulp output stream', function() {
+  describe('dest()', function() {
     it('should return a stream', function(done) {
-      var stream = gulp.folder(join(__dirname, "./fixtures/"));
+      var stream = gulp.dest(join(__dirname, "./fixtures/"));
       should.exist(stream);
       should.exist(stream.on);
       done();
     });
-    it('should return a folder stream that writes files', function(done) {
+    it('should return a output stream that writes files', function(done) {
       var outpath = join(__dirname, "./out-fixtures");
       rimraf(outpath, function(err){
         should.not.exist(err);
-        var instream = gulp.files(join(__dirname, "./fixtures/**/*.txt"));
-        var outstream = gulp.folder(outpath);
+        var instream = gulp.src(join(__dirname, "./fixtures/**/*.txt"));
+        var outstream = gulp.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);

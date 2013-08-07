@@ -19,9 +19,8 @@ module.exports = gulp = {
     });
     return this;
   },
-  files: require('./lib/createFilesStream'),
-  file: require('./lib/createFileStream'),
-  folder: require('./lib/createFolderStream'),
+  src: require('./lib/createInputStream'),
+  dest: require('./lib/createOutputStream'),
 
   watch: require('./lib/watchFile'),
   createGlobStream: require('glob-stream').create,
