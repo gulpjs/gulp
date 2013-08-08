@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>Simple stream-y build helper</td>
+<td>The streaming build system</td>
 </tr>
 <tr>
 <td>Node Version</td>
