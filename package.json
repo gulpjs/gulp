@@ -1,6 +1,6 @@
 {
    "name":"gulp",
-   "description":"Simple stream-y build helper",
+   "description":"The streaming build system",
    "version":"0.2.0",
    "homepage":"http://github.com/wearefractal/gulp",
    "repository":"git://github.com/wearefractal/gulp.git",
