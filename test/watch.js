@@ -28,7 +28,7 @@ describe('gulp watch', function() {
       });
       setTimeout(function(){
         fs.writeFileSync(expectedName, "test test");
-      }, 100);
+      }, 125);
     });
 
     it('should return a valid file struct via vallback', function(done) {

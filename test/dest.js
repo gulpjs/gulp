@@ -28,7 +28,7 @@ describe('gulp output stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          file.path.should.equal(join(__dirname, "./fixtures/copy/example.txt"));
+          join(file.path,'').should.equal(join(__dirname, "./fixtures/copy/example.txt"));
           String(file.contents).should.equal("this is a test");
         });
         outstream.on('end', function() {
