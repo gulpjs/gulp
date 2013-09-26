@@ -16,13 +16,13 @@
       "glob-stream":"0.0.3",
       "mkdirp":"0.3.5",
       "optimist":"0.6.0",
-      "gulp-util":"*",
-      "gaze":"0.4.1"
+      "gulp-util":"1.0.0",
+      "gaze":"0.4.2"
    },
    "devDependencies":{
-      "mocha":"1.12.0",
-      "should":"1.2.2",
-      "rimraf":"2.2.0"
+      "mocha":"*",
+      "should":"*",
+      "rimraf":"*"
    },
    "scripts":{
       "test":"mocha"
