@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>The streaming build system</td>
+<td>Simple stream-y build helper</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -152,36 +152,48 @@ gulp.env is an optimist arguments object. Running `gulp test dostuff --productio
 
 ## Writing a plugin
 
-This is a simple plugin that mutates the contents of a file. I recommend event-stream as a simple stream utility. This example plugin takes an options object with a license attribute and prepends it to all files passed through it.
+This is a simple plugin that adds a header to the beginning of each file. It takes one argument (a string). Let's call it `gulp-header`. I recommend event-stream as a utility for creating these plugins.
 
-Tips:
-
-1. file.contents should always be a Buffer before passing it off
-2. Use the `clone` module to clone the file object. Do not mutate the file object before cloning it! The piece that passed it to you may still be using it for something.
-3. Make use of the gulp-util library. Do you need to change a file's extension or do some tedious path crap? Try looking there first and add it if it doesn't exist.
-4. Remember: Your plugin should only do one thing! It should not compile AND compress. It should not have a complex config object that makes it do multiple things. This is not grunt.
-5. Add "gulpplugin" as a keyword in your package.json so you show up on our search
+#### Code
 
 ```javascript
-var es = require('event-stream'),
-  clone = require('clone');
+var es = require('event-stream');
 
-module.exports = function(opt){
-  if (!opt) opt = {};
-  if (!opt.license) opt.license = "This is copyrighted";
+module.exports = function(header){
+  // check our options
+  if (!header) throw new Error("header option missing");
 
+  // our map function
   function modifyContents(file, cb){
-    // clone the file so we arent mutating stuff
-    var newFile = clone(file);
-    
     // remember that contents is ALWAYS a buffer
-    var newContents = opt.license + String(newFile.contents);
-    newFile.contents = new Buffer(newContents);
+    file.contents = new Buffer(header + String(file.contents));
     cb(null, file);
   }
+
+  // return a stream
   return es.map(modifyContents);
 }
 ```
+
+#### Usage
+
+```javascript
+var gulp = require('gulp');
+var header = require('gulp-header');
+
+// Add a copyright header to each file
+gulp.src('./client/scripts/*.js')
+  .pipe(header('// This file is copyrighted'))
+  .pipe(gulp.dest("./public/scripts/"))
+```
+
+## Plugin Guidelines
+
+1. file.contents should always be a Buffer.
+2. Do not pass the file object downstream until you are done with it.
+3. Make use of the gulp-util library. Do you need to change a file's extension or do some tedious path crap? Try looking there first and add it if it doesn't exist.
+4. Remember: Your plugin should only do one thing! It should not compile AND compress. It should not have a complex config object that makes it do multiple things. It should not concat and add headers/footers. This is not grunt. Keep it simple.
+5. Add "gulpplugin" as a keyword in your package.json so you show up on our search
 
 ## LICENSE
 
