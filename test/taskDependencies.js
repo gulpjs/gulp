@@ -1,13 +1,16 @@
 /*jshint node:true */
-/*global describe:false, it:false */
+/*global describe:false, it:false, beforeEach:false */
 
 "use strict";
 
 var gulp = require('../');
-var should = require('should');
+require('should');
 require('mocha');
 
 describe('gulp task dependencies', function() {
+  beforeEach(function () {
+    gulp.reset(); // Don't bleed previous test into subsequent test
+  });
   describe('run()', function() {
     // Technically these are duplicated from test/runSequencer.js,
     // but those are unit tests and these are integration tests
@@ -26,7 +29,6 @@ describe('gulp task dependencies', function() {
       gulp.task('test2', fn2);
       gulp.run('test1', 'test2', function () {
         a.should.equal(2);
-        gulp.reset();
         done();
       });
     });
@@ -46,7 +48,6 @@ describe('gulp task dependencies', function() {
       gulp.task('test', ['dep'], fn2);
       gulp.run('test', function () {
         a.should.equal(2);
-        gulp.reset();
         done();
       });
     });

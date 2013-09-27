@@ -5,13 +5,13 @@ module.exports = gulp = {
   reset: function() {
     'use strict';
     gulp.tasks = {};
-    gulp.taskSequence = [];
+    gulp.taskQueue = [];
     gulp.isRunning = false;
     gulp.doneCallback = undefined;
     return this;
   },
   tasks: {},
-  taskSequence: [],
+  taskQueue: [],
   task: function(name, dep, fn) {
     'use strict';
     if (!fn) {
@@ -34,10 +34,6 @@ module.exports = gulp = {
   run: function() {
     'use strict';
     var names, lastTask, seq = [];
-    if (gulp.isRunning) {
-throw new Error('join them together rather than blowing up');
-    }
-    gulp.isRunning = true;
     names = [].slice.call(arguments, 0);
     if (names.length) {
       lastTask = names[names.length-1];
@@ -49,9 +45,15 @@ throw new Error('join them together rather than blowing up');
     if (names.length === 0) {
       names.push('default');
     }
+    if (gulp.isRunning) {
+      // if you call run() again while a previous run is still in play
+      // append the new tasks to the existing task queue
+      names = gulp.taskQueue.concat(names);
+    }
     seq = [];
     gulp._runSequencer(gulp.tasks, names, seq, []);
-    gulp.taskSequence = seq;
+    gulp.taskQueue = seq;
+    gulp.isRunning = true;
     setTimeout(function () {
       gulp._runStep();
     },0);
@@ -85,8 +87,8 @@ throw new Error('join them together rather than blowing up');
     if (!gulp.isRunning) {
       return; // They aborted it
     }
-    for (i = 0; i < gulp.taskSequence.length; i++) {
-      t = gulp.tasks[gulp.taskSequence[i]];
+    for (i = 0; i < gulp.taskQueue.length; i++) {
+      t = gulp.tasks[gulp.taskQueue[i]];
       if (!t.done) {
         task = t;
         break;
@@ -110,8 +112,8 @@ throw new Error('join them together rather than blowing up');
         }); // .done() with no onRejected so failure is thrown
       } else {
         // no promise, just do the next task, setTimeout to clear call stack
+        task.done = true;
         setTimeout(function () {
-          task.done = true;
           gulp._runStep();
         }, 0);
       }
