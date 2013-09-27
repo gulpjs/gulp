@@ -9,7 +9,7 @@ describe('gulp tasks', function() {
       fn = function() {};
       gulp.task('test', fn);
       should.exist(gulp.tasks.test);
-      gulp.tasks.test.should.equal(fn);
+      gulp.tasks.test.fn.should.equal(fn);
       gulp.reset();
       done();
     });
@@ -28,10 +28,13 @@ describe('gulp tasks', function() {
       };
       gulp.task('test', fn);
       gulp.task('test2', fn2);
-      gulp.run('test', 'test2');
-      a.should.equal(2);
-      gulp.reset();
-      done();
+      gulp.run('test', 'test2', function () {
+        a.should.equal(2);
+        gulp.isRunning.should.equal(false);
+        gulp.reset();
+        done();
+      });
+      gulp.isRunning.should.equal(true);
     });
     it('should run task scoped to gulp', function(done) {
       var a, fn;
@@ -41,10 +44,13 @@ describe('gulp tasks', function() {
         ++a;
       };
       gulp.task('test', fn);
-      gulp.run('test');
-      a.should.equal(1);
-      gulp.reset();
-      done();
+      gulp.run('test', function () {
+        a.should.equal(1);
+        gulp.isRunning.should.equal(false);
+        gulp.reset();
+        done();
+      });
+      gulp.isRunning.should.equal(true);
     });
     it('should run default task scoped to gulp', function(done) {
       var a, fn;
@@ -54,10 +60,13 @@ describe('gulp tasks', function() {
         ++a;
       };
       gulp.task('default', fn);
-      gulp.run();
-      a.should.equal(1);
-      gulp.reset();
-      done();
+      gulp.run(function () {
+        a.should.equal(1);
+        gulp.isRunning.should.equal(false);
+        gulp.reset();
+        done();
+      });
+      gulp.isRunning.should.equal(true);
     });
   });
 });
