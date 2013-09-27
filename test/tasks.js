@@ -46,5 +46,18 @@ describe('gulp tasks', function() {
       gulp.reset();
       done();
     });
+    it('should run default task scoped to gulp', function(done) {
+      var a, fn;
+      a = 0;
+      fn = function() {
+        this.should.equal(gulp);
+        ++a;
+      };
+      gulp.task('default', fn);
+      gulp.run();
+      a.should.equal(1);
+      gulp.reset();
+      done();
+    });
   });
 });

@@ -10,6 +10,9 @@ module.exports = gulp = {
   },
   run: function() {
     var tasks = [].slice.call(arguments, 0);
+    if (tasks.length === 0) {
+    	tasks.push('default');
+    }
     tasks.forEach(function(name) {
       var fn = gulp.tasks[name];
       if (!fn) {
