@@ -35,13 +35,10 @@ describe('gulp tasks', function() {
       };
       gulp.task('test', fn);
       gulp.task('test2', fn2);
-      gulp.run('test', 'test2', function () {
-        a.should.equal(2);
-        gulp.isRunning.should.equal(false);
-        gulp.reset();
-        done();
-      });
-      gulp.isRunning.should.equal(true);
+      gulp.run('test', 'test2');
+      a.should.equal(2);
+      gulp.reset();
+      done();
     });
     it('should run all tasks when call run() multiple times', function(done) {
       var a, fn, fn2;
@@ -57,13 +54,10 @@ describe('gulp tasks', function() {
       gulp.task('test', fn);
       gulp.task('test2', fn2);
       gulp.run('test');
-      gulp.run('test2', function () {
-        a.should.equal(2);
-        gulp.isRunning.should.equal(false);
-        gulp.reset();
-        done();
-      });
-      gulp.isRunning.should.equal(true);
+      gulp.run('test2');
+      a.should.equal(2);
+      gulp.reset();
+      done();
     });
     it('should run task scoped to gulp', function(done) {
       var a, fn;
@@ -73,13 +67,11 @@ describe('gulp tasks', function() {
         ++a;
       };
       gulp.task('test', fn);
-      gulp.run('test', function () {
-        a.should.equal(1);
-        gulp.isRunning.should.equal(false);
-        gulp.reset();
-        done();
-      });
-      gulp.isRunning.should.equal(true);
+      gulp.run('test');
+      a.should.equal(1);
+      gulp.isRunning.should.equal(false);
+      gulp.reset();
+      done();
     });
     it('should run default task scoped to gulp', function(done) {
       var a, fn;
@@ -89,13 +81,11 @@ describe('gulp tasks', function() {
         ++a;
       };
       gulp.task('default', fn);
-      gulp.run(function () {
-        a.should.equal(1);
-        gulp.isRunning.should.equal(false);
-        gulp.reset();
-        done();
-      });
-      gulp.isRunning.should.equal(true);
+      gulp.run();
+      a.should.equal(1);
+      gulp.isRunning.should.equal(false);
+      gulp.reset();
+      done();
     });
   });
 });

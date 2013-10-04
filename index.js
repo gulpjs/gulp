@@ -1,7 +1,8 @@
 /*jshint node:true */
 /*exports gulp */
-/*global gulp:true */
+/*global gulp:true, console:false */
 module.exports = gulp = {
+  verbose: false,
   reset: function() {
     'use strict';
     gulp.tasks = {};
@@ -53,10 +54,13 @@ module.exports = gulp = {
     seq = [];
     gulp._runSequencer(gulp.tasks, names, seq, []);
     gulp.taskQueue = seq;
-    gulp.isRunning = true;
-    setTimeout(function () {
+    if (gulp.verbose) {
+      console.log('task queue: '+gulp.taskQueue.join(','));
+    }
+    if (!gulp.isRunning) {
+      gulp.isRunning = true;
       gulp._runStep();
-    },0);
+    }
     return this;
   },
   _runSequencer: function (tasks, names, results, nest) {
@@ -83,42 +87,73 @@ module.exports = gulp = {
   },
   _runStep: function () {
     'use strict';
-    var task, i, t;
+    var i, task, allDone = true;
     if (!gulp.isRunning) {
       return; // They aborted it
     }
     for (i = 0; i < gulp.taskQueue.length; i++) {
-      t = gulp.tasks[gulp.taskQueue[i]];
-      if (!t.done) {
-        task = t;
-        break;
+      task = gulp.tasks[gulp.taskQueue[i]];
+      if (!task.done && !task.running) {
+        if (gulp._readyToRun(task)) {
+          gulp._runTask(task);
+          if (!task.done) {
+            allDone = false;
+          }
+        }
       }
     }
-    if (!task) {
-      // done
+    if (allDone) {
+      if (gulp.verbose) {
+        console.log('build succeeded');
+      }
       gulp.isRunning = false;
       if (gulp.doneCallback) {
         gulp.doneCallback();
       }
-    } else {
-      // not done
-      var p = task.fn.call(gulp);
-      if (p && p.done) {
-        // wait for promise to resolve
-        // FRAGILE: ASSUME: Q promises
-        p.done(function () {
-          task.done = true;
-          gulp._runStep();
-        }); // .done() with no onRejected so failure is thrown
-      } else {
-        // no promise, just do the next task, setTimeout to clear call stack
-        task.done = true;
-        setTimeout(function () {
-          gulp._runStep();
-        }, 0);
+    }
+  },
+  _readyToRun: function (task) {
+    "use strict";
+    var ready = true, // No one disproved it yet
+      i, name, t;
+    if (task.dep.length) {
+      for (i = 0; i < task.dep.length; i++) {
+        name = task.dep[i];
+        t = gulp.tasks[name];
+        if (!t.done) {
+          ready = false;
+          break;
+        }
       }
     }
-    return this;
+    return ready;
+  },
+  _runTask: function (task) {
+    "use strict";
+    if (gulp.verbose) {
+      console.log('starting ['+task.name+']');
+    }
+    task.running = true;
+    var p = task.fn.call(gulp);
+    if (p && p.done) {
+      // wait for promise to resolve
+      // FRAGILE: ASSUME: Q promises
+      p.done(function () {
+        task.running = false;
+        task.done = true;
+        if (gulp.verbose) {
+          console.log('resolved ['+task.name+']');
+        }
+        gulp._runStep();
+      }); // .done() with no onRejected so failure is thrown
+    } else {
+      // no promise, just do the next task, setTimeout to clear call stack
+      if (gulp.verbose) {
+        console.log('finished ['+task.name+']');
+      }
+      task.running = false;
+      task.done = true;
+    }
   },
   src: require('./lib/createInputStream'),
   dest: require('./lib/createOutputStream'),
