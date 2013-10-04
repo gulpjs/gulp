@@ -1,6 +1,7 @@
 /*jshint node:true */
 /*exports gulp */
 /*global gulp:true, console:false */
+// TODO: refactor to use async.auto()
 module.exports = gulp = {
   verbose: false,
   reset: function() {
@@ -55,7 +56,7 @@ module.exports = gulp = {
     gulp._runSequencer(gulp.tasks, names, seq, []);
     gulp.taskQueue = seq;
     if (gulp.verbose) {
-      console.log('task queue: '+gulp.taskQueue.join(','));
+      console.log('[gulp tasks: '+gulp.taskQueue.join(',')+']');
     }
     if (!gulp.isRunning) {
       gulp.isRunning = true;
@@ -96,10 +97,10 @@ module.exports = gulp = {
       if (!task.done && !task.running) {
         if (gulp._readyToRunTask(task)) {
           gulp._runTask(task);
-          if (!task.done) {
-            allDone = false;
-          }
         }
+      }
+      if (!task.done) {
+        allDone = false;
       }
     }
     if (allDone) {
@@ -131,7 +132,7 @@ module.exports = gulp = {
   _runTask: function (task) {
     "use strict";
     if (gulp.verbose) {
-      console.log('starting ['+task.name+']');
+      console.log('['+task.name+' started]');
     }
     task.running = true;
     var p = task.fn.call(gulp);
@@ -142,14 +143,14 @@ module.exports = gulp = {
         task.running = false;
         task.done = true;
         if (gulp.verbose) {
-          console.log('resolved ['+task.name+']');
+          console.log('['+task.name+' resolved]');
         }
         gulp._runStep();
       }); // .done() with no onRejected so failure is thrown
     } else {
-      // no promise, just do the next task, setTimeout to clear call stack
+      // no promise, we're done
       if (gulp.verbose) {
-        console.log('finished ['+task.name+']');
+        console.log('['+task.name+' finished]');
       }
       task.running = false;
       task.done = true;

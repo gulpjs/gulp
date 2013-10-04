@@ -1,5 +1,5 @@
 /*jshint node:true */
-/*global describe:false, it:false, beforeEach:false */
+/*global describe:false, it:false, beforeEach:false, afterEach:false */
 "use strict";
 
 var gulp = require('../');
@@ -8,9 +8,9 @@ var should = require('should');
 require('mocha');
 
 describe('gulp tasks', function() {
-  beforeEach(function () {
-    gulp.reset(); // Don't bleed previous test into subsequent test
-  });
+  // Don't bleed previous test into subsequent test
+  beforeEach(gulp.reset);
+  afterEach(gulp.reset);
   describe('task()', function() {
     it('should define a task', function(done) {
       var fn;
