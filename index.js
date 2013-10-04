@@ -94,7 +94,7 @@ module.exports = gulp = {
     for (i = 0; i < gulp.taskQueue.length; i++) {
       task = gulp.tasks[gulp.taskQueue[i]];
       if (!task.done && !task.running) {
-        if (gulp._readyToRun(task)) {
+        if (gulp._readyToRunTask(task)) {
           gulp._runTask(task);
           if (!task.done) {
             allDone = false;
@@ -112,7 +112,7 @@ module.exports = gulp = {
       }
     }
   },
-  _readyToRun: function (task) {
+  _readyToRunTask: function (task) {
     "use strict";
     var ready = true, // No one disproved it yet
       i, name, t;

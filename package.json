@@ -22,7 +22,8 @@
    "devDependencies":{
       "mocha":"*",
       "should":"*",
-      "rimraf":"*"
+      "rimraf":"*",
+      "q": "*"
    },
    "scripts":{
       "test":"mocha"

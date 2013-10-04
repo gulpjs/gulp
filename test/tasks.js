@@ -3,6 +3,7 @@
 "use strict";
 
 var gulp = require('../');
+var Q = require('q');
 var should = require('should');
 require('mocha');
 
@@ -58,6 +59,36 @@ describe('gulp tasks', function() {
       a.should.equal(2);
       gulp.reset();
       done();
+    });
+    it('should run all asynchronous tasks', function(done) {
+      var a, fn, fn2;
+      a = 0;
+      fn = function() {
+        var deferred = Q.defer();
+        setTimeout(function () {
+          ++a;
+          deferred.resolve();
+        },1);
+        return deferred.promise;
+      };
+      fn2 = function() {
+        var deferred = Q.defer();
+        setTimeout(function () {
+          ++a;
+          deferred.resolve();
+        },1);
+        return deferred.promise;
+      };
+      gulp.task('test', fn);
+      gulp.task('test2', fn2);
+      gulp.run('test');
+      gulp.run('test2', function () {
+        gulp.isRunning.should.equal(false);
+        a.should.equal(2);
+        gulp.reset();
+        done();
+      });
+      gulp.isRunning.should.equal(true);
     });
     it('should run task scoped to gulp', function(done) {
       var a, fn;
