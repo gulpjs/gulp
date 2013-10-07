@@ -135,7 +135,18 @@ module.exports = gulp = {
       console.log('['+task.name+' started]');
     }
     task.running = true;
-    var p = task.fn.call(gulp);
+    var cb = function (err) {
+      if (err) {
+        throw new Error(err);
+      }
+      task.running = false;
+      task.done = true;
+      if (gulp.verbose) {
+        console.log('['+task.name+' calledback]');
+      }
+      gulp._runStep.call(gulp);
+    };
+    var p = task.fn.call(gulp, cb);
     if (p && p.done) {
       // wait for promise to resolve
       // FRAGILE: ASSUME: Q promises
@@ -145,15 +156,17 @@ module.exports = gulp = {
         if (gulp.verbose) {
           console.log('['+task.name+' resolved]');
         }
-        gulp._runStep();
+        gulp._runStep.call(gulp);
       }); // .done() with no onRejected so failure is thrown
-    } else {
-      // no promise, we're done
+    } else if (!task.fn.length) {
+      // no promise, no callback, we're done
       if (gulp.verbose) {
         console.log('['+task.name+' finished]');
       }
       task.running = false;
       task.done = true;
+    //} else {
+      // FRAGILE: ASSUME: callback
     }
   },
   src: require('./lib/createInputStream'),

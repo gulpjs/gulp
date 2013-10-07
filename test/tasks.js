@@ -60,7 +60,7 @@ describe('gulp tasks', function() {
       gulp.reset();
       done();
     });
-    it('should run all asynchronous tasks', function(done) {
+    it('should run all async promise tasks', function(done) {
       var a, fn, fn2;
       a = 0;
       fn = function() {
@@ -78,6 +78,32 @@ describe('gulp tasks', function() {
           deferred.resolve();
         },1);
         return deferred.promise;
+      };
+      gulp.task('test', fn);
+      gulp.task('test2', fn2);
+      gulp.run('test');
+      gulp.run('test2', function () {
+        gulp.isRunning.should.equal(false);
+        a.should.equal(2);
+        gulp.reset();
+        done();
+      });
+      gulp.isRunning.should.equal(true);
+    });
+    it('should run all async callback tasks', function(done) {
+      var a, fn, fn2;
+      a = 0;
+      fn = function(cb) {
+        setTimeout(function () {
+          ++a;
+          cb(null);
+        },1);
+      };
+      fn2 = function(cb) {
+        setTimeout(function () {
+          ++a;
+          cb(null);
+        },1);
       };
       gulp.task('test', fn);
       gulp.task('test2', fn2);
