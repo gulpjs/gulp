@@ -107,7 +107,7 @@ gulp.src("./client/templates/*.jade")
     .pipe(gulp.dest("./public/minified_templates"));
 ```
 
-### gulp.task(name, fn)
+### gulp.task(name, [dep], fn)
 
 All steps code must be defined within a task. Tasks that you want to run from the command line should not have spaces in them.
 
@@ -115,15 +115,49 @@ All steps code must be defined within a task. Tasks that you want to run from th
 gulp.task('somename', function(){
   // do stuff
 });
+```
 
+A task that runs another task:
+```javascript
 gulp.task('default', function(){
   gulp.run('somename');
 });
 ```
 
+A task that requires a dependent task to complete first:
+```javascript
+gulp.task('somename', ['deptask'], function(){
+  // do stuff
+});
+```
+
+An async task using the callback pattern:
+```javascript
+gulp.task('somename', function(callback){
+  // do stuff
+  callback(err, result);
+});
+```
+
+An async task using promises:
+```javascript
+var Q = require('q');
+
+gulp.task('somename', function(){
+  var deferred = Q.defer();
+
+  // do async stuff
+  setTimeout(function () {
+    deferred.resolve();
+  }, 1);
+
+  return deferred.promise;
+});
+```
+
 Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`
 
-Just running `gulp` will execute the task you registered called default.
+Just running `gulp` will execute the task you registered called `default`.
 
 
 ### gulp.run(tasks...)
