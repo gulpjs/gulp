@@ -155,11 +155,6 @@ gulp.task('somename', function(){
 });
 ```
 
-Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`
-
-Just running `gulp` will execute the task you registered called `default`.
-
-
 ### gulp.run(tasks...)
 
 Triggers tasks to be executed. Does not run in order.
@@ -183,6 +178,11 @@ gulp.watch("js/**/*.js", function(event){
 ### gulp.env
 
 gulp.env is an optimist arguments object. Running `gulp test dostuff --production` will yield `{_:["test","dostuff"],production:true}`
+
+## gulp cli
+
+Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.
+
 
 ## Writing a plugin
 
