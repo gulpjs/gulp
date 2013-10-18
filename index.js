@@ -1,15 +1,17 @@
 /*jshint node:true */
 
+"use strict";
+
+var util = require('util');
 var Orchestrator = require('orchestrator');
-var orchestrator = new Orchestrator();
 
-var Gulp = function () {
-};
+function Gulp(){
+  Orchestrator.call(this);
+}
+util.inherits(Gulp, Orchestrator);
 
-Gulp.prototype = orchestrator;
-
-Gulp.prototype.taskQueue = orchestrator.seq;
-Gulp.prototype.task = orchestrator.add;
+Gulp.prototype.taskQueue = Gulp.prototype.seq;
+Gulp.prototype.task = Gulp.prototype.add;
 Gulp.prototype.src = require('./lib/createInputStream');
 Gulp.prototype.dest = require('./lib/createOutputStream');
 Gulp.prototype.watch = require('./lib/watchFile');
