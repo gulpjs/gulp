@@ -18,7 +18,7 @@
       "optimist":"0.6.0",
       "gulp-util":"1.0.0",
       "gaze":"0.4.2",
-      "orchestrator": "0.0.3"
+      "orchestrator": "0.0.4"
    },
    "devDependencies":{
       "mocha":"*",
