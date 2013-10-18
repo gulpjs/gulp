@@ -5,3 +5,4 @@ build
 *.node
 components
 *.orig
+.idea

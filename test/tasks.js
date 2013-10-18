@@ -9,8 +9,12 @@ require('mocha');
 
 describe('gulp tasks', function() {
   // Don't bleed previous test into subsequent test
-  beforeEach(gulp.reset);
-  afterEach(gulp.reset);
+  beforeEach(function () {
+    gulp.reset();
+  });
+  afterEach(function () {
+    gulp.reset();
+  });
   describe('task()', function() {
     it('should define a task', function(done) {
       var fn;

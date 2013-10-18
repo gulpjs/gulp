@@ -17,7 +17,8 @@
       "mkdirp":"0.3.5",
       "optimist":"0.6.0",
       "gulp-util":"1.0.0",
-      "gaze":"0.4.2"
+      "gaze":"0.4.2",
+      "orchestrator": "0.0.2"
    },
    "devDependencies":{
       "mocha":"*",
