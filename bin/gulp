@@ -16,11 +16,7 @@ gulp.env = argv;
 
 var theGulpfile = require(gulpFilename);
 
-if (tasks.length === 0) {
-  gulp.run('default');
-} else {
-  gulp.run.apply(gulp, tasks);
-}
+gulp.run.apply(gulp, tasks);
 
 function getGulpFile() {
   var Gulpfiles = Object.keys(require.extensions).map(function(ext){

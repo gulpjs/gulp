@@ -18,7 +18,7 @@ describe('gulp input stream', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        file.path.should.equal(join(__dirname, "./fixtures/test.coffee"));
+        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
         String(file.contents).should.equal("this is a test");
       });
       stream.on('end', function() {
@@ -32,7 +32,7 @@ describe('gulp input stream', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        file.path.should.equal(join(__dirname, "./fixtures/test/run.jade"));
+        join(file.path,'').should.equal(join(__dirname, "./fixtures/test/run.jade"));
         String(file.contents).should.equal("test template");
       });
       stream.on('end', function() {
@@ -61,7 +61,7 @@ describe('gulp input stream', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        file.path.should.equal(join(__dirname, "./fixtures/test.coffee"));
+        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
         String(file.contents).should.equal("this is a test");
       });
       stream.on('end', function() {

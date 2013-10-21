@@ -1,28 +1,25 @@
-module.exports = gulp = {
-  reset: function() {
-    gulp.tasks = {};
-    return this;
-  },
-  tasks: {},
-  task: function(name, fn) {
-    gulp.tasks[name] = fn;
-    return this;
-  },
-  run: function() {
-    var tasks = [].slice.call(arguments, 0);
-    tasks.forEach(function(name) {
-      var fn = gulp.tasks[name];
-      if (!fn) {
-        throw new Error("No task named \"" + name + "\"");
-      }
-      fn.call(gulp);
-    });
-    return this;
-  },
-  src: require('./lib/createInputStream'),
-  dest: require('./lib/createOutputStream'),
+/*jshint node:true */
 
-  watch: require('./lib/watchFile'),
-  createGlobStream: require('glob-stream').create,
-  readFile: require('./lib/readFile')
-};
+"use strict";
+
+var util = require('util');
+var Orchestrator = require('orchestrator');
+
+function Gulp(){
+  Orchestrator.call(this);
+}
+util.inherits(Gulp, Orchestrator);
+
+Gulp.prototype.taskQueue = Gulp.prototype.seq;
+Gulp.prototype.task = Gulp.prototype.add;
+Gulp.prototype.run = Gulp.prototype.start;
+Gulp.prototype.src = require('./lib/createInputStream');
+Gulp.prototype.dest = require('./lib/createOutputStream');
+Gulp.prototype.watch = require('./lib/watchFile');
+Gulp.prototype.createGlobStream = require('glob-stream').create;
+Gulp.prototype.readFile = require('./lib/readFile');
+
+var gulp = new Gulp();
+gulp.Gulp = Gulp;
+
+module.exports = gulp;

@@ -107,7 +107,7 @@ gulp.src("./client/templates/*.jade")
     .pipe(gulp.dest("./public/minified_templates"));
 ```
 
-### gulp.task(name, fn)
+### gulp.task(name[, dep], fn)
 
 All steps code must be defined within a task. Tasks that you want to run from the command line should not have spaces in them.
 
@@ -115,23 +115,58 @@ All steps code must be defined within a task. Tasks that you want to run from th
 gulp.task('somename', function(){
   // do stuff
 });
+```
 
+A task that runs another task:
+```javascript
 gulp.task('default', function(){
   gulp.run('somename');
 });
 ```
 
-Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`
+A task that requires a dependent task to complete first:
+```javascript
+gulp.task('somename', ['array','of','dep','task','names'], function(){
+  // do stuff
+});
+```
 
-Just running `gulp` will execute the task you registered called default.
+An async task using the callback pattern:
+```javascript
+gulp.task('somename', function(callback){
+  // do stuff
+  callback(err, result);
+});
+```
 
+An async task using promises:
+```javascript
+var Q = require('q');
 
-### gulp.run(tasks...)
+gulp.task('somename', function(){
+  var deferred = Q.defer();
 
-Triggers tasks to be executed. Does not run in order.
+  // do async stuff
+  setTimeout(function () {
+    deferred.resolve();
+  }, 1);
+
+  return deferred.promise;
+});
+```
+
+### gulp.run(tasks...[, cb])
+
+Triggers tasks to be executed. *Does not run in order*.
 
 ```javascript
 gulp.run('scripts', 'copyfiles', 'builddocs');
+```
+
+```javascript
+gulp.run('scripts', 'copyfiles', 'builddocs', function (err) {
+  // All done or aborted due to err
+});
 ```
 
 Use gulp.run to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
@@ -149,6 +184,11 @@ gulp.watch("js/**/*.js", function(event){
 ### gulp.env
 
 gulp.env is an optimist arguments object. Running `gulp test dostuff --production` will yield `{_:["test","dostuff"],production:true}`
+
+## gulp cli
+
+Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.
+
 
 ## Writing a plugin
 
