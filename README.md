@@ -107,7 +107,7 @@ gulp.src("./client/templates/*.jade")
     .pipe(gulp.dest("./public/minified_templates"));
 ```
 
-### gulp.task(name, [dep], fn)
+### gulp.task(name[, dep], fn)
 
 All steps code must be defined within a task. Tasks that you want to run from the command line should not have spaces in them.
 
@@ -126,7 +126,7 @@ gulp.task('default', function(){
 
 A task that requires a dependent task to complete first:
 ```javascript
-gulp.task('somename', ['deptask'], function(){
+gulp.task('somename', ['array','of','dep','task','names'], function(){
   // do stuff
 });
 ```
@@ -155,12 +155,18 @@ gulp.task('somename', function(){
 });
 ```
 
-### gulp.run(tasks...)
+### gulp.run(tasks...[, cb])
 
-Triggers tasks to be executed. Does not run in order.
+Triggers tasks to be executed. *Does not run in order*.
 
 ```javascript
 gulp.run('scripts', 'copyfiles', 'builddocs');
+```
+
+```javascript
+gulp.run('scripts', 'copyfiles', 'builddocs', function (err) {
+  // All done or aborted due to err
+});
 ```
 
 Use gulp.run to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
