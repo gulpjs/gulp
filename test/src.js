@@ -25,6 +25,37 @@ describe('gulp input stream', function() {
         done();
       });
     });
+    it('should return a input stream with no contents when read is false', function(done) {
+      var stream = gulp.src(join(__dirname, "./fixtures/*.coffee"), {read: false});
+      stream.on('error', done);
+      stream.on('data', function(file) {
+        should.exist(file);
+        should.exist(file.path);
+        should.not.exist(file.contents);
+        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
+      });
+      stream.on('end', function() {
+        done();
+      });
+    });
+    it('should return a input stream with contents as stream when buffer is false', function(done) {
+      var stream = gulp.src(join(__dirname, "./fixtures/*.coffee"), {buffer: false});
+      stream.on('error', done);
+      stream.on('data', function(file) {
+        should.exist(file);
+        should.exist(file.path);
+        should.exist(file.contents);
+        var buf = "";
+        file.contents.on('data', function(d){
+          buf += d;
+        });
+        file.contents.on('end', function(){
+          buf.should.equal("this is a test");
+          done();
+        });
+        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
+      });
+    });
     it('should return a input stream from a deep glob', function(done) {
       var stream = gulp.src(join(__dirname, "./fixtures/**/*.jade"));
       stream.on('error', done);

@@ -17,7 +17,10 @@ Gulp.prototype.src = require('./lib/createInputStream');
 Gulp.prototype.dest = require('./lib/createOutputStream');
 Gulp.prototype.watch = require('./lib/watchFile');
 Gulp.prototype.createGlobStream = require('glob-stream').create;
-Gulp.prototype.readFile = require('./lib/readFile');
+
+Gulp.prototype.formatFile = require('./lib/formatFile');
+Gulp.prototype.bufferFile = require('./lib/bufferFile');
+Gulp.prototype.streamFile = require('./lib/streamFile');
 
 var gulp = new Gulp();
 gulp.Gulp = Gulp;

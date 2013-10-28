@@ -1,7 +1,7 @@
 {
    "name":"gulp",
    "description":"The streaming build system",
-   "version":"1.1.0",
+   "version":"1.2.0",
    "homepage":"http://github.com/wearefractal/gulp",
    "repository":"git://github.com/wearefractal/gulp.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
@@ -18,7 +18,7 @@
       "optimist":"0.6.0",
       "gulp-util":"1.0.0",
       "gaze":"0.4.2",
-      "orchestrator": "0.0.5"
+      "orchestrator": "0.0.6"
    },
    "devDependencies":{
       "mocha":"*",
