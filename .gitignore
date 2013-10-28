@@ -6,3 +6,4 @@ build
 components
 *.orig
 .idea
+out-fixtures
