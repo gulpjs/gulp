@@ -1,5 +1,10 @@
 # gulp changelog
 
+## 1.2 (10/28/13)
+
+- Can specify buffer=false on src streams to make file.content a stream
+- Can specify read=false on src streams to disable file.content
+
 ## 1.1 (10/21/13)
 
 - Can specify run callback

@@ -21,6 +21,7 @@ This project is in it's early stages. If something is not working or you would l
 ## Plugin List
 
 You can view a list of plugins by going to [this npm search](https://npmjs.org/search?q=gulpplugin).
+
 ## Usage
 
 ```javascript
@@ -40,7 +41,7 @@ gulp.task('templates', function(){
 gulp.task('scripts', function(){
   
   // compile, minify, and copy coffeescript
-  gulp.src("./client/js/*.js", {ignore: ["vendor"]})
+  gulp.src("./client/js/*.coffee", {ignore: ["vendor"]})
     .pipe(coffee())
     .pipe(minify())
     .pipe(gulp.dest("./public/js"));
@@ -95,6 +96,12 @@ gulp.src("./client/templates/*.jade")
     .pipe(gulp.dest("./public/minified_templates"));
 ```
 
+##### Options
+
+`buffer: false` will return file.content as a stream and not buffer files.
+
+`read: false` will return file.content as null and not read the file at all.
+
 ### gulp.dest(path[, opt])
 
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
@@ -107,9 +114,11 @@ gulp.src("./client/templates/*.jade")
     .pipe(gulp.dest("./public/minified_templates"));
 ```
 
-### gulp.task(name[, dep], fn)
+### gulp.task(name[, deps], fn)
 
-All steps code must be defined within a task. Tasks that you want to run from the command line should not have spaces in them.
+Tasks that you want to run from the command line should not have spaces in them.
+
+The task system is [Orchestrator](https://github.com/robrich/orchestrator) so check there for more detailed information.
 
 ```javascript
 gulp.task('somename', function(){
@@ -117,41 +126,28 @@ gulp.task('somename', function(){
 });
 ```
 
-A task that runs another task:
+##### Task that run other tasks
+
 ```javascript
 gulp.task('default', function(){
   gulp.run('somename');
 });
 ```
 
-A task that requires a dependent task to complete first:
+##### Task dependencies
+
 ```javascript
-gulp.task('somename', ['array','of','dep','task','names'], function(){
+gulp.task('somename', ['array','of','task','names'], function(){
   // do stuff
 });
 ```
 
-An async task using the callback pattern:
+##### Async tasks
+
 ```javascript
-gulp.task('somename', function(callback){
+gulp.task('somename', function(cb){
   // do stuff
-  callback(err, result);
-});
-```
-
-An async task using promises:
-```javascript
-var Q = require('q');
-
-gulp.task('somename', function(){
-  var deferred = Q.defer();
-
-  // do async stuff
-  setTimeout(function () {
-    deferred.resolve();
-  }, 1);
-
-  return deferred.promise;
+  cb(err);
 });
 ```
 
