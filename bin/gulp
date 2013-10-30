@@ -1,33 +1,35 @@
 #!/usr/bin/env node
 
-var gulp = require('../'),
-  argv = require('optimist').argv,
-  join = require('path').join,
-  existsSync = require('fs').existsSync,
-  tasks = argv._,
-  gulpFilename = getGulpFile();
+var path = require('path');
+var fs = require('fs');
+
+var argv = require('optimist').argv;
+
+var gulp = require('../');
+var gulpFilename = getGulpFile();
+var tasks = argv._;
 
 if (!gulpFilename) {
   throw new Error("Missing Gulpfile");
 }
 
-// Expose list of tasks and flags to other tasks
-gulp.env = argv;
+// Expose CLI flags to tasks or plugins
+gulp.env = tasks;
 
 var theGulpfile = require(gulpFilename);
 
 gulp.run.apply(gulp, tasks);
 
 function getGulpFile() {
-  var Gulpfiles = Object.keys(require.extensions).map(function(ext){
-    return join(process.cwd(), "Gulpfile" + ext);
+  var extensions = Object.keys(require.extensions);
+  var Gulpfiles = extensions.map(function(ext){
+    return path.join(process.cwd(), "Gulpfile" + ext);
   });
 
-  var gulpFiles = Object.keys(require.extensions).map(function(ext){
-    return join(process.cwd(), "gulpfile" + ext);
+  var gulpFiles = extensions.map(function(ext){
+    return path.join(process.cwd(), "gulpfile" + ext);
   });
 
-  return gulpFiles.concat(Gulpfiles).filter(function(v){
-    return existsSync(v);
-  })[0];
+  return gulpFiles.concat(Gulpfiles)
+    .filter(fs.existsSync)[0];
 }

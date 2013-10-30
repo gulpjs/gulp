@@ -4,3 +4,5 @@ node_modules
 build
 *.node
 components
+sandbox
+.idea
