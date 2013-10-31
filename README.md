@@ -225,11 +225,12 @@ gulp.src('./client/scripts/*.js')
 
 ## Plugin Guidelines
 
-1. file.contents should always be a Buffer.
-2. Do not pass the file object downstream until you are done with it.
-3. Make use of the gulp-util library. Do you need to change a file's extension or do some tedious path crap? Try looking there first and add it if it doesn't exist.
-4. Remember: Your plugin should only do one thing! It should not compile AND compress. It should not have a complex config object that makes it do multiple things. It should not concat and add headers/footers. This is not grunt. Keep it simple.
-5. Add "gulpplugin" as a keyword in your package.json so you show up on our search
+1. file.contents should always go out the same way it came in
+2. Do not pass the file object downstream until you are done with it
+3. Make use of the gulp-util library. Do you need to change a file's extension or do some tedious path crap? Try looking there first and add it if it doesn't exist
+4. Use gulp.log when you need to log messages
+5. Remember: Your plugin should only do one thing! It should not have a complex config object that makes it do multiple things. It should not concat and add headers/footers. This is not grunt. Keep it simple.
+6. Add "gulpplugin" as a keyword in your package.json so you show up on our search
 
 ## LICENSE
 
