@@ -12,6 +12,10 @@ function Gulp(){
   this.on('task_start', function(e){
     gulp.log('Running', "'"+chalk.cyan(e.task)+"'...");
   });
+  this.on('task_stop', function(e){
+    gulp.log('Finished', "'"+chalk.cyan(e.task)+"'");
+  });
+
 }
 util.inherits(Gulp, Orchestrator);
 
