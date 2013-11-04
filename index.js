@@ -15,7 +15,10 @@ function Gulp(){
   this.on('task_stop', function(e){
     gulp.log('Finished', "'"+chalk.cyan(e.task)+"'");
   });
-
+  this.on('task_err', function(e){
+    var mess = e && e.message ? e.message : e; 
+    gulp.log('Errored', "'"+chalk.cyan(e.task)+"' "+chalk.red(mess)+' ');
+  });
 }
 util.inherits(Gulp, Orchestrator);
 
