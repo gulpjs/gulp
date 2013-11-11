@@ -16,7 +16,16 @@ function Gulp(){
     gulp.log('Finished', "'"+chalk.cyan(e.task)+"'");
   });
   this.on('task_err', function(e){
-    var mess = e && e.message ? e.message : e; 
+    var mess;
+    if (e.err) {
+      if (e.err.message) {
+        mess = e.err.message;
+      } else {
+        mess = JSON.stringify(e.err);
+      }
+    } else {
+      mess = e.message;
+    }
     gulp.log('Errored', "'"+chalk.cyan(e.task)+"' "+chalk.red(mess)+' ');
   });
 }
