@@ -14,7 +14,7 @@ var cliGulp = require('../');
 
 if (!gulpFile) {
   cliGulp.log(chalk.red('No Gulpfile found'));
-  return;
+  process.exit(1);
 }
 
 // find the local gulp
