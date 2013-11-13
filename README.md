@@ -18,6 +18,12 @@
 
 This project is in it's early stages. If something is not working or you would like a new feature please use the issues page.
 
+## Motivation
+
+Check out these slides for some information about how gulp works, why you should use it, comparisons to grunt, and why I made it.
+
+[slideshow here](http://slid.es/contra/gulp)
+
 ## Plugin List
 
 You can view a list of plugins by going to [this npm search](https://npmjs.org/search?q=gulpplugin).
