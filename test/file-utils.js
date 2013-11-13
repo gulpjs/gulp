@@ -3,11 +3,12 @@ var should = require('should');
 var path = require('path');
 var join = path.join;
 var dirname = path.dirname;
+var semver = require('semver');
 require('mocha');
 
 describe('gulp bufferFile', function() {
   describe('bufferFile()', function() {
-    it('should return a valid file file', function(done) {
+    it('should return a valid file', function(done) {
       var fname = join(__dirname, "./fixtures/test.coffee");
       var base = dirname(fname);
       gulp.bufferFile({path:fname,base:base}, function(err, file) {
@@ -27,7 +28,7 @@ describe('gulp bufferFile', function() {
 
 describe('gulp streamFile', function() {
   describe('streamFile()', function() {
-    it('should return a valid file file', function(done) {
+    it('should return a valid file', function(done) {
       var fname = join(__dirname, "./fixtures/test.coffee");
       var base = dirname(fname);
       gulp.streamFile({path:fname,base:base}, function(err, file) {
@@ -47,6 +48,10 @@ describe('gulp streamFile', function() {
           buf.should.equal("this is a test");
           done();
         });
+        // >0.10 needs this stream fix
+        if (semver.lt(process.versions.node, '0.10.0')) {
+          file.contents.resume();
+        }
       });
     });
   });
@@ -54,7 +59,7 @@ describe('gulp streamFile', function() {
 
 describe('gulp formatFile', function() {
   describe('formatFile()', function() {
-    it('should return a valid file file', function(done) {
+    it('should return a valid file', function(done) {
       var fname = join(__dirname, "./fixtures/test.coffee");
       var base = dirname(fname);
       gulp.formatFile({path:fname,base:base}, function(err, file) {

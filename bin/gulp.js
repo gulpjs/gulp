@@ -72,6 +72,7 @@ function loadGulpFile(localGulp, gulpFile, tasks){
   cliGulp.log('Working directory changed to', chalk.magenta(gulpFileCwd));
 
   var theGulpfile = require(gulpFile);
+  
   // just for good measure
   process.nextTick(function(){
     localGulp.run.apply(localGulp, tasks);

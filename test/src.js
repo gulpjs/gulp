@@ -57,8 +57,8 @@ describe('gulp input stream', function() {
         });
         join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
 
-        // 0.8 needs this
-        if (semver.lt(process.versions.node, '0.9.0')) {
+        // >0.10 needs this stream fix
+        if (semver.lt(process.versions.node, '0.10.0')) {
           file.contents.resume();
         }
       });
