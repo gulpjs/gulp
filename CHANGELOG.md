@@ -8,6 +8,7 @@
   - Uses local version of gulp to run tasks
   - Uses findup to locate gulpfile (so you can run it anywhere in your project)
   - chdir to gulpfile directory before loading it
+  - Correct exit codes on errors
 - silent flag added to gulp to disable logging
 - Fixes to task orchestration (3rd party)
 - Better support for globbed directories (thanks @robrich)
