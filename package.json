@@ -35,7 +35,7 @@
       "test":"mocha && jshint"
    },
    "engines":{
-      "node":">= 0.6"
+      "node":">= 0.7"
    },
    "licenses":[
       {
