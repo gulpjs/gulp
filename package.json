@@ -21,7 +21,8 @@
       "orchestrator": "0.0.8",
       "chalk":"0.3.0",
       "resolve":"0.5.1",
-      "semver":"2.2.1"
+      "semver":"2.2.1",
+      "findup-sync":"0.1.2"
    },
    "devDependencies":{
       "mocha":"*",

@@ -6,6 +6,7 @@ var fs = require('fs');
 var argv = require('optimist').argv;
 var chalk = require('chalk');
 var resolve = require('resolve');
+var findup = require('findup-sync');
 
 var tasks = argv._;
 var gulpFile = getGulpFile(process.cwd());
@@ -66,6 +67,9 @@ function findLocalGulpPackage(gulpFile){
 }
 
 function loadGulpFile(localGulp, gulpFile, tasks){
+  var gulpFileCwd = path.dirname(gulpFile);
+  process.chdir(gulpFileCwd);
+
   var theGulpfile = require(gulpFile);
   // just for good measure
   process.nextTick(function(){
