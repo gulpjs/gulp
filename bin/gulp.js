@@ -69,6 +69,7 @@ function findLocalGulpPackage(gulpFile){
 function loadGulpFile(localGulp, gulpFile, tasks){
   var gulpFileCwd = path.dirname(gulpFile);
   process.chdir(gulpFileCwd);
+  cliGulp.log('Working directory changed to', chalk.magenta(gulpFileCwd));
 
   var theGulpfile = require(gulpFile);
   // just for good measure
@@ -79,15 +80,8 @@ function loadGulpFile(localGulp, gulpFile, tasks){
 }
 
 function getGulpFile(baseDir) {
-  var extensions = Object.keys(require.extensions);
-  var Gulpfiles = extensions.map(function(ext){
-    return path.join(baseDir, "Gulpfile" + ext);
-  });
-
-  var gulpFiles = extensions.map(function(ext){
-    return path.join(baseDir, "gulpfile" + ext);
-  });
-
-  return gulpFiles.concat(Gulpfiles)
-    .filter(fs.existsSync)[0];
+  var extensions = Object.keys(require.extensions).join(",");
+  console.log("Gulpfile{"+extensions+"}", process.cwd());
+  var gulpFile = findup("Gulpfile{"+extensions+"}", {nocase: true});
+  return gulpFile;
 }
