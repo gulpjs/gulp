@@ -1,5 +1,17 @@
 # gulp changelog
 
+## 1.2-2.4 (11/12/13)
+
+- src buffer=false fixed for 0.8 and 0.9 (remember to .resume() on these versions before consuming)
+- CLI completely rewritten
+  - Colorful logging
+  - Uses local version of gulp to run tasks
+  - Uses findup to locate gulpfile (so you can run it anywhere in your project)
+  - chdir to gulpfile directory before loading it
+- silent flag added to gulp to disable logging
+- Fixes to task orchestration (3rd party)
+- Better support for globbed directories (thanks @robrich)
+
 ## 1.2 (10/28/13)
 
 - Can specify buffer=false on src streams to make file.content a stream
