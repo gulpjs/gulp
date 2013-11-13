@@ -20,7 +20,8 @@
       "gaze":"0.4.2",
       "orchestrator": "0.0.8",
       "chalk":"0.3.0",
-      "resolve":"0.5.1"
+      "resolve":"0.5.1",
+      "semver":"2.2.1"
    },
    "devDependencies":{
       "mocha":"*",
