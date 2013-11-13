@@ -14,7 +14,7 @@ var cliGulp = require('../');
 
 if (!gulpFile) {
   cliGulp.log(chalk.red('No Gulpfile found'));
-  return;
+  process.exit(1);
 }
 
 // find the local gulp
@@ -27,13 +27,13 @@ if (argv.v || argv.version) {
   if (localGulp) {
     cliGulp.log('Local version', localPkg.version);
   }
-  return;
+  process.exit(0);
 }
 
 if (!localGulp) {
   cliGulp.log(chalk.red('No local gulp install found in'), getLocalBase(gulpFile));
   cliGulp.log(chalk.red('You need to npm install it first'));
-  return;
+  process.exit(1);
 }
 
 // Mix CLI flags into gulp
