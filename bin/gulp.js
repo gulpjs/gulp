@@ -80,8 +80,12 @@ function loadGulpFile(localGulp, gulpFile, tasks){
 }
 
 function getGulpFile(baseDir) {
-  var extensions = Object.keys(require.extensions).join(",");
-  console.log("Gulpfile{"+extensions+"}", process.cwd());
+  var extensions;
+  if (require.extensions) {
+    extensions = Object.keys(require.extensions).join(",");
+  } else {
+    extensions = ['.js'];
+  }
   var gulpFile = findup("Gulpfile{"+extensions+"}", {nocase: true});
   return gulpFile;
 }
