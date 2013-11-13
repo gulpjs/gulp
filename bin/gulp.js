@@ -8,12 +8,13 @@ var chalk = require('chalk');
 var resolve = require('resolve');
 
 var tasks = argv._;
-var gulpFile = getGulpFile(process.cwd());
+var initialCwd = process.cwd();
+var gulpFile = getGulpFileAndChangeCwd(initialCwd);
 var cliPkg = require('../package.json');
 var cliGulp = require('../');
 
 if (!gulpFile) {
-  cliGulp.log(chalk.red('No Gulpfile found'));
+  cliGulp.log(chalk.red('No Gulpfile found in any parent directory starting at: '+initialCwd));
   process.exit(1);
 }
 
@@ -74,16 +75,29 @@ function loadGulpFile(localGulp, gulpFile, tasks){
   return theGulpfile;
 }
 
-function getGulpFile(baseDir) {
-  var extensions = Object.keys(require.extensions);
-  var Gulpfiles = extensions.map(function(ext){
-    return path.join(baseDir, "Gulpfile" + ext);
-  });
+function getGulpFileAndChangeCwd(baseDir) {
+  var processed={};
+  var proposedPath;
+  var gulpFile;
 
-  var gulpFiles = extensions.map(function(ext){
-    return path.join(baseDir, "gulpfile" + ext);
-  });
+  while(!(baseDir in processed)){
+    processed[baseDir]=1;
 
-  return gulpFiles.concat(Gulpfiles)
-    .filter(fs.existsSync)[0];
+    proposedPath = path.resolve(baseDir, "Gulpfile.js");
+    if(fs.existsSync(proposedPath)){
+        gulpFile=proposedPath;
+    } else {
+        proposedPath = path.resolve(baseDir, "gulpfile.js");
+        if(fs.existsSync(proposedPath)){
+            gulpFile=proposedPath;
+        }
+    }
+
+    if(gulpFile){
+        process.chdir(baseDir);
+        return gulpFile;
+    }
+    baseDir = path.resolve(baseDir, '..');
+  }
+  return null;
 }
