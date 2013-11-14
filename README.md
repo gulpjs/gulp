@@ -16,7 +16,7 @@
 </tr>
 </table>
 
-This project is in it's early stages. If something is not working or you would like a new feature please use the issues page.
+This project is in its early stages. If something is not working or you would like a new feature please use the issues page.
 
 ## Motivation
 
