@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/wearefractal/gulp.png?branch=master)](https://travis-ci.org/wearefractal/gulp)
+[![Dependency Status](https://david-dm.org/wearefractal/gulp.png)](https://david-dm.org/wearefractal/gulp)
 
 ## Information
 
