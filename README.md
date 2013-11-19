@@ -150,10 +150,43 @@ gulp.task('somename', ['array','of','task','names'], function(){
 
 ##### Async tasks
 
+With callbacks:
+
 ```javascript
 gulp.task('somename', function(cb){
   // do stuff
   cb(err);
+});
+```
+
+Wait for stream to end:
+
+```javascript
+var es = require('event-stream');
+
+gulp.task('somename', function(){
+  var stream = es.map(function (args, cb) {
+    cb(null, args);
+  });
+  // do stream stuff
+  return stream;
+});
+```
+
+With promises:
+
+```javascript
+var Q = require('q');
+
+gulp.task('somename', function(){
+  var deferred = Q.defer();
+
+  // do async stuff
+  setTimeout(function () {
+    deferred.resolve();
+  }, 1);
+
+  return deferred.promise;
 });
 ```
 

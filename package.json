@@ -19,7 +19,7 @@
       "optimist":"0.6.0",
       "gulp-util":"1.0.0",
       "gaze":"0.4.3",
-      "orchestrator": "0.0.8",
+      "orchestrator": "0.1.0",
       "chalk":"0.3.0",
       "resolve":"0.5.1",
       "semver":"2.2.1",

@@ -13,7 +13,7 @@ function Gulp(){
     gulp.log('Running', "'"+chalk.cyan(e.task)+"'...");
   });
   this.on('task_stop', function(e){
-    gulp.log('Finished', "'"+chalk.cyan(e.task)+"'");
+    gulp.log('Finished', "'"+chalk.cyan(e.task)+"' in "+e.duration+" seconds");
   });
   this.on('task_err', function(e){
     var mess;
@@ -26,7 +26,7 @@ function Gulp(){
     } else {
       mess = e.message;
     }
-    gulp.log('Errored', "'"+chalk.cyan(e.task)+"' "+chalk.red(mess)+' ');
+    gulp.log('Errored', "'"+chalk.cyan(e.task)+"' in "+e.duration+" seconds"+chalk.red(mess)+' ');
   });
 }
 util.inherits(Gulp, Orchestrator);
