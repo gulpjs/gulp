@@ -26,7 +26,7 @@ function Gulp(){
     } else {
       mess = e.message;
     }
-    gulp.log('Errored', "'"+chalk.cyan(e.task)+"' in "+e.duration+" seconds"+chalk.red(mess)+' ');
+    gulp.log('Errored', "'"+chalk.cyan(e.task)+"' in "+e.duration+" seconds "+chalk.red(mess)+' ');
   });
 }
 util.inherits(Gulp, Orchestrator);

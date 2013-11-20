@@ -163,13 +163,10 @@ gulp.task('somename', function(cb){
 Wait for stream to end:
 
 ```javascript
-var es = require('event-stream');
-
-gulp.task('somename', function(){
-  var stream = es.map(function (args, cb) {
-    cb(null, args);
-  });
-  // do stream stuff
+gulp.task('somename', function () {
+  var stream = gulp.src('./client/**/*.js')
+    .pipe(minify())
+    .pipe(gulp.dest('/public');
   return stream;
 });
 ```
