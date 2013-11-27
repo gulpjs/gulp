@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/wearefractal/gulp.png?branch=master)](https://travis-ci.org/wearefractal/gulp)
+[![Dependency Status](https://david-dm.org/wearefractal/gulp.png)](https://david-dm.org/wearefractal/gulp)
 
 ## Information
 
@@ -150,10 +151,40 @@ gulp.task('somename', ['array','of','task','names'], function(){
 
 ##### Async tasks
 
+With callbacks:
+
 ```javascript
 gulp.task('somename', function(cb){
   // do stuff
   cb(err);
+});
+```
+
+Wait for stream to end:
+
+```javascript
+gulp.task('somename', function () {
+  var stream = gulp.src('./client/**/*.js')
+    .pipe(minify())
+    .pipe(gulp.dest('/public');
+  return stream;
+});
+```
+
+With promises:
+
+```javascript
+var Q = require('q');
+
+gulp.task('somename', function(){
+  var deferred = Q.defer();
+
+  // do async stuff
+  setTimeout(function () {
+    deferred.resolve();
+  }, 1);
+
+  return deferred.promise;
 });
 ```
 
