@@ -6,27 +6,28 @@ var util = require('util');
 var Orchestrator = require('orchestrator');
 var chalk = require('chalk');
 
+// format orchestrator errors
+var formatError = function(e) {
+  if (!e.err) return e.message;
+  if (e.err.message) return e.err.message;
+  return JSON.stringify(e.err);
+};
+
 function Gulp(){
   Orchestrator.call(this);
   this.env = {};
+
+  // Logging
   this.on('task_start', function(e){
     gulp.log('Running', "'"+chalk.cyan(e.task)+"'...");
   });
   this.on('task_stop', function(e){
-    gulp.log('Finished', "'"+chalk.cyan(e.task)+"' in "+e.duration+" seconds");
+    gulp.log('Finished', "'"+chalk.cyan(e.task)+"' in "+chalk.magenta(e.duration)+" seconds");
   });
+
   this.on('task_err', function(e){
-    var mess;
-    if (e.err) {
-      if (e.err.message) {
-        mess = e.err.message;
-      } else {
-        mess = JSON.stringify(e.err);
-      }
-    } else {
-      mess = e.message;
-    }
-    gulp.log('Errored', "'"+chalk.cyan(e.task)+"' in "+e.duration+" seconds "+chalk.red(mess)+' ');
+    var msg = formatError(e);
+    gulp.log('Errored', "'"+chalk.cyan(e.task)+"' in "+chalk.magenta(e.duration)+" seconds "+chalk.red(msg));
   });
 }
 util.inherits(Gulp, Orchestrator);
