@@ -220,7 +220,19 @@ gulp.env is an optimist arguments object. Running `gulp test dostuff --productio
 
 ## gulp cli
 
+### Tasks
+
 Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.
+
+### Compilers
+
+You can use any language you want for your gulpfile. You will have to specify the language module name so the CLI can load it (and its assosciated extensions) before attempting to find your gulpfile. Make sure you have this module installed accessible by the folder you are running the CLI in.
+
+Example:
+
+```
+gulp dosomething --require coffee-script
+```
 
 
 ## Writing a plugin

@@ -9,9 +9,14 @@ var resolve = require('resolve');
 var findup = require('findup-sync');
 
 var tasks = argv._;
-var gulpFile = getGulpFile(process.cwd());
 var cliPkg = require('../package.json');
 var cliGulp = require('../');
+
+var localBaseDir = process.cwd();
+
+loadRequires(argv.require, localBaseDir);
+
+var gulpFile = getGulpFile(localBaseDir);
 
 if (!gulpFile) {
   cliGulp.log(chalk.red('No Gulpfile found'));
@@ -44,23 +49,39 @@ localGulp.env = argv;
 cliGulp.log('Using file', chalk.magenta(gulpFile));
 loadGulpFile(localGulp, gulpFile, tasks);
 
+function loadRequires(requires, baseDir) {
+  if (typeof requires === 'undefined') requires = [];
+  if (!Array.isArray(requires)) requires = [requires];
+  return requires.map(function(modName){
+    cliGulp.log('Requiring external module', chalk.magenta(modName));
+    var mod = findLocalModule(modName, baseDir);
+    if (typeof mod === 'undefined') {
+      cliGulp.log('Failed to load external module', chalk.magenta(modName))
+    }
+  });
+}
+
 function getLocalBase(gulpFile) {
   return path.resolve(path.dirname(gulpFile));
 }
 
 function findLocalGulp(gulpFile){
-  var localBase = getLocalBase(gulpFile);
+  var baseDir = getLocalBase(gulpFile);
+  return findLocalModule('gulp', baseDir);
+}
+
+function findLocalModule(modName, baseDir){
   try {
-    return require(resolve.sync('gulp', {basedir: localBase}));
+    return require(resolve.sync(modName, {basedir: baseDir}));
   } catch(e) {}
   return;
 }
 
 function findLocalGulpPackage(gulpFile){
-  var localBase = getLocalBase(gulpFile);
+  var baseDir = getLocalBase(gulpFile);
   var packageBase;
   try {
-    packageBase = path.dirname(resolve.sync('gulp', {basedir: localBase}));
+    packageBase = path.dirname(resolve.sync('gulp', {basedir: baseDir}));
     return require(path.join(packageBase, 'package.json'));
   } catch(e) {}
   return;
@@ -85,7 +106,7 @@ function getGulpFile(baseDir) {
   if (require.extensions) {
     extensions = Object.keys(require.extensions).join(",");
   } else {
-    extensions = ['.js'];
+    extensions = ['.js','.coffee'];
   }
   var gulpFile = findup("Gulpfile{"+extensions+"}", {nocase: true});
   return gulpFile;
