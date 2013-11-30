@@ -226,7 +226,7 @@ Tasks can be executed by running `gulp <taskname> <othertask> <somethingelse>`. 
 
 ### Compilers
 
-You can use any language you want for your gulpfile. You will have to specify the language module name so the CLI can load it (and its assosciated extensions) before attempting to find your gulpfile. Make sure you have this module installed accessible by the folder you are running the CLI in.
+You can use any language you want for your gulpfile. You will have to specify the language module name so the CLI can load it (and its associated extensions) before attempting to find your gulpfile. Make sure you have this module installed accessible by the folder you are running the CLI in.
 
 Example:
 
