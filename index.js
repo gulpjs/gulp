@@ -49,6 +49,12 @@ Gulp.prototype.run = function(){
   if (!tasks.length) {
     tasks = ['default'];
   }
+  
+  // support an array argument
+  if (Array.isArray(tasks[0])) {
+    tasks = tasks[0];
+  }
+  
   this.start.apply(this, tasks);
 };
 
