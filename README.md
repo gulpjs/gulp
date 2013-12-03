@@ -19,11 +19,13 @@
 
 This project is in its early stages. If something is not working or you would like a new feature please use the issues page.
 
-## Motivation
+## Links
 
-Check out these slides for some information about how gulp works, why you should use it, comparisons to grunt, and why I made it.
+[Slideshow explaining everything](http://slid.es/contra/gulp)
 
-[slideshow here](http://slid.es/contra/gulp)
+[Follow me for updates](http://twitter.com/eschoff)
+
+[Follow our company for other cool stuff](http://twitter.com/wearefractal)
 
 ## Plugin List
 
