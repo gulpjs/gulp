@@ -31,6 +31,8 @@ You can view a list of plugins by going to [this npm search](https://npmjs.org/s
 
 ## Usage
 
+The CLI will look for Gulpfile.js in whatever folder you ran gulp in. It will also attempt to look up a few folders to find one. To use another language besides vanilla JS look at the compiler section below.
+
 ```javascript
 var gulp = require('gulp');
 var jade = require('gulp-jade');
