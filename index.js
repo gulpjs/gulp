@@ -50,7 +50,7 @@ Gulp.prototype.src = require('./lib/createInputStream');
 Gulp.prototype.dest = require('./lib/createOutputStream');
 Gulp.prototype.watch = require('./lib/watchFile');
 
-Gulp.prototype.formatFile = require('./lib/formatFile');
+Gulp.prototype.File = require("./lib/File");
 Gulp.prototype.bufferFile = require('./lib/bufferFile');
 Gulp.prototype.streamFile = require('./lib/streamFile');
 

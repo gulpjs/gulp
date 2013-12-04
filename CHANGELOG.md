@@ -1,5 +1,10 @@
 # gulp changelog
 
+## 2.7
+
+- Breaking change to the way options are passed to glob-stream
+- Introduce new File object to ease pain of computing shortened names
+
 ## 2.4 - 2.6
 
 - Moved stuff to gulp-util

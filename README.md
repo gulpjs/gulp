@@ -22,8 +22,10 @@ This project is in its early stages. If something is not working or you would li
 ## Links
 
 [Slideshow](http://slid.es/contra/gulp)
-[Twitter for updates](http://twitter.com/eschoffs)
-[Our company twitter](http://twitter.com/wearefractal)
+
+[Twitter for updates](http://twitter.com/eschoff)
+
+[Company twitter](http://twitter.com/wearefractal)
 
 ## Plugin List
 
@@ -94,7 +96,7 @@ gulp.task('default', function(){
 
 ### gulp.src(glob[, opt])
 
-Takes a glob and represents a file structure. Can be piped to plugins.
+Takes a glob and represents a file structure. Can be piped to plugins. You can specify a single glob or an array of globs (see docs)56. All options are passed directly through to [glob-stream](https://github.com/wearefractal/glob-stream). See the [glob-stream documentation](https://github.com/wearefractal/glob-stream) for more information.
 
 ```javascript
 gulp.src("./client/templates/*.jade")

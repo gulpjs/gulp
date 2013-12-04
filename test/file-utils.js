@@ -57,22 +57,20 @@ describe('gulp streamFile', function() {
   });
 });
 
-describe('gulp formatFile', function() {
-  describe('formatFile()', function() {
+describe('gulp File class', function() {
+  describe('File()', function() {
     it('should return a valid file', function(done) {
       var fname = join(__dirname, "./fixtures/test.coffee");
       var base = dirname(fname);
-      gulp.formatFile({path:fname,base:base}, function(err, file) {
-        should.not.exist(err);
-        should.exist(file);
-        should.exist(file.shortened);
-        should.exist(file.path);
-        should.exist(file.base);
-        file.path.should.equal(fname);
-        file.base.should.equal(base);
-        file.shortened.should.equal("test.coffee");
-        done();
-      });
+      var file = new gulp.File(base, fname);
+      should.exist(file);
+      should.exist(file.shortened);
+      should.exist(file.path);
+      should.exist(file.base);
+      file.path.should.equal(fname);
+      file.base.should.equal(base);
+      file.shortened.should.equal("test.coffee");
+      done();
     });
   });
 });
