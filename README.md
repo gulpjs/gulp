@@ -19,11 +19,11 @@
 
 This project is in its early stages. If something is not working or you would like a new feature please use the issues page.
 
-## Motivation
+## Links
 
-Check out these slides for some information about how gulp works, why you should use it, comparisons to grunt, and why I made it.
-
-[slideshow here](http://slid.es/contra/gulp)
+[Slideshow](http://slid.es/contra/gulp)
+[Twitter for updates](http://twitter.com/eschoffs)
+[Our company twitter](http://twitter.com/wearefractal)
 
 ## Plugin List
 
@@ -133,15 +133,9 @@ gulp.task('somename', function(){
 });
 ```
 
-##### Task that run other tasks
-
-```javascript
-gulp.task('default', function(){
-  gulp.run('somename');
-});
-```
-
 ##### Task dependencies
+
+This lets you specify tasks to be executed and completed before your task will run.
 
 ```javascript
 gulp.task('somename', ['array','of','task','names'], function(){
@@ -149,7 +143,7 @@ gulp.task('somename', ['array','of','task','names'], function(){
 });
 ```
 
-If the dependencies are asynchronous, it is not guaranteed that they will finish before `'somename'` is executed. To ensure they are completely finished, you need to make sure the dependency tasks have asynchronous support through one of the methods outlined below. The most simple method is to return the stream. By returning the stream, Orchestrator is able to listen for the end event and only run `'somename'` once each dependencies' stream end event has been emitted.
+If the dependencies are asynchronous it is not guaranteed that they will finish before `'somename'` is executed. To ensure they are completely finished, you need to make sure the dependency tasks have asynchronous support through one of the methods outlined below. The most simple method is to return the stream. By returning the stream, Orchestrator is able to listen for the end event and only run `'somename'` once each dependencies' stream end event has been emitted. You can also use callbacks or promises to do your own cool stuff.
 
 ##### Async tasks
 
