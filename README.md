@@ -145,14 +145,6 @@ gulp.task('default', function(){
 });
 ```
 
-##### Task dependencies
-
-```javascript
-gulp.task('somename', ['array','of','task','names'], function(){
-  // do stuff
-});
-```
-
 ##### Async tasks
 
 With callbacks:
@@ -191,6 +183,17 @@ gulp.task('somename', function(){
   return deferred.promise;
 });
 ```
+
+##### Task dependencies
+
+```javascript
+gulp.task('somename', ['array','of','task','names'], function(){
+  // do stuff
+});
+```
+
+If the dependencies are asynchronous, it is not guaranteed that they will finish before `'somename'` is executed. To ensure they are completely finished, you need to make sure the dependency tasks have asynchronous support through one of the methods outlined above. The most simple method is to return the stream. By returning the stream, Orchestrator is able to listen for the end event and only run `'somename'` once each dependencies' stream end event has been emitted.
+
 
 ### gulp.run(tasks...[, cb])
 
