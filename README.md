@@ -149,6 +149,8 @@ gulp.task('somename', ['array','of','task','names'], function(){
 });
 ```
 
+If the dependencies are asynchronous, it is not guaranteed that they will finish before `'somename'` is executed. To ensure they are completely finished, you need to make sure the dependency tasks have asynchronous support through one of the methods outlined below. The most simple method is to return the stream. By returning the stream, Orchestrator is able to listen for the end event and only run `'somename'` once each dependencies' stream end event has been emitted.
+
 ##### Async tasks
 
 With callbacks:
@@ -216,7 +218,7 @@ gulp.watch("js/**/*.js", function(event){
 
 ### gulp.env
 
-gulp.env is an optimist arguments object. Running `gulp test dostuff --production` will yield `{_:["test","dostuff"],production:true}`
+gulp.env is an optimist arguments object. Running `gulp test dostuff --production` will yield `{_:["test","dostuff"],production:true}`. Plugins don't use this.
 
 ## gulp cli
 
@@ -278,12 +280,14 @@ gulp.src('./client/scripts/*.js')
 ## Plugin Guidelines
 
 1. file.contents should always go out the same way it came in
-2. Do not pass the file object downstream until you are done with it
-3. Make use of the gulp-util library. Do you need to change a file's extension or do some tedious path crap? Try looking there first and add it if it doesn't exist
-4. Use gulp.log when you need to log messages
-5. Remember: Your plugin should only do one thing! It should not have a complex config object that makes it do multiple things. It should not concat and add headers/footers. This is not grunt. Keep it simple.
-6. Do not throw errors. Emit them from the stream (or pass them to the callback if using event-stream's .map).
-7. Add "gulpplugin" as a keyword in your package.json so you show up on our search
+  - Respect buffered, streaming, and non-read files as well as folders!
+1. Do not pass the file object downstream until you are done with it
+1. Make use of the gulp-util library. Templating, CLI colors, logging. Do you need to change a file's extension or do some tedious fs crap? Try looking there first and add it if it doesn't exist
+1. Remember: Your plugin should only do one thing! It should not have a complex config object that makes it do multiple things. It should not concat and add headers/footers. This is not grunt. Keep it simple.
+1. Do not throw errors. Emit them from the stream (or pass them to the callback if using event-stream's .map).
+1. Add "gulpplugin" as a keyword in your package.json so you show up on our search
+
+If you don't follow these guidelines and somebody notices your plugin will be shitlisted from the ecosystem.
 
 ## LICENSE
 

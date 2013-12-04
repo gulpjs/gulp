@@ -1,47 +1,49 @@
 {
-   "name":"gulp",
-   "description":"The streaming build system",
-   "version":"2.6.0",
-   "homepage":"http://github.com/wearefractal/gulp",
-   "repository":"git://github.com/wearefractal/gulp.git",
-   "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
-   "main":"./index.js",
-   "preferGlobal":true,
-   "tags":["build","stream","system"],
-
-   "bin":{
-      "gulp":"./bin/gulp.js"
-   },
-   "dependencies":{
-      "event-stream":"3.0.x",
-      "glob-stream":"0.1.x",
-      "mkdirp":"0.3.x",
-      "optimist":"0.6.x",
-      "gulp-util":"1.0.x",
-      "gaze":"0.4.x",
-      "orchestrator": "0.1.x",
-      "chalk":"0.3.x",
-      "resolve":"0.6.x",
-      "semver":"2.2.x",
-      "findup-sync":"0.1.x"
-   },
-   "devDependencies":{
-      "mocha":"*",
-      "should":"*",
-      "rimraf":"*",
-      "q": "*",
-      "jshint": "*"
-   },
-   "scripts":{
-      "test":"mocha && jshint"
-   },
-   "engines":{
-      "node":">= 0.7"
-   },
-   "licenses":[
-      {
-         "type":"MIT",
-         "url":"http://github.com/wearefractal/gulp/raw/master/LICENSE"
-      }
-   ]
+  "name": "gulp",
+  "description": "The streaming build system",
+  "version": "2.6.1",
+  "homepage": "http://github.com/wearefractal/gulp",
+  "repository": "git://github.com/wearefractal/gulp.git",
+  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main": "./index.js",
+  "preferGlobal": true,
+  "tags": [
+    "build",
+    "stream",
+    "system"
+  ],
+  "bin": {
+    "gulp": "./bin/gulp.js"
+  },
+  "dependencies": {
+    "event-stream": "~3.0.16",
+    "glob-stream": "~0.1.0",
+    "mkdirp": "~0.3.5",
+    "optimist": "~0.6.0",
+    "gulp-util": "~1.1.1",
+    "gaze": "~0.4.3",
+    "orchestrator": "~0.1.0",
+    "resolve": "~0.6.1",
+    "semver": "~2.2.1",
+    "findup-sync": "~0.1.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "rimraf": "*",
+    "q": "*",
+    "jshint": "*"
+  },
+  "scripts": {
+    "test": "mocha && jshint"
+  },
+  "engines": {
+    "node": ">= 0.7"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/wearefractal/gulp/raw/master/LICENSE"
+    }
+  ]
 }

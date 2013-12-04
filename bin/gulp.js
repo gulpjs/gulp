@@ -4,13 +4,12 @@ var path = require('path');
 var fs = require('fs');
 
 var argv = require('optimist').argv;
-var chalk = require('chalk');
 var resolve = require('resolve');
 var findup = require('findup-sync');
+var gutil = require('gulp-util');
 
 var tasks = argv._;
 var cliPkg = require('../package.json');
-var cliGulp = require('../');
 
 var localBaseDir = process.cwd();
 
@@ -19,7 +18,7 @@ loadRequires(argv.require, localBaseDir);
 var gulpFile = getGulpFile(localBaseDir);
 
 if (!gulpFile) {
-  cliGulp.log(chalk.red('No Gulpfile found'));
+  gutil.log(gutil.colors.red('No Gulpfile found'));
   process.exit(1);
 }
 
@@ -29,34 +28,34 @@ var localPkg = findLocalGulpPackage(gulpFile);
 
 // print some versions and shit
 if (argv.v || argv.version) {
-  cliGulp.log('CLI version', cliPkg.version);
+  gutil.log('CLI version', cliPkg.version);
   if (localGulp) {
-    cliGulp.log('Local version', localPkg.version);
+    gutil.log('Local version', localPkg.version);
   }
   process.exit(0);
 }
 
 if (!localGulp) {
-  cliGulp.log(chalk.red('No local gulp install found in'), getLocalBase(gulpFile));
-  cliGulp.log(chalk.red('You need to npm install it first'));
+  gutil.log(gutil.colors.red('No local gulp install found in'), getLocalBase(gulpFile));
+  gutil.log(gutil.colors.red('You need to npm install it first'));
   process.exit(1);
 }
 
 // Mix CLI flags into gulp
-localGulp.env = argv;
+localGulp.env = gutil.env;
 
 // Load their gulpfile and run it
-cliGulp.log('Using file', chalk.magenta(gulpFile));
+gutil.log('Using file', gutil.colors.magenta(gulpFile));
 loadGulpFile(localGulp, gulpFile, tasks);
 
 function loadRequires(requires, baseDir) {
   if (typeof requires === 'undefined') requires = [];
   if (!Array.isArray(requires)) requires = [requires];
   return requires.map(function(modName){
-    cliGulp.log('Requiring external module', chalk.magenta(modName));
+    gutil.log('Requiring external module', gutil.colors.magenta(modName));
     var mod = findLocalModule(modName, baseDir);
     if (typeof mod === 'undefined') {
-      cliGulp.log('Failed to load external module', chalk.magenta(modName))
+      gutil.log('Failed to load external module', gutil.colors.magenta(modName));
     }
   });
 }
@@ -90,7 +89,7 @@ function findLocalGulpPackage(gulpFile){
 function loadGulpFile(localGulp, gulpFile, tasks){
   var gulpFileCwd = path.dirname(gulpFile);
   process.chdir(gulpFileCwd);
-  cliGulp.log('Working directory changed to', chalk.magenta(gulpFileCwd));
+  gutil.log('Working directory changed to', gutil.colors.magenta(gulpFileCwd));
 
   var theGulpfile = require(gulpFile);
   

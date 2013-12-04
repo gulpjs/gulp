@@ -1,5 +1,14 @@
 # gulp changelog
 
+## 2.4 - 2.6
+
+- Moved stuff to gulp-util
+- Quit exposing createGlobStream (just use the glob-stream module)
+- More logging
+- Prettier time durations
+- Tons of documentation changes
+- gulp.trigger(tasks...) as a through stream
+
 ## 1.2-2.4 (11/12/13)
 
 - src buffer=false fixed for 0.8 and 0.9 (remember to .resume() on these versions before consuming)
