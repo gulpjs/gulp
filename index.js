@@ -22,13 +22,13 @@ function Gulp(){
     gutil.log('Running', "'"+gutil.colors.cyan(e.task)+"'...");
   });
   this.on('task_stop', function(e){
-    var time = gutil.prettyTime(e.duration);
+  	var time = gutil.prettyTime(e.hrDuration[0] + (e.hrDuration[1]/1e9));
     gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time.value), time.shortUnit);
   });
 
   this.on('task_err', function(e){
     var msg = formatError(e);
-    var time = gutil.prettyTime(e.duration);
+    var time = gutil.prettyTime(e.hrDuration[0] + (e.hrDuration[1]/1e9));
     gutil.log('Errored', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time.value), time.shortUnit, gutil.colors.red(msg));
   });
 }
