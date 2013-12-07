@@ -1,9 +1,19 @@
 # gulp changelog
 
+## 3.0
+
+- Ability to pass multiple globs and glob negations to glob-stream
+- Breaking change to the way glob-stream works
+- File object is now a class
+- file.shortened changed to file.relative
+- file.cwd added
+- Break out getStats to avoid nesting
+- Major code reorganization
+
 ## 2.7
 
 - Breaking change to the way options are passed to glob-stream
-- Introduce new File object to ease pain of computing shortened names
+- Introduce new File object to ease pain of computing shortened names (now a getter)
 
 ## 2.4 - 2.6
 
