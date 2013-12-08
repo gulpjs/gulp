@@ -1,4 +1,5 @@
 var gulp = require('../');
+var gutil = require('gulp-util');
 var should = require('should');
 var path = require('path');
 var join = path.join;
@@ -14,7 +15,7 @@ describe('gulp bufferFile', function() {
     it('should return a valid file', function(done) {
       var fname = join(__dirname, "./fixtures/test.coffee");
       var base = join(__dirname, "./fixtures/");
-      var file = new gulp.File({
+      var file = new gutil.File({
         base: base,
         cwd: __dirname,
         path: fname
@@ -42,7 +43,7 @@ describe('gulp streamFile', function() {
     it('should return a valid file', function(done) {
       var fname = join(__dirname, "./fixtures/test.coffee");
       var base = join(__dirname, "./fixtures/");
-      var file = new gulp.File({
+      var file = new gutil.File({
         base: base,
         cwd: __dirname,
         path: fname
@@ -72,50 +73,6 @@ describe('gulp streamFile', function() {
           file.contents.resume();
         }
       });
-    });
-  });
-});
-
-describe('gulp File class', function() {
-  describe('File()', function() {
-    it('should return a valid file', function(done) {
-      var fname = join(__dirname, "./fixtures/test.coffee");
-      var base = join(__dirname, "./fixtures/");
-      var file = new gulp.File({
-        base: base,
-        cwd: __dirname,
-        path: fname
-      });
-      should.exist(file, 'root');
-      should.exist(file.relative, 'relative');
-      should.exist(file.path, 'path');
-      should.exist(file.cwd, 'cwd');
-      should.exist(file.base, 'base');
-      file.path.should.equal(fname);
-      file.cwd.should.equal(__dirname);
-      file.base.should.equal(base);
-      file.relative.should.equal("test.coffee");
-      done();
-    });
-
-    it('should return a valid file 2', function(done) {
-      var fname = join(__dirname, "./fixtures/test.coffee");
-      var base = __dirname;
-      var file = new gulp.File({
-        base: base,
-        cwd: __dirname,
-        path: fname
-      });
-      should.exist(file, 'root');
-      should.exist(file.relative, 'relative');
-      should.exist(file.path, 'path');
-      should.exist(file.cwd, 'cwd');
-      should.exist(file.base, 'base');
-      file.path.should.equal(fname);
-      file.cwd.should.equal(__dirname);
-      file.base.should.equal(base);
-      file.relative.should.equal("fixtures/test.coffee");
-      done();
     });
   });
 });
