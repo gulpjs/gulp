@@ -1,5 +1,9 @@
 # gulp changelog
 
+## 3.1
+
+- Move file class to gulp-util
+
 ## 3.0
 
 - Ability to pass multiple globs and glob negations to glob-stream
