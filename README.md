@@ -277,6 +277,8 @@ gulp.src('./client/scripts/*.js')
 
 ## Plugin Guidelines
 
+A gulp plugin is exclusively something that deals with file streams. If your library is not for streaming files but is still made for use with gulp, just tag it as `gulpfriendly` instead of `gulpplugin`.
+
 1. file.contents should always go out the same way it came in
   - Respect buffered, streaming, and non-read files as well as folders!
 1. Do not pass the file object downstream until you are done with it
