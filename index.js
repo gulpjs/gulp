@@ -5,6 +5,7 @@
 var util = require('util');
 var Orchestrator = require('orchestrator');
 var gutil = require('gulp-util');
+var prettyTime = require('pretty-hrtime');
 
 // format orchestrator errors
 var formatError = function(e) {
@@ -22,14 +23,14 @@ function Gulp(){
     gutil.log('Running', "'"+gutil.colors.cyan(e.task)+"'...");
   });
   this.on('task_stop', function(e){
-    var time = gutil.prettyTime(e.duration);
-    gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time.value), time.shortUnit);
+    var time = prettyTime(e.hrDuration);
+    gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time));
   });
 
   this.on('task_err', function(e){
     var msg = formatError(e);
-    var time = gutil.prettyTime(e.duration);
-    gutil.log('Errored', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time.value), time.shortUnit, gutil.colors.red(msg));
+    var time = prettyTime(e.hrDuration);
+    gutil.log('Errored', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time), gutil.colors.red(msg));
   });
 }
 util.inherits(Gulp, Orchestrator);

@@ -22,10 +22,11 @@
     "optimist": "~0.6.0",
     "gulp-util": "~1.2.0",
     "gaze": "~0.4.3",
-    "orchestrator": "~0.1.0",
+    "orchestrator": "~0.2.0",
     "resolve": "~0.6.1",
     "semver": "~2.2.1",
-    "findup-sync": "~0.1.2"
+    "findup-sync": "~0.1.2",
+    "pretty-hrtime": "~0.2.0"
   },
   "devDependencies": {
     "mocha": "*",
