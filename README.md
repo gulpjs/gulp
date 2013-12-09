@@ -33,7 +33,7 @@ You can view a list of plugins by going to [this npm search](https://npmjs.org/s
 
 ## Usage
 
-This code goes in your `Gulpfile.js` (case insensitive) at the root of your project. For more information on how to use other languages check the [compilers](#compilers) section.
+This code would go in your `Gulpfile.js` (case insensitive) at the root of your project. For more information on how to use other languages check the [compilers](#compilers) section.
 
 ```javascript
 var gulp = require('gulp');
