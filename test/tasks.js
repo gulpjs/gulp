@@ -9,10 +9,14 @@ require('mocha');
 
 describe('gulp tasks', function() {
   // Don't bleed previous test into subsequent test
+  var stdout_write;
   beforeEach(function () {
+    stdout_write = process.stdout.write;
+    process.stdout.write = function() {};
     gulp.reset();
   });
   afterEach(function () {
+    process.stdout.write = stdout_write;
     gulp.reset();
   });
   describe('task()', function() {
