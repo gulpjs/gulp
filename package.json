@@ -1,7 +1,7 @@
 {
   "name": "gulp",
   "description": "The streaming build system",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "homepage": "http://github.com/wearefractal/gulp",
   "repository": "git://github.com/wearefractal/gulp.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
