@@ -28,7 +28,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('scripts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
-  gulp.src('client/js/**/*.js')
+  gulp.src(['client/js/**/*.js', '!client/js/vendor/**'])
     .pipe(uglify())
     .pipe(gulp.dest('build/js'));
 
@@ -275,9 +275,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [glob-stream]: https://github.com/wearefractal/glob-stream
 [Orchestrator]: https://github.com/robrich/orchestrator
 [plugin search]: https://npmjs.org/browse/keyword/gulpplugin
-[wiki]: /wearefractal/gulp/wiki
-[FAQ]: /wearefractal/gulp/wiki/FAQ
-[Writing a gulp plugin]: /wearefractal/gulp/wiki/Writing-a-gulp-plugin
+[wiki]: https://github.com/wearefractal/gulp/wiki
+[FAQ]: https://github.com/wearefractal/gulp/wiki/FAQ
+[Writing a gulp plugin]: https://github.com/wearefractal/gulp/wiki/Writing-a-gulp-plugin
 
 [npm-url]: https://npmjs.org/package/gulp
 [npm-image]: https://badge.fury.io/js/gulp.png
