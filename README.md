@@ -88,7 +88,7 @@ The gulp community is growing, with new plugins being added daily. See the [npm 
 
 ### gulp.src(globs[, options])
 
-Takes a glob and represents a file structure. Can be piped to plugins. You can specify a single glob or an array of globs (see docs). All options are passed directly through to [glob-stream]. See the [glob-stream documentation] for more information.
+Takes a glob and represents a file structure. Can be piped to plugins.
 
 ```javascript
 gulp.src('./client/templates/*.jade')
@@ -97,11 +97,23 @@ gulp.src('./client/templates/*.jade')
     .pipe(gulp.dest('./build/minified_templates'));
 ```
 
+#### globs
+Type: `String` or `Array`
+
+Glob or globs to read.
+
+#### options
+Type: `Object`
+
+Options to pass to [node-glob] through [glob-stream].
+
+gulp adds two additional options in addition to the [options supported by node-glob][node-glob documentation]:
+
 #### options.buffer
 Type: `Boolean`
 Default: `true`
 
-Setting this to `false` will return `file.contents` as a stream and not buffer files. This may not be supported by many plugins.
+Setting this to `false` will return `file.contents` as a stream and not buffer files. This is useful when working with large files. **Note:** Plugins may not implement support for streams.
 
 #### options.read
 Type: `Boolean`
@@ -109,7 +121,8 @@ Default: `true`
 
 Setting this to `false` will return `file.contents` as null and not read the file at all.
 
-### gulp.dest(path[, options])
+
+### gulp.dest(path)
 
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
 
@@ -121,11 +134,15 @@ gulp.src('./client/templates/*.jade')
   .pipe(gulp.dest('./build/minified_templates'));
 ```
 
+#### path
+Type: `String`
+
+The path (folder) to write files to.
+
+
 ### gulp.task(name[, deps], fn)
 
-Tasks that you want to run from the command line should not have spaces in them.
-
-The task system is [Orchestrator] so check there for more detailed information.
+Define a task using [Orchestrator].
 
 ```javascript
 gulp.task('somename', function() {
@@ -133,21 +150,32 @@ gulp.task('somename', function() {
 });
 ```
 
-#### Task dependencies
+#### name
 
-This lets you specify tasks to be executed and completed before your task will run.
+The name of the task. Tasks that you want to run from the command line should not have spaces in them.
+
+#### deps
+Type: `Array`
+
+An array of tasks to be executed and completed before your task will run.
 
 ```javascript
-gulp.task('somename', ['array', 'of', 'task', 'names'], function() {
+gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
   // Do stuff
 });
 ```
 
-If the dependencies are asynchronous it is not guaranteed that they will finish before `'somename'` is executed. To ensure they are completely finished, you need to make sure the dependency tasks have asynchronous support through one of the methods outlined below. The most simple method is to return the stream. By returning the stream, Orchestrator is able to listen for the end event and only run `'somename'` once each dependencies' stream end event has been emitted. You can also use callbacks or promises to do your own cool stuff.
+**Note:** If the dependencies are asynchronous it is not guaranteed that they will finish before `mytask` is executed. To ensure they are completely finished, you need to make sure the dependency tasks have asynchronous support through one of the methods outlined below.
 
-#### Async tasks
+#### fn
 
-With callbacks:
+The function that performs the task's operations. Generally this takes the form of `gulp.src().pipe(someplugin())`.
+
+#### Async task support
+
+Tasks can be made asynchronous if its `fn` does one of the following:
+
+##### Accept a callback
 
 ```javascript
 gulp.task('somename', function(cb) {
@@ -156,7 +184,7 @@ gulp.task('somename', function(cb) {
 });
 ```
 
-Wait for stream to end:
+##### Return a stream
 
 ```javascript
 gulp.task('somename', function() {
@@ -167,7 +195,7 @@ gulp.task('somename', function() {
 });
 ```
 
-With promises:
+##### Return a promise
 
 ```javascript
 var Q = require('q');
@@ -186,7 +214,10 @@ gulp.task('somename', function() {
 
 ### gulp.run(tasks...[, cb])
 
-Triggers tasks to be executed. *Does not run in order*.
+#### tasks
+Type: `String`
+
+Tasks to be executed. You may pass any number of tasks as individual arguments. **Note:** Tasks are run concurrently and therefore do not run in order, see [Orchestrator] for more information.
 
 ```javascript
 gulp.run('scripts', 'copyfiles', 'builddocs');
@@ -198,21 +229,73 @@ gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
 });
 ```
 
-Use gulp.run to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
+Use `gulp.run` to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
 
 ### gulp.watch(glob, cb)
 
-glob can be a standard glob or an array of globs. cb is called on each fs change with an object describing the change.
+#### glob
+Type: `String` or `Array`
+
+A single glob or array of globs that indicate which files to watch for changes.
+
+#### cb(event)
+Type: `Function`
+
+Callback to be called on each change.
 
 ```javascript
 gulp.watch('js/**/*.js', function(event) {
+  console.log('File '+event.path+' was '+event.type+', running tasks...');
   gulp.run('scripts', 'copyfiles');
 });
 ```
 
+The callback will be passed an object, `event`, that describes the change:
+
+##### event.type
+Type: `String`
+
+The type of change that occurred, either `added`, `changed` or `deleted`.
+
+##### event.path
+Type: `String`
+
+The path to the file that triggered the event.
+
+
 ### gulp.env
 
-gulp.env is an optimist arguments object. Running `gulp test dostuff --production` will yield `{_:["test","dostuff"],production:true}`. Plugins don't use this.
+`gulp.env` is a [node-optimist] arguments object. For instance, if you run:
+
+```
+gulp test dostuff --production
+```
+
+Which results in the following `gulp.env`:
+
+```
+{
+  _: ['test', 'dostuff'],
+  production: true
+}
+```
+
+You can use this to conditionally enable certain plugins:
+
+```
+gulp.task('scripts', function() {
+  var stream = gulp.src(['client/js/**/*.js', '!client/js/vendor/**']);
+
+  // Only uglify in production
+  if (!gulp.env.production) {
+    stream = stream.pipe(uglify());
+  }
+
+  stream.pipe(gulp.dest('build/js'));
+});
+```
+
+**Note:** Plugins should not perform differently based on `gulp.env`.
 
 
 ## gulp CLI
@@ -223,7 +306,7 @@ Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` 
 
 ### Compilers
 
-You can use any language you want for your gulpfile. You will have to specify the language module name so the CLI can load it (and its assosciated extensions) before attempting to find your gulpfile. Make sure you have this module installed accessible by the folder you are running the CLI in.
+You can use any language you want for your gulpfile. You will have to specify the language module name so the CLI can load it (and its associated extensions) before attempting to find your gulpfile. Make sure you have this module installed accessible by the folder you are running the CLI in.
 
 Example:
 
@@ -271,7 +354,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 
-[glob-stream documentation]: https://github.com/wearefractal/glob-stream
+[node-optimist]: https://github.com/substack/node-optimist
+[node-glob documentation]: https://github.com/isaacs/node-glob#options
+[node-glob]: https://github.com/isaacs/node-glob
 [glob-stream]: https://github.com/wearefractal/glob-stream
 [Orchestrator]: https://github.com/robrich/orchestrator
 [plugin search]: https://npmjs.org/browse/keyword/gulpplugin
