@@ -28,7 +28,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('scripts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
-  gulp.src(['client/js/**/*.js'])
+  gulp.src('client/js/**/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('build/js'));
 
