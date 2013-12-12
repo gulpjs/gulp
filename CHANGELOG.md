@@ -1,5 +1,9 @@
 # gulp changelog
 
+## 3.1.3
+
+- Move isStream and isBuffer to gulp-util
+
 ## 3.1
 
 - Move file class to gulp-util
