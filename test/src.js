@@ -27,6 +27,29 @@ describe('gulp input stream', function() {
         done();
       });
     });
+
+    it('should return a input stream for multiple globs', function(done) {
+      var globArray = [
+        join(__dirname, "./fixtures/stuff/run.dmc"),
+        join(__dirname, "./fixtures/stuff/test.dmc")
+      ];
+      var stream = gulp.src(globArray);
+
+      var files = [];
+      stream.on('error', done);
+      stream.on('data', function(file) {
+        should.exist(file);
+        should.exist(file.path);
+        files.push(file);
+      });
+      stream.on('end', function() {
+        files.length.should.equal(2);
+        files[0].path.should.equal(globArray[0]);
+        files[1].path.should.equal(globArray[1]);
+        done();
+      });
+    });
+
     it('should return a input stream with no contents when read is false', function(done) {
       var stream = gulp.src(join(__dirname, "./fixtures/*.coffee"), {read: false});
       stream.on('error', done);
