@@ -1,4 +1,6 @@
-![logo](https://raw.github.com/gulpjs/artwork/master/gulp.png)
+<p align="center">
+  <img height="194" width="98" src="https://raw.github.com/gulpjs/artwork/master/gulp.png"/>
+</p>
 
 # gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 > The streaming build system
