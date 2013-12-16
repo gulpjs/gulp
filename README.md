@@ -1,3 +1,5 @@
+![logo](https://raw.github.com/gulpjs/artwork/master/gulp.png)
+
 # gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 > The streaming build system
 
