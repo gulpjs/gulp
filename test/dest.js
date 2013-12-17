@@ -75,8 +75,7 @@ describe('gulp output stream', function() {
       rimraf(outpath, function(err){
         should.not.exist(err);
         var instream = gulp.src(join(__dirname, "./fixtures/**/*.txt"), {buffer:false});
-        var outstream = gulp.dest(outpath);
-        instream.pipe(outstream);
+        var outstream = instream.pipe(gulp.dest(outpath));
 
         outstream.on('error', done);
         outstream.on('data', function(file) {
