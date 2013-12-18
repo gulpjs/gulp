@@ -7,6 +7,7 @@ var argv = require('optimist').argv;
 var resolve = require('resolve');
 var findup = require('findup-sync');
 var gutil = require('gulp-util');
+var prettyTime = require('pretty-hrtime');
 
 var tasks = argv._;
 var cliPkg = require('../package.json');
@@ -41,8 +42,9 @@ if (!localGulp) {
   process.exit(1);
 }
 
-// Mix CLI flags into gulp
-localGulp.env = gutil.env;
+// Wire up logging for tasks
+// on local gulp singleton
+logEvents(localGulp);
 
 // Load their gulpfile and run it
 gutil.log('Using file', gutil.colors.magenta(gulpFile));
@@ -109,4 +111,28 @@ function getGulpFile(baseDir) {
   }
   var gulpFile = findup("Gulpfile{"+extensions+"}", {nocase: true});
   return gulpFile;
+}
+
+// format orchestrator errors
+function formatError (e) {
+  if (!e.err) return e.message;
+  if (e.err.message) return e.err.message;
+  return JSON.stringify(e.err);
+}
+
+// wire up logging events
+function logEvents(gulp) {
+  gulp.on('task_start', function(e){
+    gutil.log('Running', "'"+gutil.colors.cyan(e.task)+"'...");
+  });
+  gulp.on('task_stop', function(e){
+    var time = prettyTime(e.hrDuration);
+    gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time));
+  });
+
+  gulp.on('task_err', function(e){
+    var msg = formatError(e);
+    var time = prettyTime(e.hrDuration);
+    gutil.log('Errored', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time), gutil.colors.red(msg));
+  });
 }
