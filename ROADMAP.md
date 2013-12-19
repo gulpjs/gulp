@@ -4,3 +4,4 @@
   - Site plugin search should utilize github stars for sorting
   - Site plugin search should have a blacklist for bad plugins that don't pass acceptance tests
 - gulp plugin acceptance tests that tell you if plugins work correctly
+- Split gulp-util.File object out into a well tested individual repo (spec?)
