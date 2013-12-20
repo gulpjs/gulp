@@ -18,6 +18,14 @@ loadRequires(argv.require, localBaseDir);
 
 var gulpFile = getGulpFile(localBaseDir);
 
+// create new gulpfile
+if (argv._.length === 1 && argv._[0] == 'init') {
+  gutil.log('Creating new gulpfile.js');
+  createGulpFile(localBaseDir);
+  gutil.log(gutil.colors.green('Done'));
+  process.exit(0);
+}
+
 if (!gulpFile) {
   gutil.log(gutil.colors.red('No Gulpfile found'));
   process.exit(1);
@@ -111,6 +119,22 @@ function getGulpFile(baseDir) {
   }
   var gulpFile = findup("Gulpfile{"+extensions+"}", {nocase: true});
   return gulpFile;
+}
+
+function createGulpFile(baseDir) {
+  var template = [
+    'var gulp = require(\'gulp\');',
+    '',
+    '// define tasks here',
+    '',
+    'gulp.task(\'default\', function() {',
+    '  // run tasks here',
+    '  // set up watch handlers here',
+    '});',
+    ''
+  ].join('\n');
+
+  fs.writeFileSync(baseDir + '/gulpfile.js', template, 'utf8');
 }
 
 // format orchestrator errors
