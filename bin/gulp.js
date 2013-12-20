@@ -18,11 +18,6 @@ loadRequires(argv.require, localBaseDir);
 
 var gulpFile = getGulpFile(localBaseDir);
 
-if (!gulpFile) {
-  gutil.log(gutil.colors.red('No Gulpfile found'));
-  process.exit(1);
-}
-
 // find the local gulp
 var localGulp = findLocalGulp(gulpFile);
 var localPkg = findLocalGulpPackage(gulpFile);
@@ -39,6 +34,11 @@ if (argv.v || argv.version) {
 if (!localGulp) {
   gutil.log(gutil.colors.red('No local gulp install found in'), getLocalBase(gulpFile));
   gutil.log(gutil.colors.red('You need to npm install it first'));
+  process.exit(1);
+}
+
+if (!gulpFile) {
+  gutil.log(gutil.colors.red('No Gulpfile found'));
   process.exit(1);
 }
 
@@ -125,6 +125,7 @@ function logEvents(gulp) {
   gulp.on('task_start', function(e){
     gutil.log('Running', "'"+gutil.colors.cyan(e.task)+"'...");
   });
+
   gulp.on('task_stop', function(e){
     var time = prettyTime(e.hrDuration);
     gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time));
