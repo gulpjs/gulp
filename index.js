@@ -21,7 +21,18 @@ Gulp.prototype.run = function(){
   if (!tasks.length) {
     tasks = ['default'];
   }
-  this.start.apply(this, tasks);
+  try {
+    this.start.apply(this, tasks);
+  } catch(ex) {
+    // check case where 'default' task is not defined
+    if (ex.message === "default is not defined") {
+      gutil.log(gutil.colors.red("Error"), "There is no", 
+        gutil.colors.cyan("'default'"),  "task defined in your 'gulpfile.js'");
+      gutil.log("Please check the documentation for proper gulpfile.js formating.");
+    } else {
+      throw(ex);
+    }
+  }
 };
 
 Gulp.prototype.src = require('./lib/createInputStream');
