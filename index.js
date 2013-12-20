@@ -26,7 +26,7 @@ Gulp.prototype.run = function(){
 
 Gulp.prototype.src = require('./lib/createInputStream');
 Gulp.prototype.dest = require('./lib/createOutputStream');
-Gulp.prototype.watch = require('./lib/watch');
+Gulp.prototype.watch = require('glob-watcher');
 
 var gulp = new Gulp();
 gulp.Gulp = Gulp;
