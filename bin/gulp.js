@@ -16,16 +16,13 @@ var localBaseDir = process.cwd();
 
 loadRequires(argv.require, localBaseDir);
 
-var gulpFile = getGulpFile(localBaseDir);
-
-if (!gulpFile) {
-  gutil.log(gutil.colors.red('No Gulpfile found'));
-  process.exit(1);
-}
+var gulpFile = getGulpFile(localBaseDir), localGulp, localPkg;
 
 // find the local gulp
-var localGulp = findLocalGulp(gulpFile);
-var localPkg = findLocalGulpPackage(gulpFile);
+if (gulpFile) {
+  localGulp = findLocalGulp(gulpFile);
+  localPkg = findLocalGulpPackage(gulpFile);
+}
 
 // print some versions and shit
 if (argv.v || argv.version) {
@@ -34,6 +31,11 @@ if (argv.v || argv.version) {
     gutil.log('Local version', localPkg.version);
   }
   process.exit(0);
+}
+
+if (!gulpFile) {
+  gutil.log(gutil.colors.red('No Gulpfile found'));
+  process.exit(1);
 }
 
 if (!localGulp) {
