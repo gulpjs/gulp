@@ -15,12 +15,8 @@ util.inherits(Gulp, Orchestrator);
 Gulp.prototype.taskQueue = Gulp.prototype.seq;
 Gulp.prototype.task = Gulp.prototype.add;
 Gulp.prototype.run = function(){
-  var tasks = Array.prototype.slice.call(arguments);
-  
   // impose our opinion of "default" tasks onto orchestrator
-  if (!tasks.length) {
-    tasks = ['default'];
-  }
+  var tasks = arguments.length ? arguments : ['default'];
   this.start.apply(this, tasks);
 };
 
