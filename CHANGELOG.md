@@ -1,5 +1,15 @@
 # gulp changelog
 
+## 3.2
+
+- File object is now [vinyl](https://github.com/wearefractal/vinyl)
+- .watch() is now [glob-watcher](https://github.com/wearefractal/glob-watcher)
+- Fix CLI -v when no gulpfile found
+- gulp-util updated
+- Logging moved to CLI bin file
+  - Will cause double logging if you update global CLI to 3.2 but not local
+  - Will cause no logging if you update local to 3.1 but not global CLI
+
 ## 3.1.3
 
 - Move isStream and isBuffer to gulp-util

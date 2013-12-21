@@ -1,7 +1,7 @@
 {
   "name": "gulp",
   "description": "The streaming build system",
-  "version": "3.1.6",
+  "version": "3.2.0",
   "homepage": "http://github.com/wearefractal/gulp",
   "repository": "git://github.com/wearefractal/gulp.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
@@ -19,7 +19,7 @@
     "glob-stream": "~3.0.2",
     "mkdirp": "~0.3.5",
     "optimist": "~0.6.0",
-    "gulp-util": "~2.1.3",
+    "gulp-util": "~2.2.0",
     "orchestrator": "~0.2.1",
     "resolve": "~0.6.1",
     "semver": "~2.2.1",
@@ -35,7 +35,7 @@
     "jshint": "*"
   },
   "scripts": {
-    "test": "mocha && jshint"
+    "test": "mocha --reporter spec && jshint"
   },
   "engines": {
     "node": ">= 0.7"
