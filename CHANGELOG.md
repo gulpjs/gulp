@@ -9,6 +9,7 @@
 - Logging moved to CLI bin file
   - Will cause double logging if you update global CLI to 3.2 but not local
   - Will cause no logging if you update local to 3.1 but not global CLI
+- Drop support for < 0.9
 
 ## 3.1.3
 

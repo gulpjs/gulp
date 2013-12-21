@@ -38,7 +38,7 @@
     "test": "mocha --reporter spec && jshint"
   },
   "engines": {
-    "node": ">= 0.7"
+    "node": ">= 0.9"
   },
   "licenses": [
     {
