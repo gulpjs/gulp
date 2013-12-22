@@ -113,6 +113,17 @@ describe('gulp tasks', function() {
       });
       gulp.isRunning.should.equal(true);
     });
+    it('should emit task_not_found and throw an error when task is not defined', function(done) {
+      gulp.on('task_not_found', function(){
+        gulp.reset();
+        done();
+      });
+      try {
+        gulp.run('test');
+      } catch (err) {
+        should.exist(err);
+      }
+    });
     it('should run task scoped to gulp', function(done) {
       var a, fn;
       a = 0;
