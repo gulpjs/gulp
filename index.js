@@ -39,6 +39,15 @@ Gulp.prototype.taskQueue = Gulp.prototype.seq;
 Gulp.prototype.task = Gulp.prototype.add;
 Gulp.prototype.run = function(){
   var tasks = Array.prototype.slice.call(arguments);
+
+  // check case where 'default' task is not defined
+  if (!this.tasks.default) {
+    gutil.log(gutil.colors.red("Error"), "There is no", 
+      gutil.colors.cyan("'default'"),  "task defined in your 'gulpfile.js'");
+    gutil.log("Please check the documentation for proper gulpfile.js formating.");
+    return;
+  }
+
   
   // impose our opinion of "default" tasks onto orchestrator
   if (!tasks.length) {
