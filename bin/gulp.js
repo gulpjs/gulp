@@ -105,11 +105,11 @@ function loadGulpFile(localGulp, gulpFile, tasks){
 function getGulpFile(baseDir) {
   var extensions;
   if (require.extensions) {
-    extensions = Object.keys(require.extensions).join(",");
+    extensions = Object.keys(require.extensions).join(',');
   } else {
     extensions = ['.js','.coffee'];
   }
-  var gulpFile = findup("Gulpfile{"+extensions+"}", {nocase: true});
+  var gulpFile = findup('Gulpfile{'+extensions+'}', {nocase: true});
   return gulpFile;
 }
 
@@ -128,12 +128,18 @@ function logEvents(gulp) {
 
   gulp.on('task_stop', function(e){
     var time = prettyTime(e.hrDuration);
-    gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time));
+    gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", 'in', gutil.colors.magenta(time));
   });
 
   gulp.on('task_err', function(e){
     var msg = formatError(e);
     var time = prettyTime(e.hrDuration);
-    gutil.log('Errored', "'"+gutil.colors.cyan(e.task)+"'", "in", gutil.colors.magenta(time), gutil.colors.red(msg));
+    gutil.log('Errored', "'"+gutil.colors.cyan(e.task)+"'", 'in', gutil.colors.magenta(time), gutil.colors.red(msg));
+  });
+
+  gulp.on('task_not_found', function(name){
+    gutil.log(gutil.colors.red("Task '"+name+"' was not defined in your gulpfile but you tried to run it."));
+    gutil.log('Please check the documentation for proper gulpfile formatting.');
+    process.exit(1);
   });
 }

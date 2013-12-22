@@ -16,7 +16,16 @@ Gulp.prototype.taskQueue = Gulp.prototype.seq;
 Gulp.prototype.task = Gulp.prototype.add;
 Gulp.prototype.run = function(){
   // impose our opinion of "default" tasks onto orchestrator
-  var tasks = arguments.length ? arguments : ['default'];
+  var tasks = arguments.length ? Array.prototype.slice.call(arguments) : ['default'];
+
+  // check if tasks were defined
+  // orchestrator will fail
+  // but we just want to emit an event so the CLI can error nicely
+  tasks.forEach(function(name){
+    if (this.tasks[name]) return;
+    this.emit('task_not_found', name);
+  }, this);
+
   this.start.apply(this, tasks);
 };
 
@@ -24,7 +33,9 @@ Gulp.prototype.src = require('./lib/createInputStream');
 Gulp.prototype.dest = require('./lib/createOutputStream');
 Gulp.prototype.watch = require('glob-watcher');
 
-var gulp = new Gulp();
-gulp.Gulp = Gulp;
+// let people use this class from our instance
+Gulp.prototype.Gulp = Gulp;
 
-module.exports = gulp;
+var inst = new Gulp();
+
+module.exports = inst;
