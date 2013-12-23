@@ -23,6 +23,8 @@ npm install --save-dev gulp
 
 ### 3. Create a `gulpfile.js` at the root of your project:
 
+This file is just an example of what yours might end up looking like. Check out [gulp init] for a jumping off point.
+
 ```javascript
 /*
   This is an EXAMPLE gulpfile.js
@@ -369,6 +371,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [wiki]: https://github.com/wearefractal/gulp/wiki
 [FAQ]: https://github.com/wearefractal/gulp/wiki/FAQ
 [Writing a gulp plugin]: https://github.com/wearefractal/gulp/wiki/Writing-a-gulp-plugin
+[gulp init]: https://github.com/wearefractal/gulp/wiki/gulp-init
 
 [npm-url]: https://npmjs.org/package/gulp
 [npm-image]: https://badge.fury.io/js/gulp.png
