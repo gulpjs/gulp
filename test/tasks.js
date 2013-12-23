@@ -114,7 +114,10 @@ describe('gulp tasks', function() {
       gulp.isRunning.should.equal(true);
     });
     it('should emit task_not_found and throw an error when task is not defined', function(done) {
-      gulp.on('task_not_found', function(){
+      gulp.on('task_not_found', function(err){
+        should.exist(err);
+        should.exist(err.task);
+        err.task.should.equal('test');
         gulp.reset();
         done();
       });

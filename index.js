@@ -16,15 +16,7 @@ Gulp.prototype.taskQueue = Gulp.prototype.seq;
 Gulp.prototype.task = Gulp.prototype.add;
 Gulp.prototype.run = function(){
   // impose our opinion of "default" tasks onto orchestrator
-  var tasks = arguments.length ? Array.prototype.slice.call(arguments) : ['default'];
-
-  // check if tasks were defined
-  // orchestrator will fail
-  // but we just want to emit an event so the CLI can error nicely
-  tasks.forEach(function(name){
-    if (this.tasks[name]) return;
-    this.emit('task_not_found', name);
-  }, this);
+  var tasks = arguments.length ? arguments : ['default'];
 
   this.start.apply(this, tasks);
 };

@@ -1,7 +1,7 @@
 {
   "name": "gulp",
   "description": "The streaming build system",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "homepage": "http://github.com/wearefractal/gulp",
   "repository": "git://github.com/wearefractal/gulp.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
@@ -20,7 +20,7 @@
     "mkdirp": "~0.3.5",
     "optimist": "~0.6.0",
     "gulp-util": "~2.2.0",
-    "orchestrator": "~0.2.1",
+    "orchestrator": "~0.3.0",
     "resolve": "~0.6.1",
     "semver": "~2.2.1",
     "findup-sync": "~0.1.2",
