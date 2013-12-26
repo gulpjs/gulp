@@ -1,5 +1,7 @@
 <p align="center">
-  <img height="194" width="98" src="https://raw.github.com/gulpjs/artwork/master/gulp.png"/>
+  <a href="http://gulpjs.com">
+    <img height="194" width="98" src="https://raw.github.com/gulpjs/artwork/master/gulp.png"/>
+  </a>
   <br/>
   <a href="http://gulpjs.com/">Visit our website!</a>
 </p>
