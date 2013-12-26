@@ -297,7 +297,7 @@ gulp.task('scripts', function() {
   var stream = gulp.src(['client/js/**/*.js', '!client/js/vendor/**']);
 
   // Only uglify in production
-  if (!gulp.env.production) {
+  if (gulp.env.production) {
     stream = stream.pipe(uglify());
   }
 
