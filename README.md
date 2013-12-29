@@ -377,7 +377,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [npm-url]: https://npmjs.org/package/gulp
 [npm-image]: https://badge.fury.io/js/gulp.png
-[travis-url]: https://travis-ci.org/wearefractal/gulp
-[travis-image]: https://travis-ci.org/wearefractal/gulp.png?branch=master
-[depstat-url]: https://david-dm.org/wearefractal/gulp
-[depstat-image]: https://david-dm.org/wearefractal/gulp.png
+[travis-url]: https://travis-ci.org/gulpjs/gulp
+[travis-image]: https://travis-ci.org/gulpjs/gulp.png?branch=master
+[depstat-url]: https://david-dm.org/gulpjs/gulp
+[depstat-image]: https://david-dm.org/gulpjs/gulp.png
