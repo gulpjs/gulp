@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+try{
+  var cs = require('coffee-script');
+} catch(e){}
 
 var path = require('path');
 var fs = require('fs');
