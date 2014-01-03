@@ -241,12 +241,17 @@ gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
 
 Use `gulp.run` to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
 
-### gulp.watch(glob, cb)
+### gulp.watch(glob [, opts], cb)
 
 #### glob
 Type: `String` or `Array`
 
 A single glob or array of globs that indicate which files to watch for changes.
+
+#### opts
+Type: `Object`
+
+Options, that are passed to [`gaze`](https://github.com/shama/gaze).
 
 #### cb(event)
 Type: `Function`
