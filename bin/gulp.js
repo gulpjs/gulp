@@ -13,6 +13,9 @@ var tasks = argv._;
 var cliPkg = require('../package.json');
 
 var localBaseDir = process.cwd();
+var completion = require('../lib/completion');
+
+if (argv.completion) { return completion.print(argv.completion); }
 
 loadRequires(argv.require, localBaseDir);
 
