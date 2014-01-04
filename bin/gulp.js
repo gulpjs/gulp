@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
 var path = require('path');
-var fs = require('fs');
 
 var argv = require('optimist').argv;
+var completion = require('../lib/completion');
+
+if (argv.completion) { return completion(argv.completion); }
+
 var resolve = require('resolve');
 var findup = require('findup-sync');
 var gutil = require('gulp-util');
@@ -13,9 +16,6 @@ var tasks = argv._;
 var cliPkg = require('../package.json');
 
 var localBaseDir = process.cwd();
-var completion = require('../lib/completion');
-
-if (argv.completion) { return completion.print(argv.completion); }
 
 loadRequires(argv.require, localBaseDir);
 
