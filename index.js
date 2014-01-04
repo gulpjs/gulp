@@ -1,6 +1,6 @@
 /*jshint node:true */
 
-"use strict";
+'use strict';
 
 var util = require('util');
 var Orchestrator = require('orchestrator');
