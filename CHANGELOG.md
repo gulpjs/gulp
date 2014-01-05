@@ -1,5 +1,9 @@
 # gulp changelog
 
+## 3.2.4
+
+- Bug fix - we didn't have any CLI tests
+
 ## 3.2.3
 
 - Update dependencies for bug fixes
