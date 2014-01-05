@@ -100,11 +100,6 @@ function loadGulpFile(localGulp, gulpFile, tasks){
   
   // just for good measure
   process.nextTick(function(){
-    if (typeof tasks[tasks.length] !== 'function') {
-      tasks.push(function(err) {
-          if (err) { process.exit(1); }
-      });
-    }
     localGulp.run.apply(localGulp, tasks);
   });
   return theGulpfile;
