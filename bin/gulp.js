@@ -38,7 +38,7 @@ if (argv.v || argv.version) {
 
 if (!localGulp) {
   gutil.log(gutil.colors.red('No local gulp install found in'), getLocalBase(gulpFile));
-  gutil.log(gutil.colors.red('You need to npm install it first'));
+  gutil.log(gutil.colors.red('Perhaps do: npm install gulp'));
   process.exit(1);
 }
 
