@@ -18,7 +18,9 @@ Gulp.prototype.run = function(){
   // impose our opinion of "default" tasks onto orchestrator
   var tasks = arguments.length ? arguments : ['default'];
 
-  this.start.apply(this, tasks);
+  this.start.apply(this, tasks, function(err) {
+    if (err) { process.exit(1); }
+  });
 };
 
 Gulp.prototype.src = require('./lib/createInputStream');
