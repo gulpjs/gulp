@@ -1,5 +1,10 @@
 # gulp changelog
 
+## 3.2.3
+
+- Update dependencies for bug fixes
+- autocomplete stuff in the completion folder
+
 ## 3.2
 
 - File object is now [vinyl](https://github.com/wearefractal/vinyl)
