@@ -8,7 +8,7 @@
   <a href="http://teespring.com/gulp">Grab a shirt!</a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
+# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
 > The streaming build system
 
 ## Usage
@@ -386,5 +386,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [npm-image]: https://badge.fury.io/js/gulp.png
 [travis-url]: https://travis-ci.org/gulpjs/gulp
 [travis-image]: https://travis-ci.org/gulpjs/gulp.png?branch=master
+[coveralls-url]: https://coveralls.io/r/gulpjs/gulp
+[coveralls-image]: https://coveralls.io/repos/gulpjs/gulp/badge.png
 [depstat-url]: https://david-dm.org/gulpjs/gulp
 [depstat-image]: https://david-dm.org/gulpjs/gulp.png
