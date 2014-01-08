@@ -4,8 +4,6 @@
   </a>
   <br/>
   <a href="http://gulpjs.com/">Visit our website!</a>
-  <br/>
-  <a href="http://teespring.com/gulp">Grab a shirt!</a>
 </p>
 
 # gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
