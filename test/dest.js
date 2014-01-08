@@ -99,7 +99,7 @@ describe('gulp output stream', function() {
     });
 
     it('should end the file stream only after file close in streaming mode', function(done) {
-      var outpath = join(__dirname, "./out-fixtures");
+      var outpath = join(__dirname, "./out-fixtures2");
       rimraf(outpath, function(err){
         should.not.exist(err);
         var instream = new Stream.PassThrough({objectMode: true});
@@ -137,7 +137,7 @@ describe('gulp output stream', function() {
     });
 
     it('should be usable multiple times in streaming mode', function(done) {
-      var outpath = join(__dirname, "./out-fixtures");
+      var outpath = join(__dirname, "./out-fixtures2");
       rimraf(outpath, function(err){
         should.not.exist(err);
         var instream = new Stream.PassThrough({objectMode: true});
