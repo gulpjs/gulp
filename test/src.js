@@ -2,6 +2,7 @@ var gulp = require('../');
 var should = require('should');
 var join = require('path').join;
 var semver = require('semver');
+var gutil = require('gulp-util');
 
 require('mocha');
 
@@ -171,6 +172,37 @@ describe('gulp input stream', function() {
       });
       stream.on('end', function() {
         a.should.equal(1);
+        done();
+      });
+    });
+
+    it('should repeat piped in file streams', function(done) {
+      var a = 0;
+      var fakeFile = new gutil.File({
+        path: 'foo.txt',
+        content: new Buffer('plop')
+      });
+      var stream = gulp.src(join(__dirname, "./fixtures/test.coffee"));
+      stream.write(fakeFile);
+      stream.on('error', done);
+      stream.on('data', function(file) {
+        ++a;
+        if (1 === a) {
+          should.exist(file);
+          should.exist(file.path);
+          should.exist(file.contents);
+          file.path.should.equal("foo.txt");
+          String(file.contents).should.equal("plop");
+        } else if (2 ===a) {
+          should.exist(file);
+          should.exist(file.path);
+          should.exist(file.contents);
+          join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
+          String(file.contents).should.equal("this is a test");
+        }
+      });
+      stream.on('end', function() {
+        a.should.equal(2);
         done();
       });
     });
