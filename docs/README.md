@@ -1,6 +1,7 @@
 # gulp documentation
 
-* [Getting Started](getting-started.md) - Getting a new project started
+* [Getting Started](getting-started.md) - How to get going with gulp
+* [API documentation](API.md) - Learn the ins and outs of using gulp
 * [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
 
 ## FAQ
