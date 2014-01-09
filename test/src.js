@@ -2,7 +2,6 @@
 var gulp = require('../');
 var should = require('should');
 var join = require('path').join;
-var semver = require('semver');
 
 require('mocha');
 
@@ -124,11 +123,6 @@ describe('gulp input stream', function() {
           done();
         });
         join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
-
-        // >0.10 needs this stream fix
-        if (semver.lt(process.versions.node, '0.10.0')) {
-          file.contents.resume();
-        }
       });
     });
     it('should return a input stream from a deep glob', function(done) {

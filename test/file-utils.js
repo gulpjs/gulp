@@ -4,7 +4,6 @@ var should = require('should');
 var path = require('path');
 var join = path.join;
 var dirname = path.dirname;
-var semver = require('semver');
 require('mocha');
 
 var bufferFile = require('../lib/createInputStream/bufferFile');
@@ -68,10 +67,6 @@ describe('gulp streamFile', function() {
           buf.should.equal("this is a test");
           done();
         });
-        // >0.10 needs this stream fix
-        if (semver.lt(process.versions.node, '0.10.0')) {
-          file.contents.resume();
-        }
       });
     });
   });
