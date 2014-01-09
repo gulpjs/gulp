@@ -57,7 +57,7 @@ gulp.src('files/**/*.js')
 
 ## Handling streams
 
-Unfortunately, the above plugin will error when using gulp.src in non-buffered (streaming) mode. You should support streams too if possible. See [Dealing with streams](/gulpjs/gulp/wiki/Writing-a-Plugin:-Dealing-with-Streams) for more information.
+Unfortunately, the above plugin will error when using gulp.src in non-buffered (streaming) mode. You should support streams too if possible. See [Dealing with streams](dealing-with-streams.md) for more information.
 
 ## Some plugins based on buffers
 
