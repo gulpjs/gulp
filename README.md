@@ -32,7 +32,8 @@ gulp.task('scripts', function() {
 // Copy all static images
 gulp.task('images', function() {
  return gulp.src('client/img/**')
-    .pipe(imagemin())
+    // Pass in options to the task
+    .pipe(imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
 });
 
