@@ -1,7 +1,7 @@
 # gulp documentation
 
+* [Getting Started](getting-started.md) - Getting a new project started
 * [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
-* [gulp init](gulp-init.md) - Getting a tiny gulpfile started
 
 ## FAQ
 
