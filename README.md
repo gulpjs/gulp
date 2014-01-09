@@ -38,7 +38,7 @@ gulp.task('images', function() {
 
 // The default task (called when you run `gulp`)
 gulp.task('default', function() {
-  gulp.run('scripts', 'copy');
+  gulp.run('scripts', 'images');
 
   // Watch files and run tasks if they change
   gulp.watch('client/js/**', function() {
