@@ -41,3 +41,5 @@ gulp.task('dry', function () {
   doStuff(config.mobile);
 });
 ```
+
+## bonus2: config.json can be used by another task runner, like `Grunt`
