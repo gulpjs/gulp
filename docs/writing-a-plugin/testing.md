@@ -92,4 +92,4 @@ describe('gulp-prefixer', function () {
 ```
 
 ## Sample tests
-* [gulp-cat](https://github.com/ben-eb/gulp-cat/blob/master/tests/index.mocha.js)
+* [gulp-cat](https://github.com/ben-eb/gulp-cat/blob/master/test.js)
