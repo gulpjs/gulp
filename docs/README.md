@@ -1,7 +1,7 @@
 # gulp documentation
 
 * [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
-* [gulp init](gulp-init.md) - Not sure how to format your plugin's README? Read on.
+* [gulp init](gulp-init.md) - Getting a tiny gulpfile started
 
 ## FAQ
 
