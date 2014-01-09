@@ -11,7 +11,7 @@
 
 ## Documentation
 
-For Getting started, API docs, recipes, making a plugin, etc. see the [documentation page](/docs/README.md)!
+For a Getting started guide, API docs, recipes, making a plugin, etc. see the [documentation page](/docs/README.md)!
 
 ## Sample gulpfile
 
