@@ -1,5 +1,10 @@
 # gulp changelog
 
+## 3.3.0
+
+- file.contents streams are no longer paused coming out of src
+- dest now passes files through before they are empty to fix passing to multiple dests
+
 ## 3.2.4
 
 - Bug fix - we didn't have any CLI tests
