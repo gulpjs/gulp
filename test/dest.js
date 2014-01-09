@@ -96,7 +96,44 @@ describe('gulp output stream', function() {
       });
     });
 
+    it('should return a output stream that writes streaming files into new directories', function(done) {
+      testWriteDir({}, done);
+    });
+    
+    it('should return a output stream that writes streaming files into new directories (buffer: false)', function(done) {
+      testWriteDir({buffer: false}, done);
+    });
 
+    it('should return a output stream that writes streaming files into new directories (read: false)', function(done) {
+      testWriteDir({read: false}, done);
+    });
+    
+    it('should return a output stream that writes streaming files into new directories (read: false, buffer: false)', function(done) {
+      testWriteDir({buffer: false, read: false}, done);
+    });
+
+    function testWriteDir(srcOptions, done) {
+      var outpath = join(__dirname, "./out-fixtures");
+      rimraf(outpath, function(err){
+        should.not.exist(err);
+        var instream = gulp.src(join(__dirname, "./fixtures/stuff"), srcOptions);
+        var outstream = instream.pipe(gulp.dest(outpath));
+
+        outstream.on('error', done);
+        outstream.on('data', function(file) {
+          // data should be re-emitted right
+          should.exist(file);
+          should.exist(file.path);
+          join(file.path,'').should.equal(join(__dirname, "./fixtures/stuff"));
+        });
+        outstream.on('end', function() {
+          fs.exists(join(outpath, "stuff"), function(exists) {
+            should(exists).ok;
+            done();
+          });
+        });
+      });
+    }
 
   });
 });
