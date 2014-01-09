@@ -14,7 +14,7 @@ npm install --save-dev gulp gulp-util
 
 ### 3. Create a `gulpfile.js` at the root of your project:
 
-This file is just a jumping off point. Check out some [recipes](/recipes) if you need more samples to get started.
+This file is just a jumping off point. Check out some [recipes](recipes) if you need more samples to get started.
 
 ```javascript
 var gulp = require('gulp');
@@ -38,8 +38,8 @@ To run individual tasks, use `gulp <task> <othertask>`
 
 ## Available Plugins
 
-The gulp community is growing, with new plugins being added daily. See the [npm search results][plugin search] for a complete list.
+The gulp community is growing, with new plugins being added daily. See the [main website](http://gulpjs.com/) for a complete list.
 
 ## .src, .watch, .dest - How do I use these things?
 
-For API specific documentation you can check out the [README](/readme)
+For API specific documentation you can check out the [README](/README.md)
