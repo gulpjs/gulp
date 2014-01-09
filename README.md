@@ -11,7 +11,7 @@
 
 ## Documentation
 
-For Getting started, API docs, recipes, etc. see the [documentation page](/docs/README.md)!
+For Getting started, API docs, recipes, making a plugin, etc. see the [documentation page](/docs/README.md)!
 
 ## Sample gulpfile
 
@@ -67,11 +67,6 @@ Example:
 ```
 gulp dosomething --require coffee-script
 ```
-
-
-## Write your own gulp plugins
-
-See the [Writing a gulp plugin] wiki page for guidelines and an example to get you started.
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
