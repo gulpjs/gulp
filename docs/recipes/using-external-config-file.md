@@ -19,7 +19,7 @@
 `gulpfile.js`
 
 ```js
-// npm install gulp 
+// npm install gulp gulp-uglify
 var gulp   = require('gulp');
 var config = require('./config.json');
 
