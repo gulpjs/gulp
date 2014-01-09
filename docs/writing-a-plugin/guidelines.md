@@ -9,9 +9,9 @@
 1. Your plugin should only do **one thing**, and do it well.
   - Avoid config options that make your plugin do completely different tasks
 1. Your plugin shouldn't do things that other plugins are responsible for
-  - It should not concat, [gulp-concat](/wearefractal/gulp-concat) does that
-  - It should not add headers, [gulp-header](/godaddy/gulp-header) does that
-  - It should not add footers, [gulp-footer](/godaddy/gulp-footer) does that
+  - It should not concat, [gulp-concat](https://github.com/wearefractal/gulp-concat) does that
+  - It should not add headers, [gulp-header](https://github.com/godaddy/gulp-header) does that
+  - It should not add footers, [gulp-footer](https://github.com/godaddy/gulp-footer) does that
   - If it's a common but optional use case, document that your plugin is often used with another plugin
   - If it's an internal requirement, make use of existing plugins by piping your plugin's output to them
 1. Your plugin **must be tested**
@@ -23,7 +23,7 @@
   - If you encounter an error **outside** the stream, such as invalid configuration, you may throw it.
 1. Prefix any errors with the name of your plugin
   - For example: `gulp-replace: Cannot do regexp replace on a stream`
-  - Use gulp-util's [PluginError](/gulpjs/gulp-util#new-pluginerrorpluginname-message-options) class to make this easy
+  - Use gulp-util's [PluginError](https://github.com/gulpjs/gulp-util#new-pluginerrorpluginname-message-options) class to make this easy
 1. The type of `file.contents` should always be the same going out as it was when it came in
   - If file.contents is null (non-read) just ignore the file and pass it along
   - If file.contents is a Stream and you don't support that just emit an error
