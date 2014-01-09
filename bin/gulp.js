@@ -19,6 +19,8 @@ var cliPkg = require('../package.json');
 
 var localBaseDir = process.cwd();
 
+findLocalModule('coffee-script',  localBaseDir);
+
 loadRequires(argv.require, localBaseDir);
 
 var gulpFile = getGulpFile(localBaseDir);
