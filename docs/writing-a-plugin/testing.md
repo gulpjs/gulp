@@ -66,7 +66,7 @@ describe('gulp-prefixer', function () {
 
       // create the fake file
       var fakeFile = new gutil.File({
-        contents: new Buffer('abufferwiththiscontent');
+        contents: new Buffer('abufferwiththiscontent')
       });
 
       // Create a prefixer plugin stream
