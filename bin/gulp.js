@@ -65,9 +65,6 @@ logEvents(localGulp);
 gutil.log('Using file', gutil.colors.magenta(gulpFile));
 loadGulpFile(localGulp, gulpFile, tasks);
 
-function versionCheck() {
-}
-
 function loadRequires(requires, baseDir) {
   if (typeof requires === 'undefined') requires = [];
   if (!Array.isArray(requires)) requires = [requires];
