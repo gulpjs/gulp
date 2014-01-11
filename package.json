@@ -26,7 +26,8 @@
     "glob-watcher": "0.0.1",
     "graceful-fs": "~2.0.1",
     "through": "~2.3.4",
-    "map-stream": "0.0.4"
+    "map-stream": "0.0.4",
+    "semver": "~2.2.1"
   },
   "devDependencies": {
     "mocha": "*",

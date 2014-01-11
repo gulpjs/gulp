@@ -4,6 +4,7 @@ var path = require('path');
 
 var argv = require('optimist').argv;
 var completion = require('../lib/completion');
+var semver = require('semver');
 
 if (argv.completion) {
   return completion(argv.completion);
@@ -42,6 +43,15 @@ if (!localGulp) {
   process.exit(1);
 }
 
+// check for semver difference in CLI vs local and warn if CLI > local
+if (semver.gt(cliPkg.version, localPkg.version)) {
+  gutil.log(gutil.colors.red('CLI Gulp version is higher than the local one'));
+  gutil.log('CLI version', cliPkg.version);
+  gutil.log('Local version', localPkg.version);
+
+  process.exit(1);
+}
+
 if (!gulpFile) {
   gutil.log(gutil.colors.red('No Gulpfile found'));
   process.exit(1);
@@ -54,6 +64,9 @@ logEvents(localGulp);
 // Load their gulpfile and run it
 gutil.log('Using file', gutil.colors.magenta(gulpFile));
 loadGulpFile(localGulp, gulpFile, tasks);
+
+function versionCheck() {
+}
 
 function loadRequires(requires, baseDir) {
   if (typeof requires === 'undefined') requires = [];
@@ -99,7 +112,7 @@ function loadGulpFile(localGulp, gulpFile, tasks){
   gutil.log('Working directory changed to', gutil.colors.magenta(gulpFileCwd));
 
   var theGulpfile = require(gulpFile);
-  
+
   // just for good measure
   process.nextTick(function(){
     localGulp.run.apply(localGulp, tasks);
