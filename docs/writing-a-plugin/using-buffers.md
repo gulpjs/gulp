@@ -19,7 +19,7 @@ const PLUGIN_NAME = 'gulp-prefixer';
 function gulpPrefixer(prefixText) {
 
   if (!prefixText) {
-    throw PluginError(PLUGIN_NAME, "Missing prefix text!");
+    throw new PluginError(PLUGIN_NAME, "Missing prefix text!");
   }
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
