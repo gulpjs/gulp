@@ -13,6 +13,7 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 * [Working with multiple sources in one task](recipes/using-multiple-sources-in-one-task.md)
 * [Mocha test runner with gulp](recipes/mocha-test-runner-with-gulp.md)
 * [Rebuild only files that change](recipes/rebuild-only-files-that-change.md)
+* [Pass parameters from the command line](recipes/pass-params-from-cli.md)
 * [Using external config file](recipes/using-external-config-file.md)
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
 
