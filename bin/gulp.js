@@ -18,11 +18,23 @@ var prettyTime = require('pretty-hrtime');
 var tasks = argv._;
 var cliPkg = require('../package.json');
 
-var localBaseDir = process.cwd();
+var localBaseDir;
+
+if (argv.base) {
+  localBaseDir = path.resolve(argv.base);
+} else {
+  localBaseDir = process.cwd();
+}
 
 loadRequires(argv.require, localBaseDir);
 
-var gulpFile = getGulpFile(localBaseDir);
+var gulpFile;
+
+if (argv.gulpfile) {
+  gulpFile = path.resolve(argv.gulpfile);
+} else {
+  gulpFile = getGulpFile(localBaseDir);
+}
 
 // find the local gulp
 var localGulp = findLocalGulp(gulpFile);
@@ -39,7 +51,7 @@ if (argv.v || argv.version) {
 
 if (!localGulp) {
   gutil.log(gutil.colors.red('No local gulp install found in'), getLocalBase(gulpFile));
-  gutil.log(gutil.colors.red('Perhaps do: npm install gulp'));
+  gutil.log(gutil.colors.red('Try running: npm install gulp'));
   process.exit(1);
 }
 
@@ -47,12 +59,12 @@ if (!localGulp) {
 if (semver.gt(cliPkg.version, localPkg.version)) {
   gutil.log(gutil.colors.red('Gulp version mismatch:'));
   gutil.log(gutil.colors.red('Running gulp is', cliPkg.version));
-  gutil.log(gutil.colors.red('gulp installed in gulpfile dir is', localPkg.version));
+  gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', localPkg.version));
   process.exit(1);
 }
 
 if (!gulpFile) {
-  gutil.log(gutil.colors.red('No Gulpfile found'));
+  gutil.log(gutil.colors.red('No gulpfile found'));
   process.exit(1);
 }
 
@@ -123,7 +135,7 @@ function getGulpFile(baseDir) {
   } else {
     extensions = ['.js'];
   }
-  var gulpFile = findup('Gulpfile{'+extensions+'}', {nocase: true});
+  var gulpFile = findup('gulpfile{'+extensions+'}', {nocase: true});
   return gulpFile;
 }
 

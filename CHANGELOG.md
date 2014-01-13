@@ -1,5 +1,10 @@
 # gulp changelog
 
+## 3.3.3
+
+- support for `--base` CLI arg to change where the search for gulpfile/`--require`s starts
+- support for `--gulpfile` CLI arg to point to a gulpfile specifically
+
 ## 3.3.0
 
 - file.contents streams are no longer paused coming out of src
