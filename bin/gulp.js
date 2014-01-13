@@ -43,12 +43,11 @@ if (!localGulp) {
   process.exit(1);
 }
 
-// check for semver difference in CLI vs local and warn if CLI > local
+// check for semver difference in running gulp vs locally installed and warn if running gulp > locally installed
 if (semver.gt(cliPkg.version, localPkg.version)) {
-  gutil.log(gutil.colors.red('CLI Gulp version is higher than the local one'));
-  gutil.log('CLI version', cliPkg.version);
-  gutil.log('Local version', localPkg.version);
-
+  gutil.log(gutil.colors.red('Gulp version mismatch:'));
+  gutil.log(gutil.colors.red('Running gulp is', cliPkg.version));
+  gutil.log(gutil.colors.red('gulp installed in gulpfile dir is', localPkg.version));
   process.exit(1);
 }
 
