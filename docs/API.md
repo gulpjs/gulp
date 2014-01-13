@@ -104,7 +104,7 @@ gulp.task('somename', function(cb) {
 gulp.task('somename', function() {
   var stream = gulp.src('./client/**/*.js')
     .pipe(minify())
-    .pipe(gulp.dest('/build');
+    .pipe(gulp.dest('/build'));
   return stream;
 });
 ```
