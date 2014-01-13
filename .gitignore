@@ -8,3 +8,4 @@ coverage
 *.orig
 .idea
 sandbox
+test/out-fixtures
