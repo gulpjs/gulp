@@ -8,7 +8,7 @@
 If your plugin is relying on a buffer based library, you will probably choose to base your plugin around file.contents as a buffer. Let's implement a plugin prepending some text to files:
 
 ```js
-var through = require('through');
+var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
@@ -24,16 +24,21 @@ function gulpPrefixer(prefixText) {
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
-  var stream = through(function (file) {
-    if (file.isNull()) return this.queue(file); // Do nothing if no contents
+  var stream = through.obj(function (file, enc, callback) {
+    if (file.isNull()) {
+      this.push(file); // Do nothing if no contents
+      return callback();
+    }
 
     if (file.isBuffer()) {
       file.contents = Buffer.concat([prefixText, file.contents]);
-      return this.queue(file);
+      this.push(file);
+      return callback();
     }
 
     if (file.isStream()) {
-      return this.emit(new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
+      this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
+      return callback();
     }
   });
 
