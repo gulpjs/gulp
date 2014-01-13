@@ -31,7 +31,7 @@ function gulpPrefixer(prefixText) {
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
-  var stream = through(function (file, enc, callback) {
+  var stream = through.obj(function (file, enc, callback) {
     if (file.isNull()) {
       this.push(file); // Do nothing if no contents
       return callback();
