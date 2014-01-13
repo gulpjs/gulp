@@ -16,7 +16,7 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 * [Pass parameters from the command line](recipes/pass-params-from-cli.md)
 * [Using external config file](recipes/using-external-config-file.md)
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
-* [How streams help to raise Node.js performance](http://www.youtube.com/watch?v=QgEuZ52OZtU)
+* [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
 
 ## Presentations and slides
 
