@@ -46,7 +46,8 @@ npm is open for everyone, and you are free to make whatever you want but these g
 ### What does a good plugin look like?
 
 ```js
-var through = require('through');
+// through2 is a thin wrapper around node transform streams
+var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
@@ -68,17 +69,22 @@ function gulpPrefixer(prefixText) {
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
-  var stream = through(function (file) {
-    if (file.isNull()) return this.queue(file); // Do nothing if no contents
+  var stream = through.obj(function (file, enc, callback) {
+    if (file.isNull()) {
+      this.push(file); // Do nothing if no contents
+      return callback();
+    }
 
     if (file.isBuffer()) {
       file.contents = Buffer.concat([prefixText, file.contents]);
-      return this.queue(file);
+      this.push(file);
+      return callback();
     }
 
     if (file.isStream()) {
       file.contents = file.contents.pipe(prefixStream(prefixText));
-      return this.queue(file);
+      this.push(file);
+      return callback();
     }
   });
 
