@@ -122,7 +122,7 @@ function getGulpFile(baseDir) {
   if (require.extensions) {
     extensions = Object.keys(require.extensions).join(',');
   } else {
-    extensions = ['.js','.coffee'];
+    extensions = ['.js'];
   }
   var gulpFile = findup('Gulpfile{'+extensions+'}', {nocase: true});
   return gulpFile;
