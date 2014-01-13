@@ -9,7 +9,7 @@
 Let's implement a plugin prepending some text to files. This plugin supports all possible forms of file.contents.
 
 ```js
-var through = require('through');
+var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
@@ -31,16 +31,21 @@ function gulpPrefixer(prefixText) {
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
-  var stream = through(function (file) {
-    if (file.isNull()) return this.queue(file); // Do nothing if no contents
+  var stream = through(function (file, enc, callback) {
+    if (file.isNull()) {
+      this.push(file); // Do nothing if no contents
+      return callback();
+    }
 
     if (file.isBuffer()) {
-      return this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
+      this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
+      return callback();
     }
 
     if (file.isStream()) {
       file.contents = file.contents.pipe(prefixStream(prefixText));
-      return this.queue(file);
+      this.push(file);
+      return callback();
     }
   });
 
