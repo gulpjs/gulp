@@ -15,5 +15,5 @@ try {
 If you only need to specify a base directory for a certain glob
 
 ```js
-gulp.src('./some/dir/**/*.js', { base: './public' });
+gulp.src('./some/dir/**/*.js', { cwd: './public' });
 ```
