@@ -11,3 +11,9 @@ try {
   console.error('Unable to chdir to %s', gulp.env.base);
 }
 ```
+
+If you only need to specify a base directory for a certain glob
+
+```js
+gulp.src('./some/dir/**/*.js', { base: './public' });
+```
