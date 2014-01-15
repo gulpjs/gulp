@@ -16,6 +16,8 @@ From the `project/` directory
 gulp --cwd ./layer1/
 ```
 
+Another option is to use `process.chdir` which is just vanilla node.
+
 `gulpfile.js`
 
 ```js
