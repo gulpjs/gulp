@@ -1,7 +1,7 @@
 {
   "name": "gulp",
   "description": "The streaming build system",
-  "version": "3.3.2",
+  "version": "3.3.4",
   "homepage": "http://github.com/wearefractal/gulp",
   "repository": "git://github.com/wearefractal/gulp.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
@@ -23,21 +23,21 @@
     "resolve": "~0.6.1",
     "findup-sync": "~0.1.2",
     "pretty-hrtime": "~0.2.0",
-    "glob-watcher": "0.0.1",
+    "glob-watcher": "~0.0.1",
     "graceful-fs": "~2.0.1",
     "through": "~2.3.4",
-    "map-stream": "0.0.4",
+    "map-stream": "~0.1.0",
     "semver": "~2.2.1"
   },
   "devDependencies": {
-    "mocha": "*",
-    "mocha-lcov-reporter": "*",
-    "coveralls": "*",
-    "istanbul": "*",
-    "should": "*",
-    "rimraf": "*",
-    "q": "*",
-    "jshint": "*"
+    "mocha": "~1.17.0",
+    "mocha-lcov-reporter": "0.0.1",
+    "coveralls": "~2.6.1",
+    "istanbul": "~0.2.3",
+    "should": "~2.1.1",
+    "rimraf": "~2.2.5",
+    "q": "~1.0.0",
+    "jshint": "~2.4.1"
   },
   "scripts": {
     "test": "mocha --reporter spec && jshint",
