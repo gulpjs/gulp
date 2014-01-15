@@ -1,5 +1,9 @@
 # gulp changelog
 
+## 3.3.4
+
+- `--base` is now `--cwd`
+
 ## 3.3.3
 
 - support for `--base` CLI arg to change where the search for gulpfile/`--require`s starts

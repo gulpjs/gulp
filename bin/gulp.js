@@ -18,22 +18,22 @@ var prettyTime = require('pretty-hrtime');
 var tasks = argv._;
 var cliPkg = require('../package.json');
 
-var localBaseDir;
+var cwd;
 
-if (argv.base) {
-  localBaseDir = path.resolve(argv.base);
+if (argv.cwd) {
+  cwd = path.resolve(argv.cwd);
 } else {
-  localBaseDir = process.cwd();
+  cwd = process.cwd();
 }
 
-loadRequires(argv.require, localBaseDir);
+loadRequires(argv.require, cwd);
 
 var gulpFile;
 
 if (argv.gulpfile) {
-  gulpFile = path.resolve(argv.gulpfile);
+  gulpFile = path.join(cwd, argv.gulpfile);
 } else {
-  gulpFile = getGulpFile(localBaseDir);
+  gulpFile = getGulpFile(cwd);
 }
 
 // find the local gulp
