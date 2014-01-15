@@ -2,6 +2,8 @@
 
 > It is highly recommended to write plugins supporting streams. Here is some information on creating a gulp plugin that supports streams.
 
+> Make sure to follow the best practice regarging error handling and add the line that make the gulp plugin re-emit the first error catched during the transformation of the content
+
 [Writing a Plugin](README.md) > Writing stream based plugins
 
 ## Dealing with streams
@@ -43,8 +45,15 @@ function gulpPrefixer(prefixText) {
     }
 
     if (file.isStream()) {
-      file.contents = file.contents.pipe(prefixStream(prefixText));
+      // define the streamer that will transform the content
+      var streamer = prefixStream(prefixText);
+      // catch errors from the streamer and emit a gulp plugin error
+      streamer.on('error', this.emit.bind(this, 'error'));
+      // start the transformation
+      file.contents = file.contents.pipe(streamer);
+      // make sure the file goes through the next gulp plugin
       this.push(file);
+      // tell the stream engine that we are done with this file
       return callback();
     }
   });
