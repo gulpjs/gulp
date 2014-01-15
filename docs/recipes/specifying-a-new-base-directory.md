@@ -1,14 +1,16 @@
 # Specifying a new base directory
 
+If using a nested directory structure (where tasks a)
+
 `gulpfile.js`
 
 ```js
 var gulp = require('gulp');
 
 try {
-  process.chdir(gulp.env.base);
+  process.chdir(gulp.env.cwd);
 } catch (err) {
-  console.error('Unable to chdir to %s', gulp.env.base);
+  console.error('Unable to chdir to %s', gulp.env.cwd);
 }
 ```
 
