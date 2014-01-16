@@ -4,7 +4,9 @@ var join = require('path').join;
 var rimraf = require('rimraf');
 var fs = require('graceful-fs');
 
+/* jshint expr:false */
 require('mocha');
+/* jshint expr:true */
 
 describe('gulp output stream', function() {
   describe('dest()', function() {
@@ -43,7 +45,7 @@ describe('gulp output stream', function() {
         });
       });
     });
-  
+
     it('should return a output stream that does not write non-read files', function(done) {
       var outpath = join(__dirname, "./out-fixtures");
       rimraf(outpath, function(err){
@@ -99,7 +101,7 @@ describe('gulp output stream', function() {
     it('should return a output stream that writes streaming files into new directories', function(done) {
       testWriteDir({}, done);
     });
-    
+
     it('should return a output stream that writes streaming files into new directories (buffer: false)', function(done) {
       testWriteDir({buffer: false}, done);
     });
@@ -107,7 +109,7 @@ describe('gulp output stream', function() {
     it('should return a output stream that writes streaming files into new directories (read: false)', function(done) {
       testWriteDir({read: false}, done);
     });
-    
+
     it('should return a output stream that writes streaming files into new directories (read: false, buffer: false)', function(done) {
       testWriteDir({buffer: false, read: false}, done);
     });

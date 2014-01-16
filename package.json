@@ -40,7 +40,7 @@
     "jshint": "~2.4.1"
   },
   "scripts": {
-    "test": "mocha --reporter spec && jshint",
+    "test": "mocha --reporter spec && jshint **/*.js",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "engines": {
