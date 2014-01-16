@@ -1,9 +1,10 @@
-var gulp = require('../');
+'use strict';
+
 var gutil = require('gulp-util');
 var should = require('should');
 var path = require('path');
 var join = path.join;
-var dirname = path.dirname;
+
 require('mocha');
 
 var bufferFile = require('../lib/createInputStream/bufferFile');

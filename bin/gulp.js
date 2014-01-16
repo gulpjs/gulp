@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 var path = require('path');
 
 var argv = require('optimist').argv;
@@ -128,7 +130,7 @@ function loadGulpFile(localGulp, gulpFile, tasks){
   return theGulpfile;
 }
 
-function getGulpFile(baseDir) {
+function getGulpFile() {
   var extensions;
   if (require.extensions) {
     extensions = Object.keys(require.extensions).join(',');

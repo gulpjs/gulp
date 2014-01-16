@@ -1,3 +1,4 @@
+'use strict';
 
 var gulp = require('../');
 var should = require('should');
@@ -143,7 +144,7 @@ describe('gulp input stream', function() {
       var stream = gulp.src(join(__dirname, "./fixtures/**/*.dmc"));
       var a = 0;
       stream.on('error', done);
-      stream.on('data', function(file) {
+      stream.on('data', function() {
         ++a;
       });
       stream.on('end', function() {
