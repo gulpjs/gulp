@@ -9,6 +9,8 @@ var path = require('path');
 var argv = require('optimist').argv;
 var completion = require('../lib/completion');
 var semver = require('semver');
+var archy = require('archy');
+var taskTree = require('../lib/taskTree');
 
 if (argv.completion) {
   return completion(argv.completion);
@@ -61,7 +63,7 @@ if (!localGulp) {
 
 // check for semver difference in running gulp vs locally installed and warn if running gulp > locally installed
 if (semver.gt(cliPkg.version, localPkg.version)) {
-  gutil.log(gutil.colors.red('Gulp version mismatch:'));
+  gutil.log(gutil.colors.red('gulp version mismatch:'));
   gutil.log(gutil.colors.red('Running gulp is', cliPkg.version));
   gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', localPkg.version));
   process.exit(1);
@@ -127,9 +129,22 @@ function loadGulpFile(localGulp, gulpFile, tasks){
 
   // just for good measure
   process.nextTick(function(){
+    if (argv.tasks) {
+      return logTasks(gulpFile, localGulp);
+    }
     localGulp.run.apply(localGulp, tasks);
   });
   return theGulpfile;
+}
+
+function logTasks(gulpFile, localGulp) {
+  var tree = taskTree(localGulp.tasks);
+  tree.label = 'Tasks for '+gutil.colors.magenta(gulpFile);
+  var graph = archy(tree);
+  graph.split('\n').forEach(function(v){
+    if (v.trim().length === 0) return;
+    gutil.log(v);
+  });
 }
 
 function getGulpFile() {
