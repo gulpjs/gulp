@@ -1,6 +1,6 @@
 /*jshint node:true */
 /*global describe:false, it:false */
-"use strict";
+'use strict';
 
 var gulp = require('../');
 var Q = require('q');

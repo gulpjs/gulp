@@ -1,12 +1,14 @@
+/*jshint node:true */
+/*global describe:false, it:false */
+'use strict';
+
 var gulp = require('../');
 var should = require('should');
 var join = require('path').join;
 var rimraf = require('rimraf');
 var fs = require('graceful-fs');
 
-/* jshint expr:false */
 require('mocha');
-/* jshint expr:true */
 
 describe('gulp output stream', function() {
   describe('dest()', function() {
@@ -130,7 +132,10 @@ describe('gulp output stream', function() {
         });
         outstream.on('end', function() {
           fs.exists(join(outpath, "stuff"), function(exists) {
-            should(exists).ok;
+            /* stinks that ok is an expression instead of a function call */
+            /* jshint expr: true */
+            should(exists).be.ok;
+            /* jshint expr: false */
             done();
           });
         });
