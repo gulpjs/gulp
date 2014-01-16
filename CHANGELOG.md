@@ -1,5 +1,12 @@
 # gulp changelog
 
+# 3.4
+
+- added `--tasks` that prints out the tree of tasks + deps
+- global cli + local install mismatch is no longer fatal
+- remove tests for fs stuff
+- switch core src, dest, and watch to vinyl-fs
+
 ## 3.3.4
 
 - `--base` is now `--cwd`

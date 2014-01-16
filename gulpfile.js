@@ -3,7 +3,6 @@
 'use strict';
 
 var gulp = require('./');
-var gutil = require('gulp-util');
 
 var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
