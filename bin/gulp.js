@@ -66,7 +66,6 @@ if (semver.gt(cliPkg.version, localPkg.version)) {
   gutil.log(gutil.colors.red('gulp version mismatch:'));
   gutil.log(gutil.colors.red('Running gulp is', cliPkg.version));
   gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', localPkg.version));
-  process.exit(1);
 }
 
 if (!gulpFile) {

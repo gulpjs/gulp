@@ -34,7 +34,9 @@
     "rimraf": "~2.2.5",
     "q": "~1.0.0",
     "jshint": "~2.4.1",
-    "graceful-fs": "~2.0.1"
+    "graceful-fs": "~2.0.1",
+    "gulp-mocha": "~0.3.0",
+    "gulp-jshint": "~1.3.4"
   },
   "scripts": {
     "test": "mocha --reporter spec && jshint ./*.js && jshint ./bin/*.js && jshint ./lib/*.js && jshint ./test/*.js",
