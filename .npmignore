@@ -6,3 +6,5 @@ build
 components
 sandbox
 .idea
+sandbox
+test/out-fixtures/*
