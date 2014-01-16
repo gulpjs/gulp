@@ -140,8 +140,7 @@ function loadGulpFile(localGulp, gulpFile, tasks){
 function logTasks(gulpFile, localGulp) {
   var tree = taskTree(localGulp.tasks);
   tree.label = 'Tasks for '+gutil.colors.magenta(gulpFile);
-  var graph = archy(tree);
-  graph.split('\n').forEach(function(v){
+  archy(tree).split('\n').forEach(function(v){
     if (v.trim().length === 0) return;
     gutil.log(v);
   });
