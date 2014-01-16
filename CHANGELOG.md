@@ -6,6 +6,7 @@
 - global cli + local install mismatch is no longer fatal
 - remove tests for fs stuff
 - switch core src, dest, and watch to vinyl-fs
+- internal cleaning
 
 ## 3.3.4
 
