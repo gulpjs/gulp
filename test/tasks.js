@@ -19,6 +19,40 @@ describe('gulp tasks', function() {
       done();
     });
   });
+  describe('alias()', function() {
+    it('should define an alias using a string', function(done) {
+      var a, fn;
+      a = 0;
+      fn = function() {
+        this.should.equal(gulp);
+        ++a;
+      };
+      gulp.task('task', fn);
+      gulp.alias('test', 'task');
+      should.exist(gulp.tasks.test);
+      gulp.tasks.task.fn.should.equal(fn);
+      gulp.run('test');
+      a.should.equal(1);
+      gulp.reset();
+      done();
+    });
+    it('should define an alias using an array', function(done) {
+      var a, fn;
+      a = 0;
+      fn = function() {
+        this.should.equal(gulp);
+        ++a;
+      };
+      gulp.task('task', fn);
+      gulp.alias('test', ['task']);
+      should.exist(gulp.tasks.test);
+      gulp.tasks.task.fn.should.equal(fn);
+      gulp.run('test');
+      a.should.equal(1);
+      gulp.reset();
+      done();
+    });
+  });
   describe('run()', function() {
     it('should run multiple tasks', function(done) {
       var a, fn, fn2;

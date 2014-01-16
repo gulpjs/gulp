@@ -145,6 +145,21 @@ gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
 
 Use `gulp.run` to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
 
+### gulp.alias(name, tasks...)
+
+#### name
+Type: `String`
+
+Task name to register.
+
+#### tasks
+Type: `String` or `Array`
+
+Tasks to run for that alias. Either an array or a space separated list of task names.
+
+gulp.alias('default', 'lint build publish');
+gulp.alias('default', ['lint', 'build', 'publish']);
+
 ### gulp.watch(glob [, opts], cb)
 
 #### glob

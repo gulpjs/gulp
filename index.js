@@ -21,6 +21,12 @@ Gulp.prototype.run = function(){
 
   this.start.apply(this, tasks);
 };
+Gulp.prototype.alias = function (alias, names) {
+  var tasks = typeof names === 'string' ? names.split(' ') : names;
+  this.task(alias, function () {
+    this.run.apply(this, tasks);
+  });
+};
 
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
