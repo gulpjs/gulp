@@ -2,6 +2,7 @@
 
 'use strict';
 
+// TODO: figure out the best way to make gulp a dep of itself
 var gulp = require('./');
 
 var mocha = require('gulp-mocha');
