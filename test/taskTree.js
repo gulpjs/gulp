@@ -13,13 +13,13 @@ describe('taskTree()', function() {
 
     var tasks = {
       test: {
-        deps: ['abc', 'def']
+        dep: ['abc', 'def']
       },
       abc: {
-        deps: ['def']
+        dep: ['def']
       },
       def: {
-        deps: []
+        dep: []
       }
     };
 
