@@ -20,9 +20,7 @@ gulp.task('test', function(){
 
 gulp.task('lint', function(){
   return gulp.src(codeFiles)
-    .pipe(jshint({
-      reporter: 'spec'
-    }));
+    .pipe(jshint('.jshintrc'));
 });
 
 gulp.task('watch', function(){
