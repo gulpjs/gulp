@@ -4,7 +4,8 @@ node_modules
 build
 *.node
 components
-sandbox
+coverage
+*.orig
 .idea
 sandbox
 test/out-fixtures/*
