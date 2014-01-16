@@ -22,13 +22,19 @@ Gulp.prototype.run = function(){
 
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
-Gulp.prototype.watch = function (glob, task) {
-  if (Array.isArray(task) || typeof task === 'string') {
-    return vfs.watch(glob, task);
+Gulp.prototype.watch = function (glob, opt, fn) {
+  var task;
+  if (!fn) {
+    fn = opt;
+    opt = {};
   }
-  return vfs.watch(glob, function () {
-    this.start(task);
-  });
+  if (Array.isArray(fn) || typeof fn === 'string') {
+    task = fn;
+    fn = function () {
+      this.start(task);
+    };
+  }
+  return vfs.watch(glob, opt, fn);
 };
 
 // let people use this class from our instance
