@@ -43,3 +43,7 @@ The gulp community is growing, with new plugins being added daily. See the [main
 ## .src, .watch, .dest - How do I use these things?
 
 For API specific documentation you can check out the [documentation for that](API.md)
+
+## Where do I go now?
+
+Check out the [recipes section](recipes) for more information
