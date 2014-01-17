@@ -1,5 +1,3 @@
-/* jshint node: true */
-
 'use strict';
 
 // TODO: figure out the best way to make gulp a dep of itself

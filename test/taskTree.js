@@ -1,5 +1,3 @@
-/*jshint node:true */
-/*global describe:false, it:false, beforeEach:false, afterEach:false */
 'use strict';
 
 var taskTree = require('../lib/taskTree');
