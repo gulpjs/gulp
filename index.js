@@ -31,7 +31,7 @@ Gulp.prototype.watch = function (glob, opt, fn) {
   if (Array.isArray(fn) || typeof fn === 'string') {
     task = fn;
     fn = function () {
-      this.start(task);
+      inst.start(task);
     };
   }
   return vfs.watch(glob, opt, fn);
