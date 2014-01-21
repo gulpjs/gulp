@@ -11,7 +11,6 @@ function Gulp(){
 }
 util.inherits(Gulp, Orchestrator);
 
-Gulp.prototype.taskQueue = Gulp.prototype.seq;
 Gulp.prototype.task = Gulp.prototype.add;
 Gulp.prototype.run = function(){
   // impose our opinion of "default" tasks onto orchestrator
@@ -23,17 +22,18 @@ Gulp.prototype.run = function(){
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
 Gulp.prototype.watch = function (glob, opt, fn) {
-  var task;
   if (!fn) {
     fn = opt;
-    opt = {};
+    opt = null;
   }
-  if (Array.isArray(fn) || typeof fn === 'string') {
-    task = fn;
-    fn = function () {
-      inst.start(task);
-    };
+
+  // array of tasks given
+  if (Array.isArray(fn)) {
+    return vfs.watch(glob, opt, function(){
+      this.start.apply(this, fn);
+    }.bind(this));
   }
+
   return vfs.watch(glob, opt, fn);
 };
 

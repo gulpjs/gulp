@@ -3,6 +3,7 @@
 # 3.5
 
 - added `gulp.watch(globs, tasksArray)` sugar
+- remove gulp.taskQueue
 
 # 3.4
 
