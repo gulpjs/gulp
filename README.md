@@ -37,19 +37,15 @@ gulp.task('images', function() {
     .pipe(gulp.dest('build/img'));
 });
 
-// The default task (called when you run `gulp`)
-gulp.task('default', function() {
-  gulp.run('scripts', 'images');
-
-  // Watch files and run tasks if they change
-  gulp.watch('client/js/**', function() {
-    gulp.run('scripts');
-  });
-
-  gulp.watch('client/img/**', function() {
-    gulp.run('images');
-  });
+// Rerun the task when a file changes
+gulp.task('watch', function () {
+  gulp.watch('client/js/**', ['scripts']);
+  gulp.watch('client/img/**', ['images']);
 });
+
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', ['scripts', 'images', 'watch']);
+
 ```
 
 
