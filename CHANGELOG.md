@@ -1,5 +1,9 @@
 # gulp changelog
 
+# 3.5
+
+- added `gulp.watch(globs, tasksArray)` sugar
+
 # 3.4
 
 - added `--tasks` that prints out the tree of tasks + deps
