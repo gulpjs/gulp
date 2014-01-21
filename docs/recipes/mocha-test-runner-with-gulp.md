@@ -63,10 +63,7 @@ gulp.task('watch', function() {
         });
 });
 
-gulp.task('default', function () {
-    gulp.run('mocha');
-    gulp.run('watch');
-});
+gulp.task('default', ['mocha', 'watch']);
 
 // run `gulp watch` or just `gulp` for watching and rerunning tests
 ```
