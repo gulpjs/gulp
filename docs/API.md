@@ -79,7 +79,8 @@ gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
 });
 ```
 
-**Note:** If the dependencies are asynchronous it is not guaranteed that they will finish before `mytask` is executed. To ensure they are completely finished, you need to make sure the dependency tasks have asynchronous support through one of the methods outlined below.
+**Note:** Are your tasks running before the dependencies are complete?  Make sure your dependency tasks
+are correctly using the async run hints: take in a callback or return a promise or event stream.
 
 #### fn
 
@@ -126,6 +127,39 @@ gulp.task('somename', function() {
 });
 ```
 
+**Note:** By default, tasks run with maximum concurrency -- e.g. it launches all the tasks at once and waits for nothing.
+If you want to create a series where tasks run in a particular order, you need to do two things:
+
+- give it a hint to tell it when the task is done,
+- and give it a hint that a task depends on completion of another.
+
+For these examples, let's presume you have two tasks, "one" and "two" that you specifically want to run in this order:
+
+1. In task "one" you add a hint to tell it when the task is done.  Either take in a callback and call it when you're
+done or return a promise or stream that the engine should wait to resolve or end respectively.
+
+2. In task "two" you add a hint telling the engine that it depends on completion of the first task.
+
+So this example would look like this:
+
+```javascript
+var gulp = require('gulp');
+
+// takes in a callback so the engine knows when it'll be done
+gulp.task('one', function (cb) {
+    // do stuff -- async or otherwise
+    cb(err); // if err is not null and not undefined, the run will stop, and note that it failed
+});
+
+// identifies a dependent task must be complete before this one begins
+gulp.task('two', ['one'], function () {
+    // task 'one' is done now
+});
+
+gulp.task('default', ['one', 'two']);
+``
+
+
 ### gulp.run(tasks...[, cb])
 
 #### tasks
@@ -143,43 +177,20 @@ gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
 });
 ```
 
-Use `gulp.run` to run tasks from other tasks. You will probably use this in your default task and to group small tasks into larger tasks.
+Use `gulp.run` to run tasks from other tasks. Avoid this command and use task dependencies instead.
 
-### gulp.watch(glob [, opts], cb)
+
+### gulp.watch(glob, tasks)
 
 #### glob
 Type: `String` or `Array`
 
 A single glob or array of globs that indicate which files to watch for changes.
 
-#### opts
-Type: `Object`
+#### tasks
+Type: `String` or `Array`
 
-Options, that are passed to [`gaze`](https://github.com/shama/gaze).
-
-#### cb(event)
-Type: `Function`
-
-Callback to be called on each change.
-
-```javascript
-gulp.watch('js/**/*.js', function(event) {
-  console.log('File '+event.path+' was '+event.type+', running tasks...');
-  gulp.run('scripts', 'copyfiles');
-});
-```
-
-The callback will be passed an object, `event`, that describes the change:
-
-##### event.type
-Type: `String`
-
-The type of change that occurred, either `added`, `changed` or `deleted`.
-
-##### event.path
-Type: `String`
-
-The path to the file that triggered the event.
+Names of task(s) to run when a file changes, added with `gulp.task()`
 
 
 ### gulp.env
