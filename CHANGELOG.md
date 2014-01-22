@@ -4,7 +4,7 @@
 
 - added `gulp.watch(globs, tasksArray)` sugar
 - remove gulp.taskQueue
-
+- deprecate gulp.run
 # 3.4
 
 - added `--tasks` that prints out the tree of tasks + deps

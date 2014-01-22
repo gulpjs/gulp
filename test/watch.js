@@ -14,7 +14,7 @@ var outpath = path.join(__dirname, "./out-fixtures");
 describe('gulp', function() {
   describe('watch()', function() {
     beforeEach(rimraf.bind(null, outpath));
-    beforeEach(mkdirp.bind(null, outpath))
+    beforeEach(mkdirp.bind(null, outpath));
     afterEach(rimraf.bind(null, outpath));
 
     var tempFileContent = 'A test generated this file and it is safe to delete';

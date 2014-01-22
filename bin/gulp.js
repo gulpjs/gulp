@@ -129,9 +129,16 @@ function loadGulpFile(localGulp, gulpFile, tasks){
     if (argv.tasks) {
       return logTasks(gulpFile, localGulp);
     }
-    localGulp.run.apply(localGulp, tasks);
+
+    startGulp(localGulp, tasks);
   });
   return theGulpfile;
+}
+
+function startGulp(localGulp, tasks) {
+  // impose our opinion of "default" tasks onto orchestrator
+  var toRun = tasks.length ? tasks : ['default'];
+  return localGulp.start.apply(localGulp, toRun);
 }
 
 function logTasks(gulpFile, localGulp) {
