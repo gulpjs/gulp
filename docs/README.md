@@ -15,6 +15,7 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 * [Rebuild only files that change](recipes/rebuild-only-files-that-change.md)
 * [Pass parameters from the command line](recipes/pass-params-from-cli.md)
 * [Using external config file](recipes/using-external-config-file.md)
+* [Running tasks in series](recipies/running-tasks-in-series.md)
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
 * [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
 
