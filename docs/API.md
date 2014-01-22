@@ -180,6 +180,10 @@ gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
 Use `gulp.run` to run tasks from other tasks. Avoid this command and use task dependencies instead.
 
 
+### gulp.watch(glob, tasks) or gulp.watch(glob [, opts], cb)
+
+Watch files and do something when a file changes
+
 ### gulp.watch(glob, tasks)
 
 #### glob
@@ -191,6 +195,46 @@ A single glob or array of globs that indicate which files to watch for changes.
 Type: `String` or `Array`
 
 Names of task(s) to run when a file changes, added with `gulp.task()`
+
+```javascript
+gulp.watch('js/**/*.js', ['uglify','reload']);
+```
+
+### gulp.watch(glob, tasks)
+
+#### glob
+Type: `String` or `Array`
+
+A single glob or array of globs that indicate which files to watch for changes.
+
+#### opts
+Type: `Object`
+
+Options, that are passed to [`gaze`](https://github.com/shama/gaze).
+
+#### cb(event)
+Type: `Function`
+
+Callback to be called on each change.
+
+```javascript
+gulp.watch('js/**/*.js', function(event) {
+  console.log('File '+event.path+' was '+event.type+', running tasks...');
+  gulp.run('scripts', 'copyfiles');
+});
+```
+
+The callback will be passed an object, `event`, that describes the change:
+
+##### event.type
+Type: `String`
+
+The type of change that occurred, either `added`, `changed` or `deleted`.
+
+##### event.path
+Type: `String`
+
+The path to the file that triggered the event.
 
 
 ### gulp.env
