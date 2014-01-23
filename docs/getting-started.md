@@ -35,15 +35,14 @@ The default tasks will run and gulp will watch for changes.
 
 To run individual tasks, use `gulp <task> <othertask>`
 
+## Where do I go now?
+
+You have an empty gulpfile and everything is installed. How do you REALLY get started? Check out the [recipes and articles section](README.md#articles-and-recipes) for more information
+
+## .src, .watch, .dest, CLI args - How do I use these things?
+
+For API specific documentation you can check out the [documentation for that](API.md)
 
 ## Available Plugins
 
 The gulp community is growing, with new plugins being added daily. See the [main website](http://gulpjs.com/) for a complete list.
-
-## .src, .watch, .dest - How do I use these things?
-
-For API specific documentation you can check out the [documentation for that](API.md)
-
-## Where do I go now?
-
-Check out the [recipes section](recipes) for more information
