@@ -29,7 +29,7 @@ gulp.task('default', function(){
 gulp
 ```
 
-The default tasks will run and gulp will watch for changes.
+The default task will run and do nothing.
 
 To run individual tasks, use `gulp <task> <othertask>`
 
