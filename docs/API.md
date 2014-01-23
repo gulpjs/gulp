@@ -192,7 +192,7 @@ Type: `String` or `Array`
 A single glob or array of globs that indicate which files to watch for changes.
 
 #### tasks
-Type: `String` or `Array`
+Type: `Array`
 
 Names of task(s) to run when a file changes, added with `gulp.task()`
 
