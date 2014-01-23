@@ -10,6 +10,7 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 
 ## Articles and Recipes
 
+* [Getting started with gulp (by @markgdyr)](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
 * [Working with multiple sources in one task](recipes/using-multiple-sources-in-one-task.md)
 * [Mocha test runner with gulp](recipes/mocha-test-runner-with-gulp.md)
 * [Rebuild only files that change](recipes/rebuild-only-files-that-change.md)
