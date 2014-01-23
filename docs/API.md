@@ -157,7 +157,7 @@ gulp.task('two', ['one'], function () {
 });
 
 gulp.task('default', ['one', 'two']);
-``
+```
 
 
 ### gulp.run(tasks...[, cb])
