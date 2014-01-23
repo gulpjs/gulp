@@ -14,8 +14,6 @@ npm install --save-dev gulp gulp-util
 
 ### 3. Create a `gulpfile.js` at the root of your project:
 
-This file is just a jumping off point. Check out some [recipes](recipes) if you need more samples to get started.
-
 ```javascript
 var gulp = require('gulp');
 var gutil = require('gulp-util');
