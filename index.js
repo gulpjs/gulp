@@ -3,11 +3,11 @@
 var util = require('util');
 var Orchestrator = require('orchestrator');
 var gutil = require('gulp-util');
+var deprecated = require('deprecated');
 var vfs = require('vinyl-fs');
 
 function Gulp(){
   Orchestrator.call(this);
-  this.env = gutil.env;
 }
 util.inherits(Gulp, Orchestrator);
 
@@ -50,6 +50,9 @@ Gulp.prototype.watch = function (glob, opt, fn) {
 // let people use this class from our instance
 Gulp.prototype.Gulp = Gulp;
 
-var inst = new Gulp();
+// deprecations
+deprecated.field('gulp.env has been deprecated. Use gulp-util.env or your own CLI parser instead.', console.log, Gulp.prototype, 'env', gutil.env);
+Gulp.prototype.run = deprecated.method('gulp.run() has been deprecated. Use task dependencies instead.', console.log, Gulp.prototype.run);
 
+var inst = new Gulp();
 module.exports = inst;

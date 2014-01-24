@@ -23,7 +23,8 @@
     "pretty-hrtime": "~0.2.0",
     "vinyl-fs": "~0.0.2",
     "semver": "~2.2.1",
-    "archy": "~0.0.2"
+    "archy": "~0.0.2",
+    "deprecated": "0.0.1"
   },
   "devDependencies": {
     "mocha": "~1.17.0",
