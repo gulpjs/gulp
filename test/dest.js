@@ -33,7 +33,7 @@ describe('gulp output stream', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/copy/example.txt"));
+        join(file.path,'').should.equal(join(outpath, "./copy/example.txt"));
         String(file.contents).should.equal("this is a test");
       });
       outstream.on('end', function() {
@@ -57,7 +57,7 @@ describe('gulp output stream', function() {
         should.exist(file);
         should.exist(file.path);
         should.not.exist(file.contents);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/copy/example.txt"));
+        join(file.path,'').should.equal(join(outpath, "./copy/example.txt"));
       });
       outstream.on('end', function() {
         fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents){
@@ -78,7 +78,7 @@ describe('gulp output stream', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/copy/example.txt"));
+        join(file.path,'').should.equal(join(outpath, "./copy/example.txt"));
       });
       outstream.on('end', function() {
         fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents){
@@ -115,7 +115,7 @@ describe('gulp output stream', function() {
         // data should be re-emitted right
         should.exist(file);
         should.exist(file.path);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/stuff"));
+        join(file.path,'').should.equal(join(outpath, "./stuff"));
       });
       outstream.on('end', function() {
         fs.exists(join(outpath, "stuff"), function(exists) {

@@ -21,16 +21,16 @@
     "resolve": "~0.6.1",
     "findup-sync": "~0.1.2",
     "pretty-hrtime": "~0.2.0",
-    "vinyl-fs": "0.0.1",
+    "vinyl-fs": "~0.0.2",
     "semver": "~2.2.1",
-    "archy": "0.0.2"
+    "archy": "~0.0.2"
   },
   "devDependencies": {
     "mocha": "~1.17.0",
-    "mocha-lcov-reporter": "0.0.1",
+    "mocha-lcov-reporter": "~0.0.1",
     "coveralls": "~2.6.1",
     "istanbul": "~0.2.3",
-    "should": "~3.0.1",
+    "should": "~3.1.0",
     "rimraf": "~2.2.5",
     "q": "~1.0.0",
     "jshint": "~2.4.1",
