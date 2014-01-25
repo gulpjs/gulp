@@ -44,6 +44,7 @@
     "test": "mocha --reporter spec && jshint ./*.js && jshint ./bin/*.js && jshint ./lib/*.js && jshint ./test/*.js",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
+  "engineStrict": true,
   "engines": {
     "node": ">= 0.9"
   },
