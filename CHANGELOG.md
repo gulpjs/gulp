@@ -5,6 +5,9 @@
 - added `gulp.watch(globs, tasksArray)` sugar
 - remove gulp.taskQueue
 - deprecate gulp.run
+- deprecate gulp.env
+- add engineStrict to prevent people with node < 0.9 from installing
+
 # 3.4
 
 - added `--tasks` that prints out the tree of tasks + deps
