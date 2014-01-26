@@ -11,6 +11,7 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 ## Articles and Recipes
 
 * [Getting started with gulp (by @markgdyr)](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
+* [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
 * [Working with multiple sources in one task](recipes/using-multiple-sources-in-one-task.md)
 * [Mocha test runner with gulp](recipes/mocha-test-runner-with-gulp.md)
 * [Rebuild only files that change](recipes/rebuild-only-files-that-change.md)
