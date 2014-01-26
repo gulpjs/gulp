@@ -1,6 +1,6 @@
-## gulp API docs
+# gulp API docs
 
-### gulp.src(globs[, options])
+## gulp.src(globs[, options])
 
 Takes a glob and represents a file structure. Can be piped to plugins.
 
@@ -11,12 +11,12 @@ gulp.src('./client/templates/*.jade')
     .pipe(gulp.dest('./build/minified_templates'));
 ```
 
-#### globs
+### globs
 Type: `String` or `Array`
 
 Glob or globs to read.
 
-#### options
+### options
 Type: `Object`
 
 Options to pass to [node-glob] through [glob-stream].
@@ -36,7 +36,7 @@ Default: `true`
 Setting this to `false` will return `file.contents` as null and not read the file at all.
 
 
-### gulp.dest(path)
+## gulp.dest(path)
 
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
 
@@ -48,13 +48,13 @@ gulp.src('./client/templates/*.jade')
   .pipe(gulp.dest('./build/minified_templates'));
 ```
 
-#### path
+### path
 Type: `String`
 
 The path (folder) to write files to.
 
 
-### gulp.task(name[, deps], fn)
+## gulp.task(name[, deps], fn)
 
 Define a task using [Orchestrator].
 
@@ -64,11 +64,11 @@ gulp.task('somename', function() {
 });
 ```
 
-#### name
+### name
 
 The name of the task. Tasks that you want to run from the command line should not have spaces in them.
 
-#### deps
+### deps
 Type: `Array`
 
 An array of tasks to be executed and completed before your task will run.
@@ -82,15 +82,15 @@ gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
 **Note:** Are your tasks running before the dependencies are complete?  Make sure your dependency tasks
 are correctly using the async run hints: take in a callback or return a promise or event stream.
 
-#### fn
+### fn
 
 The function that performs the task's operations. Generally this takes the form of `gulp.src().pipe(someplugin())`.
 
-#### Async task support
+### Async task support
 
 Tasks can be made asynchronous if its `fn` does one of the following:
 
-##### Accept a callback
+#### Accept a callback
 
 ```javascript
 gulp.task('somename', function(cb) {
@@ -99,7 +99,7 @@ gulp.task('somename', function(cb) {
 });
 ```
 
-##### Return a stream
+#### Return a stream
 
 ```javascript
 gulp.task('somename', function() {
@@ -110,7 +110,7 @@ gulp.task('somename', function() {
 });
 ```
 
-##### Return a promise
+#### Return a promise
 
 ```javascript
 var Q = require('q');
@@ -160,9 +160,9 @@ gulp.task('default', ['one', 'two']);
 ```
 
 
-### gulp.run(tasks...[, cb])
+## gulp.run(tasks...[, cb])
 
-#### tasks
+### tasks
 Type: `String`
 
 Tasks to be executed. You may pass any number of tasks as individual arguments. **Note:** Tasks are run concurrently and therefore do not run in order, see [Orchestrator] for more information.
@@ -180,18 +180,16 @@ gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
 Use `gulp.run` to run tasks from other tasks. Avoid this command and use task dependencies instead.
 
 
-### gulp.watch(glob, tasks) or gulp.watch(glob [, opts], cb)
+## gulp.watch(glob, tasks)
 
 Watch files and do something when a file changes
 
-### gulp.watch(glob, tasks)
-
-#### glob
+### glob
 Type: `String` or `Array`
 
 A single glob or array of globs that indicate which files to watch for changes.
 
-#### tasks
+### tasks
 Type: `Array`
 
 Names of task(s) to run when a file changes, added with `gulp.task()`
@@ -200,19 +198,21 @@ Names of task(s) to run when a file changes, added with `gulp.task()`
 gulp.watch('js/**/*.js', ['uglify','reload']);
 ```
 
-### gulp.watch(glob, tasks)
+## gulp.watch(glob [, opts], cb)
 
-#### glob
+Watch files and do something when a file changes
+
+### glob
 Type: `String` or `Array`
 
 A single glob or array of globs that indicate which files to watch for changes.
 
-#### opts
+### opts
 Type: `Object`
 
 Options, that are passed to [`gaze`](https://github.com/shama/gaze).
 
-#### cb(event)
+### cb(event)
 Type: `Function`
 
 Callback to be called on each change.
@@ -226,18 +226,18 @@ gulp.watch('js/**/*.js', function(event) {
 
 The callback will be passed an object, `event`, that describes the change:
 
-##### event.type
+#### event.type
 Type: `String`
 
 The type of change that occurred, either `added`, `changed` or `deleted`.
 
-##### event.path
+#### event.path
 Type: `String`
 
 The path to the file that triggered the event.
 
 
-### gulp.env
+## gulp.env
 
 `gulp.env` is a [node-optimist] arguments object. For instance, if you run:
 
