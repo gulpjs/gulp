@@ -2,6 +2,7 @@
 *.log
 node_modules
 build
+generated-docs
 *.node
 components
 coverage
