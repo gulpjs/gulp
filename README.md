@@ -6,7 +6,7 @@
   <a href="http://gulpjs.com/">Visit our website!</a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/gulpjs/gulp.png?theme=shields.io)](https://david-dm.org/gulpjs/gulp)
+# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image]
 > The streaming build system
 
 ## Documentation
@@ -76,3 +76,5 @@ gulp dosomething --require coffee-script
 [coveralls-image]: https://coveralls.io/repos/gulpjs/gulp/badge.png
 [depstat-url]: https://david-dm.org/gulpjs/gulp
 [depstat-image]: https://david-dm.org/gulpjs/gulp.png
+[daviddm-url]: https://david-dm.org/gulpjs/gulp.png?theme=shields.io
+[daviddm-image]: https://david-dm.org/gulpjs/gulp
