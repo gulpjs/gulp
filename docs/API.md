@@ -200,7 +200,7 @@ Names of task(s) to run when a file changes, added with `gulp.task()`
 gulp.watch('js/**/*.js', ['uglify','reload']);
 ```
 
-### gulp.watch(glob, tasks)
+### gulp.watch(glob [, opts], cb)
 
 #### glob
 Type: `String` or `Array`
