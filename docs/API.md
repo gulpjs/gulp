@@ -160,27 +160,7 @@ gulp.task('default', ['one', 'two']);
 ```
 
 
-### gulp.run(tasks...[, cb])
-
-#### tasks
-Type: `String`
-
-Tasks to be executed. You may pass any number of tasks as individual arguments. **Note:** Tasks are run concurrently and therefore do not run in order, see [Orchestrator] for more information.
-
-```javascript
-gulp.run('scripts', 'copyfiles', 'builddocs');
-```
-
-```javascript
-gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
-  // All done or aborted due to err
-});
-```
-
-Use `gulp.run` to run tasks from other tasks. Avoid this command and use task dependencies instead.
-
-
-### gulp.watch(glob, tasks) or gulp.watch(glob [, opts], cb)
+### gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts], cb)
 
 Watch files and do something when a file changes
 
@@ -191,16 +171,24 @@ Type: `String` or `Array`
 
 A single glob or array of globs that indicate which files to watch for changes.
 
+#### opts
+Type: `Object`
+
+Options, that are passed to [`gaze`](https://github.com/shama/gaze).
+
 #### tasks
 Type: `Array`
 
 Names of task(s) to run when a file changes, added with `gulp.task()`
 
 ```javascript
-gulp.watch('js/**/*.js', ['uglify','reload']);
+var watcher = gulp.watch('js/**/*.js', ['uglify','reload']);
+watcher.on('changed', function(e){
+  console.log('File '+event.path+' was '+event.type+', running tasks...');
+});
 ```
 
-### gulp.watch(glob, tasks)
+### gulp.watch(glob[, opts], tasks)
 
 #### glob
 Type: `String` or `Array`
@@ -220,7 +208,6 @@ Callback to be called on each change.
 ```javascript
 gulp.watch('js/**/*.js', function(event) {
   console.log('File '+event.path+' was '+event.type+', running tasks...');
-  gulp.run('scripts', 'copyfiles');
 });
 ```
 
