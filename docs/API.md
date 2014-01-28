@@ -160,11 +160,11 @@ gulp.task('default', ['one', 'two']);
 ```
 
 
-### gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts], cb)
+### gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts, cb])
 
-Watch files and do something when a file changes
+Watch files and do something when a file changes. This always returns an EventEmitter that emits `changed` events.
 
-### gulp.watch(glob, tasks)
+### gulp.watch(glob[, opts], tasks)
 
 #### glob
 Type: `String` or `Array`
@@ -188,7 +188,7 @@ watcher.on('changed', function(e){
 });
 ```
 
-### gulp.watch(glob[, opts], tasks)
+### gulp.watch(glob[, opts, cb])
 
 #### glob
 Type: `String` or `Array`
@@ -222,42 +222,6 @@ The type of change that occurred, either `added`, `changed` or `deleted`.
 Type: `String`
 
 The path to the file that triggered the event.
-
-
-### gulp.env
-
-`gulp.env` is a [node-optimist] arguments object. For instance, if you run:
-
-```
-gulp test dostuff --production
-```
-
-Which results in the following `gulp.env`:
-
-```
-{
-  _: ['test', 'dostuff'],
-  production: true
-}
-```
-
-You can use this to conditionally enable certain plugins:
-
-```
-gulp.task('scripts', function() {
-  var stream = gulp.src(['client/js/**/*.js', '!client/js/vendor/**']);
-
-  // Only uglify in production
-  if (gulp.env.production) {
-    stream = stream.pipe(uglify());
-  }
-
-  stream.pipe(gulp.dest('build/js'));
-});
-```
-
-There is also [gulp-if] to make this a lot prettier.
-
 
 
 [node-optimist]: https://github.com/substack/node-optimist
