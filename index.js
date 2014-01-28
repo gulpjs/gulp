@@ -41,9 +41,6 @@ Gulp.prototype.watch = function (glob, opt, fn) {
     }.bind(this));
   }
 
-  if (typeof fn === 'object') {
-
-  }
   return vfs.watch(glob, opt, fn);
 };
 
