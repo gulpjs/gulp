@@ -14,13 +14,13 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 * [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
 * [Working with multiple sources in one task](recipes/using-multiple-sources-in-one-task.md)
 * [Mocha test runner with gulp](recipes/mocha-test-runner-with-gulp.md)
+* [Running CasperJS tests from gulp](http://macr.ae/article/gulp-casperjs.html)
 * [Rebuild only files that change](recipes/rebuild-only-files-that-change.md)
 * [Pass parameters from the command line](recipes/pass-params-from-cli.md)
 * [Using external config file](recipes/using-external-config-file.md)
 * [Running tasks in series](recipes/running-tasks-in-series.md)
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
 * [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
-* [Running CasperJS tests from gulp](http://macr.ae/article/gulp-casperjs.html)
 
 ## Presentations and slides
 
