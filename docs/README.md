@@ -20,6 +20,7 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 * [Running tasks in series](recipes/running-tasks-in-series.md)
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
 * [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
+* [Running CasperJS tests from gulp](http://macr.ae/article/gulp-casperjs.html)
 
 ## Presentations and slides
 
