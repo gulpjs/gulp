@@ -60,7 +60,7 @@ gulp.task('watch', function() {
     gulp.src(['lib/**', 'test/**'], { read: false })
         .pipe(watch(function(events, cb) {
             gulp.run('mocha', cb);
-        });
+        }));
 });
 
 gulp.task('default', ['mocha', 'watch']);
