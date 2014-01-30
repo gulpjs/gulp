@@ -2,7 +2,7 @@
 
 ### Passing shared module in all tests
 
-```
+```js
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
  
