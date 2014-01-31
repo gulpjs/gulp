@@ -102,7 +102,11 @@ function findLocalGulp(gulpFile){
 
 function findLocalModule(modName, baseDir){
   try {
-    return require(resolve.sync(modName, {basedir: baseDir}));
+    var mod = require(resolve.sync(modName, {basedir: baseDir}));
+    if (modName === 'coffee-script' && mod.VERSION >= '1.7.0') {
+      mod.register();
+    }
+    return mod;
   } catch(e) {}
   return;
 }
