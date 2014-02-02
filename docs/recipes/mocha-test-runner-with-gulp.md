@@ -2,7 +2,7 @@
 
 ### Passing shared module in all tests
 
-```
+```js
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
  
@@ -60,7 +60,7 @@ gulp.task('watch', function() {
     gulp.src(['lib/**', 'test/**'], { read: false })
         .pipe(watch(function(events, cb) {
             gulp.run('mocha', cb);
-        });
+        }));
 });
 
 gulp.task('default', ['mocha', 'watch']);

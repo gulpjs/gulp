@@ -160,36 +160,21 @@ gulp.task('default', ['one', 'two']);
 ```
 
 
-### gulp.run(tasks...[, cb])
+### gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts, cb])
 
-#### tasks
-Type: `String`
+Watch files and do something when a file changes. This always returns an EventEmitter that emits `changed` events.
 
-Tasks to be executed. You may pass any number of tasks as individual arguments. **Note:** Tasks are run concurrently and therefore do not run in order, see [Orchestrator] for more information.
-
-```javascript
-gulp.run('scripts', 'copyfiles', 'builddocs');
-```
-
-```javascript
-gulp.run('scripts', 'copyfiles', 'builddocs', function(err) {
-  // All done or aborted due to err
-});
-```
-
-Use `gulp.run` to run tasks from other tasks. Avoid this command and use task dependencies instead.
-
-
-### gulp.watch(glob, tasks) or gulp.watch(glob [, opts], cb)
-
-Watch files and do something when a file changes
-
-### gulp.watch(glob, tasks)
+### gulp.watch(glob[, opts], tasks)
 
 #### glob
 Type: `String` or `Array`
 
 A single glob or array of globs that indicate which files to watch for changes.
+
+#### opts
+Type: `Object`
+
+Options, that are passed to [`gaze`](https://github.com/shama/gaze).
 
 #### tasks
 Type: `Array`
@@ -197,10 +182,13 @@ Type: `Array`
 Names of task(s) to run when a file changes, added with `gulp.task()`
 
 ```javascript
-gulp.watch('js/**/*.js', ['uglify','reload']);
+var watcher = gulp.watch('js/**/*.js', ['uglify','reload']);
+watcher.on('changed', function(e){
+  console.log('File '+event.path+' was '+event.type+', running tasks...');
+});
 ```
 
-### gulp.watch(glob, tasks)
+### gulp.watch(glob[, opts, cb])
 
 #### glob
 Type: `String` or `Array`
@@ -220,7 +208,6 @@ Callback to be called on each change.
 ```javascript
 gulp.watch('js/**/*.js', function(event) {
   console.log('File '+event.path+' was '+event.type+', running tasks...');
-  gulp.run('scripts', 'copyfiles');
 });
 ```
 
@@ -235,42 +222,6 @@ The type of change that occurred, either `added`, `changed` or `deleted`.
 Type: `String`
 
 The path to the file that triggered the event.
-
-
-### gulp.env
-
-`gulp.env` is a [node-optimist] arguments object. For instance, if you run:
-
-```
-gulp test dostuff --production
-```
-
-Which results in the following `gulp.env`:
-
-```
-{
-  _: ['test', 'dostuff'],
-  production: true
-}
-```
-
-You can use this to conditionally enable certain plugins:
-
-```
-gulp.task('scripts', function() {
-  var stream = gulp.src(['client/js/**/*.js', '!client/js/vendor/**']);
-
-  // Only uglify in production
-  if (gulp.env.production) {
-    stream = stream.pipe(uglify());
-  }
-
-  stream.pipe(gulp.dest('build/js'));
-});
-```
-
-There is also [gulp-if] to make this a lot prettier.
-
 
 
 [node-optimist]: https://github.com/substack/node-optimist

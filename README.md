@@ -6,7 +6,7 @@
   <a href="http://gulpjs.com/">Visit our website!</a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/gulpjs/gulp.png?theme=shields.io)](https://david-dm.org/gulpjs/gulp)
+# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image]
 > The streaming build system
 
 ## Documentation
@@ -22,16 +22,21 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 
+var paths = {
+  scripts: ['client/js/**/*.js', '!client/js/vendor/**'],
+  images: 'client/img/**/*'
+};
+
 gulp.task('scripts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
-  return gulp.src(['client/js/**/*.js', '!client/js/vendor/**'])
+  return gulp.src(paths.scripts)
     .pipe(uglify())
     .pipe(gulp.dest('build/js'));
 });
 
 // Copy all static images
 gulp.task('images', function() {
- return gulp.src('client/img/**')
+ return gulp.src(paths.images)
     // Pass in options to the task
     .pipe(imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
@@ -39,8 +44,8 @@ gulp.task('images', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function () {
-  gulp.watch('client/js/**', ['scripts']);
-  gulp.watch('client/img/**', ['images']);
+  gulp.watch(paths.scripts, ['scripts']);
+  gulp.watch(paths.images, ['images']);
 });
 
 // The default task (called when you run `gulp` from cli)
@@ -76,3 +81,5 @@ gulp dosomething --require coffee-script
 [coveralls-image]: https://coveralls.io/repos/gulpjs/gulp/badge.png
 [depstat-url]: https://david-dm.org/gulpjs/gulp
 [depstat-image]: https://david-dm.org/gulpjs/gulp.png
+[daviddm-url]: https://david-dm.org/gulpjs/gulp.png?theme=shields.io
+[daviddm-image]: https://david-dm.org/gulpjs/gulp

@@ -1,30 +1,27 @@
 'use strict';
 
-// TODO: figure out the best way to make gulp a dep of itself
 var gulp = require('./');
+var env = require('gulp-util').env;
+var log = require('gulp-util').log;
 
-var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
 
-var testFiles = 'test/*.js';
-var codeFiles = ['./*.js', './lib/*.js', testFiles];
-
-gulp.task('test', function(){
-  return gulp.src(testFiles)
-    .pipe(mocha({
-      reporter: 'spec'
-    }));
-});
+var codeFiles = ['**/*.js', '!node_modules/**'];
 
 gulp.task('lint', function(){
+  log('Linting Files');
   return gulp.src(codeFiles)
-    .pipe(jshint('.jshintrc'));
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter());
 });
 
 gulp.task('watch', function(){
-  gulp.watch(codeFiles, function(){
-    gulp.run('test', 'lint');
-  });
+  log('Watching Files');
+  gulp.watch(codeFiles, ['lint']);
 });
 
-gulp.task('default', ['lint', 'test', 'watch']);
+gulp.task('default', ['lint', 'watch']);
+
+var taskToRun = env.dev ? 'default' : 'lint';
+
+gulp.start(taskToRun);

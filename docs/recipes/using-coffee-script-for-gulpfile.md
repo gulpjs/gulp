@@ -2,14 +2,14 @@
 
 As discussed in [issue #103](https://github.com/gulpjs/gulp/issues/103), there are 2 ways to do this.
 
-1. Use `gulp --require coffee-script` at the command line
+1. Use `gulp --require coffee-script/register` at the command line
 
 2. Require in `gulpfile.coffee` after requiring `coffee-script` in `gulpfile.js`
 
 `gulpfile.js`
 
 ```js
-require('coffee-script');
+require('coffee-script/register');
 require('./gulpfile.coffee');
 ```
 
