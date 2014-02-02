@@ -4,7 +4,8 @@
 
 var path = require('path');
 
-var argv = require('optimist').argv;
+var parseArgs = require('minimist');
+var argv = parseArgs(process.argv.slice(2));
 var completion = require('../lib/completion');
 var semver = require('semver');
 var archy = require('archy');

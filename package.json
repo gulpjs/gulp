@@ -15,7 +15,6 @@
     "gulp": "./bin/gulp.js"
   },
   "dependencies": {
-    "optimist": "~0.6.0",
     "gulp-util": "~2.2.0",
     "orchestrator": "~0.3.0",
     "resolve": "~0.6.1",
@@ -24,12 +23,13 @@
     "vinyl-fs": "~0.0.2",
     "semver": "~2.2.1",
     "archy": "~0.0.2",
-    "deprecated": "0.0.1"
+    "deprecated": "~0.0.1",
+    "minimist": "~0.0.5"
   },
   "devDependencies": {
     "mocha": "~1.17.0",
     "mocha-lcov-reporter": "~0.0.1",
-    "coveralls": "~2.6.1",
+    "coveralls": "~2.7.0",
     "istanbul": "~0.2.3",
     "should": "~3.1.0",
     "rimraf": "~2.2.5",
