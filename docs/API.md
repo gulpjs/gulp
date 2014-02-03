@@ -183,7 +183,7 @@ Names of task(s) to run when a file changes, added with `gulp.task()`
 
 ```javascript
 var watcher = gulp.watch('js/**/*.js', ['uglify','reload']);
-watcher.on('changed', function(e){
+watcher.on('changed', function(event){
   console.log('File '+event.path+' was '+event.type+', running tasks...');
 });
 ```
