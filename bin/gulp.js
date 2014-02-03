@@ -46,7 +46,7 @@ var localGulp = findLocalGulp(gulpFile);
 var localPkg = findLocalGulpPackage(gulpFile);
 
 // print some versions and shit
-if (argv.v || argv.version) {
+if (argv.V || argv.version) {
   gutil.log('CLI version', cliPkg.version);
   if (localGulp) {
     gutil.log('Local version', localPkg.version);
