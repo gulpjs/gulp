@@ -67,7 +67,7 @@ You can use any language you want for your gulpfile. You will have to specify th
 Example:
 
 ```
-gulp dosomething --require coffee-script
+gulp dosomething --require coffee-script/register
 ```
 
 
