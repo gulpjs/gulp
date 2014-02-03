@@ -30,10 +30,6 @@ Gulp.prototype.watch = function (glob, opt, fn) {
     opt = null;
   }
 
-  if (typeof fn === 'function') {
-    return vfs.watch(glob, opt, fn);
-  }
-
   // array of tasks given
   if (Array.isArray(fn)) {
     return vfs.watch(glob, opt, function(){
