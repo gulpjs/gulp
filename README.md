@@ -9,6 +9,10 @@
 # gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image]
 > The streaming build system
 
+## Like what we do?
+
+[Support us via gittip](https://www.gittip.com/WeAreFractal/)
+
 ## Documentation
 
 For a Getting started guide, API docs, recipes, making a plugin, etc. see the [documentation page](/docs/README.md)!
