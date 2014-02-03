@@ -11,7 +11,7 @@
 
 ## Like what we do?
 
-[Support us via gittip](https://www.gittip.com/WeAreFractal/)
+[Support us via gittip](https://www.gittip.com/Contra/)
 
 ## Documentation
 
