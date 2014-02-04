@@ -2,28 +2,24 @@
 
 * [Getting Started](getting-started.md) - How to get going with gulp
 * [API documentation](API.md) - Learn the ins and outs of using gulp
+* [CLI documentation](CLI.md) - Learn how to call tasks and use compilers
 * [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
 
 ## FAQ
 
 See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 
-## Articles and Recipes
+## Recipes
 
-* [Getting started with gulp (by @markgdyr)](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
-* [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
-* [Working with multiple sources in one task](recipes/using-multiple-sources-in-one-task.md)
-* [Mocha test runner with gulp](recipes/mocha-test-runner-with-gulp.md)
-* [Rebuild only files that change](recipes/rebuild-only-files-that-change.md)
-* [Pass parameters from the command line](recipes/pass-params-from-cli.md)
-* [Using external config file](recipes/using-external-config-file.md)
-* [Running tasks in series](recipes/running-tasks-in-series.md)
+The community has compiled guides on how to use gulp for common use cases. Check out the [recipes folder](recipes) for a full list.
+
+## Articles
+
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
 * [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
-
-## Presentations and slides
-
-* [Inspiration (slides)](http://slid.es/contra/gulp)
+* [Getting started with gulp (by @markgdyr)](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
+* [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
+* [Inspiration (slides) about why gulp was made](http://slid.es/contra/gulp)
 
 ## License
 

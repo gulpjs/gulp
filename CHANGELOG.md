@@ -1,5 +1,12 @@
 # gulp changelog
 
+# 3.5.2
+
+- add -V for version on CLI (unix standard)
+- -v is deprecated, use -V
+- add -T as an alias for --tasks
+- documentation
+
 # 3.5
 
 - added `gulp.watch(globs, tasksArray)` sugar

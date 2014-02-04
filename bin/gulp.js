@@ -4,29 +4,37 @@
 
 var path = require('path');
 
-var parseArgs = require('minimist');
-var argv = parseArgs(process.argv.slice(2));
-var completion = require('../lib/completion');
+var resolve = require('resolve');
+var findup = require('findup-sync');
+var gutil = require('gulp-util');
+var prettyTime = require('pretty-hrtime');
+var minimist = require('minimist');
 var semver = require('semver');
 var archy = require('archy');
+
+var completion = require('../lib/completion');
 var taskTree = require('../lib/taskTree');
+var cliPkg = require('../package.json');
+
+// parse what we want off the CLI
+var argv = minimist(process.argv.slice(2));
 
 if (argv.completion) {
   return completion(argv.completion);
 }
 
-var resolve = require('resolve');
-var findup = require('findup-sync');
-var gutil = require('gulp-util');
-var prettyTime = require('pretty-hrtime');
-
 var tasks = argv._;
-var cliPkg = require('../package.json');
+var tasksFlag = argv.T || argv.tasks;
+
+// TODO: drop argv.v in the next breaking release
+var versionFlag = argv.v || argv.V || argv.version;
+var cwdFlag = argv.cwd;
+var fileFlag = argv.gulpfile;
 
 var cwd;
 
-if (argv.cwd) {
-  cwd = path.resolve(argv.cwd);
+if (cwdFlag) {
+  cwd = path.resolve(cwdFlag);
 } else {
   cwd = process.cwd();
 }
@@ -35,8 +43,8 @@ loadRequires(argv.require, cwd);
 
 var gulpFile;
 
-if (argv.gulpfile) {
-  gulpFile = path.join(cwd, argv.gulpfile);
+if (fileFlag) {
+  gulpFile = path.join(cwd, fileFlag);
 } else {
   gulpFile = getGulpFile(cwd);
 }
@@ -46,7 +54,7 @@ var localGulp = findLocalGulp(gulpFile);
 var localPkg = findLocalGulpPackage(gulpFile);
 
 // print some versions and shit
-if (argv.V || argv.version) {
+if (versionFlag) {
   gutil.log('CLI version', cliPkg.version);
   if (localGulp) {
     gutil.log('Local version', localPkg.version);
@@ -127,7 +135,7 @@ function loadGulpFile(localGulp, gulpFile, tasks){
 
   // just for good measure
   process.nextTick(function(){
-    if (argv.tasks) {
+    if (tasksFlag) {
       return logTasks(gulpFile, localGulp);
     }
 

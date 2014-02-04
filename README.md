@@ -23,18 +23,23 @@ This file is just a quick sample to give you a taste of what gulp does.
 
 ```javascript
 var gulp = require('gulp');
+
+var coffee = require('gulp-coffee');
+var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 
 var paths = {
-  scripts: ['client/js/**/*.js', '!client/js/vendor/**'],
+  scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
   images: 'client/img/**/*'
 };
 
 gulp.task('scripts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
   return gulp.src(paths.scripts)
+    .pipe(coffee())
     .pipe(uglify())
+    .pipe(concat('all.min.js'))
     .pipe(gulp.dest('build/js'));
 });
 
@@ -55,23 +60,6 @@ gulp.task('watch', function () {
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['scripts', 'images', 'watch']);
 
-```
-
-
-## gulp CLI
-
-### Tasks
-
-Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.
-
-### Compilers
-
-You can use any language you want for your gulpfile. You will have to specify the language module name so the CLI can load it (and its associated extensions) before attempting to find your gulpfile. Make sure you have this module installed accessible by the folder you are running the CLI in.
-
-Example:
-
-```
-gulp dosomething --require coffee-script/register
 ```
 
 
