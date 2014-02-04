@@ -15,7 +15,7 @@ var SRC = 'src/*.js';
 var DEST = 'dist';
 
 gulp.task('default', function () {
-	gulp.src(SRC)
+	return gulp.src(SRC)
 		// the `changed` task needs to know the destination directory
 		// upfront to be able to figure out which files changed
 		.pipe(changed(DEST))

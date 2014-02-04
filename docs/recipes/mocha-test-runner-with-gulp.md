@@ -7,7 +7,7 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
  
 gulp.task('tests', function() {
-    gulp.src(['test/test-*.js'], { read: false })
+    return gulp.src(['test/test-*.js'], { read: false })
         .pipe(mocha({
             reporter: 'spec',
             globals: {
@@ -57,7 +57,7 @@ gulp.task('mocha', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.src(['lib/**', 'test/**'], { read: false })
+    return gulp.src(['lib/**', 'test/**'], { read: false })
         .pipe(watch(function(events, cb) {
             gulp.run('mocha', cb);
         }));
