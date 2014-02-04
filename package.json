@@ -17,14 +17,12 @@
   "dependencies": {
     "gulp-util": "~2.2.0",
     "orchestrator": "~0.3.0",
-    "resolve": "~0.6.1",
-    "findup-sync": "~0.1.2",
     "pretty-hrtime": "~0.2.0",
     "vinyl-fs": "~0.0.2",
     "semver": "~2.2.1",
     "archy": "~0.0.2",
     "deprecated": "~0.0.1",
-    "minimist": "~0.0.5"
+    "liftoff": "~0.8.3"
   },
   "devDependencies": {
     "mocha": "~1.17.0",

@@ -1,154 +1,74 @@
 #!/usr/bin/env node
 
 'use strict';
-
-var path = require('path');
-
-var resolve = require('resolve');
-var findup = require('findup-sync');
 var gutil = require('gulp-util');
 var prettyTime = require('pretty-hrtime');
-var minimist = require('minimist');
 var semver = require('semver');
 var archy = require('archy');
-
-var completion = require('../lib/completion');
 var taskTree = require('../lib/taskTree');
-var cliPkg = require('../package.json');
 
-// parse what we want off the CLI
-var argv = minimist(process.argv.slice(2));
+var Liftoff = require('liftoff');
 
-if (argv.completion) {
-  return completion(argv.completion);
-}
+var GulpCLI = new Liftoff({
+  name: 'gulp',
+  completions: require('../lib/completion')
+}).on('require', function (name) {
+  gutil.log('Requiring external module', gutil.colors.magenta(name));
+}).on('requireFail', function (name) {
+  gutil.log('Failed to load external module', gutil.colors.magenta(name));
+});
 
-var tasks = argv._;
-var tasksFlag = argv.T || argv.tasks;
+GulpCLI.launch(function () {
 
-// TODO: drop argv.v in the next breaking release
-var versionFlag = argv.v || argv.V || argv.version;
-var cwdFlag = argv.cwd;
-var fileFlag = argv.gulpfile;
+  var argv = this.argv;
+  var cliPackage = require('../package');
+  // TODO: drop argv.v in the next breaking release
+  var versionFlag = argv.v || argv.V || argv.version;
+  var tasksFlag = argv.T || argv.tasks;
+  var tasks = argv._;
+  var toRun = tasks.length ? tasks : ['default'];
 
-var cwd;
-
-if (cwdFlag) {
-  cwd = path.resolve(cwdFlag);
-} else {
-  cwd = process.cwd();
-}
-
-loadRequires(argv.require, cwd);
-
-var gulpFile;
-
-if (fileFlag) {
-  gulpFile = path.join(cwd, fileFlag);
-} else {
-  gulpFile = getGulpFile(cwd);
-}
-
-// find the local gulp
-var localGulp = findLocalGulp(gulpFile);
-var localPkg = findLocalGulpPackage(gulpFile);
-
-// print some versions and shit
-if (versionFlag) {
-  gutil.log('CLI version', cliPkg.version);
-  if (localGulp) {
-    gutil.log('Local version', localPkg.version);
-  }
-  process.exit(0);
-}
-
-if (!localGulp) {
-  gutil.log(gutil.colors.red('No local gulp install found in'), gutil.colors.magenta(getLocalBase(gulpFile)));
-  gutil.log(gutil.colors.red('Try running: npm install gulp'));
-  process.exit(1);
-}
-
-// check for semver difference in running gulp vs locally installed and warn if running gulp > locally installed
-if (semver.gt(cliPkg.version, localPkg.version)) {
-  gutil.log(gutil.colors.red('gulp version mismatch:'));
-  gutil.log(gutil.colors.red('Running gulp is', cliPkg.version));
-  gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', localPkg.version));
-}
-
-if (!gulpFile) {
-  gutil.log(gutil.colors.red('No gulpfile found'));
-  process.exit(1);
-}
-
-// Wire up logging for tasks
-// on local gulp singleton
-logEvents(localGulp);
-
-// Load their gulpfile and run it
-gutil.log('Using file', gutil.colors.magenta(gulpFile));
-loadGulpFile(localGulp, gulpFile, tasks);
-
-function loadRequires(requires, baseDir) {
-  if (typeof requires === 'undefined') requires = [];
-  if (!Array.isArray(requires)) requires = [requires];
-  return requires.map(function(modName){
-    gutil.log('Requiring external module', gutil.colors.magenta(modName));
-    var mod = findLocalModule(modName, baseDir);
-    if (typeof mod === 'undefined') {
-      gutil.log('Failed to load external module', gutil.colors.magenta(modName));
+  if (versionFlag) {
+    gutil.log('CLI version', cliPackage.version);
+    if (this.localPackage) {
+      gutil.log('Local version', this.modulePackage.version);
     }
-  });
-}
+    process.exit(0);
+  }
+  if (!this.modulePath) {
+    gutil.log(gutil.colors.red('No local gulp install found in'), gutil.colors.magenta(this.cwd));
+    gutil.log(gutil.colors.red('Try running: npm install gulp'));
+    process.exit(1);
+  }
 
-function getLocalBase(gulpFile) {
-  return path.resolve(path.dirname(gulpFile));
-}
+  if (!this.configPath) {
+    gutil.log(gutil.colors.red('No gulpfile found'));
+    process.exit(1);
+  }
 
-function findLocalGulp(gulpFile){
-  var baseDir = getLocalBase(gulpFile);
-  return findLocalModule('gulp', baseDir);
-}
+  // check for semver difference between cli and local installation
+  if (semver.gt(cliPackage.version, this.modulePackage.version)) {
+    gutil.log(gutil.colors.red('gulp version mismatch:'));
+    gutil.log(gutil.colors.red('Running gulp is', cliPackage.version));
+    gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', this.modulePackage.version));
+  }
 
-function findLocalModule(modName, baseDir){
-  try {
-    return require(resolve.sync(modName, {basedir: baseDir}));
-  } catch(e) {}
-  return;
-}
+  var Gulpfile = require(this.configPath);
+  gutil.log('Using file', gutil.colors.magenta(this.configPath));
 
-function findLocalGulpPackage(gulpFile){
-  var baseDir = getLocalBase(gulpFile);
-  var packageBase;
-  try {
-    packageBase = path.dirname(resolve.sync('gulp', {basedir: baseDir}));
-    return require(path.join(packageBase, 'package.json'));
-  } catch(e) {}
-  return;
-}
+  var Gulp = require(this.modulePath);
+  logEvents(Gulp);
+  process.chdir(this.cwd);
+  gutil.log('Working directory changed to', gutil.colors.magenta(this.cwd));
 
-function loadGulpFile(localGulp, gulpFile, tasks){
-  var gulpFileCwd = path.dirname(gulpFile);
-  process.chdir(gulpFileCwd);
-  gutil.log('Working directory changed to', gutil.colors.magenta(gulpFileCwd));
-
-  var theGulpfile = require(gulpFile);
-
-  // just for good measure
   process.nextTick(function(){
     if (tasksFlag) {
-      return logTasks(gulpFile, localGulp);
+      return logTasks(Gulpfile, Gulp);
     }
-
-    startGulp(localGulp, tasks);
   });
-  return theGulpfile;
-}
 
-function startGulp(localGulp, tasks) {
-  // impose our opinion of "default" tasks onto orchestrator
-  var toRun = tasks.length ? tasks : ['default'];
-  return localGulp.start.apply(localGulp, toRun);
-}
+  Gulp.start.apply(Gulp, toRun);
+});
 
 function logTasks(gulpFile, localGulp) {
   var tree = taskTree(localGulp.tasks);
@@ -157,17 +77,6 @@ function logTasks(gulpFile, localGulp) {
     if (v.trim().length === 0) return;
     gutil.log(v);
   });
-}
-
-function getGulpFile() {
-  var extensions;
-  if (require.extensions) {
-    extensions = Object.keys(require.extensions).join(',');
-  } else {
-    extensions = ['.js'];
-  }
-  var gulpFile = findup('gulpfile{'+extensions+'}', {cwd: cwd, nocase: true});
-  return gulpFile;
 }
 
 // format orchestrator errors

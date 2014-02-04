@@ -1,7 +1,6 @@
 'use strict';
 
 var gulp = require('./');
-var env = require('gulp-util').env;
 var log = require('gulp-util').log;
 
 var jshint = require('gulp-jshint');
@@ -21,7 +20,3 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', ['lint', 'watch']);
-
-var taskToRun = env.dev ? 'default' : 'lint';
-
-gulp.start(taskToRun);
