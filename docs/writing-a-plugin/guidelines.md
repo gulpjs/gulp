@@ -27,7 +27,7 @@
 1. The type of `file.contents` should always be the same going out as it was when it came in
   - If file.contents is null (non-read) just ignore the file and pass it along
   - If file.contents is a Stream and you don't support that just emit an error
-  - If you choose to support file.contents as a Stream, use [BufferStream](https://github.com/nfroidure/BufferStream) to make this easy
+    - Do not buffer a stream to shoehorn your plugin to work with streams. This will cause horrible things to happen.
 1. Do not pass the `file` object downstream until you are done with it
 1. Make use of the [gulp-util](https://github.com/gulpjs/gulp-util) library
   - It provides templating, CLI colors, logging, changing file extensions
