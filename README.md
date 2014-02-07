@@ -2,8 +2,6 @@
   <a href="http://gulpjs.com">
     <img height="194" width="98" src="https://raw.github.com/gulpjs/artwork/master/gulp.png"/>
   </a>
-  <br/>
-  <a href="http://gulpjs.com/">Visit our website!</a>
 </p>
 
 # gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image]
@@ -61,6 +59,10 @@ gulp.task('watch', function () {
 gulp.task('default', ['scripts', 'images', 'watch']);
 
 ```
+
+## Want to contribute?
+
+Anyone can help make this project better - check out the [Contributing guide](/CONTRIBUTING.md)!
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
