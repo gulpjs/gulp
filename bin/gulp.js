@@ -25,8 +25,7 @@ cli.launch(function () {
 
   var argv = this.argv;
   var cliPackage = require('../package');
-  // TODO: drop argv.v in the next breaking release
-  var versionFlag = argv.v || argv.V || argv.version;
+  var versionFlag = argv.v || argv.version;
   var tasksFlag = argv.T || argv.tasks;
   var tasks = argv._;
   var toRun = tasks.length ? tasks : ['default'];
