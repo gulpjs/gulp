@@ -5,20 +5,23 @@ var gutil = require('gulp-util');
 var prettyTime = require('pretty-hrtime');
 var semver = require('semver');
 var archy = require('archy');
+var Liftoff = require('liftoff');
 var taskTree = require('../lib/taskTree');
 
-var Liftoff = require('liftoff');
-
-var GulpCLI = new Liftoff({
+var cli = new Liftoff({
   name: 'gulp',
   completions: require('../lib/completion')
-}).on('require', function (name) {
+});
+
+cli.on('require', function (name) {
   gutil.log('Requiring external module', gutil.colors.magenta(name));
-}).on('requireFail', function (name) {
+});
+
+cli.on('requireFail', function (name) {
   gutil.log('Failed to load external module', gutil.colors.magenta(name));
 });
 
-GulpCLI.launch(function () {
+cli.launch(function () {
 
   var argv = this.argv;
   var cliPackage = require('../package');
