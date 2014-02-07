@@ -18,14 +18,16 @@ cli.on('require', function (name) {
 });
 
 cli.on('requireFail', function (name) {
-  gutil.log('Failed to load external module', gutil.colors.magenta(name));
+  gutil.log(gutil.colors.red('Failed to load external module'), gutil.colors.magenta(name));
 });
 
 cli.launch(function () {
+  handleArguments(this);
+});
 
-  var argv = this.argv;
+function handleArguments(args) {
+  var argv = args.argv;
   var cliPackage = require('../package');
-  // TODO: drop argv.v in the next breaking release
   var versionFlag = argv.v || argv.V || argv.version;
   var tasksFlag = argv.T || argv.tasks;
   var tasks = argv._;
@@ -33,81 +35,81 @@ cli.launch(function () {
 
   if (versionFlag) {
     gutil.log('CLI version', cliPackage.version);
-    if (this.localPackage) {
-      gutil.log('Local version', this.modulePackage.version);
+    if (args.localPackage) {
+      gutil.log('Local version', args.modulePackage.version);
     }
     process.exit(0);
   }
-  if (!this.modulePath) {
-    gutil.log(gutil.colors.red('No local gulp install found in'), gutil.colors.magenta(this.cwd));
+
+  if (!args.modulePath) {
+    gutil.log(gutil.colors.red('No local gulp install found in'), gutil.colors.magenta(args.cwd));
     gutil.log(gutil.colors.red('Try running: npm install gulp'));
     process.exit(1);
   }
 
-  if (!this.configPath) {
+  if (!args.configPath) {
     gutil.log(gutil.colors.red('No gulpfile found'));
     process.exit(1);
   }
 
   // check for semver difference between cli and local installation
-  if (semver.gt(cliPackage.version, this.modulePackage.version)) {
-    gutil.log(gutil.colors.red('gulp version mismatch:'));
+  if (semver.gt(cliPackage.version, args.modulePackage.version)) {
+    gutil.log(gutil.colors.red('Warning: gulp version mismatch:'));
     gutil.log(gutil.colors.red('Running gulp is', cliPackage.version));
-    gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', this.modulePackage.version));
+    gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', args.modulePackage.version));
   }
 
-  var Gulpfile = require(this.configPath);
-  gutil.log('Using file', gutil.colors.magenta(this.configPath));
+  var gulpFile = require(args.configPath);
+  gutil.log('Using gulpfile', gutil.colors.magenta(args.configPath));
 
-  var Gulp = require(this.modulePath);
-  logEvents(Gulp);
-  process.chdir(this.cwd);
-  gutil.log('Working directory changed to', gutil.colors.magenta(this.cwd));
+  var gulpInst = require(args.modulePath);
+  logEvents(gulpInst);
+  process.chdir(args.cwd);
+  gutil.log('Working directory changed to', gutil.colors.magenta(args.cwd));
 
-  process.nextTick(function(){
+  process.nextTick(function () {
     if (tasksFlag) {
-      return logTasks(Gulpfile, Gulp);
+      return logTasks(gulpFile, gulpInst);
     }
+    gulpInst.start.apply(gulpInst, toRun);
   });
-
-  Gulp.start.apply(Gulp, toRun);
-});
+}
 
 function logTasks(gulpFile, localGulp) {
   var tree = taskTree(localGulp.tasks);
-  tree.label = 'Tasks for '+gutil.colors.magenta(gulpFile);
-  archy(tree).split('\n').forEach(function(v){
+  tree.label = 'Tasks for ' + gutil.colors.magenta(gulpFile);
+  archy(tree).split('\n').forEach(function (v) {
     if (v.trim().length === 0) return;
     gutil.log(v);
   });
 }
 
 // format orchestrator errors
-function formatError (e) {
+function formatError(e) {
   if (!e.err) return e.message;
   if (e.err.message) return e.err.message;
   return JSON.stringify(e.err);
 }
 
 // wire up logging events
-function logEvents(gulp) {
-  gulp.on('task_start', function(e){
-    gutil.log('Running', "'"+gutil.colors.cyan(e.task)+"'...");
+function logEvents(gulpInst) {
+  gulpInst.on('task_start', function (e) {
+    gutil.log('Running', "'" + gutil.colors.cyan(e.task) + "'...");
   });
 
-  gulp.on('task_stop', function(e){
+  gulpInst.on('task_stop', function (e) {
     var time = prettyTime(e.hrDuration);
-    gutil.log('Finished', "'"+gutil.colors.cyan(e.task)+"'", 'in', gutil.colors.magenta(time));
+    gutil.log('Finished', "'" + gutil.colors.cyan(e.task) + "'", 'in', gutil.colors.magenta(time));
   });
 
-  gulp.on('task_err', function(e){
+  gulpInst.on('task_err', function (e) {
     var msg = formatError(e);
     var time = prettyTime(e.hrDuration);
-    gutil.log('Errored', "'"+gutil.colors.cyan(e.task)+"'", 'in', gutil.colors.magenta(time), gutil.colors.red(msg));
+    gutil.log('Errored', "'" + gutil.colors.cyan(e.task) + "'", 'in', gutil.colors.magenta(time), gutil.colors.red(msg));
   });
 
-  gulp.on('task_not_found', function(err){
-    gutil.log(gutil.colors.red("Task '"+err.task+"' was not defined in your gulpfile but you tried to run it."));
+  gulpInst.on('task_not_found', function (err) {
+    gutil.log(gutil.colors.red("Task '" + err.task + "' was not defined in your gulpfile but you tried to run it."));
     gutil.log('Please check the documentation for proper gulpfile formatting.');
     process.exit(1);
   });
