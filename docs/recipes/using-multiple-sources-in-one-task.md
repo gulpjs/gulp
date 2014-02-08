@@ -15,3 +15,33 @@ gulp.task('test', function(cb) {
     );
 });
 ```
+
+When streams should be emitting files in order they were added:
+
+```js
+// npm install gulp gulp-concat streamqueue
+
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+var streamqueue = require('streamqueue');
+
+gulp.task('default', function () {
+    return streamqueue(
+        gulp.src('foo/*'),
+        gulp.src('bar/*')
+    )
+        .pipe(concat('result.txt'))
+        .pipe(gulp.dest('build'));
+});
+
+// ... or ...
+
+gulp.task('default', function () {
+    var stream = streamqueue();
+    stream.queue(gulp.src('foo/*'));
+    stream.queue(gulp.src('bar/*'));
+    return stream.done()
+        .pipe(concat('result.txt'))
+        .pipe(gulp.dest('build'));
+});
+```
