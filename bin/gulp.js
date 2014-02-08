@@ -64,9 +64,12 @@ function handleArguments(args) {
 
   var gulpInst = require(args.modulePath);
   logEvents(gulpInst);
-  process.chdir(args.cwd);
-  gutil.log('Working directory changed to', gutil.colors.magenta(args.cwd));
-
+  
+  if (process.cwd() !== args.cwd) {
+    process.chdir(args.cwd);
+    gutil.log('Working directory changed to', gutil.colors.magenta(args.cwd));
+  }
+  
   process.nextTick(function () {
     if (tasksFlag) {
       return logTasks(gulpFile, gulpInst);
