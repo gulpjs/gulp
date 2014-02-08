@@ -4,7 +4,7 @@
 
 gulp has very few flags to know about. All other flags are for tasks to use if needed.
 
-- `-v` `-V` or `--version` will display the global and local gulp versions
+- `-v` or `--version` will display the global and local gulp versions
 - `--require <module path>` will require a module before running the gulpfile. This is useful for transpilers but also has other applications. You can use multiple `--require` flags
 - `--gulpfile <gulpfile path>` manually set path of gulpfile. Useful if you have multiple gulpfiles. This will set the CWD to the gulpfile directory as well.
 - `--cwd <dir path>` manually set the CWD. The search for the gulpfile, as well as the relativity of all requires will be from here.

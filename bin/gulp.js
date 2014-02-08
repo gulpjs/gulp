@@ -28,7 +28,7 @@ cli.launch(function () {
 function handleArguments(args) {
   var argv = args.argv;
   var cliPackage = require('../package');
-  var versionFlag = argv.v || argv.V || argv.version;
+  var versionFlag = argv.v || argv.version;
   var tasksFlag = argv.T || argv.tasks;
   var tasks = argv._;
   var toRun = tasks.length ? tasks : ['default'];
