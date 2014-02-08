@@ -26,7 +26,7 @@ var concat = require('gulp-concat');
 var streamqueue = require('streamqueue');
 
 gulp.task('default', function () {
-    return streamqueue(
+    return streamqueue({ objectMode: true },
         gulp.src('foo/*'),
         gulp.src('bar/*')
     )
@@ -37,7 +37,7 @@ gulp.task('default', function () {
 // ... or ...
 
 gulp.task('default', function () {
-    var stream = streamqueue();
+    var stream = streamqueue({ objectMode: true });
     stream.queue(gulp.src('foo/*'));
     stream.queue(gulp.src('bar/*'));
     return stream.done()
