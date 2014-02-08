@@ -19,7 +19,7 @@ gulp.task('test', function() {
     gulp.src('bootstrap/js/*.js'),
     uglify(),
     gulp.dest('public/bootstrap')
-  )
+  )()
 
   // any errors in the above streams
   // will get caught by this listener,
