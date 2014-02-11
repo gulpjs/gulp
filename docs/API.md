@@ -162,7 +162,7 @@ gulp.task('default', ['one', 'two']);
 
 ### gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts, cb])
 
-Watch files and do something when a file changes. This always returns an EventEmitter that emits `changed` events.
+Watch files and do something when a file changes. This always returns an EventEmitter that emits `change` events.
 
 ### gulp.watch(glob[, opts], tasks)
 
