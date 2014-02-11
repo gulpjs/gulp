@@ -10,7 +10,9 @@
     "stream",
     "system",
     "make",
-    "tool"
+    "tool",
+    "asset",
+    "pipeline"
   ],
   "files": [
     "index.js",
