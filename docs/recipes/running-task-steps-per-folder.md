@@ -33,12 +33,14 @@ function getFolders(dir){
 gulp.task('scripts', function() { 
    var folders = getFolders(scriptsPath);
    
-   return es.concat.apply(null,(folders.map(function(folder) {
+   var tasks = folders.map(function(folder) {
       return gulp.src(scriptsPath + folder + '/*.js')
         .pipe(uglify())
-        .pipe(rename( folder + '.min.js'))
+        .pipe(rename(folder + '.min.js'))
         .pipe(gulp.dest(scriptsPath));
-   })));
+   });
+
+   return es.concat.apply(null, tasks);
 });
 ```
 
