@@ -3,8 +3,8 @@
 If you have a set of folders, and wish to perform a set of tasks on each, for instance
 
     /scripts
-    /scripts/jquery/
-    /scripts/angularjs/
+    /scripts/jquery/*.js
+    /scripts/angularjs/*.js
    
 and want to end up with
 
