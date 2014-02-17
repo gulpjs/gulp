@@ -2,15 +2,15 @@
 
 If you have a set of folders, and wish to perform a set of tasks on each, for instance
 
-   /scripts
-   /scripts/jquery/
-   /scripts/angularjs/
+    /scripts
+    /scripts/jquery/
+    /scripts/angularjs/
    
 and want to end up with
 
-   /scripts
-   /scripts/jquery.min.js
-   /scripts/angularjs.min.js
+    /scripts
+    /scripts/jquery.min.js
+    /scripts/angularjs.min.js
 
 and so on, you need to know a little more NodeJS and event streams. 
 
