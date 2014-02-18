@@ -60,6 +60,13 @@ gulp.task('default', ['scripts', 'images', 'watch']);
 
 ```
 
+## Incremental Builds
+
+We recommend these plugins:
+
+- [gulp-changed](https://github.com/sindresorhus/gulp-changed)
+- [gulp-cached](https://github.com/wearefractal/gulp-cached)
+
 ## Want to contribute?
 
 Anyone can help make this project better - check out the [Contributing guide](/CONTRIBUTING.md)!
