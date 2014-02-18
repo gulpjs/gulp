@@ -21,20 +21,17 @@ var watchify = require('watchify')
 var gulp = require('gulp')
 
 var bundler = watchify('./src/index.js')
-var watchFiles = [
-  './src/**/*.js',
-  './src/*.js'
-]
 
-gulp.task('browserify', function() {
+gulp.task('browserify', rebundle)
+gulp.task('watch', ['browserify'], function() {
+  bundler.on('update', rebundle)
+})
+
+function rebundle() {
   return bundler.bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./dist'))
-})
-
-gulp.task('watch', ['browserify'], function() {
-  gulp.watch(watchFiles, ['browserify'])
-})
+}
 
 // Optionally, you can apply transforms
 // and other configuration options on the
