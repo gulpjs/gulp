@@ -13,6 +13,10 @@ See [the FAQ](FAQ.md) for the answers to commonly asked questions.
 
 The community has compiled guides on how to use gulp for common use cases. Check out the [recipes folder](recipes) for a full list.
 
+## Still got questions?
+
+Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagged/gulp), or come chat with us in #gulpjs on [Freenode](http://freenode.net/).
+
 ## Articles
 
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
