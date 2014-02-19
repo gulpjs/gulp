@@ -15,7 +15,7 @@ The community has compiled guides on how to use gulp for common use cases. Check
 
 ## Still got questions?
 
-Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagged/gulp), or come chat with us in #gulpjs on [Freenode](http://freenode.net/).
+Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagged/gulp), or come chat with us in [#gulpjs](http://webchat.freenode.net/?channels=gulpjs) on [Freenode](http://freenode.net/).
 
 ## Articles
 
