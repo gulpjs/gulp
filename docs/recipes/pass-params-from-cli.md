@@ -8,11 +8,11 @@
 ```js
 // npm install gulp gulp-util gulp-if gulp-uglify 
 var gulp   = require('gulp');
-var gutil  = require('gulp-util');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
 
-var isProduction = gutil.env.type === 'production';
+var argv = require('minimist')(process.argv);
+var isProduction = argv.env === 'production';
 
 gulp.task('scripts', function () {
   return gulp.src('**/*.js')
@@ -25,4 +25,4 @@ gulp.task('scripts', function () {
 
 `cli`
 
-`gulp scripts --type production`
+`gulp scripts --env=production`
