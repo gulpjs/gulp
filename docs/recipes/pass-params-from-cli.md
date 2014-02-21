@@ -11,7 +11,8 @@ var gulp   = require('gulp');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
 
-var isProduction = process.env.TYPE === 'production';
+var argv = require('minimist')(process.argv);
+var isProduction = argv.type === 'production';
 
 gulp.task('scripts', function () {
   return gulp.src('**/*.js')
@@ -24,4 +25,4 @@ gulp.task('scripts', function () {
 
 `cli`
 
-`TYPE=production gulp scripts`
+`gulp scripts --type production`
