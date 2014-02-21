@@ -27,12 +27,11 @@ With bundled `gulp.watch` and [`gulp-batch`](https://github.com/floatdrop/gulp-b
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var batch = require('gulp-batch');
-var gutil = require('gulp-util');
 
 gulp.task('mocha', function () {
     return gulp.src(['test/*.js'], { read: false })
         .pipe(mocha({ reporter: 'list' }))
-        .on('error', gutil.log);
+        .on('error', console.log);
 });
 
 gulp.watch(['lib/**', 'test/**'], batch(function(events, cb) {
@@ -48,12 +47,11 @@ With [`gulp-watch`](https://github.com/floatdrop/gulp-watch) plugin:
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var watch = require('gulp-watch');
-var gutil = require('gulp-util')
 
 gulp.task('mocha', function () {
     return gulp.src(['test/*.js'], { read: false })
         .pipe(mocha({ reporter: 'list' }))
-        .on('error', gutil.log);
+        .on('error', console.log);
 });
 
 gulp.task('watch', function() {

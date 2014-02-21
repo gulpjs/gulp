@@ -28,7 +28,7 @@ Probably. Ask yourself:
 
 ## How should newlines be represented in plugin output?
 
-Always use gulp-util.newline (which is \n) to prevent diff issues between operating systems.
+Always use `\n`.
 
 ## Where can I get updates on gulp?
 
