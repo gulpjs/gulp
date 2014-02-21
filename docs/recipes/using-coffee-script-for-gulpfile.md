@@ -21,3 +21,5 @@ gulp = require 'gulp'
 gulp.task 'default', ->
   console.log('default task called')
 ```
+
+Another option is to use  [coffeegulp](https://github.com/minibikini/coffeegulp).
