@@ -28,7 +28,7 @@ Probably. Ask yourself:
 
 ## How should newlines be represented in plugin output?
 
-Always use [`require('os').EOL;`](http://nodejs.org/api/os.html#os_os_eol) (which is `\n` or `\r\n`) to prevent cross-OS issues.
+Always use [`require('os').EOL`](http://nodejs.org/api/os.html#os_os_eol) (which is `\n`) to prevent cross-OS issues.
 
 ## Where can I get updates on gulp?
 
