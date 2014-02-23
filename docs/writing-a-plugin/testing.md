@@ -13,7 +13,7 @@ Most plugins use [mocha](https://github.com/visionmedia/mocha) and [event-stream
 ```js
 var assert = require('assert');
 var es = require('event-stream');
-var gutil = require('gulp-util');
+var File = require('vinyl');
 var prefixer = require('../index');
 
 describe('gulp-prefixer', function () {
@@ -22,7 +22,7 @@ describe('gulp-prefixer', function () {
     it('should prepend text', function (done) {
 
       // create the fake file
-      var fakeFile = new gutil.File({
+      var fakeFile = new File({
         contents: es.readArray(['stream', 'with', 'those', 'contents'])
       });
 
@@ -56,7 +56,7 @@ describe('gulp-prefixer', function () {
 ```js
 var assert = require('assert');
 var es = require('event-stream');
-var gutil = require('gulp-util');
+var File = require('vinyl');
 var prefixer = require('../index');
 
 describe('gulp-prefixer', function () {
@@ -65,7 +65,7 @@ describe('gulp-prefixer', function () {
     it('should prepend text', function (done) {
 
       // create the fake file
-      var fakeFile = new gutil.File({
+      var fakeFile = new File({
         contents: new Buffer('abufferwiththiscontent')
       });
 

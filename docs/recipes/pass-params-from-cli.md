@@ -6,13 +6,13 @@
 `gulpfile.js`
 
 ```js
-// npm install gulp gulp-util gulp-if gulp-uglify 
+// npm install gulp optimist gulp-if gulp-uglify
+var args   = require('optimist').argv;
 var gulp   = require('gulp');
-var gutil  = require('gulp-util');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
 
-var isProduction = gutil.env.type === 'production';
+var isProduction = args.type === 'production';
 
 gulp.task('scripts', function () {
   return gulp.src('**/*.js')

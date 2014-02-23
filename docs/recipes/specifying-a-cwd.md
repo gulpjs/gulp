@@ -16,20 +16,6 @@ From the `project/` directory
 gulp --cwd ./layer1/
 ```
 
-Another option is to use `process.chdir` which is just vanilla node.
-
-`gulpfile.js`
-
-```js
-var gulp = require('gulp');
-
-try {
-  process.chdir(gulp.env.cwd);
-} catch (err) {
-  console.error('Unable to chdir to %s', gulp.env.cwd);
-}
-```
-
 If you only need to specify a cwd for a certain glob, you can use the `cwd` option on a [glob-stream](https://github.com/wearefractal/glob-stream)
 
 ```js

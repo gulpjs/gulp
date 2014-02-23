@@ -6,7 +6,6 @@ If you plan to create your own Gulp plugin, you will save time by reading the fu
 * [Using buffers](using-buffers.md)
 * [Dealing with streams](dealing-with-streams.md)
 * [Testing](testing.md)
-* [README conventions](readme-conventions.md)
 
 ## What it does
 

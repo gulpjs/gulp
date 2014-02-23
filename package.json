@@ -23,27 +23,27 @@
     "gulp": "./bin/gulp.js"
   },
   "dependencies": {
-    "gulp-util": "~2.2.0",
-    "orchestrator": "~0.3.0",
-    "pretty-hrtime": "~0.2.0",
-    "vinyl-fs": "~0.0.2",
-    "semver": "~2.2.1",
-    "archy": "~0.0.2",
-    "deprecated": "~0.0.1",
-    "liftoff": "~0.8.3"
+    "gulp-util": "^2.2.0",
+    "orchestrator": "^0.3.0",
+    "pretty-hrtime": "^0.2.0",
+    "vinyl-fs": "^0.0.2",
+    "semver": "^2.2.1",
+    "archy": "^0.0.2",
+    "deprecated": "^0.0.1",
+    "liftoff": "^0.8.3"
   },
   "devDependencies": {
-    "mocha": "~1.17.0",
-    "mocha-lcov-reporter": "~0.0.1",
-    "coveralls": "~2.7.0",
-    "istanbul": "~0.2.3",
-    "should": "~3.1.0",
-    "rimraf": "~2.2.5",
-    "q": "~1.0.0",
-    "jshint": "~2.4.1",
-    "graceful-fs": "~2.0.1",
-    "gulp-jshint": "~1.4.0",
-    "mkdirp": "~0.3.5"
+    "mocha": "^1.17.0",
+    "mocha-lcov-reporter": "^0.0.1",
+    "coveralls": "^2.7.0",
+    "istanbul": "^0.2.3",
+    "should": "^3.1.0",
+    "rimraf": "^2.2.5",
+    "q": "^1.0.0",
+    "jshint": "^2.4.1",
+    "graceful-fs": "^2.0.1",
+    "gulp-jshint": "^1.4.0",
+    "mkdirp": "^0.3.5"
   },
   "scripts": {
     "test": "node gulpfile.js && mocha --reporter spec",

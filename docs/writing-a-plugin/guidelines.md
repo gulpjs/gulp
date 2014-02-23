@@ -30,7 +30,7 @@
     - Do not buffer a stream to shoehorn your plugin to work with streams. This will cause horrible things to happen.
 1. Do not pass the `file` object downstream until you are done with it
 1. Make use of the [gulp-util](https://github.com/gulpjs/gulp-util) library
-  - It provides templating, CLI colors, logging, changing file extensions
+  - It provides templating, logging, changing file extensions
   - Try looking for common things there first and add it if it doesn't exist
 1. Do NOT require `gulp` as a dependency or peerDependency
   - There is no reason you should have to do this and it will cause problems if you do
