@@ -21,12 +21,11 @@ cli.on('requireFail', function (name) {
   gutil.log(gutil.colors.red('Failed to load external module'), gutil.colors.magenta(name));
 });
 
-cli.launch(function () {
-  handleArguments(this);
-});
+cli.launch(handleArguments);
 
-function handleArguments(args) {
-  var argv = args.argv;
+function handleArguments(env) {
+
+  var argv = env.argv;
   var cliPackage = require('../package');
   var versionFlag = argv.v || argv.version;
   var tasksFlag = argv.T || argv.tasks;
@@ -35,41 +34,41 @@ function handleArguments(args) {
 
   if (versionFlag) {
     gutil.log('CLI version', cliPackage.version);
-    if (args.localPackage) {
-      gutil.log('Local version', args.modulePackage.version);
+    if (env.localPackage) {
+      gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
   }
 
-  if (!args.modulePath) {
-    gutil.log(gutil.colors.red('No local gulp install found in'), gutil.colors.magenta(args.cwd));
+  if (!env.modulePath) {
+    gutil.log(gutil.colors.red('No local gulp install found in'), gutil.colors.magenta(env.cwd));
     gutil.log(gutil.colors.red('Try running: npm install gulp'));
     process.exit(1);
   }
 
-  if (!args.configPath) {
+  if (!env.configPath) {
     gutil.log(gutil.colors.red('No gulpfile found'));
     process.exit(1);
   }
 
   // check for semver difference between cli and local installation
-  if (semver.gt(cliPackage.version, args.modulePackage.version)) {
+  if (semver.gt(cliPackage.version, env.modulePackage.version)) {
     gutil.log(gutil.colors.red('Warning: gulp version mismatch:'));
     gutil.log(gutil.colors.red('Running gulp is', cliPackage.version));
-    gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', args.modulePackage.version));
+    gutil.log(gutil.colors.red('Local gulp (installed in gulpfile dir) is', env.modulePackage.version));
   }
 
-  var gulpFile = require(args.configPath);
-  gutil.log('Using gulpfile', gutil.colors.magenta(args.configPath));
+  var gulpFile = require(env.configPath);
+  gutil.log('Using gulpfile', gutil.colors.magenta(env.configPath));
 
-  var gulpInst = require(args.modulePath);
+  var gulpInst = require(env.modulePath);
   logEvents(gulpInst);
-  
-  if (process.cwd() !== args.cwd) {
-    process.chdir(args.cwd);
-    gutil.log('Working directory changed to', gutil.colors.magenta(args.cwd));
+
+  if (process.cwd() !== env.cwd) {
+    process.chdir(env.cwd);
+    gutil.log('Working directory changed to', gutil.colors.magenta(env.cwd));
   }
-  
+
   process.nextTick(function () {
     if (tasksFlag) {
       return logTasks(gulpFile, gulpInst);
