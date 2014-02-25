@@ -96,18 +96,18 @@ function formatError(e) {
 // wire up logging events
 function logEvents(gulpInst) {
   gulpInst.on('task_start', function (e) {
-    gutil.log('Running', "'" + gutil.colors.cyan(e.task) + "'...");
+    gutil.log('Starting', "'" + gutil.colors.cyan(e.task) + "'...");
   });
 
   gulpInst.on('task_stop', function (e) {
     var time = prettyTime(e.hrDuration);
-    gutil.log('Finished', "'" + gutil.colors.cyan(e.task) + "'", 'in', gutil.colors.magenta(time));
+    gutil.log('Finished', "'" + gutil.colors.cyan(e.task) + "'", 'after', gutil.colors.magenta(time));
   });
 
   gulpInst.on('task_err', function (e) {
     var msg = formatError(e);
     var time = prettyTime(e.hrDuration);
-    gutil.log('Errored', "'" + gutil.colors.cyan(e.task) + "'", 'in', gutil.colors.magenta(time), gutil.colors.red(msg));
+    gutil.log("'" + gutil.colors.cyan(e.task) + "'", 'errored after', gutil.colors.magenta(time), gutil.colors.red(msg));
   });
 
   gulpInst.on('task_not_found', function (err) {
