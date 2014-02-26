@@ -22,7 +22,12 @@ gulp.task('default', function(){
 });
 ```
 
-### 4. Run gulp
+### 4. Install all the required packages
+```
+npm install
+```
+
+### 5. Run gulp
 
 ```
 gulp
