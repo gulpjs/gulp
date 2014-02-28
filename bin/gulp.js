@@ -8,6 +8,7 @@ var semver = require('semver');
 var archy = require('archy');
 var Liftoff = require('liftoff');
 var taskTree = require('../lib/taskTree');
+var path = require('path');
 
 var cli = new Liftoff({
   name: 'gulp',
@@ -30,6 +31,7 @@ function handleArguments(env) {
   var cliPackage = require('../package');
   var versionFlag = argv.v || argv.version;
   var tasksFlag = argv.T || argv.tasks;
+  var modulePathFlag = argv['gulp-home'];
   var tasks = argv._;
   var toRun = tasks.length ? tasks : ['default'];
 
@@ -39,6 +41,10 @@ function handleArguments(env) {
       gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
+  }
+
+  if (modulePathFlag) {
+    modulePathFlag = path.resolve(modulePathFlag);
   }
 
   if (!env.modulePath) {
@@ -62,7 +68,7 @@ function handleArguments(env) {
   var gulpFile = require(env.configPath);
   gutil.log('Using gulpfile', chalk.magenta(env.configPath));
 
-  var gulpInst = require(env.modulePath);
+  var gulpInst = require(modulePathFlag || process.env.GULP_HOME || env.modulePath);
   logEvents(gulpInst);
 
   if (process.cwd() !== env.cwd) {
