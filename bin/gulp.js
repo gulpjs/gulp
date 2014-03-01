@@ -9,6 +9,8 @@ var archy = require('archy');
 var Liftoff = require('liftoff');
 var taskTree = require('../lib/taskTree');
 
+process.title = 'gulp';
+
 var cli = new Liftoff({
   name: 'gulp',
   completions: require('../lib/completion')
