@@ -44,7 +44,7 @@ Gulp.prototype.watch = function (glob, opt, fn) {
 Gulp.prototype.Gulp = Gulp;
 
 // deprecations
-deprecated.field('gulp.env has been deprecated. Use gulp-util.env or your own CLI parser instead.', console.log, Gulp.prototype, 'env', gutil.env);
+deprecated.field('gulp.env has been deprecated. Use your own CLI parser instead. We recommend using optimist or minimist.', console.log, Gulp.prototype, 'env', gutil.env);
 Gulp.prototype.run = deprecated.method('gulp.run() has been deprecated. Use task dependencies or gulp.watch task triggering instead.', console.log, Gulp.prototype.run);
 
 var inst = new Gulp();
