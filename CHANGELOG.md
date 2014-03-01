@@ -1,5 +1,13 @@
 # gulp changelog
 
+# 3.5.5
+
+- update deps
+- gulp.dest now support mode option, uses source file mode by default (file.stat.mode)
+- use chalk for colors in bin
+- update gulp.env deprecation msg to be more helpful
+
+
 # 3.5.2
 
 - add -V for version on CLI (unix standard)
