@@ -29,6 +29,7 @@
   - If file.contents is a Stream and you don't support that just emit an error
     - Do not buffer a stream to shoehorn your plugin to work with streams. This will cause horrible things to happen.
 1. Do not pass the `file` object downstream until you are done with it
+1. Use [`file.clone()`](https://github.com/wearefractal/vinyl#clone) when cloning a file or creating a new one based on a file. 
 1. Use modules from our [recommended modules page](recommended-modules.md) to make your life and ours easier
 1. Do NOT require `gulp` as a dependency or peerDependency
   - There is no reason you should have to do this and it will cause problems if you do
