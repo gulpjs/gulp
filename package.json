@@ -30,7 +30,7 @@
     "semver": "^2.2.1",
     "archy": "^0.0.2",
     "deprecated": "^0.0.1",
-    "liftoff": "^0.8.7",
+    "liftoff": "^0.9.2",
     "chalk": "^0.4.0"
   },
   "devDependencies": {

@@ -35,20 +35,20 @@ function handleArguments(env) {
 
   if (versionFlag) {
     gutil.log('CLI version', cliPackage.version);
-    if (env.localPackage) {
+    if (env.modulePackage) {
       gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
   }
 
-  if (!env.modulePath) {
-    gutil.log(chalk.red('No local gulp install found in'), chalk.magenta(env.cwd));
-    gutil.log(chalk.red('Try running: npm install gulp'));
+  if (!env.configPath) {
+    gutil.log(chalk.red('No gulpfile found'));
     process.exit(1);
   }
 
-  if (!env.configPath) {
-    gutil.log(chalk.red('No gulpfile found'));
+  if (!env.modulePath) {
+    gutil.log(chalk.red('No local gulp install found in'), chalk.magenta(env.cwd));
+    gutil.log(chalk.red('Try running: npm install gulp'));
     process.exit(1);
   }
 
