@@ -8,6 +8,7 @@ var semver = require('semver');
 var archy = require('archy');
 var Liftoff = require('liftoff');
 var taskTree = require('../lib/taskTree');
+var path = require('path');
 
 var cli = new Liftoff({
   name: 'gulp',
@@ -30,8 +31,19 @@ function handleArguments(env) {
   var cliPackage = require('../package');
   var versionFlag = argv.v || argv.version;
   var tasksFlag = argv.T || argv.tasks;
+  var modulePathFlag = argv['gulp-home'];
   var tasks = argv._;
   var toRun = tasks.length ? tasks : ['default'];
+
+  var modulePath;
+  if (process.env.GULP_HOME) {
+    modulePath = process.env.GULP_HOME;
+  }
+  if (modulePathFlag) {
+    modulePath = path.resolve(modulePathFlag);
+  }
+  modulePath = modulePath || env.modulePath;
+  var localPackage = require(modulePath + '/package');
 
   if (versionFlag) {
     gutil.log('CLI version', cliPackage.version);
@@ -41,7 +53,7 @@ function handleArguments(env) {
     process.exit(0);
   }
 
-  if (!env.modulePath) {
+  if (!modulePath) {
     gutil.log(chalk.red('No local gulp install found in'), chalk.magenta(env.cwd));
     gutil.log(chalk.red('Try running: npm install gulp'));
     process.exit(1);
@@ -53,16 +65,16 @@ function handleArguments(env) {
   }
 
   // check for semver difference between cli and local installation
-  if (semver.gt(cliPackage.version, env.modulePackage.version)) {
+  if (!env.modulePackage || semver.gt(cliPackage.version, env.modulePackage.version)) {
     gutil.log(chalk.red('Warning: gulp version mismatch:'));
     gutil.log(chalk.red('Running gulp is', cliPackage.version));
-    gutil.log(chalk.red('Local gulp (installed in gulpfile dir) is', env.modulePackage.version));
+    gutil.log(chalk.red('Local gulp (installed in gulpfile dir) is', localPackage.version));
   }
 
   var gulpFile = require(env.configPath);
   gutil.log('Using gulpfile', chalk.magenta(env.configPath));
 
-  var gulpInst = require(env.modulePath);
+  var gulpInst = require(modulePath);
   logEvents(gulpInst);
 
   if (process.cwd() !== env.cwd) {
