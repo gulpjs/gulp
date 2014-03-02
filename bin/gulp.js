@@ -15,7 +15,12 @@ var cli = new Liftoff({
 });
 
 cli.on('require', function (name) {
-  gutil.log('Requiring external module', chalk.magenta(name));
+  try {
+    gutil.log('Requiring external module', chalk.magenta(name));
+    require(name);
+  } catch (e) {
+    gutil.log(chalk.red('Failed to load external module'), chalk.magenta(name));
+  }
 });
 
 cli.on('requireFail', function (name) {
