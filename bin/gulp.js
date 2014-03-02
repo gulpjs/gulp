@@ -35,7 +35,7 @@ function handleArguments(env) {
 
   if (versionFlag) {
     gutil.log('CLI version', cliPackage.version);
-    if (env.localPackage) {
+    if (env.modulePackage) {
       gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
