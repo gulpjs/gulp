@@ -107,5 +107,34 @@ describe('gulp', function() {
       });
     });
 
+    it('should not throw errors', function (done) {
+      // arrange
+      var tempFile = path.join(outpath, 'watch-task-options.txt');
+
+      fs.writeFile(tempFile, tempFileContent, function () {
+        gulp.task('error', function (done) {
+          done(new Error('Don\'t throw me!'));
+        });
+
+        gulp.watch(tempFile, ['error']);
+
+        // assert
+        function shouldNotThrow(error) {
+          should.not.exist(error);
+        }
+
+        process.on('uncaughtException', shouldNotThrow);
+
+        // clean up
+        setTimeout(function () {
+          process.removeListener('uncaughtException', shouldNotThrow);
+          done();
+        }, writeTimeout * 2);
+
+        // act: change file
+        writeFileWait(tempFile, tempFileContent + ' changed');
+      });
+    });
+
   });
 });

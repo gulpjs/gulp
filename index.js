@@ -30,6 +30,11 @@ Gulp.prototype.watch = function (glob, opt, fn) {
     opt = null;
   }
 
+  // Orchestrator will throw if no one listens to its 'err' event.
+  if (this.listeners('err').length === 0) {
+    this.on('err', gutil.noop);
+  }
+
   // array of tasks given
   if (Array.isArray(fn)) {
     return vfs.watch(glob, opt, function(){
