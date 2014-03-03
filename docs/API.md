@@ -224,7 +224,6 @@ Type: `String`
 The path to the file that triggered the event.
 
 
-[node-optimist]: https://github.com/substack/node-optimist
 [node-glob documentation]: https://github.com/isaacs/node-glob#options
 [node-glob]: https://github.com/isaacs/node-glob
 [glob-stream]: https://github.com/wearefractal/glob-stream
