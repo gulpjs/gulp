@@ -6,8 +6,8 @@
 `gulpfile.js`
 
 ```js
-// npm install gulp optimist gulp-if gulp-uglify
-var args   = require('optimist').argv;
+// npm install gulp yargs gulp-if gulp-uglify
+var args   = require('yargs').argv;
 var gulp   = require('gulp');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
