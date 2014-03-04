@@ -32,7 +32,7 @@ var paths = {
   images: 'client/img/**/*'
 };
 
-gulp.task('scripts', function() {
+gulp.task('scripts', function () {
   // Minify and copy all JavaScript (except vendor scripts)
   return gulp.src(paths.scripts)
     .pipe(coffee())
@@ -42,7 +42,7 @@ gulp.task('scripts', function() {
 });
 
 // Copy all static images
-gulp.task('images', function() {
+gulp.task('images', function () {
  return gulp.src(paths.images)
     // Pass in options to the task
     .pipe(imagemin({optimizationLevel: 5}))

@@ -11,8 +11,8 @@ require('mocha');
 
 var outpath = path.join(__dirname, "./out-fixtures");
 
-describe('gulp', function() {
-  describe('watch()', function() {
+describe('gulp', function () {
+  describe('watch()', function () {
     beforeEach(rimraf.bind(null, outpath));
     beforeEach(mkdirp.bind(null, outpath));
     afterEach(rimraf.bind(null, outpath));
@@ -21,12 +21,12 @@ describe('gulp', function() {
 
     var writeTimeout = 125; // Wait for it to get to the filesystem
     var writeFileWait = function (name, content, cb) {
-      if (!cb) cb = function(){};
+      if (!cb) cb = function () {};
       setTimeout(function () {
         fs.writeFile(name, content, cb);
       }, writeTimeout);
     };
-    it('should call the function when file changes: no options', function(done) {
+    it('should call the function when file changes: no options', function (done) {
 
       // arrange
       var tempFile = path.join(outpath, 'watch-func.txt');
@@ -48,7 +48,7 @@ describe('gulp', function() {
       });
     });
 
-    it('should call the function when file changes: w/ options', function(done) {
+    it('should call the function when file changes: w/ options', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-func-options.txt');
       fs.writeFile(tempFile, tempFileContent, function () {
@@ -69,7 +69,7 @@ describe('gulp', function() {
       });
     });
 
-    it('should run many tasks: w/ options', function(done) {
+    it('should run many tasks: w/ options', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-task-options.txt');
       var task1 = 'task1';

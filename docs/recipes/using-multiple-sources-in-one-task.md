@@ -6,7 +6,7 @@
 var gulp = require('gulp');
 var es = require('event-stream');
 
-gulp.task('test', function(cb) {
+gulp.task('test', function (cb) {
     return es.concat(
         gulp.src('bootstrap/js/*.js')
             .pipe(gulp.dest('public/bootstrap')),

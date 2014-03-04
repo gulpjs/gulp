@@ -14,7 +14,7 @@ var Combine = require('stream-combiner');
 var uglify = require('gulp-uglify');
 var gulp = require('gulp');
 
-gulp.task('test', function() {
+gulp.task('test', function () {
   var combined = Combine(
     gulp.src('bootstrap/js/*.js'),
     uglify(),
@@ -24,7 +24,7 @@ gulp.task('test', function() {
   // any errors in the above streams
   // will get caught by this listener,
   // instead of being thrown:
-  combined.on('error', function(err) {
+  combined.on('error', function (err) {
     console.warn(err.message)
   });
 

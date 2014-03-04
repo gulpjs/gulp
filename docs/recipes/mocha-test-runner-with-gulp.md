@@ -6,7 +6,7 @@
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
  
-gulp.task('tests', function() {
+gulp.task('tests', function () {
     return gulp.src(['test/test-*.js'], { read: false })
         .pipe(mocha({
             reporter: 'spec',
@@ -35,7 +35,7 @@ gulp.task('mocha', function () {
         .on('error', gutil.log);
 });
 
-gulp.watch(['lib/**', 'test/**'], batch(function(events, cb) {
+gulp.watch(['lib/**', 'test/**'], batch(function (events, cb) {
     gulp.run('mocha', cb);
 }));
 ```
@@ -56,9 +56,9 @@ gulp.task('mocha', function () {
         .on('error', gutil.log);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     return gulp.src(['lib/**', 'test/**'], { read: false })
-        .pipe(watch(function(events, cb) {
+        .pipe(watch(function (events, cb) {
             gulp.run('mocha', cb);
         }));
 });

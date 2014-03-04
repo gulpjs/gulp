@@ -25,17 +25,17 @@ var uglify = require('gulp-uglify');
 
 var scriptsPath = './src/scripts/';
 
-function getFolders(dir){
+function getFolders(dir) {
     return fs.readdirSync(dir)
-      .filter(function(file){
+      .filter(function (file) {
         return fs.statSync(path.join(dir, file)).isDirectory();
       });
 }
  
-gulp.task('scripts', function() { 
+gulp.task('scripts', function () { 
    var folders = getFolders(scriptsPath);
    
-   var tasks = folders.map(function(folder) {
+   var tasks = folders.map(function (folder) {
       // concat into foldername.js
       // write to output
       // minify

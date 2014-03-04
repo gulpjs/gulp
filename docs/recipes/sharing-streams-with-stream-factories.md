@@ -16,7 +16,7 @@ var coffee = require('gulp-coffee');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 
-gulp.task('bootstrap', function() {
+gulp.task('bootstrap', function () {
   return gulp.src('bootstrap/js/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter(stylish))
@@ -24,7 +24,7 @@ gulp.task('bootstrap', function() {
     .pipe(gulp.dest('public/bootstrap'));
 });
 
-gulp.task('coffee', function() {
+gulp.task('coffee', function () {
   return gulp.src('lib/js/*.coffee')
     .pipe(coffee())
     .pipe(jshint())
@@ -51,13 +51,13 @@ var jsTransform = lazypipe()
   .pipe(jshint.reporter, stylish)
   .pipe(uglify);
 
-gulp.task('bootstrap', function() {
+gulp.task('bootstrap', function () {
   return gulp.src('bootstrap/js/*.js')
     .pipe(jsTransform())
     .pipe(gulp.dest('public/bootstrap'));
 });
 
-gulp.task('coffee', function() {
+gulp.task('coffee', function () {
   return gulp.src('lib/js/*.coffee')
     .pipe(coffee())
     .pipe(jsTransform())
