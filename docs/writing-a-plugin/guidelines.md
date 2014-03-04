@@ -70,21 +70,19 @@ function gulpPrefixer(prefixText) {
   // Creating a stream through which each file will pass
   var stream = through.obj(function (file, enc, callback) {
     if (file.isNull()) {
-      this.push(file); // Do nothing if no contents
-      return callback();
+       // Do nothing if no contents
     }
-
     if (file.isBuffer()) {
-      file.contents = Buffer.concat([prefixText, file.contents]);
-      this.push(file);
-      return callback();
+        file.contents = Buffer.concat([prefixText, file.contents]);
     }
 
     if (file.isStream()) {
-      file.contents = file.contents.pipe(prefixStream(prefixText));
-      this.push(file);
-      return callback();
+        file.contents = file.contents.pipe(prefixStream(prefixText));
     }
+
+    this.push(file);
+    return callback();
+
   });
 
   // returning the file stream
