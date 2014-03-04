@@ -41,7 +41,7 @@ function doStuff(cfg) {
     .pipe(gulp.dest(cfg.dest));
 }
 
-gulp.task('dry', function () {
+gulp.task('dry', function() {
   doStuff(config.desktop);
   doStuff(config.mobile);
 });

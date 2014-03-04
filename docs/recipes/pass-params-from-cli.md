@@ -14,7 +14,7 @@ var uglify = require('gulp-uglify');
 
 var isProduction = args.type === 'production';
 
-gulp.task('scripts', function () {
+gulp.task('scripts', function() {
   return gulp.src('**/*.js')
     .pipe(gulpif(isProduction, uglify())) // only minify if production
     .pipe(gulp.dest('dist'));

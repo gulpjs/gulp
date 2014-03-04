@@ -6,7 +6,7 @@
 var gulp = require('gulp');
 var es = require('event-stream');
 
-gulp.task('test', function (cb) {
+gulp.task('test', function(cb) {
     return es.concat(
         gulp.src('bootstrap/js/*.js')
             .pipe(gulp.dest('public/bootstrap')),
@@ -25,7 +25,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var streamqueue = require('streamqueue');
 
-gulp.task('default', function () {
+gulp.task('default', function() {
     return streamqueue({ objectMode: true },
         gulp.src('foo/*'),
         gulp.src('bar/*')
@@ -36,7 +36,7 @@ gulp.task('default', function () {
 
 // ... or ...
 
-gulp.task('default', function () {
+gulp.task('default', function() {
     var stream = streamqueue({ objectMode: true });
     stream.queue(gulp.src('foo/*'));
     stream.queue(gulp.src('bar/*'));

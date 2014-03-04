@@ -14,11 +14,11 @@ var cli = new Liftoff({
   completions: require('../lib/completion')
 });
 
-cli.on('require', function (name) {
+cli.on('require', function(name) {
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
-cli.on('requireFail', function (name) {
+cli.on('requireFail', function(name) {
   gutil.log(chalk.red('Failed to load external module'), chalk.magenta(name));
 });
 
@@ -70,7 +70,7 @@ function handleArguments(env) {
     gutil.log('Working directory changed to', chalk.magenta(env.cwd));
   }
 
-  process.nextTick(function () {
+  process.nextTick(function() {
     if (tasksFlag) {
       return logTasks(gulpFile, gulpInst);
     }
@@ -81,7 +81,7 @@ function handleArguments(env) {
 function logTasks(gulpFile, localGulp) {
   var tree = taskTree(localGulp.tasks);
   tree.label = 'Tasks for ' + chalk.magenta(gulpFile);
-  archy(tree).split('\n').forEach(function (v) {
+  archy(tree).split('\n').forEach(function(v) {
     if (v.trim().length === 0) return;
     gutil.log(v);
   });
@@ -96,22 +96,22 @@ function formatError(e) {
 
 // wire up logging events
 function logEvents(gulpInst) {
-  gulpInst.on('task_start', function (e) {
+  gulpInst.on('task_start', function(e) {
     gutil.log('Starting', "'" + chalk.cyan(e.task) + "'...");
   });
 
-  gulpInst.on('task_stop', function (e) {
+  gulpInst.on('task_stop', function(e) {
     var time = prettyTime(e.hrDuration);
     gutil.log('Finished', "'" + chalk.cyan(e.task) + "'", 'after', chalk.magenta(time));
   });
 
-  gulpInst.on('task_err', function (e) {
+  gulpInst.on('task_err', function(e) {
     var msg = formatError(e);
     var time = prettyTime(e.hrDuration);
     gutil.log("'" + chalk.cyan(e.task) + "'", 'errored after', chalk.magenta(time), chalk.red(msg));
   });
 
-  gulpInst.on('task_not_found', function (err) {
+  gulpInst.on('task_not_found', function(err) {
     gutil.log(chalk.red("Task '" + err.task + "' was not defined in your gulpfile but you tried to run it."));
     gutil.log('Please check the documentation for proper gulpfile formatting.');
     process.exit(1);

@@ -59,7 +59,7 @@ The path (folder) to write files to.
 Define a task using [Orchestrator].
 
 ```javascript
-gulp.task('somename', function () {
+gulp.task('somename', function() {
   // Do stuff
 });
 ```
@@ -74,7 +74,7 @@ Type: `Array`
 An array of tasks to be executed and completed before your task will run.
 
 ```javascript
-gulp.task('mytask', ['array', 'of', 'task', 'names'], function () {
+gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
   // Do stuff
 });
 ```
@@ -93,7 +93,7 @@ Tasks can be made asynchronous if its `fn` does one of the following:
 ##### Accept a callback
 
 ```javascript
-gulp.task('somename', function (cb) {
+gulp.task('somename', function(cb) {
   // Do stuff
   cb(err);
 });
@@ -102,7 +102,7 @@ gulp.task('somename', function (cb) {
 ##### Return a stream
 
 ```javascript
-gulp.task('somename', function () {
+gulp.task('somename', function() {
   var stream = gulp.src('./client/**/*.js')
     .pipe(minify())
     .pipe(gulp.dest('/build'));
@@ -115,11 +115,11 @@ gulp.task('somename', function () {
 ```javascript
 var Q = require('q');
 
-gulp.task('somename', function () {
+gulp.task('somename', function() {
   var deferred = Q.defer();
 
   // Do async stuff
-  setTimeout(function () {
+  setTimeout(function() {
     deferred.resolve();
   }, 1);
 
@@ -146,13 +146,13 @@ So this example would look like this:
 var gulp = require('gulp');
 
 // takes in a callback so the engine knows when it'll be done
-gulp.task('one', function (cb) {
+gulp.task('one', function(cb) {
     // do stuff -- async or otherwise
     cb(err); // if err is not null and not undefined, the run will stop, and note that it failed
 });
 
 // identifies a dependent task must be complete before this one begins
-gulp.task('two', ['one'], function () {
+gulp.task('two', ['one'], function() {
     // task 'one' is done now
 });
 
@@ -183,7 +183,7 @@ Names of task(s) to run when a file changes, added with `gulp.task()`
 
 ```javascript
 var watcher = gulp.watch('js/**/*.js', ['uglify','reload']);
-watcher.on('change', function (event) {
+watcher.on('change', function(event) {
   console.log('File '+event.path+' was '+event.type+', running tasks...');
 });
 ```
@@ -206,7 +206,7 @@ Type: `Function`
 Callback to be called on each change.
 
 ```javascript
-gulp.watch('js/**/*.js', function (event) {
+gulp.watch('js/**/*.js', function(event) {
   console.log('File '+event.path+' was '+event.type+', running tasks...');
 });
 ```
