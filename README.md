@@ -50,7 +50,7 @@ gulp.task('images', function() {
 });
 
 // Rerun the task when a file changes
-gulp.task('watch', function () {
+gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['scripts']);
   gulp.watch(paths.images, ['images']);
 });

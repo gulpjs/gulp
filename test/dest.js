@@ -37,7 +37,7 @@ describe('gulp output stream', function() {
         String(file.contents).should.equal("this is a test");
       });
       outstream.on('end', function() {
-        fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents){
+        fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal("this is a test");
@@ -60,7 +60,7 @@ describe('gulp output stream', function() {
         join(file.path,'').should.equal(join(outpath, "./copy/example.txt"));
       });
       outstream.on('end', function() {
-        fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents){
+        fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents) {
           should.exist(err);
           should.not.exist(contents);
           done();
@@ -81,7 +81,7 @@ describe('gulp output stream', function() {
         join(file.path,'').should.equal(join(outpath, "./copy/example.txt"));
       });
       outstream.on('end', function() {
-        fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents){
+        fs.readFile(join(outpath, "copy", "example.txt"), function(err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal("this is a test");

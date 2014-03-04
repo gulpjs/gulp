@@ -60,7 +60,7 @@ describe('gulp tasks', function() {
       a = 0;
       fn = function() {
         var deferred = Q.defer();
-        setTimeout(function () {
+        setTimeout(function() {
           ++a;
           deferred.resolve();
         },1);
@@ -68,7 +68,7 @@ describe('gulp tasks', function() {
       };
       fn2 = function() {
         var deferred = Q.defer();
-        setTimeout(function () {
+        setTimeout(function() {
           ++a;
           deferred.resolve();
         },1);
@@ -77,7 +77,7 @@ describe('gulp tasks', function() {
       gulp.task('test', fn);
       gulp.task('test2', fn2);
       gulp.run('test');
-      gulp.run('test2', function () {
+      gulp.run('test2', function() {
         gulp.isRunning.should.equal(false);
         a.should.equal(2);
         gulp.reset();
@@ -89,13 +89,13 @@ describe('gulp tasks', function() {
       var a, fn, fn2;
       a = 0;
       fn = function(cb) {
-        setTimeout(function () {
+        setTimeout(function() {
           ++a;
           cb(null);
         },1);
       };
       fn2 = function(cb) {
-        setTimeout(function () {
+        setTimeout(function() {
           ++a;
           cb(null);
         },1);
@@ -103,7 +103,7 @@ describe('gulp tasks', function() {
       gulp.task('test', fn);
       gulp.task('test2', fn2);
       gulp.run('test');
-      gulp.run('test2', function () {
+      gulp.run('test2', function() {
         gulp.isRunning.should.equal(false);
         a.should.equal(2);
         gulp.reset();
@@ -112,7 +112,7 @@ describe('gulp tasks', function() {
       gulp.isRunning.should.equal(true);
     });
     it('should emit task_not_found and throw an error when task is not defined', function(done) {
-      gulp.on('task_not_found', function(err){
+      gulp.on('task_not_found', function(err) {
         should.exist(err);
         should.exist(err.task);
         err.task.should.equal('test');

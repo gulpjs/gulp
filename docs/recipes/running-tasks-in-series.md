@@ -19,13 +19,13 @@ So this example would look like this:
 var gulp = require('gulp');
 
 // takes in a callback so the engine knows when it'll be done
-gulp.task('one', function (cb) {
+gulp.task('one', function(cb) {
     // do stuff -- async or otherwise
     cb(err); // if err is not null and not undefined, the orchestration will stop, and 'two' will not run
 });
 
 // identifies a dependent task must be complete before this one begins
-gulp.task('two', ['one'], function () {
+gulp.task('two', ['one'], function() {
     // task 'one' is done now
 });
 

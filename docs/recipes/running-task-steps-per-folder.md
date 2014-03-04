@@ -25,9 +25,9 @@ var uglify = require('gulp-uglify');
 
 var scriptsPath = './src/scripts/';
 
-function getFolders(dir){
+function getFolders(dir) {
     return fs.readdirSync(dir)
-      .filter(function(file){
+      .filter(function(file) {
         return fs.statSync(path.join(dir, file)).isDirectory();
       });
 }

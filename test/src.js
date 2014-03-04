@@ -116,10 +116,10 @@ describe('gulp input stream', function() {
         should.exist(file.path);
         should.exist(file.contents);
         var buf = "";
-        file.contents.on('data', function(d){
+        file.contents.on('data', function(d) {
           buf += d;
         });
-        file.contents.on('end', function(){
+        file.contents.on('end', function() {
           buf.should.equal("this is a test");
           done();
         });

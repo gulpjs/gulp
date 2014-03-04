@@ -16,10 +16,10 @@ var es = require('event-stream');
 var File = require('vinyl');
 var prefixer = require('../index');
 
-describe('gulp-prefixer', function () {
-  describe('in streaming mode', function () {
+describe('gulp-prefixer', function() {
+  describe('in streaming mode', function() {
 
-    it('should prepend text', function (done) {
+    it('should prepend text', function(done) {
 
       // create the fake file
       var fakeFile = new File({
@@ -33,12 +33,12 @@ describe('gulp-prefixer', function () {
       myPrefixer.write(fakeFile);
 
       // wait for the file to come back out
-      myPrefixer.once('data', function (file) {
+      myPrefixer.once('data', function(file) {
         // make sure it came out the same way it went in
         assert(file.isStream());
 
         // buffer the contents to make sure it got prepended to
-        file.contents.pipe(es.wait(function (err, data) {
+        file.contents.pipe(es.wait(function(err, data) {
           // check the contents
           assert.equal(data, 'prependthistostreamwiththosecontents');
           done();
@@ -59,10 +59,10 @@ var es = require('event-stream');
 var File = require('vinyl');
 var prefixer = require('../index');
 
-describe('gulp-prefixer', function () {
-  describe('in buffer mode', function () {
+describe('gulp-prefixer', function() {
+  describe('in buffer mode', function() {
 
-    it('should prepend text', function (done) {
+    it('should prepend text', function(done) {
 
       // create the fake file
       var fakeFile = new File({
@@ -76,7 +76,7 @@ describe('gulp-prefixer', function () {
       myPrefixer.write(fakeFile);
 
       // wait for the file to come back out
-      myPrefixer.once('data', function (file) {
+      myPrefixer.once('data', function(file) {
         // make sure it came out the same way it went in
         assert(file.isBuffer());
 

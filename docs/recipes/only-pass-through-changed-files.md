@@ -14,7 +14,7 @@ var uglify = require('gulp-uglify');
 var SRC = 'src/*.js';
 var DEST = 'dist';
 
-gulp.task('default', function () {
+gulp.task('default', function() {
 	return gulp.src(SRC)
 		// the `changed` task needs to know the destination directory
 		// upfront to be able to figure out which files changed

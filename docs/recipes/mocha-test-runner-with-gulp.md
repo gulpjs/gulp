@@ -29,7 +29,7 @@ var mocha = require('gulp-mocha');
 var batch = require('gulp-batch');
 var gutil = require('gulp-util');
 
-gulp.task('mocha', function () {
+gulp.task('mocha', function() {
     return gulp.src(['test/*.js'], { read: false })
         .pipe(mocha({ reporter: 'list' }))
         .on('error', gutil.log);
@@ -50,7 +50,7 @@ var mocha = require('gulp-mocha');
 var watch = require('gulp-watch');
 var gutil = require('gulp-util')
 
-gulp.task('mocha', function () {
+gulp.task('mocha', function() {
     return gulp.src(['test/*.js'], { read: false })
         .pipe(mocha({ reporter: 'list' }))
         .on('error', gutil.log);
