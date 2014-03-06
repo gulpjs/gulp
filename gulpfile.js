@@ -20,3 +20,5 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['lint', 'watch']);
+
+module.exports = gulp;
