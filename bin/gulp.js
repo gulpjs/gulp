@@ -59,11 +59,10 @@ function handleArguments(env) {
     gutil.log(chalk.red('Local gulp (installed in gulpfile dir) is', env.modulePackage.version));
   }
 
-  var gulpFile = require(env.configPath);
+  var gulp = require(env.configPath);
   gutil.log('Using gulpfile', chalk.magenta(env.configPath));
 
-  var gulpInst = require(env.modulePath);
-  logEvents(gulpInst);
+  logEvents(gulp);
 
   if (process.cwd() !== env.cwd) {
     process.chdir(env.cwd);
@@ -72,14 +71,14 @@ function handleArguments(env) {
 
   process.nextTick(function() {
     if (tasksFlag) {
-      return logTasks(gulpFile, gulpInst);
+      return logTasks(env.configPath, gulp);
     }
-    gulpInst.start.apply(gulpInst, toRun);
+    gulp.start.apply(gulp, toRun);
   });
 }
 
-function logTasks(gulpFile, localGulp) {
-  var tree = taskTree(localGulp.tasks);
+function logTasks(gulpFile, gulp) {
+  var tree = taskTree(gulp.tasks);
   tree.label = 'Tasks for ' + chalk.magenta(gulpFile);
   archy(tree).split('\n').forEach(function(v) {
     if (v.trim().length === 0) return;
