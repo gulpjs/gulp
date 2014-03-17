@@ -66,6 +66,7 @@ We recommend these plugins:
 
 - [gulp-changed](https://github.com/sindresorhus/gulp-changed)
 - [gulp-cached](https://github.com/wearefractal/gulp-cached)
+- [gulp-newer](https://github.com/tschaub/gulp-newer)
 
 ## Want to contribute?
 
