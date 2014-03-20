@@ -24,6 +24,7 @@ content
 - copy editing: fix typos, clarify language, and generally improve the quality
 of the content
 - formatting: help keep content easy to read with consistent formatting
+- code: Fix issues or contribute new features to this or any related projects
 
 # Conduct
 
