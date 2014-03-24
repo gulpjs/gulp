@@ -48,4 +48,18 @@ deprecated.field('gulp.env has been deprecated. Use your own CLI parser instead.
 Gulp.prototype.run = deprecated.method('gulp.run() has been deprecated. Use task dependencies or gulp.watch task triggering instead.', console.log, Gulp.prototype.run);
 
 var inst = new Gulp();
+
+// Register default help task for listing available tasks
+inst.task('help', function() {
+    console.log('\nAvailable tasks:');
+    for (var task in inst.tasks) {
+        if (!inst.tasks.hasOwnProperty(task)) continue;
+        var task = inst.tasks[task],
+            output = ' - ' + task.name;
+        if (task.desc) output += ' — ' + task.desc;
+        console.log(output);
+    }
+    console.log('\n');
+});
+
 module.exports = inst;

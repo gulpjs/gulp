@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "gulp-util": "^2.2.0",
-    "orchestrator": "^0.3.0",
+    "orchestrator": "https://github.com/evindor/orchestrator/tarball/db79144320450447e4f2dcb5bfed2d73f30a3a5e",
     "pretty-hrtime": "^0.2.0",
     "vinyl-fs": "^0.1.0",
     "semver": "^2.2.1",
