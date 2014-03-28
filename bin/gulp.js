@@ -96,6 +96,8 @@ function formatError(e) {
 
 // wire up logging events
 function logEvents(gulpInst) {
+  gulpInst.on('err', function(){});
+
   gulpInst.on('task_start', function(e) {
     gutil.log('Starting', "'" + chalk.cyan(e.task) + "'...");
   });
