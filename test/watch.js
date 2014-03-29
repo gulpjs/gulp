@@ -69,6 +69,31 @@ describe('gulp', function() {
       });
     });
 
+    it('should not drop options when no callback specified', function(done) {
+      // arrange
+      var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
+      // by passing a cwd option, ensure options are not lost to gaze
+      var relFile = '../watch-func-nodrop-options.txt';
+      var cwd = outpath + '/subdir';
+      fs.writeFile(tempFile, tempFileContent, function() {
+
+        // assert: it works if it calls done
+        var watcher = gulp.watch(relFile, {debounceDelay: 5, cwd: cwd})
+            .on('change', function(evt) {
+              should.exist(evt);
+              should.exist(evt.path);
+              should.exist(evt.type);
+              evt.type.should.equal('changed');
+              evt.path.should.equal(path.resolve(tempFile));
+              watcher.end();
+              done();
+            });
+
+        // act: change file
+        writeFileWait(tempFile, tempFileContent + ' changed');
+      });
+    });
+
     it('should run many tasks: w/ options', function(done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-task-options.txt');
