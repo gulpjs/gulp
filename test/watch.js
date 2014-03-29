@@ -132,5 +132,43 @@ describe('gulp', function() {
       });
     });
 
+    it('should run many tasks: no options', function(done) {
+      // arrange
+      var tempFile = path.join(outpath, 'watch-many-tasks-no-options.txt');
+      var task1 = 'task1';
+      var task2 = 'task2';
+      var task3 = 'task3';
+      var a = 0;
+      var timeout = writeTimeout * 2.5;
+
+      fs.writeFile(tempFile, tempFileContent, function() {
+
+        gulp.task(task1, function() {
+          a++;
+        });
+        gulp.task(task2, function() {
+          a += 10;
+        });
+        gulp.task(task3, function() {
+          throw new Error("task3 called!");
+        });
+
+        // assert
+        setTimeout(function() {
+          a.should.equal(11); // task1 and task2
+
+          gulp.reset();
+          watcher.end();
+          done();
+        }, timeout);
+
+        // it works if it calls the task
+        var watcher = gulp.watch(tempFile, [task1,task2]);
+
+        // act: change file
+        writeFileWait(tempFile, tempFileContent+' changed');
+      });
+    });
+
   });
 });

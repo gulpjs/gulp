@@ -25,7 +25,7 @@ Gulp.prototype.run = function() {
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
 Gulp.prototype.watch = function(glob, opt, fn) {
-  if (typeof opt === 'function') {
+  if (typeof opt === 'function' || Array.isArray(opt)) {
     fn = opt;
     opt = null;
   }
