@@ -10,6 +10,12 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 - `--cwd <dir path>` manually set the CWD. The search for the gulpfile, as well as the relativity of all requires will be from here.
 - `-T` or `--tasks` will display the task dependency tree for the loaded gulpfile
 
+### Flags in Dependency Modules
+
+- `--color` or `--no-color` allows to override the determination of whether or
+not to include ANSI color-codes in the log streams from gulp and gulp-util.
+See the [has-color package](https://github.com/sindresorhus/has-color).
+
 ### Tasks
 
 Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.
