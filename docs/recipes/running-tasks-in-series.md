@@ -55,6 +55,7 @@ gulp.task('process-styles', ['clean'], function() {
     var stream = gulp.src(['src/styles/app.less'])
     // hinting, minification, etc.
     .pipe(gulp.dest('output/css/app.css'));
+    return stream;
 });
 
 
