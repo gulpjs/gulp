@@ -21,7 +21,7 @@ Type: `Object`
 
 Options to pass to [node-glob] through [glob-stream].
 
-gulp adds two additional options in addition to the [options supported by node-glob][node-glob documentation]:
+gulp adds two additional options in addition to the [options supported by node-glob][node-glob documentation] and [glob-stream]:
 
 #### options.buffer
 Type: `Boolean`
