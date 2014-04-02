@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image]
+# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Code Climate](https://codeclimate.com/github/gulpjs/gulp.png)](https://codeclimate.com/github/gulpjs/gulp)
 > The streaming build system
 
 ## Like what we do?
