@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image]
+# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > The streaming build system
 
 ## Like what we do?
@@ -83,5 +83,5 @@ Anyone can help make this project better - check out the [Contributing guide](/C
 [coveralls-image]: https://coveralls.io/repos/gulpjs/gulp/badge.png
 [depstat-url]: https://david-dm.org/gulpjs/gulp
 [depstat-image]: https://david-dm.org/gulpjs/gulp.png
-[daviddm-url]: https://david-dm.org/gulpjs/gulp.png?theme=shields.io
-[daviddm-image]: https://david-dm.org/gulpjs/gulp
+[daviddm-url]: https://david-dm.org/gulpjs/gulp
+[daviddm-image]: https://david-dm.org/gulpjs/gulp.png?theme=shields.io
