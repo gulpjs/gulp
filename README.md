@@ -76,12 +76,12 @@ Anyone can help make this project better - check out the [Contributing guide](/C
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [npm-url]: https://npmjs.org/package/gulp
-[npm-image]: https://badge.fury.io/js/gulp.png
+[npm-image]: https://badge.fury.io/js/gulp.svg
 [travis-url]: https://travis-ci.org/gulpjs/gulp
-[travis-image]: https://travis-ci.org/gulpjs/gulp.png?branch=master
+[travis-image]: https://travis-ci.org/gulpjs/gulp.svg?branch=master
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
 [coveralls-image]: https://coveralls.io/repos/gulpjs/gulp/badge.png
 [depstat-url]: https://david-dm.org/gulpjs/gulp
-[depstat-image]: https://david-dm.org/gulpjs/gulp.png
+[depstat-image]: https://david-dm.org/gulpjs/gulp.svg
 [daviddm-url]: https://david-dm.org/gulpjs/gulp
-[daviddm-image]: https://david-dm.org/gulpjs/gulp.png?theme=shields.io
+[daviddm-image]: https://david-dm.org/gulpjs/gulp.svg?theme=shields.io
