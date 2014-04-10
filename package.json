@@ -42,9 +42,9 @@
     "should": "^3.1.0",
     "rimraf": "^2.2.5",
     "q": "^1.0.0",
-    "jshint": "^2.4.1",
+    "jshint": "^2.5.0",
     "graceful-fs": "^2.0.1",
-    "gulp-jshint": "^1.4.0",
+    "gulp-jshint": "^1.5.3",
     "mkdirp": "^0.3.5"
   },
   "scripts": {
