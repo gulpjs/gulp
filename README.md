@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# gulp [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Support us][gittip-image]][gittip-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 > The streaming build system
 
 ## Like what we do?
@@ -75,13 +75,15 @@ Anyone can help make this project better - check out the [Contributing guide](/C
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+[gittip-url]: https://www.gittip.com/WeAreFractal/
+[gittip-image]: http://img.shields.io/gittip/WeAreFractal.svg
+
+[downloads-image]: http://img.shields.io/npm/dm/gulp.svg
 [npm-url]: https://npmjs.org/package/gulp
-[npm-image]: https://badge.fury.io/js/gulp.svg
+[npm-image]: http://img.shields.io/npm/v/gulp.svg
+
 [travis-url]: https://travis-ci.org/gulpjs/gulp
-[travis-image]: https://travis-ci.org/gulpjs/gulp.svg?branch=master
+[travis-image]: http://img.shields.io/travis/gulpjs/gulp.svg
+
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
-[coveralls-image]: https://coveralls.io/repos/gulpjs/gulp/badge.png
-[depstat-url]: https://david-dm.org/gulpjs/gulp
-[depstat-image]: https://david-dm.org/gulpjs/gulp.svg
-[daviddm-url]: https://david-dm.org/gulpjs/gulp
-[daviddm-image]: https://david-dm.org/gulpjs/gulp.svg?theme=shields.io
+[coveralls-image]: http://img.shields.io/coveralls/gulpjs/gulp/master.svg
