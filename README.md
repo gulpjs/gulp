@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# gulp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Built with gulp.js][built-with-image]](built-with-url)
 > The streaming build system
 
 ## Like what we do?
@@ -85,3 +85,6 @@ Anyone can help make this project better - check out the [Contributing guide](/C
 [depstat-image]: https://david-dm.org/gulpjs/gulp.svg
 [daviddm-url]: https://david-dm.org/gulpjs/gulp
 [daviddm-image]: https://david-dm.org/gulpjs/gulp.svg?theme=shields.io
+[built-with-image]: http://img.shields.io/badge/built%20with-gulp.js-red.svg
+[built-with-url]: http://gulpjs.com
+
