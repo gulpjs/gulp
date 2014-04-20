@@ -11,7 +11,7 @@ gulp.src('./client/templates/*.jade')
     .pipe(gulp.dest('./build/minified_templates'));
 ```
 
-File paths follow [node-glob syntax](https://github.com/isaacs/node-glob).
+`glob` refers to [node-glob syntax](https://github.com/isaacs/node-glob) or it can be a direct file path.
 
 #### globs
 Type: `String` or `Array`
