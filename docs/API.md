@@ -11,7 +11,7 @@ gulp.src('./client/templates/*.jade')
     .pipe(gulp.dest('./build/minified_templates'));
 ```
 
-File paths follow [vinyl-fs syntax](https://github.com/wearefractal/vinyl-fs) which uses [bash selector syntax](http://www.gnu.org/software/bash/manual/bashref.html).
+File paths follow [node-glob syntax](https://github.com/isaacs/node-glob).
 
 #### globs
 Type: `String` or `Array`
