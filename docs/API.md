@@ -2,7 +2,7 @@
 
 ### gulp.src(globs[, options])
 
-Takes a glob and represents a file structure. Can be piped to plugins.
+Takes a glob and represents a file structure. Can be piped to plugins.  
 
 ```javascript
 gulp.src('./client/templates/*.jade')
@@ -10,6 +10,8 @@ gulp.src('./client/templates/*.jade')
     .pipe(minify())
     .pipe(gulp.dest('./build/minified_templates'));
 ```
+
+File paths follow [vinyl-fs syntax](https://github.com/wearefractal/vinyl-fs) which uses [bash selector syntax](http://www.gnu.org/software/bash/manual/bashref.html).
 
 #### globs
 Type: `String` or `Array`
@@ -38,7 +40,7 @@ Setting this to `false` will return `file.contents` as null and not read the fil
 
 ### gulp.dest(path)
 
-Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
+Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.  Folders that don't exist will be created.
 
 ```javascript
 gulp.src('./client/templates/*.jade')
