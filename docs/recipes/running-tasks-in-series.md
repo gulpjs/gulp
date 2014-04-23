@@ -40,7 +40,7 @@ var gulp = require('gulp');
 var clean = require('gulp-clean');
 
 gulp.task('clean', function() {
-    // return the stream as the completion hint, telling the calling process that this stream hs completed.  
+    // return the stream as the completion hint, telling the calling process that this stream has completed.  
     return gulp.src('./output').pipe(clean());
 });
 
