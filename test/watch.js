@@ -26,6 +26,7 @@ describe('gulp', function() {
         fs.writeFile(name, content, cb);
       }, writeTimeout);
     };
+
     it('should call the function when file changes: no options', function(done) {
 
       // arrange

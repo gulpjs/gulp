@@ -7,6 +7,7 @@ var chalk = require('chalk');
 var semver = require('semver');
 var archy = require('archy');
 var Liftoff = require('liftoff');
+var tildify = require('tildify');
 var taskTree = require('../lib/taskTree');
 
 var cli = new Liftoff({
@@ -42,7 +43,7 @@ function handleArguments(env) {
   }
 
   if (!env.modulePath) {
-    gutil.log(chalk.red('No local gulp install found in'), chalk.magenta(env.cwd));
+    gutil.log(chalk.red('No local gulp install found in'), chalk.magenta(tildify(env.cwd)));
     gutil.log(chalk.red('Try running: npm install gulp'));
     process.exit(1);
   }
@@ -59,16 +60,18 @@ function handleArguments(env) {
     gutil.log(chalk.red('Local gulp (installed in gulpfile dir) is', env.modulePackage.version));
   }
 
+  // chdir before requiring gulpfile to make sure
+  // we let them chdir as needed
+  if (process.cwd() !== env.cwd) {
+    process.chdir(env.cwd);
+    gutil.log('Working directory changed to', chalk.magenta(tildify(env.cwd)));
+  }
+
   var gulpFile = require(env.configPath);
-  gutil.log('Using gulpfile', chalk.magenta(env.configPath));
+  gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
 
   var gulpInst = require(env.modulePath);
   logEvents(gulpInst);
-
-  if (process.cwd() !== env.cwd) {
-    process.chdir(env.cwd);
-    gutil.log('Working directory changed to', chalk.magenta(env.cwd));
-  }
 
   process.nextTick(function() {
     if (tasksFlag) {

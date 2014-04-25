@@ -2,7 +2,7 @@
 
 ### gulp.src(globs[, options])
 
-Takes a glob and represents a file structure. Can be piped to plugins.
+Takes a glob and represents a file structure. Can be piped to plugins.  
 
 ```javascript
 gulp.src('./client/templates/*.jade')
@@ -10,6 +10,8 @@ gulp.src('./client/templates/*.jade')
     .pipe(minify())
     .pipe(gulp.dest('./build/minified_templates'));
 ```
+
+`glob` refers to [node-glob syntax](https://github.com/isaacs/node-glob) or it can be a direct file path.
 
 #### globs
 Type: `String` or `Array`
@@ -38,7 +40,7 @@ Setting this to `false` will return `file.contents` as null and not read the fil
 
 ### gulp.dest(path)
 
-Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.
+Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.  Folders that don't exist will be created.
 
 ```javascript
 gulp.src('./client/templates/*.jade')
