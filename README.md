@@ -69,7 +69,7 @@ We recommend these plugins:
 - [gulp-newer](https://github.com/tschaub/gulp-newer)
 - [gulp-remember](https://github.com/ahaurw01/gulp-remember)
 
-Profile & speed-up your `gulpfile.js` buids with [gulpt](https://github.com/jaguard/gulpt) & [time-require](https://github.com/jaguard/time-require).
+Profile & speed-up your `gulpfile.js` buids using [gulpt](https://github.com/jaguard/gulpt) & [time-require](https://github.com/jaguard/time-require).
 
 ## Want to contribute?
 
