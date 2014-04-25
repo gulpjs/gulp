@@ -1,7 +1,7 @@
 {
   "name": "gulp",
   "description": "The streaming build system",
-  "version": "3.6.0",
+  "version": "3.6.2",
   "homepage": "http://gulpjs.com",
   "repository": "gulpjs/gulp",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
@@ -24,15 +24,16 @@
     "gulp": "./bin/gulp.js"
   },
   "dependencies": {
+    "archy": "^0.0.2",
+    "chalk": "^0.4.0",
+    "deprecated": "^0.0.1",
     "gulp-util": "^2.2.0",
+    "liftoff": "^0.9.3",
     "orchestrator": "^0.3.0",
     "pretty-hrtime": "^0.2.0",
-    "vinyl-fs": "^0.1.0",
     "semver": "^2.2.1",
-    "archy": "^0.0.2",
-    "deprecated": "^0.0.1",
-    "liftoff": "^0.9.3",
-    "chalk": "^0.4.0"
+    "tildify": "^0.2.0",
+    "vinyl-fs": "^0.1.3"
   },
   "devDependencies": {
     "mocha": "^1.17.0",
@@ -44,11 +45,10 @@
     "q": "^1.0.0",
     "jshint": "^2.5.0",
     "graceful-fs": "^2.0.1",
-    "gulp-jshint": "^1.5.3",
     "mkdirp": "^0.3.5"
   },
   "scripts": {
-    "test": "node gulpfile.js && mocha --reporter spec",
+    "test": "jshint && mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "engineStrict": true,
