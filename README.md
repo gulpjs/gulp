@@ -15,7 +15,7 @@
 
 For a Getting started guide, API docs, recipes, making a plugin, etc. see the [documentation page](/docs/README.md)!
 
-## Sample gulpfile
+## Sample `gulpfile.js`
 
 This file is just a quick sample to give you a taste of what gulp does.
 
