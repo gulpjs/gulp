@@ -5,22 +5,26 @@
 [Writing a Plugin](README.md) > Guidelines
 
 1. Your plugin should not do something that can be done easily with an existing node module
-  - Wrapping every possible thing just for the sake of wrapping it will pollute the ecosystem with low quality plugins that don't make sense
+  - For example: deleting a folder does not need to be a gulp plugin. Use a module like `rimraf` within a task instead.
+  - Wrapping every possible thing just for the sake of wrapping it will pollute the ecosystem with low quality plugins that don't make sense within the gulp paradigm.
+  - gulp plugins are for file-based operations! If you find yourself shoehorning a complex process into streams just make a normal node module instead.
+  - A good example of a gulp plugin would be something like gulp-coffee. The coffee-script module does not work with Vinyl out of the box, so we wrap it to add this functionality and abstract away pain points to make it work well within gulp.
 1. Your plugin should only do **one thing**, and do it well.
   - Avoid config options that make your plugin do completely different tasks
+  - For example: A JS minification plugin should not have an option that adds a header as well
 1. Your plugin shouldn't do things that other plugins are responsible for
   - It should not concat, [gulp-concat](https://github.com/wearefractal/gulp-concat) does that
   - It should not add headers, [gulp-header](https://github.com/godaddy/gulp-header) does that
   - It should not add footers, [gulp-footer](https://github.com/godaddy/gulp-footer) does that
   - If it's a common but optional use case, document that your plugin is often used with another plugin
-  - If it's an internal requirement, make use of existing plugins by piping your plugin's output to them
+  - Make use of other plugins within your plugin! This reduces the amount of code you have to write and ensures a stable ecosystem.
 1. Your plugin **must be tested**
   - Testing a gulp plugin is easy, you don't even need gulp to test it
   - Look at other plugins for examples
 1. Add `gulpplugin` as a keyword in your `package.json` so you show up on our search
 1. Do not throw errors inside a stream
   - Instead, you should emit it as an **error** event.
-  - If you encounter an error **outside** the stream, such as invalid configuration, you may throw it.
+  - If you encounter an error **outside** the stream, such as invalid configuration while creating the stream, you may throw it.
 1. Prefix any errors with the name of your plugin
   - For example: `gulp-replace: Cannot do regexp replace on a stream`
   - Use gulp-util's [PluginError](https://github.com/gulpjs/gulp-util#new-pluginerrorpluginname-message-options) class to make this easy
@@ -30,9 +34,11 @@
     - Do not buffer a stream to shoehorn your plugin to work with streams. This will cause horrible things to happen.
 1. Do not pass the `file` object downstream until you are done with it
 1. Use [`file.clone()`](https://github.com/wearefractal/vinyl#clone) when cloning a file or creating a new one based on a file. 
-1. Use modules from our [recommended modules page](recommended-modules.md) to make your life and ours easier
-1. Do NOT require `gulp` as a dependency or peerDependency
-  - There is no reason you should have to do this and it will cause problems if you do
+1. Use modules from our [recommended modules page](recommended-modules.md) to make your life easier
+1. Do NOT require `gulp` as a dependency or peerDependency in your plugin
+  - Using gulp to test or automate your plugin workflow is totally cool, just make sure you put it as a devDependency
+  - Requiring gulp as a dependency of your plugin means that anyone who installs your plugin is also installing a new gulp, and it's entire dependency tree.
+  - There is no reason you should be using gulp within your actual plugin code. If you find yourself doing this open an issue so we can help you out.
 
 ## Why are these guidelines so strict?
 
