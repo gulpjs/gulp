@@ -8,6 +8,7 @@
   - For example: deleting a folder does not need to be a gulp plugin. Use a module like `rimraf` within a task instead.
   - Wrapping every possible thing just for the sake of wrapping it will pollute the ecosystem with low quality plugins that don't make sense within the gulp paradigm.
   - gulp plugins are for file-based operations! If you find yourself shoehorning a complex process into streams just make a normal node module instead.
+  - A good example of a gulp plugin would be something like gulp-coffee. The coffee-script module does not work with Vinyl out of the box, so we wrap it to add this functionality and abstract away pain points to make it work well within gulp.
 1. Your plugin should only do **one thing**, and do it well.
   - Avoid config options that make your plugin do completely different tasks
   - For example: A JS minification plugin should not have an option that adds a header as well
