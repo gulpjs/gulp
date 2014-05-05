@@ -5,7 +5,7 @@ expand, the time to bundle it slowly gets longer and longer. While it might
 start at 1 second, it's possible to be waiting 30 seconds for your project to
 build on particularly large projects.
 
-That's why [substack](http://github/substack) wrote
+That's why [substack](http://github.com/substack) wrote
 [watchify](http://github.com/substack/watchify), a persistent browserify
 bundler that watches files for changes and *only rebuilds what it needs to*.
 This way, that first build might still take 30 seconds, but subsequent builds
