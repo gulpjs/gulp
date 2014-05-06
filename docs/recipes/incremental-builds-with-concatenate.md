@@ -10,14 +10,14 @@ var gulp = require('gulp'),
     footer = require('gulp-footer'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
-    cache = require('gulp-cached'),
+    cached = require('gulp-cached'),
     remember = require('gulp-remember');
 
 var scriptsGlob = 'src/**/*.js';
 
 gulp.task('scripts', function () {
   return gulp.src(scriptsGlob)
-      .pipe(cache('scripts')) // only pass through changed files
+      .pipe(cached('scripts')) // only pass through changed files
       .pipe(jshint()) // do special things to the changed files...
       .pipe(header('(function () {')) // e.g. jshinting ^^^
       .pipe(footer('})();')) // and some kind of module wrapping
