@@ -40,29 +40,30 @@ var gulp = require('gulp');
 var clean = require('gulp-clean');
 
 gulp.task('clean', function() {
-    // return the stream as the completion hint, telling the calling process that this stream has completed.  
+    // return the stream as the completion hint, 
+    // which the calling process can use to know that stream has completed.  
     return gulp.src('./output').pipe(clean());
 });
 
-gulp.task('process-templates', ['clean'], function() {
+gulp.task('templates', ['clean'], function() {
     var stream = gulp.src(['src/templates/*.hbs'])
-    // concatentation, minification, etc.
+    // do some concatentation, minification, etc.
     .pipe(gulp.dest('output/templates/'));
     return stream;
 });
 
-gulp.task('process-styles', ['clean'], function() {
+gulp.task('styles', ['clean'], function() {
     var stream = gulp.src(['src/styles/app.less'])
-    // hinting, minification, etc.
+    // do some hinting, minification, etc.
     .pipe(gulp.dest('output/css/app.css'));
     return stream;
 });
 
 
-gulp.task('build', ['process-templates', 'process-styles']);
+gulp.task('build', ['templates', 'styles']);
     // templates and styles will be processed in parallel
     // clean will be gauranteed to complete before either start.  
-    // clean will not be run twice, even though it is called as a dependancy twice
+    // clean will not be run twice, even though it is called as a dependency twice.  
     
 gulp.task('default', ['build']);
 ```
