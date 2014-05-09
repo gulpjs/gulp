@@ -37,12 +37,14 @@ Another Example, which returns the stream instead of using a callback:
 
 ```javascript
 var gulp = require('gulp');
-var clean = require('gulp-clean');
+var clean = require('gulp-rimraf');
 
 gulp.task('clean', function() {
     // return the stream as the completion hint, 
     // which the calling process can use to know that stream has completed.  
-    return gulp.src('./output').pipe(clean());
+    return gulp.src('./output', { read: false })
+    .pipe(rimraf());
+    
 });
 
 gulp.task('templates', ['clean'], function() {
