@@ -41,7 +41,7 @@ var rimraf = require('gulp-rimraf'); //rm -rf
 
 gulp.task('clean', function() {
     // return the stream as the completion hint, 
-    // which the calling process can use to know that stream has completed.  
+    // which the calling task(s) can use to know that this task has completed.  
     return gulp.src('./output', { read: false })
     .pipe(rimraf());
     
