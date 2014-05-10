@@ -67,7 +67,6 @@ function handleArguments(env) {
     gutil.log('Working directory changed to', chalk.magenta(tildify(env.cwd)));
   }
 
-  var gulpFile = require(env.configPath);
   gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
 
   var gulpInst = require(env.modulePath);
@@ -75,15 +74,15 @@ function handleArguments(env) {
 
   process.nextTick(function() {
     if (tasksFlag) {
-      return logTasks(gulpFile, gulpInst);
+      return logTasks(env.configPath, gulpInst);
     }
     gulpInst.start.apply(gulpInst, toRun);
   });
 }
 
-function logTasks(gulpFile, localGulp) {
+function logTasks(configPath, localGulp) {
   var tree = taskTree(localGulp.tasks);
-  tree.label = 'Tasks for ' + chalk.magenta(gulpFile);
+  tree.label = 'Tasks for ' + chalk.magenta(tildify(configPath));
   archy(tree).split('\n').forEach(function(v) {
     if (v.trim().length === 0) return;
     gutil.log(v);
