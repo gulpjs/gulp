@@ -12,7 +12,8 @@ var taskTree = require('../lib/taskTree');
 
 var cli = new Liftoff({
   name: 'gulp',
-  completions: require('../lib/completion')
+  completions: require('../lib/completion'),
+  extensions: require('interpret').jsVariants
 });
 
 cli.on('require', function(name) {

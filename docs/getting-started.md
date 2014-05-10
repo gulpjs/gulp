@@ -42,4 +42,4 @@ For API specific documentation you can check out the [documentation for that](AP
 
 ## Available Plugins
 
-The gulp community is growing, with new plugins being added daily. See the [main website](http://gulpjs.com/) for a complete list.
+The gulp community is growing, with new plugins being added daily. See the [main website](http://gulpjs.com/plugins/) for a complete list.

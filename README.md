@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://gulpjs.com">
-    <img height="194" width="98" src="https://raw.github.com/gulpjs/artwork/master/gulp.png"/>
+    <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png"/>
   </a>
 </p>
 
@@ -64,10 +64,10 @@ gulp.task('default', ['scripts', 'images', 'watch']);
 
 We recommend these plugins:
 
-- [gulp-changed](https://github.com/sindresorhus/gulp-changed)
-- [gulp-cached](https://github.com/wearefractal/gulp-cached)
-- [gulp-newer](https://github.com/tschaub/gulp-newer)
-- [gulp-remember](https://github.com/ahaurw01/gulp-remember)
+- [gulp-changed](https://github.com/sindresorhus/gulp-changed) - only pass through changed files
+- [gulp-cached](https://github.com/wearefractal/gulp-cached) - in-memory file cache, not for operation on sets of files 
+- [gulp-remember](https://github.com/ahaurw01/gulp-remember) - pairs nicely with gulp-cached
+- [gulp-newer](https://github.com/tschaub/gulp-newer) - pass through newer source files only, supports many:1 source:dest
 
 ## Want to contribute?
 
