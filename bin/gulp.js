@@ -12,6 +12,8 @@ var taskTree = require('../lib/taskTree');
 
 var cli = new Liftoff({
   name: 'gulp',
+  configName: '{g,G}ulpfile',
+  configPathFlag: 'gulpfile',
   completions: require('../lib/completion'),
   extensions: require('interpret').jsVariants
 });
