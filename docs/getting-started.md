@@ -22,7 +22,7 @@ gulp.task('default', function() {
 });
 ```
 
-### 4. Run gulp
+### 4. Run gulp:
 
 ```
 gulp
@@ -30,15 +30,15 @@ gulp
 
 The default task will run and do nothing.
 
-To run individual tasks, use `gulp <task> <othertask>`
+To run individual tasks, use `gulp <task> <othertask>`.
 
 ## Where do I go now?
 
-You have an empty gulpfile and everything is installed. How do you REALLY get started? Check out the [recipes and articles section](README.md#articles-and-recipes) for more information
+You have an empty gulpfile and everything is installed. How do you REALLY get started? Check out the [recipes and articles section](README.md#articles-and-recipes) for more information.
 
 ## .src, .watch, .dest, CLI args - How do I use these things?
 
-For API specific documentation you can check out the [documentation for that](API.md)
+For API specific documentation you can check out the [documentation for that](API.md).
 
 ## Available Plugins
 
