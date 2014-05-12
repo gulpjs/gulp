@@ -22,6 +22,8 @@ gulp.task('default', function() {
 });
 ```
 
+Note: You can also use `Gulpfile.js` as the file name.
+
 ### 4. Run gulp
 
 ```
