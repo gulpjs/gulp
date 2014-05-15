@@ -10,3 +10,7 @@ Add `eval "$(gulp --completion=bash)"` to `~/.bashrc`.
 ## Zsh
 
 Add `eval "$(gulp --completion=zsh)"` to `~/.zshrc`.
+
+## Powershell
+
+Add `Invoke-Expression ((gulp --completion=powershell) -join [System.Environment]::NewLine)` to `$PROFILE`.
