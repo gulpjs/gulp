@@ -1,0 +1,28 @@
+# Copyright (c) 2014 Jason Jarrett
+#
+# Tab completion for the `gulp`
+#
+# Usage:
+#
+# To enable powershell <tab> completion for gulp, add the following line (minus the
+# leading #, which is the powershell comment character) to your $PROFILE file:
+#
+
+$gulp_completion_Process = {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameter)
+
+    (node -e "try { var gulp = require('gulp'); require('./gulpfile'); console.log(Object.keys(gulp.tasks).join(' ')); } catch (e) {}").split(' ') | 
+        where { $_.startswith($commandName) }
+        Sort-Object | 
+        foreach { New-Object System.Management.Automation.CompletionResult $_, $_, 'ParameterValue', ('{0}' -f $_) }
+}
+
+if (-not $global:options) {
+    $global:options = @{
+        CustomArgumentCompleters = @{};
+        NativeArgumentCompleters = @{}
+    }
+}
+
+$global:options['NativeArgumentCompleters']['gulp'] = $gulp_completion_Process
+$function:tabexpansion2 = $function:tabexpansion2 -replace 'End\r\n{','End { if ($null -ne $options) { $options += $global:options} else {$options = $global:options}'
