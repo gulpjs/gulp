@@ -40,7 +40,7 @@ describe('gulp-prefixer', function() {
         // buffer the contents to make sure it got prepended to
         file.contents.pipe(es.wait(function(err, data) {
           // check the contents
-          assert.equal(data, 'prependthistostreamwiththosecontents');
+          assert.equal(data, 'prependthisstreamwiththosecontents');
           done();
         }));
       });
