@@ -4,8 +4,10 @@
 #
 # Usage:
 #
-# To enable powershell <tab> completion for gulp, add the following line (minus the
-# leading #, which is the powershell comment character) to your $PROFILE file:
+# To enable powershell <tab> completion for gulp, add the below to your $PROFILE
+#
+#     Invoke-Expression ((gulp --completion=powershell) -join [System.Environment]::NewLine)
+#
 #
 
 $gulp_completion_Process = {
