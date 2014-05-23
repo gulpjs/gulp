@@ -4,10 +4,10 @@
 // npm install gulp event-stream
 
 var gulp = require('gulp');
-var es = require('event-stream');
+var merge = require('merge-stream');
 
 gulp.task('test', function(cb) {
-    return es.merge(
+    return merge(
         gulp.src('bootstrap/js/*.js')
             .pipe(gulp.dest('public/bootstrap')),
         gulp.src('jquery.cookie/jquery.cookie.js')
