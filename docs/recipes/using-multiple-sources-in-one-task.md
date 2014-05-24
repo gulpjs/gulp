@@ -1,7 +1,7 @@
 # Using multiple sources in one task
 
 ```js
-// npm install gulp event-stream
+// npm install gulp merge-stream
 
 var gulp = require('gulp');
 var merge = require('merge-stream');
