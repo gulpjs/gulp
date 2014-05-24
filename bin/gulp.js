@@ -10,6 +10,11 @@ var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var taskTree = require('../lib/taskTree');
 
+var silentFlag = process.argv.slice(2).indexOf('--silent') !== -1;
+if (silentFlag) {
+  gutil.log = function(){};
+}
+
 var cli = new Liftoff({
   name: 'gulp',
   completions: require('../lib/completion'),
@@ -32,6 +37,7 @@ function handleArguments(env) {
   var cliPackage = require('../package');
   var versionFlag = argv.v || argv.version;
   var tasksFlag = argv.T || argv.tasks;
+  var tasksSimpleFlag = argv['tasks-simple'];
   var tasks = argv._;
   var toRun = tasks.length ? tasks : ['default'];
 
@@ -69,9 +75,13 @@ function handleArguments(env) {
   }
 
   var gulpFile = require(env.configPath);
+  var gulpInst = require(env.modulePath);
   gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
 
-  var gulpInst = require(env.modulePath);
+  if (tasksSimpleFlag) {
+    console.log(Object.keys(gulpInst.tasks).join('\n'));
+    process.exit(0);
+  }
   logEvents(gulpInst);
 
   process.nextTick(function() {
