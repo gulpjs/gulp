@@ -38,14 +38,14 @@ $gulp_completion_Process = {
 	if($cache.ContainsKey($sha1gulpFile)){
 		$tasks = $cache[$sha1gulpFile];
 	} else {
-		$tasks = (node -e "try { var gulp = require('gulp'); require('./gulpfile'); console.log(Object.keys(gulp.tasks).join(' ')); } catch (e) {}").split(' ');
+		$tasks = (gulp --tasks-simple).split('\n');
 		$cache[$sha1gulpFile] = $tasks;
 	}
 
 
-    $tasks | 
+    $tasks |
         where { $_.startswith($commandName) }
-        Sort-Object | 
+        Sort-Object |
         foreach { New-Object System.Management.Automation.CompletionResult $_, $_, 'ParameterValue', ('{0}' -f $_) }
 }
 

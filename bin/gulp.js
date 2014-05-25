@@ -8,15 +8,30 @@ var semver = require('semver');
 var archy = require('archy');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
+var interpret = require('interpret');
+var completion = require('../lib/completion');
 var taskTree = require('../lib/taskTree');
 
 var cli = new Liftoff({
   name: 'gulp',
-  completions: require('../lib/completion'),
-  extensions: require('interpret').jsVariants
+  completions: completion,
+  extensions: interpret.jsVariants
 });
 
+// parse those args m8
+var argv = cli.argv;
+var cliPackage = require('../package');
+var versionFlag = argv.v || argv.version;
+var tasksFlag = argv.T || argv.tasks;
+var tasks = argv._;
+var toRun = tasks.length ? tasks : ['default'];
+// this is a hold-over until we have a better logging system
+// with log levels
+var simpleTasksFlag = argv['tasks-simple'];
+var shouldLog = !argv.silent && !simpleTasksFlag;
+
 cli.on('require', function(name) {
+  if (!shouldLog) return;
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
@@ -27,14 +42,6 @@ cli.on('requireFail', function(name) {
 cli.launch(handleArguments);
 
 function handleArguments(env) {
-
-  var argv = env.argv;
-  var cliPackage = require('../package');
-  var versionFlag = argv.v || argv.version;
-  var tasksFlag = argv.T || argv.tasks;
-  var tasks = argv._;
-  var toRun = tasks.length ? tasks : ['default'];
-
   if (versionFlag) {
     gutil.log('CLI version', cliPackage.version);
     if (env.modulePackage) {
@@ -55,7 +62,7 @@ function handleArguments(env) {
   }
 
   // check for semver difference between cli and local installation
-  if (semver.gt(cliPackage.version, env.modulePackage.version)) {
+  if (semver.gt(cliPackage.version, env.modulePackage.version) && shouldLog) {
     gutil.log(chalk.red('Warning: gulp version mismatch:'));
     gutil.log(chalk.red('Running gulp is', cliPackage.version));
     gutil.log(chalk.red('Local gulp (installed in gulpfile dir) is', env.modulePackage.version));
@@ -65,16 +72,25 @@ function handleArguments(env) {
   // we let them chdir as needed
   if (process.cwd() !== env.cwd) {
     process.chdir(env.cwd);
-    gutil.log('Working directory changed to', chalk.magenta(tildify(env.cwd)));
+    if (shouldLog) {
+      gutil.log('Working directory changed to', chalk.magenta(tildify(env.cwd)));
+    }
   }
 
-  var gulpFile = require(env.configPath);
-  gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
+  // this is what actually loads up the gulpfile
+  require(env.configPath);
+
+  if (shouldLog) {
+    gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
+  }
 
   var gulpInst = require(env.modulePath);
   logEvents(gulpInst);
 
   process.nextTick(function() {
+    if (simpleTasksFlag) {
+      return logTasksSimple(env, gulpInst);
+    }
     if (tasksFlag) {
       return logTasks(env, gulpInst);
     }
@@ -91,6 +107,10 @@ function logTasks(env, localGulp) {
   });
 }
 
+function logTasksSimple(env, localGulp) {
+  console.log(Object.keys(localGulp.tasks).join('\n').trim());
+}
+
 // format orchestrator errors
 function formatError(e) {
   if (!e.err) return e.message;
@@ -100,6 +120,8 @@ function formatError(e) {
 
 // wire up logging events
 function logEvents(gulpInst) {
+
+  // total hack due to fucked up error management in orchestrator
   gulpInst.on('err', function(){});
 
   gulpInst.on('task_start', function(e) {

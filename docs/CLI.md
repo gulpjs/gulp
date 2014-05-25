@@ -9,6 +9,7 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 - `--gulpfile <gulpfile path>` manually set path of gulpfile. Useful if you have multiple gulpfiles. This will set the CWD to the gulpfile directory as well.
 - `--cwd <dir path>` manually set the CWD. The search for the gulpfile, as well as the relativity of all requires will be from here.
 - `-T` or `--tasks` will display the task dependency tree for the loaded gulpfile
+- `--tasks-simple` will display a plaintext list of tasks for the loaded gulpfile
 - `--color` will force gulp and gulp plugins to display colors even when no color support is detected
 - `--no-color` will force gulp and gulp plugins to not display colors even when color support is detected
 
@@ -18,10 +19,4 @@ Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` 
 
 ### Compilers
 
-You can use any language you want for your gulpfile. You will have to specify the language module name so the CLI can load it (and its associated extensions) before attempting to find your gulpfile. Make sure you have this module installed accessible by the folder you are running the CLI in.
-
-Example:
-
-```
-gulp dosomething --require coffee-script/register
-```
+You can find a list of supported languages at [interpret](https://github.com/tkellen/node-interpret#jsvariants). If you would like to add support for a new language send pull request/open issues there.

@@ -1,7 +1,7 @@
 {
   "name": "gulp",
   "description": "The streaming build system",
-  "version": "3.6.3",
+  "version": "3.7.0",
   "homepage": "http://gulpjs.com",
   "repository": "gulpjs/gulp",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
@@ -28,7 +28,7 @@
     "chalk": "^0.4.0",
     "deprecated": "^0.0.1",
     "gulp-util": "^2.2.0",
-    "liftoff": "^0.10.0",
+    "liftoff": "https://github.com/contra/node-liftoff/archive/patch-2.tar.gz",
     "orchestrator": "^0.3.0",
     "pretty-hrtime": "^0.2.0",
     "semver": "^2.2.1",
@@ -46,7 +46,7 @@
     "q": "^1.0.0",
     "jshint": "^2.5.0",
     "graceful-fs": "^2.0.1",
-    "mkdirp": "^0.3.5"
+    "mkdirp": "^0.5.0"
   },
   "scripts": {
     "test": "jshint && mocha --reporter spec",

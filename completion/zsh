@@ -16,10 +16,8 @@
 
 # Enable zsh autocompletion.
 function _gulp_completion() {
-  # Grap tasks
-  compls=$(node -e "try { var gulp = require('gulp'); require('./gulpfile'); console.log(Object.keys(gulp.tasks).join(' ')); } catch (e) {}")
-  # Trim whitespace.
-  compls=$(echo "$compls" | sed -e 's/^ *//g' -e 's/ *$//g')
+  # Grab tasks
+  compls=$(gulp --tasks-simple)
   completions=(${=compls})
   compadd -- $completions
 }

@@ -19,9 +19,7 @@ function _gulp_completions() {
   # The currently-being-completed word.
   local cur="${COMP_WORDS[COMP_CWORD]}"
   #Grab tasks
-  local compls=$(node -e "try { var gulp = require('gulp'); require('./gulpfile'); console.log(Object.keys(gulp.tasks).join(' ')); } catch (e) {}")
-  # Trim whitespace.
-  compls=$(echo "$compls" | sed -e 's/^ *//g' -e 's/ *$//g')
+  local compls=$(gulp --tasks-simple)
   # Tell complete what stuff to show.
   COMPREPLY=($(compgen -W "$compls" -- "$cur"))
 }

@@ -36,7 +36,6 @@ gulp updates can be found on the following twitters:
 
 - [@wearefractal](https://twitter.com/wearefractal)
 - [@eschoff](https://twitter.com/eschoff)
-- [@funkytek](https://twitter.com/funkytek)
 - [@gulpjs](https://twitter.com/gulpjs)
 
 ## Does gulp have an IRC channel?
