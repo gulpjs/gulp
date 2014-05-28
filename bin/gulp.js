@@ -10,6 +10,7 @@ var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
 var completion = require('../lib/completion');
+var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
 
 var cli = new Liftoff({
@@ -19,7 +20,6 @@ var cli = new Liftoff({
 });
 
 // parse those args m8
-var argv = cli.argv;
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
 var tasksFlag = argv.T || argv.tasks;
@@ -39,7 +39,12 @@ cli.on('requireFail', function(name) {
   gutil.log(chalk.red('Failed to load external module'), chalk.magenta(name));
 });
 
-cli.launch(handleArguments);
+cli.launch({
+  cwd: argv.cwd,
+  configPath: argv.gulpfile,
+  require: argv.require,
+  completion: argv.completion
+}, handleArguments);
 
 function handleArguments(env) {
   if (versionFlag) {
