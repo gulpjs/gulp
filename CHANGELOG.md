@@ -5,7 +5,7 @@
 - update vinyl-fs to remove BOM from UTF8 files
 - add --tasks-simple flag for plaintext task listings
 - updated autocomplete scripts to be simpler and use new --tasks-simple flag
-- added support for transpilers via liftoff 0.10 and interpret
+- added support for transpilers via liftoff 0.11 and interpret
 
 # 3.5.5
 
