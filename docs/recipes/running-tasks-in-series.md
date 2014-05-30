@@ -37,21 +37,18 @@ Another Example, which returns the stream instead of using a callback:
 
 ```javascript
 var gulp = require('gulp');
-var rimraf = require('gulp-rimraf'); //rm -rf 
+var rimraf = require('rimraf'); //rm -rf 
 
-gulp.task('clean', function() {
-    // return the stream as the completion hint, 
-    // which the calling task(s) can use to know that this task has completed.  
-    return gulp.src('./output', { read: false })
-    .pipe(rimraf());
-    
+gulp.task('clean', function(cb) {
+    rimraf('./output', cb);
 });
 
 gulp.task('templates', ['clean'], function() {
     var stream = gulp.src(['src/templates/*.hbs'])
     // do some concatentation, minification, etc.
     .pipe(gulp.dest('output/templates/'));
-    return stream;
+    return stream; // return the stream as the completion hint
+
 });
 
 gulp.task('styles', ['clean'], function() {
