@@ -9,7 +9,7 @@
 
 # Usage:
 #
-# To enable bash <tab> completion for grunt, add the following line (minus the
+# To enable bash <tab> completion for gulp, add the following line (minus the
 # leading #, which is the bash comment character) to your ~/.bashrc file:
 #
 # eval "$(gulp --completion=bash)"
