@@ -6,6 +6,7 @@
 - add --tasks-simple flag for plaintext task listings
 - updated autocomplete scripts to be simpler and use new --tasks-simple flag
 - added support for transpilers via liftoff 0.11 and interpret
+  - just npm install your compiler (coffee-script for example) and it will work out of the box
 
 # 3.5.5
 

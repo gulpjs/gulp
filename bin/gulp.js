@@ -25,11 +25,13 @@ var versionFlag = argv.v || argv.version;
 var tasksFlag = argv.T || argv.tasks;
 var tasks = argv._;
 var toRun = tasks.length ? tasks : ['default'];
+
 // this is a hold-over until we have a better logging system
 // with log levels
 var simpleTasksFlag = argv['tasks-simple'];
 var shouldLog = !argv.silent && !simpleTasksFlag;
 
+// wire up a few err listeners to liftoff
 cli.on('require', function(name) {
   if (!shouldLog) return;
   gutil.log('Requiring external module', chalk.magenta(name));
@@ -46,6 +48,7 @@ cli.launch({
   completion: argv.completion
 }, handleArguments);
 
+// the actual logic
 function handleArguments(env) {
   if (versionFlag) {
     gutil.log('CLI version', cliPackage.version);
