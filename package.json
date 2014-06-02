@@ -50,7 +50,7 @@
     "mkdirp": "^0.5.0"
   },
   "scripts": {
-    "test": "jshint && mocha --reporter spec",
+    "test": "jshint --exclude node_modules . && mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "engineStrict": true,
