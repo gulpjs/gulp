@@ -45,23 +45,23 @@ gulp.task('clean', function(cb) {
 
 gulp.task('templates', ['clean'], function() {
     var stream = gulp.src(['src/templates/*.hbs'])
-    // do some concatentation, minification, etc.
-    .pipe(gulp.dest('output/templates/'));
+        // do some concatenation, minification, etc.
+        .pipe(gulp.dest('output/templates/'));
     return stream; // return the stream as the completion hint
 
 });
 
 gulp.task('styles', ['clean'], function() {
     var stream = gulp.src(['src/styles/app.less'])
-    // do some hinting, minification, etc.
-    .pipe(gulp.dest('output/css/app.css'));
+        // do some hinting, minification, etc.
+        .pipe(gulp.dest('output/css/app.css'));
     return stream;
 });
 
 
 gulp.task('build', ['templates', 'styles']);
-    // templates and styles will be processed in parallel
-    // clean will be gauranteed to complete before either start.  
+    // templates and styles will be processed in parallel.
+    // clean will be guaranteed to complete before either start.  
     // clean will not be run twice, even though it is called as a dependency twice.  
     
 gulp.task('default', ['build']);
