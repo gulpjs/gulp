@@ -133,6 +133,8 @@ function logEvents(gulpInst) {
   gulpInst.on('err', function(){});
 
   gulpInst.on('task_start', function(e) {
+    // TODO: batch these
+    // so when 5 tasks start at once it only logs one time with all 5
     gutil.log('Starting', "'" + chalk.cyan(e.task) + "'...");
   });
 

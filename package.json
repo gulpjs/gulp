@@ -46,7 +46,7 @@
     "rimraf": "^2.2.5",
     "q": "^1.0.0",
     "jshint": "^2.5.0",
-    "graceful-fs": "^2.0.1",
+    "graceful-fs": "^3.0.0",
     "mkdirp": "^0.5.0"
   },
   "scripts": {
