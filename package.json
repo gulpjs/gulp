@@ -38,19 +38,21 @@
     "vinyl-fs": "^0.2.0"
   },
   "devDependencies": {
+    "coveralls": "^2.7.0",
+    "graceful-fs": "^3.0.0",
+    "istanbul": "^0.2.3",
+    "jshint": "^2.5.0",
+    "jshint-stylish": "^0.2.0",
+    "mkdirp": "^0.5.0",
     "mocha": "^1.17.0",
     "mocha-lcov-reporter": "^0.0.1",
-    "coveralls": "^2.7.0",
-    "istanbul": "^0.2.3",
-    "should": "^4.0.0",
-    "rimraf": "^2.2.5",
     "q": "^1.0.0",
-    "jshint": "^2.5.0",
-    "graceful-fs": "^3.0.0",
-    "mkdirp": "^0.5.0"
+    "rimraf": "^2.2.5",
+    "should": "^4.0.0"
   },
   "scripts": {
-    "test": "jshint --exclude node_modules . && mocha --reporter spec",
+    "lint": "jshint lib bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules",
+    "test": "npm run-script lint && mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "engineStrict": true,
