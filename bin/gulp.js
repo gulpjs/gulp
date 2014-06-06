@@ -10,7 +10,7 @@ var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
 var completion = require('../lib/completion');
-var argv = require('minimist')(process.argv.slice(2));
+var argv = gutil.env;
 var taskTree = require('../lib/taskTree');
 
 var cli = new Liftoff({
