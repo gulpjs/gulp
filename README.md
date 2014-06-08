@@ -35,7 +35,7 @@ var paths = {
 };
 
 // Not all tasks need to use streams
-// Gulp is just another node program and you can use all packages available on npm
+// A gulpfile is just another node program and you can use all packages available on npm
 gulp.task('clean', function(cb){
   rimraf('build/', cb);
 });
