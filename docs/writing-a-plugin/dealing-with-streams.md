@@ -71,7 +71,7 @@ The above plugin can be used like this:
 var gulp = require('gulp');
 var gulpPrefixer = require('gulp-prefixer');
 
-gulp.src('files/**/*.js')
+gulp.src('files/**/*.js', { buffer: false })
   .pipe(gulpPrefixer('prepended string'))
   .pipe(gulp.dest('/modified-files/'));
 ```
