@@ -22,6 +22,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
 * [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
 * [Getting started with gulp (by @markgdyr)](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
+* [A cheatsheet for gulp](https://github.com/osscafe/gulp-cheatsheet)
 * [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
 * [Inspiration (slides) about why gulp was made](http://slid.es/contra/gulp)
 
