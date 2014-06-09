@@ -25,16 +25,13 @@ function gulpPrefixer(prefixText) {
 
   // Creating a stream through which each file will pass
   var stream = through.obj(function(file, enc, callback) {
-    if (file.isNull()) {
-      // Do nothing if no contents
-    }
-
-    else if (file.isBuffer()) {
-      file.contents = Buffer.concat([prefixText, file.contents]);
-    }
-
-    else if (file.isStream()) {
+    if (file.isStream()) {
       this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
+      return callback();
+    }
+
+    if (file.isBuffer()) {
+      file.contents = Buffer.concat([prefixText, file.contents]);
     }
 
     // make sure the file goes through the next gulp plugin

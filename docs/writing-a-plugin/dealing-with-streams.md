@@ -34,15 +34,12 @@ function gulpPrefixer(prefixText) {
 
   // Creating a stream through which each file will pass
   var stream = through.obj(function(file, enc, callback) {
-    if (file.isNull()) {
-      // Do nothing if no contents
-    }
-
-    else if (file.isBuffer()) {
+    if (file.isBuffer()) {
       this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
+      return callback();
     }
 
-    else if (file.isStream()) {
+    if (file.isStream()) {
       // define the streamer that will transform the content
       var streamer = prefixStream(prefixText);
       // catch errors from the streamer and emit a gulp plugin error
