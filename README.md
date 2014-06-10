@@ -27,12 +27,20 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 
+var rimraf = require('rimraf');
+
 var paths = {
   scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
   images: 'client/img/**/*'
 };
 
-gulp.task('scripts', function() {
+// Not all tasks need to use streams
+// A gulpfile is just another node program and you can use all packages available on npm
+gulp.task('clean', function(cb){
+  rimraf('build/', cb);
+});
+
+gulp.task('scripts', ['clean'], function() {
   // Minify and copy all JavaScript (except vendor scripts)
   return gulp.src(paths.scripts)
     .pipe(coffee())
@@ -42,7 +50,7 @@ gulp.task('scripts', function() {
 });
 
 // Copy all static images
-gulp.task('images', function() {
+gulp.task('images', ['clean'], function() {
  return gulp.src(paths.images)
     // Pass in options to the task
     .pipe(imagemin({optimizationLevel: 5}))
