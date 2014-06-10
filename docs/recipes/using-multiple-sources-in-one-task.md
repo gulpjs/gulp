@@ -20,7 +20,7 @@ gulp.task('test', function(cb) {
 gulp.src will emit files in the order they were added:
 
 ```js
-// npm install gulp gulp-concat streamqueue
+// npm install gulp gulp-concat
 
 var gulp = require('gulp');
 var concat = require('gulp-concat');
