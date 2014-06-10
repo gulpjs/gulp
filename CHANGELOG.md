@@ -1,5 +1,23 @@
 # gulp changelog
 
+# 3.8.0
+
+- update vinyl-fs
+  - gulp.src is now a writable passthrough, this means you can use it to add files to your pipeline at any point
+  - gulp.dest can now take a function to determine the folder
+
+This is now possible!
+
+```js
+gulp.src('lib/*.js')
+  .pipe(uglify())
+  .pipe(gulp.src('styles/*.css'))
+  .pipe(gulp.dest(function(file){
+    // i dont know, you can do something cool here
+    return 'build/whatever';
+  }));
+```
+
 # 3.7.0
 
 - update vinyl-fs to remove BOM from UTF8 files
