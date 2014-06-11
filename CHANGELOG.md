@@ -13,7 +13,7 @@ gulp.src('lib/*.js')
   .pipe(uglify())
   .pipe(gulp.src('styles/*.css'))
   .pipe(gulp.dest(function(file){
-    // i dont know, you can do something cool here
+    // I don't know, you can do something cool here
     return 'build/whatever';
   }));
 ```
