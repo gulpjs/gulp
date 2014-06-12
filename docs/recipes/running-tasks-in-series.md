@@ -1,4 +1,4 @@
-# Running tasks in series
+# Running tasks in series, i.e. Task Dependency
 
 By default, tasks run with maximum concurrency -- e.g. it launches all the tasks at once and waits for nothing.
 If you want to create a series where tasks run in a particular order, you need to do two things:
@@ -13,7 +13,7 @@ done or return a promise or stream that the engine should wait to resolve or end
 
 2. In task "two" you add a hint telling the engine that it depends on completion of the first task.
 
-So this example would look like this:
+So this example would look like:
 
 ```javascript
 var gulp = require('gulp');
@@ -32,3 +32,38 @@ gulp.task('two', ['one'], function() {
 gulp.task('default', ['one', 'two']);
 // alternatively: gulp.task('default', ['two']);
 ```
+
+Another Example, which returns the stream instead of using a callback:  
+
+```javascript
+var gulp = require('gulp');
+var rimraf = require('rimraf'); //rm -rf 
+
+gulp.task('clean', function(cb) {
+    rimraf('./output', cb);
+});
+
+gulp.task('templates', ['clean'], function() {
+    var stream = gulp.src(['src/templates/*.hbs'])
+        // do some concatenation, minification, etc.
+        .pipe(gulp.dest('output/templates/'));
+    return stream; // return the stream as the completion hint
+
+});
+
+gulp.task('styles', ['clean'], function() {
+    var stream = gulp.src(['src/styles/app.less'])
+        // do some hinting, minification, etc.
+        .pipe(gulp.dest('output/css/app.css'));
+    return stream;
+});
+
+
+gulp.task('build', ['templates', 'styles']);
+    // templates and styles will be processed in parallel.
+    // clean will be guaranteed to complete before either start.  
+    // clean will not be run twice, even though it is called as a dependency twice.  
+    
+gulp.task('default', ['build']);
+```
+
