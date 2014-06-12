@@ -1,4 +1,4 @@
-## Maintain Directory Structure
+# Maintain Directory Structure
 
 If you would like to read only a few files and maintain their structure while processing (example a Zip task), you need to pass `{base: '.'}` as the second argumnet to `gulp.src()`.
 
