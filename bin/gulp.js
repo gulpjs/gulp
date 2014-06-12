@@ -83,6 +83,7 @@ function handleArguments(env) {
 
   // chdir before requiring gulpfile to make sure
   // we let them chdir as needed
+  var cwd=process.cwd(); 
   if (process.cwd() !== env.cwd) {
     process.chdir(env.cwd);
     if (shouldLog) {
@@ -101,6 +102,7 @@ function handleArguments(env) {
   }
 
   var gulpInst = require(env.modulePath);
+  gulpInst.cwd = cwd; // the directory where user invoke gulp
   logEvents(gulpInst);
 
   process.nextTick(function () {
