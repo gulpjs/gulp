@@ -1,6 +1,6 @@
 # Maintain Directory Structure
 
-If you would like to read only a few files and maintain their structure while processing (example a Zip task), you need to pass `{base: '.'}` as the second argumnet to `gulp.src()`.
+If you would like to zip only a few files and maintain their structure, you need to pass `{base: '.'}` as the second argumnet to `gulp.src()`.
 
 For example, if you have a directory structure like 
 
