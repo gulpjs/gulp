@@ -62,7 +62,7 @@ function handleArguments(env) {
   }
 
   if (helpFlag) {
-    console.log('usage: gulp [-v|--version] [--require=<module path>]');
+    console.log('Usage: gulp [-v|--version] [--require=<module path>]');
     console.log('            [--gulpfile=<path>] [--cwd=<dir>] [-T|--tasks]');
     console.log('            [--tasks-simple] [--color|--no-color]');
     console.log('            <task> [<othertask>]');
