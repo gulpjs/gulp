@@ -62,12 +62,13 @@ function handleArguments(env) {
   }
 
   if (helpFlag) {
-      console.log('usage: gulp [-v|--version] [--require=<module path>]');
-      console.log('            [--gulpfile=<path>] [--cwd=<dir>] [-T|--tasks]');
-      console.log('            [--tasks-simple] [--color|--no-color] <task> [<othertask>]');
-      console.log('');
-      console.log('General help: https://github.com/gulpjs/gulp/tree/master/docs');
-      console.log('Homepage:     http://gulpjs.com/');
+    console.log('usage: gulp [-v|--version] [--require=<module path>]');
+    console.log('            [--gulpfile=<path>] [--cwd=<dir>] [-T|--tasks]');
+    console.log('            [--tasks-simple] [--color|--no-color]');
+    console.log('            <task> [<othertask>]');
+    console.log('');
+    console.log('Help:     https://github.com/gulpjs/gulp/tree/master/docs');
+    console.log('Homepage: http://gulpjs.com/');
 
       process.exit(0);
   }
