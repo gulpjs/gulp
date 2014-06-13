@@ -27,7 +27,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 
-var rimraf = require('rimraf');
+var clean = require('gulp-clean');
 
 var paths = {
   scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
@@ -36,8 +36,10 @@ var paths = {
 
 // Not all tasks need to use streams
 // A gulpfile is just another node program and you can use all packages available on npm
-gulp.task('clean', function(cb){
-  rimraf('build/', cb);
+
+gulp.task('clean', function () {
+  return gulp.src('build/', {read: false})
+    .pipe(clean());
 });
 
 gulp.task('scripts', ['clean'], function() {
@@ -51,7 +53,7 @@ gulp.task('scripts', ['clean'], function() {
 
 // Copy all static images
 gulp.task('images', ['clean'], function() {
- return gulp.src(paths.images)
+  return gulp.src(paths.images)
     // Pass in options to the task
     .pipe(imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
@@ -73,7 +75,7 @@ gulp.task('default', ['scripts', 'images', 'watch']);
 We recommend these plugins:
 
 - [gulp-changed](https://github.com/sindresorhus/gulp-changed) - only pass through changed files
-- [gulp-cached](https://github.com/wearefractal/gulp-cached) - in-memory file cache, not for operation on sets of files 
+- [gulp-cached](https://github.com/wearefractal/gulp-cached) - in-memory file cache, not for operation on sets of files
 - [gulp-remember](https://github.com/ahaurw01/gulp-remember) - pairs nicely with gulp-cached
 - [gulp-newer](https://github.com/tschaub/gulp-newer) - pass through newer source files only, supports many:1 source:dest
 
