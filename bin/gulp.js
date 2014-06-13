@@ -22,6 +22,7 @@ var cli = new Liftoff({
 // parse those args m8
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
+var helpFlag = argv.h || argv.help;
 var tasksFlag = argv.T || argv.tasks;
 var tasks = argv._;
 var toRun = tasks.length ? tasks : ['default'];
@@ -58,6 +59,17 @@ function handleArguments(env) {
       gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
+  }
+
+  if (helpFlag) {
+      console.log('usage: gulp [-v|--version] [--require=<module path>]');
+      console.log('            [--gulpfile=<path>] [--cwd=<dir>] [-T|--tasks]');
+      console.log('            [--tasks-simple] [--color|--no-color] <task> [<othertask>]');
+      console.log('');
+      console.log('General help: https://github.com/gulpjs/gulp/tree/master/docs');
+      console.log('Homepage:     http://gulpjs.com/');
+
+      process.exit(0);
   }
 
   if (!env.modulePath) {
