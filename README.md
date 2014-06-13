@@ -27,18 +27,22 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 
-var rimraf = require('rimraf');
+var clean = require('gulp-clean');
 
 var paths = {
   scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
   images: 'client/img/**/*'
 };
 
-// Not all tasks need to use streams
+// Not all tasks need to use streams,
+// But as you wanna build files after clean old files, you should use gulp-clean, 
 // A gulpfile is just another node program and you can use all packages available on npm
-gulp.task('clean', function(cb){
-  rimraf('build/', cb);
+
+gulp.task('clean', function () {
+	return gulp.src('build/', {read: false})
+		.pipe(clean());
 });
+
 
 gulp.task('scripts', ['clean'], function() {
   // Minify and copy all JavaScript (except vendor scripts)
