@@ -70,7 +70,7 @@ function handleArguments(env) {
     console.log('Help:     https://github.com/gulpjs/gulp/tree/master/docs');
     console.log('Homepage: http://gulpjs.com/');
 
-      process.exit(0);
+    process.exit(0);
   }
 
   if (!env.modulePath) {
