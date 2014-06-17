@@ -35,7 +35,8 @@
     "pretty-hrtime": "^0.2.0",
     "semver": "^2.2.1",
     "tildify": "^0.2.0",
-    "vinyl-fs": "^0.3.0"
+    "vinyl-fs": "^0.3.0",
+    "gaze": "0.5.1"
   },
   "devDependencies": {
     "coveralls": "^2.7.0",
