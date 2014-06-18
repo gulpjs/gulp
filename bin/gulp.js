@@ -13,6 +13,10 @@ var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
 
+// set env var for ORIGINAL cwd
+// before anything touches it
+process.env.INIT_CWD = process.cwd();
+
 var cli = new Liftoff({
   name: 'gulp',
   completions: completion,

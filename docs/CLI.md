@@ -13,6 +13,8 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 - `--color` will force gulp and gulp plugins to display colors even when no color support is detected
 - `--no-color` will force gulp and gulp plugins to not display colors even when color support is detected
 
+The CLI adds process.env.INIT_CWD which is the original cwd it was launched from
+
 ### Tasks
 
 Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.

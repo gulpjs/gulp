@@ -1,5 +1,9 @@
 # gulp changelog
 
+# 3.8.1
+
+- the CLI now adds process.env.INIT_CWD which is the original cwd it was launched from
+
 # 3.8.0
 
 - update vinyl-fs
