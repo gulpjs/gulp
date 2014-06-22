@@ -33,14 +33,14 @@ gulp.task('default', ['one', 'two']);
 // alternatively: gulp.task('default', ['two']);
 ```
 
-Another Example, which returns the stream instead of using a callback:  
+Another Example, which returns the stream instead of using a callback:
 
 ```javascript
 var gulp = require('gulp');
-var rimraf = require('rimraf'); //rm -rf 
+var del = require('del'); // rm -rf
 
 gulp.task('clean', function(cb) {
-    rimraf('./output', cb);
+    del(['output'], cb);
 });
 
 gulp.task('templates', ['clean'], function() {
@@ -61,9 +61,9 @@ gulp.task('styles', ['clean'], function() {
 
 gulp.task('build', ['templates', 'styles']);
     // templates and styles will be processed in parallel.
-    // clean will be guaranteed to complete before either start.  
-    // clean will not be run twice, even though it is called as a dependency twice.  
-    
+    // clean will be guaranteed to complete before either start.
+    // clean will not be run twice, even though it is called as a dependency twice.
+
 gulp.task('default', ['build']);
 ```
 
