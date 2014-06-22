@@ -5,7 +5,7 @@
 [Writing a Plugin](README.md) > Guidelines
 
 1. Your plugin should not do something that can be done easily with an existing node module
-  - For example: deleting a folder does not need to be a gulp plugin. Use a module like `rimraf` within a task instead.
+  - For example: deleting a folder does not need to be a gulp plugin. Use a module like [del](https://github.com/sindresorhus/del) within a task instead.
   - Wrapping every possible thing just for the sake of wrapping it will pollute the ecosystem with low quality plugins that don't make sense within the gulp paradigm.
   - gulp plugins are for file-based operations! If you find yourself shoehorning a complex process into streams just make a normal node module instead.
   - A good example of a gulp plugin would be something like gulp-coffee. The coffee-script module does not work with Vinyl out of the box, so we wrap it to add this functionality and abstract away pain points to make it work well within gulp.
@@ -33,7 +33,7 @@
   - If file.contents is a Stream and you don't support that just emit an error
     - Do not buffer a stream to shoehorn your plugin to work with streams. This will cause horrible things to happen.
 1. Do not pass the `file` object downstream until you are done with it
-1. Use [`file.clone()`](https://github.com/wearefractal/vinyl#clone) when cloning a file or creating a new one based on a file. 
+1. Use [`file.clone()`](https://github.com/wearefractal/vinyl#clone) when cloning a file or creating a new one based on a file.
 1. Use modules from our [recommended modules page](recommended-modules.md) to make your life easier
 1. Do NOT require `gulp` as a dependency or peerDependency in your plugin
   - Using gulp to test or automate your plugin workflow is totally cool, just make sure you put it as a devDependency
