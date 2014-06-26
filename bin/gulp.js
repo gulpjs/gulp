@@ -142,10 +142,17 @@ function formatError(e) {
   if (!e.err) {
     return e.message;
   }
-  if (e.err.message) {
-    return e.err.message;
+
+  if (typeof e.err === 'string') {
+    return new Error(e.err).stack;
   }
-  return JSON.stringify(e.err);
+
+  // PluginError
+  if (typeof e.err.showStack === 'boolean') {
+    return e.err.toString();
+  } else {
+    return e.err.stack;
+  }
 }
 
 // wire up logging events
@@ -173,10 +180,10 @@ function logEvents(gulpInst) {
     var time = prettyTime(e.hrDuration);
     gutil.log(
       '\'' + chalk.cyan(e.task) + '\'',
-      'errored after',
-      chalk.magenta(time),
-      chalk.red(msg)
+      chalk.red('errored after'),
+      chalk.magenta(time)
     );
+    gutil.log(msg);
   });
 
   gulpInst.on('task_not_found', function (err) {
