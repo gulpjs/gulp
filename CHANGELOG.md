@@ -1,5 +1,9 @@
 # gulp changelog
 
+# 3.8.3
+
+- Tweak error formatting to work better with PluginErrors and strings
+
 # 3.8.2
 
 - add manpage generation
