@@ -43,11 +43,12 @@ var toRun = tasks.length ? tasks : ['default'];
 var simpleTasksFlag = argv['tasks-simple'];
 var shouldLog = !argv.silent && !simpleTasksFlag;
 
+if (!shouldLog) {
+  gutil.log = function(){};
+}
+
 // wire up a few err listeners to liftoff
 cli.on('require', function (name) {
-  if (!shouldLog) {
-    return;
-  }
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
@@ -87,7 +88,7 @@ function handleArguments(env) {
   }
 
   // check for semver difference between cli and local installation
-  if (semver.gt(cliPackage.version, env.modulePackage.version) && shouldLog) {
+  if (semver.gt(cliPackage.version, env.modulePackage.version)) {
     gutil.log(chalk.red('Warning: gulp version mismatch:'));
     gutil.log(chalk.red('Global gulp is', cliPackage.version));
     gutil.log(chalk.red('Local gulp is', env.modulePackage.version));
@@ -97,20 +98,15 @@ function handleArguments(env) {
   // we let them chdir as needed
   if (process.cwd() !== env.cwd) {
     process.chdir(env.cwd);
-    if (shouldLog) {
-      gutil.log(
-        'Working directory changed to',
-        chalk.magenta(tildify(env.cwd))
-      );
-    }
+    gutil.log(
+      'Working directory changed to',
+      chalk.magenta(tildify(env.cwd))
+    );
   }
 
   // this is what actually loads up the gulpfile
   require(env.configPath);
-
-  if (shouldLog) {
-    gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
-  }
+  gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
 
   var gulpInst = require(env.modulePath);
   logEvents(gulpInst);

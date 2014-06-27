@@ -1,5 +1,10 @@
 # gulp changelog
 
+# 3.8.5
+
+- simplify --silent and --tasks-simple
+- fix bug in autocomplete where errors would come out
+
 # 3.8.4
 
 - CLI will use exit code 1 on exit when any task fails during the lifetime of the process
