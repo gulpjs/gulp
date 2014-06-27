@@ -23,6 +23,14 @@ var cli = new Liftoff({
   extensions: interpret.jsVariants
 });
 
+// exit with 0 or 1
+var failed = false;
+process.once('exit', function(code) {
+  if (code === 0 && failed) {
+    process.exit(1);
+  }
+});
+
 // parse those args m8
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
@@ -159,7 +167,9 @@ function formatError(e) {
 function logEvents(gulpInst) {
 
   // total hack due to fucked up error management in orchestrator
-  gulpInst.on('err', function () {});
+  gulpInst.on('err', function () {
+    failed = true;
+  });
 
   gulpInst.on('task_start', function (e) {
     // TODO: batch these
