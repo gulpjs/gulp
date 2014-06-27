@@ -1,5 +1,10 @@
 # gulp changelog
 
+# 3.8.4
+
+- CLI will use exit code 1 on exit when any task fails during the lifetime of the process
+
+
 # 3.8.3
 
 - Tweak error formatting to work better with PluginErrors and strings
