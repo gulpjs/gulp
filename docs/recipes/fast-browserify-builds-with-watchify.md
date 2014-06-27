@@ -16,9 +16,10 @@ use [vinyl-source-stream](http://github.com/hughsk/vinyl-source-stream) to pipe
 the bundle stream into your gulp pipeline.
 
 ``` javascript
-var gulp = require('gulp')
-var source = require('vinyl-source-stream')
-var watchify = require('watchify')
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var source = require('vinyl-source-stream');
+var watchify = require('watchify');
 
 gulp.task('watch', function() {
   var bundler = watchify('./src/index.js');
@@ -29,9 +30,13 @@ gulp.task('watch', function() {
   bundler.transform('brfs')
 
   bundler.on('update', rebundle)
-
+  
   function rebundle () {
     return bundler.bundle()
+      // log errors if they happen
+      .on('error', function(e) {
+        gutil.log('Browserify Error', e);
+      })
       .pipe(source('bundle.js'))
       .pipe(gulp.dest('./dist'))
   }
