@@ -95,9 +95,14 @@ Tasks can be made asynchronous if its `fn` does one of the following:
 ##### Accept a callback
 
 ```javascript
-gulp.task('somename', function(cb) {
-  // Do stuff
-  cb(err);
+// Run a command in a shell 
+var exec = require('child_process').exec;
+gulp.task('jekyll', function(cb) {
+  // Build Jekyl
+  exec('jekyll build', function(err) { 
+    if (err) return cb(err); //return error
+    cb(); // finished task
+  });
 });
 ```
 
