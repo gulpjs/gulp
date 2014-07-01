@@ -52,7 +52,7 @@ gulp.task('scripts', ['clean'], function() {
 
 // Copy all static images
 gulp.task('images', ['clean'], function() {
- return gulp.src(paths.images)
+  return gulp.src(paths.images)
     // Pass in options to the task
     .pipe(imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
