@@ -115,7 +115,6 @@ gulp.task('write-versions', function(){
   //.pipe( tap(function(file){ /* do something with the file contents here */ }) )
     .pipe( gulp.dest('./output') )
     .on('end', function(){
-      console.log('end');
       deferred.resolve();
     });
   });
