@@ -35,6 +35,7 @@
     "orchestrator": "^0.3.0",
     "pretty-hrtime": "^0.2.0",
     "semver": "^2.2.1",
+    "shell-completion": "^0.0.3",
     "tildify": "^0.2.0",
     "vinyl-fs": "^0.3.0"
   },
@@ -56,7 +57,8 @@
     "prepublish": "marked-man --name gulp docs/CLI.md > gulp.1",
     "lint": "jshint lib bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules",
     "test": "npm run-script lint && mocha --reporter spec",
-    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "postinstall": "install-completion bash completion/bash && install-completion link zsh completion/zsh"
   },
   "engineStrict": true,
   "engines": {
