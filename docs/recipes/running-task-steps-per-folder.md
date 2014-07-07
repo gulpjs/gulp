@@ -17,7 +17,7 @@ and so on, you need to know a little more NodeJS and event streams.
 ``` javascript
 var fs = require('fs');
 var path = require('path');
-var es = require('event-stream');
+var merge = require('merge-stream');
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
@@ -49,7 +49,7 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest(scriptsPath));
    });
 
-   return es.concat.apply(null, tasks);
+   return merge(tasks);
 });
 ```
 
@@ -57,4 +57,3 @@ A few notes with this:
 
 - folders.map - executes the function once per folder, and returns the async stream
 - es.concat - combines the streams and ends only when all streams emitted end
-- the call to .apply(null, args) is needed as es.concat expects arguments not an array
