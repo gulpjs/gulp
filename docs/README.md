@@ -25,6 +25,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 * [A cheatsheet for gulp](https://github.com/osscafe/gulp-cheatsheet)
 * [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
 * [Inspiration (slides) about why gulp was made](http://slid.es/contra/gulp)
+* [Building With Gulp](http://www.smashingmagazine.com/2014/06/11/building-with-gulp/)
 
 ## License
 
