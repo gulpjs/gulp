@@ -48,7 +48,7 @@ var gulp          = require('gulp'),
     concat        = require('gulp-concat'),
     size          = require('gulp-size'),
     path          = require('path'),
-    Q             = require('q');
+    es            = require('event-stream');
 
 var memory = {};  //  we'll keep our assets in memory
 
@@ -84,15 +84,10 @@ gulp.task('write-versions', function(){
   //  we store all the different version file names in an array
   var availableVersions = Object.keys(memory.versions),
       //  we make an array to store all the stream promises
-      streamPromises = [];
+      streams = [];
 
   availableVersions
   .forEach(function(v){
-
-    //  make a promise for that version-stream
-    var deferred = Q.defer();
-    //  add it to the promises array
-    streamPromises.push(deferred);
 
         //  make a new stream with fake file name
     var stream = source('final.' + v ),
@@ -100,6 +95,8 @@ gulp.task('write-versions', function(){
         fileContents = memory['libs.concat.js'] +
           //  we add the version's data
           '\n' + memory.versions[v];
+
+    streams.push(stream);
 
     //  write the file contents to the stream
     stream.write(fileContents);
@@ -113,13 +110,10 @@ gulp.task('write-versions', function(){
     //  transform the raw data into the stream, into a vinyl object/file
     .pipe( vinylBuffer() )
   //.pipe( tap(function(file){ /* do something with the file contents here */ }) )
-    .pipe( gulp.dest('./output') )
-    .on('end', function(){
-      deferred.resolve();
-    });
+    .pipe( gulp.dest('./output') );
   });
 
-  return streamPromises;
+  return es.merge.apply(this, streams);
 
 });
 
