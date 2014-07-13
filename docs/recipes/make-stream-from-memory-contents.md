@@ -82,19 +82,19 @@ gulp.task('load-versions', function(){
 gulp.task('write-versions', function(){
 
   //  we store all the different version file names in an array
-  var availableVersions = Object.keys(memory.versions),
-      //  we make an array to store all the stream promises
-      streams = [];
+  var availableVersions = Object.keys(memory.versions);
+  //  we make an array to store all the stream promises
+  var streams = [];
 
   availableVersions
   .forEach(function(v){
 
         //  make a new stream with fake file name
-    var stream = source('final.' + v ),
-        //  we load the data from the concatenated libs
-        fileContents = memory['libs.concat.js'] +
-          //  we add the version's data
-          '\n' + memory.versions[v];
+    var stream = source('final.' + v );
+    //  we load the data from the concatenated libs
+    var fileContents = memory['libs.concat.js'] +
+        //  we add the version's data
+        '\n' + memory.versions[v];
 
     streams.push(stream);
 
