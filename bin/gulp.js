@@ -157,6 +157,8 @@ function formatError(e) {
   } else {
     return e.err.stack;
   }
+
+  return String(e.err);
 }
 
 // wire up logging events
