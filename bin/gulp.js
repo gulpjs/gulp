@@ -147,18 +147,18 @@ function formatError(e) {
     return e.message;
   }
 
-  if (typeof e.err === 'string') {
-    return new Error(e.err).stack;
-  }
-
   // PluginError
   if (typeof e.err.showStack === 'boolean') {
     return e.err.toString();
-  } else {
+  }
+
+  // normal error
+  if (e.err.stack) {
     return e.err.stack;
   }
 
-  return String(e.err);
+  // unknown (string, number, etc.)
+  return new Error(String(e.err)).stack;
 }
 
 // wire up logging events
