@@ -23,7 +23,7 @@ app/
 
 ... you can easily serve files from the `app` directory and have all browsers reload when any of them change with the following:
 
-```
+```js
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 
@@ -51,7 +51,7 @@ var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 
 gulp.task('sass', function () {
-  gulp.src('scss/styles.scss')
+  return gulp.src('scss/styles.scss')
     .pipe(sass())
     .pipe(gulp.dest('css'))
     .pipe(reload({stream:true}));
