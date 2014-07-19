@@ -65,8 +65,7 @@ module.exports = inst;
 /**************************************************************
 Upgrade: gulp pipe condition
 /*************************************************************/
-(function() {
-  var gulp = inst;
+(function(gulp) {
   var src = gulp.src;
   gulp.src = function(){
     var res = src.apply(gulp, arguments);
@@ -84,4 +83,4 @@ Upgrade: gulp pipe condition
     }(res));
     return res;
   };
-}());
+}(inst));
