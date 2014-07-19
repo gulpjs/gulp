@@ -45,5 +45,5 @@ Yes, come chat with us in #gulpjs on [Freenode].
 [Writing a gulp plugin]: writing-a-plugin/README.md
 [gulp introduction slideshow]: http://slid.es/contra/gulp
 [Freenode]: http://freenode.net/
-[search-gulp-plugins]: http://gratimax.github.io/search-gulp-plugins/
+[search-gulp-plugins]: http://gulpjs.com/plugins/
 [npm plugin search]: https://npmjs.org/browse/keyword/gulpplugin
