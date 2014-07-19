@@ -74,7 +74,7 @@ function gulpPrefixer(prefixText) {
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
-  var stream = through.obj(function(file, enc, callback) {
+  return through.obj(function(file, enc, callback) {
     if (file.isNull()) {
        // Do nothing if no contents
     }
@@ -86,13 +86,11 @@ function gulpPrefixer(prefixText) {
         file.contents = file.contents.pipe(prefixStream(prefixText));
     }
 
-    this.push(file);
-    return callback();
+    callback(null, file);
 
   });
 
-  // returning the file stream
-  return stream;
+
 };
 
 // Exporting the plugin main function
