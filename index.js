@@ -67,20 +67,20 @@ Upgrade: gulp pipe condition
 /*************************************************************/
 (function(gulp) {
   var src = gulp.src;
-  gulp.src = function(){
-    var res = src.apply(gulp, arguments);
-    (function(res){
-      var args = arguments;
+  gulp.src = function(globs, options){
+    var res = src.apply(gulp, [globs, options]);
+    var injector = function(res){
       var pipe = res.pipe;
-      res.pipe = function(cond){
-        if(cond === null){
+      res.pipe = function(fn){
+        if(fn === null){
           return res;
         }
-        res = pipe.apply(res, arguments);
-        args.callee(res);
+        res = pipe.apply(res, [fn]);
+        injector(res);
         return res;
       };
-    }(res));
+    };
+    injector(res);
     return res;
   };
 }(inst));
