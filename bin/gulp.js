@@ -164,7 +164,7 @@ function formatError(e) {
 // wire up logging events
 function logEvents(gulpInst) {
 
-  // total hack due to fucked up error management in orchestrator
+  // total hack due to poor error management in orchestrator
   gulpInst.on('err', function () {
     failed = true;
   });
