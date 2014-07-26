@@ -19,10 +19,13 @@ the bundle stream into your gulp pipeline.
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
+var browserify = require('browserify');
 var watchify = require('watchify');
 
 gulp.task('watch', function() {
-  var bundler = watchify('./src/index.js');
+  var bundle = browserify({ cache: {}, packageCache: {}, fullPaths: true });
+  bundle.add('./src/index.js')
+  var bundler = watchify(bundle);
 
   // Optionally, you can apply transforms
   // and other configuration options on the
