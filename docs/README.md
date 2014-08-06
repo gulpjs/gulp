@@ -27,6 +27,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 * [Inspiration (slides) about why gulp was made](http://slid.es/contra/gulp)
 * [Building With Gulp](http://www.smashingmagazine.com/2014/06/11/building-with-gulp/)
 * [Gulp - The Basics (screencast)](https://www.youtube.com/watch?v=dwSLFai8ovQ)
+* [Get started with gulp (video series)](http://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
 
 ## License
 
