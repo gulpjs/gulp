@@ -29,7 +29,7 @@ gulp adds two additional options in addition to the [options supported by node-g
 Type: `Boolean`
 Default: `true`
 
-Setting this to `false` will return `file.contents` as a stream and not buffer files. This is useful when working with large files. **Note:** Plugins may not implement support for streams.
+Setting this to `false` will return `file.contents` as a stream and not buffer files. This is useful when working with large files. **Note:** Plugins might not implement support for streams.
 
 #### options.read
 Type: `Boolean`
