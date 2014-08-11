@@ -6,7 +6,7 @@
 * [Make stream from buffer (memory contents)](make-stream-from-memory-buffer.md)
 * [Mocha test-runner with gulp](mocha-test-runner-with-gulp.md)
 * [Only pass through changed files](only-pass-through-changed-files.md)
-* [Pass parameters from the command line](pass-params-from-cli.md)
+* [Pass parameters from the command line](pass-arguments-from-cli.md)
 * [Rebuild only files that change](rebuild-only-files-that-change.md)
 * [Generating a file per folder](running-task-steps-per-folder.md)
 * [Running tasks in series](running-tasks-in-series.md)

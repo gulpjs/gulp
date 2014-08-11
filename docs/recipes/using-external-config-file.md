@@ -1,10 +1,10 @@
 # Using external config file
-## bonus: keeping those tasks DRY
-## bonus2: config.json can be used by another task runner, like `Grunt`
 
----
+Beneficial because it's keeping tasks DRY and config.json can be used by another task runner, like `grunt`.
 
-`config.json`
+-
+
+###### `config.json`
 
 ```json
 {
@@ -25,13 +25,13 @@
 }
 ```
 
----
+-
 
-`gulpfile.js`
+###### `gulpfile.js`
 
 ```js
-// npm install gulp gulp-uglify
-var gulp   = require('gulp');
+// npm install --save-dev gulp gulp-uglify
+var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var config = require('./config.json');
 
@@ -46,4 +46,3 @@ gulp.task('dry', function() {
   doStuff(config.mobile);
 });
 ```
-

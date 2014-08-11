@@ -1,12 +1,11 @@
-# Server with live-reloading and CSS Injection.
+# Server with live-reloading and CSS injection
 
-With [BrowserSync](http://browsersync.io) and gulp, you can easily create a development server that is accessible to any device on the same WIFI network. BrowserSync
-also has live-reload built in, so there's nothing else to configure.
+With [BrowserSync](http://browsersync.io) and gulp, you can easily create a development server that is accessible to any device on the same WiFi network. BrowserSync also has live-reload built in, so there's nothing else to configure.
 
 First install the module:
 
-```bash
-$ npm install browser-sync --save-dev
+```sh
+$ npm install --save-dev browser-sync
 ```
 
 Then, considering the following file structure...
@@ -25,10 +24,10 @@ app/
 
 ```js
 var browserSync = require('browser-sync');
-var reload      = browserSync.reload;
+var reload = browserSync.reload;
 
-// Watch Files For Changes & Reload
-gulp.task('serve', function () {
+// watch files for changes and reload
+gulp.task('serve', function() {
   browserSync({
     server: {
       baseDir: 'app'
@@ -40,25 +39,25 @@ gulp.task('serve', function () {
 
 ```
 
-### + CSS pre-processors
 
-A common use-case is to reload CSS files after they've been pre-processed. Using SASS as an example, this is how you can instruct
-browsers to reload CSS without doing a full-page refresh.
+## + CSS pre-processors
+
+A common use-case is to reload CSS files after they've been pre-processed. Using Sass as an example, this is how you can instruct browsers to reload the CSS without doing a full-page refresh.
 
 ```js
-var sass        = require("gulp-ruby-sass");
+var sass = require('gulp-ruby-sass');
 var browserSync = require('browser-sync');
-var reload      = browserSync.reload;
+var reload = browserSync.reload;
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
   return gulp.src('scss/styles.scss')
     .pipe(sass())
     .pipe(gulp.dest('css'))
-    .pipe(reload({stream:true}));
+    .pipe(reload({ stream:true }));
 });
 
-// Watch Files For Changes & Reload
-gulp.task('serve', function () {
+// watch files for changes and reload
+gulp.task('serve', function() {
   browserSync({
     server: {
       baseDir: 'app'
@@ -69,7 +68,8 @@ gulp.task('serve', function () {
 });
 ```
 
-### Extras
 
-- Live reload, CSS injection and scroll/form syncing works seamlessly inside of [Browser Stack](http://www.browserstack.com/) Virtual machines.
+## Extras
+
+- Live reload, CSS injection and scroll/form syncing works seamlessly inside of [BrowserStack](http://www.browserstack.com/) virtual machines.
 - Set `tunnel: true` to view your local site at a public URL (complete with all BrowserSync features).

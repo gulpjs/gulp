@@ -8,9 +8,9 @@ var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 
 gulp.task('default', function() {
-    return gulp.src('./sass/*.scss')
-        .pipe(watch())
-        .pipe(sass())
-        .pipe(gulp.dest('./dist/'));
+  return gulp.src('sass/*.scss')
+    .pipe(watch())
+    .pipe(sass())
+    .pipe(gulp.dest('dist'));
 });
 ```

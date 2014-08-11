@@ -8,16 +8,16 @@ This is helpful for projects using a nested directory structure, such as:
   /layer2
 ```
 
-You can use the gulp CLI option `--cwd`
+You can use the gulp CLI option `--cwd`.
 
-From the `project/` directory
+From the `project/` directory:
 
-```bash
-gulp --cwd ./layer1/
+```sh
+gulp --cwd layer1
 ```
 
-If you only need to specify a cwd for a certain glob, you can use the `cwd` option on a [glob-stream](https://github.com/wearefractal/glob-stream)
+If you only need to specify a cwd for a certain glob, you can use the `cwd` option on a [glob-stream](https://github.com/wearefractal/glob-stream):
 
 ```js
-gulp.src('./some/dir/**/*.js', { cwd: './public' });
+gulp.src('./some/dir/**/*.js', { cwd: 'public' });
 ```
