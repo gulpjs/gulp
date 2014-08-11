@@ -1,3 +1,4 @@
+# Make stream from buffer (memory contents)
 
 Some times you may need to start a stream with files that their contents are in a variable and not in a physical file. In other words, how to start a 'gulp' stream without using `gulp.src()`.
 
