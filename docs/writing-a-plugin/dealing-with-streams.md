@@ -15,7 +15,7 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
-// Consts
+// consts
 const PLUGIN_NAME = 'gulp-prefixer';
 
 function prefixStream(prefixText) {
@@ -24,19 +24,19 @@ function prefixStream(prefixText) {
   return stream;
 }
 
-// Plugin level function(dealing with files)
+// plugin level function (dealing with files)
 function gulpPrefixer(prefixText) {
-
   if (!prefixText) {
-    throw new PluginError(PLUGIN_NAME, "Missing prefix text!");
+    throw new PluginError(PLUGIN_NAME, 'Missing prefix text!');
   }
+
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
-  // Creating a stream through which each file will pass
-  var stream = through.obj(function(file, enc, callback) {
+  // creating a stream through which each file will pass
+  var stream = through.obj(function(file, enc, cb) {
     if (file.isBuffer()) {
       this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
-      return callback();
+      return cb();
     }
 
     if (file.isStream()) {
@@ -51,14 +51,14 @@ function gulpPrefixer(prefixText) {
     // make sure the file goes through the next gulp plugin
     this.push(file);
     // tell the stream engine that we are done with this file
-    callback();
+    cb();
   });
 
   // returning the file stream
   return stream;
 };
 
-// Exporting the plugin main function
+// exporting the plugin main function
 module.exports = gulpPrefixer;
 ```
 
@@ -70,10 +70,10 @@ var gulpPrefixer = require('gulp-prefixer');
 
 gulp.src('files/**/*.js', { buffer: false })
   .pipe(gulpPrefixer('prepended string'))
-  .pipe(gulp.dest('/modified-files/'));
+  .pipe(gulp.dest('modified-files'));
 ```
 
 ## Some plugins using streams
 
 * [gulp-svgicons2svgfont](https://github.com/nfroidure/gulp-svgiconstosvgfont)
-* gulp-browserify (Soon)
+

@@ -5,17 +5,21 @@
 * [CLI documentation](CLI.md) - Learn how to call tasks and use compilers
 * [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
 
+
 ## FAQ
 
-See [the FAQ](FAQ.md) for the answers to commonly asked questions.
+See the [FAQ](FAQ.md) for the answers to commonly asked questions.
+
 
 ## Recipes
 
-The community has compiled guides on how to use gulp for common use cases. Check out the [recipes folder](recipes) for a full list.
+The community has written [recipes](recipes) common gulp use-cases.
+
 
 ## Still got questions?
 
 Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagged/gulp), or come chat with us in [#gulpjs](http://webchat.freenode.net/?channels=gulpjs) on [Freenode](http://freenode.net/).
+
 
 ## Articles
 * [Tagtree intro to gulp video](http://tagtree.tv/gulp)
@@ -28,6 +32,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 * [Building With Gulp](http://www.smashingmagazine.com/2014/06/11/building-with-gulp/)
 * [Gulp - The Basics (screencast)](https://www.youtube.com/watch?v=dwSLFai8ovQ)
 * [Get started with gulp (video series)](http://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
+
 
 ## License
 

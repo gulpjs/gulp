@@ -12,22 +12,22 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
-// Consts
+// consts
 const PLUGIN_NAME = 'gulp-prefixer';
 
-// Plugin level function(dealing with files)
+// plugin level function (dealing with files)
 function gulpPrefixer(prefixText) {
-
   if (!prefixText) {
-    throw new PluginError(PLUGIN_NAME, "Missing prefix text!");
+    throw new PluginError(PLUGIN_NAME, 'Missing prefix text!');
   }
+
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
-  // Creating a stream through which each file will pass
-  var stream = through.obj(function(file, enc, callback) {
+  // creating a stream through which each file will pass
+  var stream = through.obj(function(file, enc, cb) {
     if (file.isStream()) {
       this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
-      return callback();
+      return cb();
     }
 
     if (file.isBuffer()) {
@@ -36,17 +36,19 @@ function gulpPrefixer(prefixText) {
 
     // make sure the file goes through the next gulp plugin
     this.push(file);
+
     // tell the stream engine that we are done with this file
-    callback();
+    cb();
   });
 
   // returning the file stream
   return stream;
 };
 
-// Exporting the plugin main function
+// exporting the plugin main function
 module.exports = gulpPrefixer;
 ```
+
 The above plugin can be used like this:
 
 ```js
@@ -55,7 +57,7 @@ var gulpPrefixer = require('gulp-prefixer');
 
 gulp.src('files/**/*.js')
   .pipe(gulpPrefixer('prepended string'))
-  .pipe(gulp.dest('/modified-files/'));
+  .pipe(gulp.dest('modified-files'));
 ```
 
 ## Handling streams

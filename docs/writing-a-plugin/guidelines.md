@@ -56,7 +56,7 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
-// Consts
+// consts
 const PLUGIN_NAME = 'gulp-prefixer';
 
 function prefixStream(prefixText) {
@@ -65,19 +65,20 @@ function prefixStream(prefixText) {
   return stream;
 }
 
-// Plugin level function(dealing with files)
+// plugin level function (dealing with files)
 function gulpPrefixer(prefixText) {
-
   if (!prefixText) {
-    throw new PluginError(PLUGIN_NAME, "Missing prefix text!");
+    throw new PluginError(PLUGIN_NAME, 'Missing prefix text!');
   }
+
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
-  // Creating a stream through which each file will pass
-  var stream = through.obj(function(file, enc, callback) {
+  // creating a stream through which each file will pass
+  var stream = through.obj(function(file, enc, cb) {
     if (file.isNull()) {
-       // Do nothing if no contents
+       // do nothing if no contents
     }
+
     if (file.isBuffer()) {
         file.contents = Buffer.concat([prefixText, file.contents]);
     }
@@ -87,14 +88,14 @@ function gulpPrefixer(prefixText) {
     }
 
     this.push(file);
-    return callback();
 
+    return cb();
   });
 
   // returning the file stream
   return stream;
 };
 
-// Exporting the plugin main function
+// exporting the plugin main function
 module.exports = gulpPrefixer;
 ```

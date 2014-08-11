@@ -14,7 +14,7 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 - `--no-color` will force gulp and gulp plugins to not display colors even when color support is detected
 - `--silent` will disable all gulp logging
 
-The CLI adds process.env.INIT_CWD which is the original cwd it was launched from
+The CLI adds process.env.INIT_CWD which is the original cwd it was launched from.
 
 ### Tasks
 

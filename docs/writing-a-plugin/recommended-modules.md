@@ -20,5 +20,4 @@ Use [chalk](https://github.com/sindresorhus/chalk)
 
 Use [dateformat](https://github.com/felixge/node-dateformat)
 
-
 Display as `HH:MM:ss`

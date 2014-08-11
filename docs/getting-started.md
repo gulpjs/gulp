@@ -1,20 +1,20 @@
-## Getting Started
+# Getting Started
 
-### 1. Install gulp globally:
+#### 1. Install gulp globally:
 
-```
-npm install -g gulp
-```
-
-### 2. Install gulp in your project devDependencies:
-
-```
-npm install --save-dev gulp
+```sh
+$ npm install --global gulp
 ```
 
-### 3. Create a `gulpfile.js` at the root of your project:
+#### 2. Install gulp in your project devDependencies:
 
-```javascript
+```sh
+$ npm install --save-dev gulp
+```
+
+#### 3. Create a `gulpfile.js` at the root of your project:
+
+```js
 var gulp = require('gulp');
 
 gulp.task('default', function() {
@@ -22,10 +22,10 @@ gulp.task('default', function() {
 });
 ```
 
-### 4. Run gulp:
+#### 4. Run gulp:
 
-```
-gulp
+```sh
+$ gulp
 ```
 
 The default task will run and do nothing.
@@ -34,7 +34,7 @@ To run individual tasks, use `gulp <task> <othertask>`.
 
 ## Where do I go now?
 
-You have an empty gulpfile and everything is installed. How do you REALLY get started? Check out the [recipes and articles section](README.md#articles-and-recipes) for more information.
+You have an empty gulpfile and everything is installed. How do you REALLY get started? Check out the [recipes](recipes) and the [list of articles](README.md#articles) for more information.
 
 ## .src, .watch, .dest, CLI args - How do I use these things?
 

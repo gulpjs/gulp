@@ -2,13 +2,13 @@
 
 ### gulp.src(globs[, options])
 
-Takes a glob and represents a file structure. Can be piped to plugins.  
+Takes a glob and represents a file structure. Can be piped to plugins.
 
-```javascript
-gulp.src('./client/templates/*.jade')
-    .pipe(jade())
-    .pipe(minify())
-    .pipe(gulp.dest('./build/minified_templates'));
+```js
+gulp.src('client/templates/*.jade')
+  .pipe(jade())
+  .pipe(minify())
+  .pipe(gulp.dest('build/minified_templates'));
 ```
 
 `glob` refers to [node-glob syntax](https://github.com/isaacs/node-glob) or it can be a direct file path.
@@ -37,7 +37,6 @@ Default: `true`
 
 Setting this to `false` will return `file.contents` as null and not read the file at all.
 
-
 ### gulp.dest(path)
 
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.  Folders that don't exist will be created.
@@ -55,12 +54,11 @@ Type: `String`
 
 The path (folder) to write files to.
 
-
 ### gulp.task(name[, deps], fn)
 
 Define a task using [Orchestrator].
 
-```javascript
+```js
 gulp.task('somename', function() {
   // Do stuff
 });
@@ -75,14 +73,13 @@ Type: `Array`
 
 An array of tasks to be executed and completed before your task will run.
 
-```javascript
+```js
 gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
   // Do stuff
 });
 ```
 
-**Note:** Are your tasks running before the dependencies are complete?  Make sure your dependency tasks
-are correctly using the async run hints: take in a callback or return a promise or event stream.
+**Note:** Are your tasks running before the dependencies are complete?  Make sure your dependency tasks are correctly using the async run hints: take in a callback or return a promise or event stream.
 
 #### fn
 
@@ -95,12 +92,12 @@ Tasks can be made asynchronous if its `fn` does one of the following:
 ##### Accept a callback
 
 ```javascript
-// Run a command in a shell 
+// run a command in a shell
 var exec = require('child_process').exec;
 gulp.task('jekyll', function(cb) {
-  // Build Jekyl
-  exec('jekyll build', function(err) { 
-    if (err) return cb(err); //return error
+  // build Jekyll
+  exec('jekyll build', function(err) {
+    if (err) return cb(err); // return error
     cb(); // finished task
   });
 });
@@ -108,11 +105,11 @@ gulp.task('jekyll', function(cb) {
 
 ##### Return a stream
 
-```javascript
+```js
 gulp.task('somename', function() {
-  var stream = gulp.src('./client/**/*.js')
+  var stream = gulp.src('client/**/*.js')
     .pipe(minify())
-    .pipe(gulp.dest('/build'));
+    .pipe(gulp.dest('build'));
   return stream;
 });
 ```
@@ -125,7 +122,7 @@ var Q = require('q');
 gulp.task('somename', function() {
   var deferred = Q.defer();
 
-  // Do async stuff
+  // do async stuff
   setTimeout(function() {
     deferred.resolve();
   }, 1);
@@ -134,8 +131,7 @@ gulp.task('somename', function() {
 });
 ```
 
-**Note:** By default, tasks run with maximum concurrency -- e.g. it launches all the tasks at once and waits for nothing.
-If you want to create a series where tasks run in a particular order, you need to do two things:
+**Note:** By default, tasks run with maximum concurrency -- e.g. it launches all the tasks at once and waits for nothing. If you want to create a series where tasks run in a particular order, you need to do two things:
 
 - give it a hint to tell it when the task is done,
 - and give it a hint that a task depends on completion of another.
@@ -149,7 +145,7 @@ done or return a promise or stream that the engine should wait to resolve or end
 
 So this example would look like this:
 
-```javascript
+```js
 var gulp = require('gulp');
 
 // takes in a callback so the engine knows when it'll be done
@@ -188,10 +184,10 @@ Type: `Array`
 
 Names of task(s) to run when a file changes, added with `gulp.task()`
 
-```javascript
+```js
 var watcher = gulp.watch('js/**/*.js', ['uglify','reload']);
 watcher.on('change', function(event) {
-  console.log('File '+event.path+' was '+event.type+', running tasks...');
+  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 });
 ```
 
@@ -212,9 +208,9 @@ Type: `Function`
 
 Callback to be called on each change.
 
-```javascript
+```js
 gulp.watch('js/**/*.js', function(event) {
-  console.log('File '+event.path+' was '+event.type+', running tasks...');
+  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 });
 ```
 

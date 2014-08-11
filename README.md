@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://gulpjs.com">
-    <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png"/>
+    <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
 
@@ -19,9 +19,8 @@ For a Getting started guide, API docs, recipes, making a plugin, etc. see the [d
 
 This file is just a quick sample to give you a taste of what gulp does.
 
-```javascript
+```js
 var gulp = require('gulp');
-
 var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -69,7 +68,6 @@ gulp.task('watch', function() {
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'scripts', 'images']);
-
 ```
 
 ## Incremental Builds

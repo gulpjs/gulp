@@ -4,9 +4,11 @@
 
 [Writing a Plugin](README.md) > Testing
 
+
 ## Tooling
 
 Most plugins use [mocha](https://github.com/visionmedia/mocha) and [event-stream](https://github.com/dominictarr/event-stream) to help them test. The following examples will use these tools.
+
 
 ## Testing plugins for streaming mode
 
@@ -14,7 +16,7 @@ Most plugins use [mocha](https://github.com/visionmedia/mocha) and [event-stream
 var assert = require('assert');
 var es = require('event-stream');
 var File = require('vinyl');
-var prefixer = require('../index');
+var prefixer = require('../');
 
 describe('gulp-prefixer', function() {
   describe('in streaming mode', function() {
@@ -50,6 +52,7 @@ describe('gulp-prefixer', function() {
   });
 });
 ```
+
 
 ## Testing plugins for buffer mode
 
@@ -91,5 +94,7 @@ describe('gulp-prefixer', function() {
 });
 ```
 
+
 ## Sample tests
+
 * [gulp-cat](https://github.com/ben-eb/gulp-cat/blob/master/test.js)
