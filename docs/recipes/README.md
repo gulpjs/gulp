@@ -1,6 +1,7 @@
 # Recipes
 
 * [Combining streams to handle errors](combining-streams-to-handle-errors.md)
+* [Delete files and folders](delete-files-folder.md)
 * [Fast browserify builds with watchify](fast-browserify-builds-with-watchify.md)
 * [Incremental rebuilding, including operating on full file sets](incremental-builds-with-concatenate.md)
 * [Make stream from buffer (memory contents)](make-stream-from-memory-buffer.md)
