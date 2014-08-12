@@ -13,7 +13,7 @@ See the [FAQ](FAQ.md) for the answers to commonly asked questions.
 
 ## Recipes
 
-The community has written [recipes](recipes) common gulp use-cases.
+The community has written [recipes](recipes#recipes) for common gulp use-cases.
 
 
 ## Still got questions?
