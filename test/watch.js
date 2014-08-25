@@ -126,7 +126,7 @@ describe('gulp', function() {
         }, timeout);
 
         // it works if it calls the task
-        var watcher = gulp.watch(tempFile, {debounceDelay:timeout/2}, [task1,task2]);
+        var watcher = gulp.watch(tempFile, {debounceDelay:timeout/2}, gulp.parallel(task1, task2));
 
         // act: change file
         writeFileWait(tempFile, tempFileContent+' changed');
@@ -164,7 +164,7 @@ describe('gulp', function() {
         }, timeout);
 
         // it works if it calls the task
-        var watcher = gulp.watch(tempFile, [task1,task2]);
+        var watcher = gulp.watch(tempFile, gulp.parallel(task1,task2));
 
         // act: change file
         writeFileWait(tempFile, tempFileContent+' changed');

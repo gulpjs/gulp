@@ -17,7 +17,7 @@ Gulp.prototype.watch = function (glob, opt, fn) {
     opt = null;
   }
 
-  return vfs.watch(glob, opt, this.parallel(fn));
+  return vfs.watch(glob, opt, fn);
 };
 
 // let people use this class from our instance
