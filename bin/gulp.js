@@ -118,12 +118,21 @@ function handleArguments(env) {
     if (tasksFlag) {
       return logTasks(env, gulpInst);
     }
-    gulpInst.start.apply(gulpInst, toRun);
+    try {
+      // TODO: do we care about the error/result from calling this?
+      gulpInst.parallel(toRun)();
+    } catch (err) {
+      gutil.log(chalk.red(err.message));
+      gutil.log(
+        'Please check the documentation for proper gulpfile formatting'
+      );
+      process.exit(1);
+    }
   });
 }
 
 function logTasks(env, localGulp) {
-  var tree = taskTree(localGulp.tasks);
+  var tree = taskTree(localGulp.registry.tasks);
   tree.label = 'Tasks for ' + chalk.magenta(tildify(env.configPath));
   archy(tree)
     .split('\n')
@@ -143,62 +152,49 @@ function logTasksSimple(env, localGulp) {
 
 // format orchestrator errors
 function formatError(e) {
-  if (!e.err) {
+  if (!e.error) {
     return e.message;
   }
 
   // PluginError
-  if (typeof e.err.showStack === 'boolean') {
-    return e.err.toString();
+  if (typeof e.error.showStack === 'boolean') {
+    return e.error.toString();
   }
 
   // normal error
-  if (e.err.stack) {
-    return e.err.stack;
+  if (e.error.stack) {
+    return e.error.stack;
   }
 
   // unknown (string, number, etc.)
-  return new Error(String(e.err)).stack;
+  return new Error(String(e.error)).stack;
 }
 
 // wire up logging events
 function logEvents(gulpInst) {
 
-  // total hack due to poor error management in orchestrator
-  gulpInst.on('err', function () {
-    failed = true;
-  });
-
-  gulpInst.on('task_start', function (e) {
+  gulpInst.on('start', function (e) {
     // TODO: batch these
     // so when 5 tasks start at once it only logs one time with all 5
-    gutil.log('Starting', '\'' + chalk.cyan(e.task) + '\'...');
+    gutil.log('Starting', '\'' + chalk.cyan(e.name) + '\'...');
   });
 
-  gulpInst.on('task_stop', function (e) {
-    var time = prettyTime(e.hrDuration);
+  gulpInst.on('stop', function (e) {
+    var time = prettyTime(e.duration);
     gutil.log(
-      'Finished', '\'' + chalk.cyan(e.task) + '\'',
+      'Finished', '\'' + chalk.cyan(e.name) + '\'',
       'after', chalk.magenta(time)
     );
   });
 
-  gulpInst.on('task_err', function (e) {
+  gulpInst.on('error', function (e) {
     var msg = formatError(e);
-    var time = prettyTime(e.hrDuration);
+    var time = prettyTime(e.duration);
     gutil.log(
-      '\'' + chalk.cyan(e.task) + '\'',
+      '\'' + chalk.cyan(e.name) + '\'',
       chalk.red('errored after'),
       chalk.magenta(time)
     );
     gutil.log(msg);
-  });
-
-  gulpInst.on('task_not_found', function (err) {
-    gutil.log(
-      chalk.red('Task \'' + err.task + '\' is not in your gulpfile')
-    );
-    gutil.log('Please check the documentation for proper gulpfile formatting');
-    process.exit(1);
   });
 }
