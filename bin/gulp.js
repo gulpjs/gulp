@@ -2,16 +2,16 @@
 
 'use strict';
 var gutil = require('gulp-util');
-var prettyTime = require('pretty-hrtime');
 var chalk = require('chalk');
 var semver = require('semver');
-var archy = require('archy');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
 var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
-var taskTree = require('../lib/taskTree');
+var logTasks = require('../lib/logTasks');
+var logTasksSimple = require('../lib/logTasksSimple');
+var logEvents = require('../lib/logEvents');
 
 // set env var for ORIGINAL cwd
 // before anything touches it
@@ -123,71 +123,3 @@ function handleArguments(env) {
   });
 }
 
-function logTasks(env, localGulp) {
-  var tree = taskTree(localGulp.registry.tasks);
-  tree.label = 'Tasks for ' + chalk.magenta(tildify(env.configPath));
-  archy(tree)
-    .split('\n')
-    .forEach(function (v) {
-      if (v.trim().length === 0) {
-        return;
-      }
-      gutil.log(v);
-    });
-}
-
-function logTasksSimple(env, localGulp) {
-  console.log(Object.keys(localGulp.registry.tasks)
-    .join('\n')
-    .trim());
-}
-
-// format orchestrator errors
-function formatError(e) {
-  if (!e.error) {
-    return e.message;
-  }
-
-  // PluginError
-  if (typeof e.error.showStack === 'boolean') {
-    return e.error.toString();
-  }
-
-  // normal error
-  if (e.error.stack) {
-    return e.error.stack;
-  }
-
-  // unknown (string, number, etc.)
-  return new Error(String(e.error)).stack;
-}
-
-// wire up logging events
-function logEvents(gulpInst) {
-
-  gulpInst.on('start', function (e) {
-    // TODO: batch these
-    // so when 5 tasks start at once it only logs one time with all 5
-    gutil.log('Starting', '\'' + chalk.cyan(e.name) + '\'...');
-  });
-
-  gulpInst.on('stop', function (e) {
-    var time = prettyTime(e.duration);
-    gutil.log(
-      'Finished', '\'' + chalk.cyan(e.name) + '\'',
-      'after', chalk.magenta(time)
-    );
-  });
-
-  gulpInst.on('error', function (e) {
-    var msg = formatError(e);
-    var time = prettyTime(e.duration);
-    gutil.log(
-      '\'' + chalk.cyan(e.name) + '\'',
-      chalk.red('errored after'),
-      chalk.magenta(time)
-    );
-    gutil.log(msg);
-    process.exit(1);
-  });
-}
