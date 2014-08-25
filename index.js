@@ -11,13 +11,21 @@ util.inherits(Gulp, Undertaker);
 
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
-Gulp.prototype.watch = function (glob, opt, fn) {
-  if (typeof opt === 'function' || Array.isArray(opt)) {
-    fn = opt;
+Gulp.prototype.watch = function (glob, opt, task) {
+  var isFunction = (typeof opt === 'function');
+  var isString = (typeof opt === 'string');
+  var isArray = Array.isArray(opt);
+  if (isFunction || isString || isArray) {
+    task = opt;
     opt = null;
   }
 
-  return vfs.watch(glob, opt, this.parallel(fn));
+  var fn;
+  if (task) {
+    fn = this.parallel(task);
+  }
+
+  return vfs.watch(glob, opt, fn);
 };
 
 // let people use this class from our instance
