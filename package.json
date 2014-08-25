@@ -43,7 +43,7 @@
     "should": "^5.0.1"
   },
   "scripts": {
-    "lint": "jshint lib bin test index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules && jscs lib bin test index.js",
+    "lint": "jshint bin test index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules && jscs bin test index.js",
     "test": "npm run-script lint && mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
