@@ -9,7 +9,7 @@ var path = require('path');
 var should = require('should');
 require('mocha');
 
-var outpath = path.join(__dirname, "./out-fixtures");
+var outpath = path.join(__dirname, './out-fixtures');
 
 describe('gulp', function() {
   describe('watch()', function() {
@@ -106,14 +106,16 @@ describe('gulp', function() {
 
       fs.writeFile(tempFile, tempFileContent, function() {
 
-        gulp.task(task1, function() {
+        gulp.task(task1, function(done) {
           a++;
+          done();
         });
-        gulp.task(task2, function() {
+        gulp.task(task2, function(done) {
           a += 10;
+          done();
         });
         gulp.task(task3, function() {
-          throw new Error("task3 called!");
+          done(new Error('task3 called!'));
         });
 
         // assert
@@ -144,14 +146,16 @@ describe('gulp', function() {
 
       fs.writeFile(tempFile, tempFileContent, function() {
 
-        gulp.task(task1, function() {
+        gulp.task(task1, function(done) {
           a++;
+          done();
         });
-        gulp.task(task2, function() {
+        gulp.task(task2, function(done) {
           a += 10;
+          done();
         });
-        gulp.task(task3, function() {
-          throw new Error("task3 called!");
+        gulp.task(task3, function(done) {
+          done(new Error('task3 called!'));
         });
 
         // assert
