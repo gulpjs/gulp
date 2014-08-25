@@ -11,7 +11,19 @@ util.inherits(Gulp, Undertaker);
 
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
-Gulp.prototype.watch = vfs.watch;
+Gulp.prototype.watch = function(glob, opt, task){
+  if(typeof opt !== 'object'){
+    task = opt;
+    opt = null;
+  }
+
+  var fn;
+  if(task){
+    fn = this.parallel(task);
+  }
+
+  return vfs.watch(glob, opt, fn);
+};
 
 // let people use this class from our instance
 Gulp.prototype.Gulp = Gulp;
