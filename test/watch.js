@@ -34,12 +34,7 @@ describe('gulp', function() {
       fs.writeFile(tempFile, tempFileContent, function() {
 
         // assert: it works if it calls done
-        var watcher = gulp.watch(tempFile, function(evt) {
-          should.exist(evt);
-          should.exist(evt.path);
-          should.exist(evt.type);
-          evt.type.should.equal('changed');
-          evt.path.should.equal(path.resolve(tempFile));
+        var watcher = gulp.watch(tempFile, function(cb) {
           watcher.end();
           done();
         });
@@ -56,11 +51,6 @@ describe('gulp', function() {
 
         // assert: it works if it calls done
         var watcher = gulp.watch(tempFile, {debounceDelay:5}, function(evt) {
-          should.exist(evt);
-          should.exist(evt.path);
-          should.exist(evt.type);
-          evt.type.should.equal('changed');
-          evt.path.should.equal(path.resolve(tempFile));
           watcher.end();
           done();
         });
@@ -114,7 +104,7 @@ describe('gulp', function() {
           a += 10;
           done();
         });
-        gulp.task(task3, function() {
+        gulp.task(task3, function(done) {
           done(new Error('task3 called!'));
         });
 
