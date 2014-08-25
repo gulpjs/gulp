@@ -122,7 +122,6 @@ describe('gulp', function() {
         setTimeout(function() {
           a.should.equal(11); // task1 and task2
 
-          gulp.reset();
           watcher.end();
           done();
         }, timeout);
@@ -162,13 +161,12 @@ describe('gulp', function() {
         setTimeout(function() {
           a.should.equal(11); // task1 and task2
 
-          gulp.reset();
           watcher.end();
           done();
         }, timeout);
 
         // it works if it calls the task
-        var watcher = gulp.watch(tempFile, gulp.parallel(task1,task2));
+        var watcher = gulp.watch(tempFile, gulp.parallel(task1, task2));
 
         // act: change file
         writeFileWait(tempFile, tempFileContent+' changed');
