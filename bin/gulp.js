@@ -25,14 +25,6 @@ var cli = new Liftoff({
   nodeFlags: v8flags.fetch()
 });
 
-// exit with 0 or 1
-var failed = false;
-process.once('exit', function(code) {
-  if (code === 0 && failed) {
-    process.exit(1);
-  }
-});
-
 // parse those args m8
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
@@ -204,5 +196,6 @@ function logEvents(gulpInst) {
       chalk.magenta(time)
     );
     gutil.log(msg);
+    process.exit(1);
   });
 }
