@@ -44,7 +44,7 @@
     "should": "^5.0.1"
   },
   "scripts": {
-    "lint": "eslint . && jscs *.js bin/ lib/ test/",
+    "lint": "eslint . && jscs *.js bin/ test/",
     "pretest": "npm run lint",
     "test": "mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
