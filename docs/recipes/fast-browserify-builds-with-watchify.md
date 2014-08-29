@@ -32,5 +32,5 @@ gulp.task('watch', function() {
   }
 
   return rebundle();
-})
+});
 ```
