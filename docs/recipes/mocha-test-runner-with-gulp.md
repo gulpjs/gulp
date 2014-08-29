@@ -13,9 +13,9 @@ gulp.task('default', function() {
     .pipe(mocha({
       reporter: 'spec',
       globals: {
-      should: require('should')
-    }
-  }));
+        should: require('should')
+      }
+    }));
 });
 ```
 
