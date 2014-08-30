@@ -17,3 +17,4 @@
 * [Split tasks across multiple files](split-tasks-across-multiple-files.md)
 * [Using external config file](using-external-config-file.md)
 * [Using multiple sources in one task](using-multiple-sources-in-one-task.md)
+* [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemaps.md)
