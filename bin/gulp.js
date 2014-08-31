@@ -11,7 +11,6 @@ var interpret = require('interpret');
 var v8flags = require('v8flags');
 var cliOptions = require('../lib/cliOptions');
 var completion = require('../lib/completion');
-var taskTree = require('../lib/taskTree');
 
 // logging functions
 var logTasks = require('../lib/log/tasks');
@@ -111,19 +110,15 @@ function handleArguments(env) {
   var gulpInst = require(env.modulePath);
   logEvents(gulpInst);
 
-  if (opts.tasks) {
-    var getTree = taskTree(gulpInst);
-  }
-
   // this is what actually loads up the gulpfile
   require(env.configPath);
 
   process.nextTick(function () {
     if (opts.tasksSimple) {
-      return logTasksSimple(env, gulpInst);
+      return logTasksSimple(gulpInst.tree());
     }
     if (opts.tasks) {
-      return logTasks(getTree(), env);
+      return logTasks(gulpInst.tree({ deep: true }), env);
     }
     try {
       gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
