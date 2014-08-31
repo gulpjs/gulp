@@ -4,9 +4,9 @@
 
 - removed task dependency graph, everything must be composed using `gulp.series` or `gulp.parallel`
 - removed 3 argument syntax for `gulp.task` due to task dependency graph being removed.
-- added `gulp.series` and `gulp.parallel` for composing tasks.
+- added `gulp.series` and `gulp.parallel` methods for composing tasks.
 - added single argument syntax for `gulp.task` which allows a named function to be used as the name of the task and task function.
-- `-T`/`--task` flag monkeypatches the local gulp instance to build the dependency graph.
+- added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
 
 # 3.8.5
 
