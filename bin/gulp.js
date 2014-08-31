@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
 'use strict';
+var nomnom = require('nomnom');
 var gutil = require('gulp-util');
 var chalk = require('chalk');
 var semver = require('semver');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
+var cliOptions = require('../lib/cliOptions');
 var completion = require('../lib/completion');
-var argv = require('minimist')(process.argv.slice(2));
 var logTasks = require('../lib/logTasks');
 var logTasksSimple = require('../lib/logTasksSimple');
 var logEvents = require('../lib/logEvents');
@@ -23,17 +24,17 @@ var cli = new Liftoff({
   extensions: interpret.jsVariants
 });
 
-// parse those args m8
-var cliPackage = require('../package');
-var versionFlag = argv.v || argv.version;
-var tasksFlag = argv.T || argv.tasks;
-var tasks = argv._;
+var cliPackage = require('../package.json');
+var opts = nomnom
+  .script('gulp-next')
+  .options(cliOptions)
+  .parse();
+var tasks = opts._;
 var toRun = tasks.length ? tasks : ['default'];
 
 // this is a hold-over until we have a better logging system
 // with log levels
-var simpleTasksFlag = argv['tasks-simple'];
-var shouldLog = !argv.silent && !simpleTasksFlag;
+var shouldLog = !opts.silent && !opts.tasksSimple;
 
 if (!shouldLog) {
   gutil.log = function(){};
@@ -49,15 +50,15 @@ cli.on('requireFail', function (name) {
 });
 
 cli.launch({
-  cwd: argv.cwd,
-  configPath: argv.gulpfile,
-  require: argv.require,
-  completion: argv.completion
+  cwd: opts.cwd,
+  configPath: opts.gulpfile,
+  require: opts.require,
+  completion: opts.completion
 }, handleArguments);
 
 // the actual logic
 function handleArguments(env) {
-  if (versionFlag && tasks.length === 0) {
+  if (opts.version) {
     gutil.log('CLI version', cliPackage.version);
     if (env.modulePackage) {
       gutil.log('Local version', env.modulePackage.version);
@@ -104,10 +105,10 @@ function handleArguments(env) {
   logEvents(gulpInst);
 
   process.nextTick(function () {
-    if (simpleTasksFlag) {
+    if (opts.tasksSimple) {
       return logTasksSimple(env, gulpInst);
     }
-    if (tasksFlag) {
+    if (opts.tasks) {
       return logTasks(env, gulpInst);
     }
     try {
