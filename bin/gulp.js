@@ -10,9 +10,12 @@ var tildify = require('tildify');
 var interpret = require('interpret');
 var cliOptions = require('../lib/cliOptions');
 var completion = require('../lib/completion');
-var logTasks = require('../lib/logTasks');
-var logTasksSimple = require('../lib/logTasksSimple');
-var logEvents = require('../lib/logEvents');
+var taskTree = require('../lib/taskTree');
+
+// logging functions
+var logTasks = require('../lib/log/tasks');
+var logEvents = require('../lib/log/events');
+var logTasksSimple = require('../lib/log/tasksSimple');
 
 // set env var for ORIGINAL cwd
 // before anything touches it
@@ -97,26 +100,25 @@ function handleArguments(env) {
     );
   }
 
+  var gulpInst = require(env.modulePath);
+  logEvents(gulpInst);
+
   if (opts.tasks) {
-    logTasks(env);
-    process.exit(0);
+    var getTree = taskTree(gulpInst);
   }
 
   // this is what actually loads up the gulpfile
   require(env.configPath);
-  gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
-
-  var gulpInst = require(env.modulePath);
-  logEvents(gulpInst);
 
   process.nextTick(function () {
     if (opts.tasksSimple) {
       return logTasksSimple(env, gulpInst);
     }
     if (opts.tasks) {
-      return logTasks(env, gulpInst);
+      return logTasks(getTree(), env);
     }
     try {
+      gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
       // TODO: do we care about the error/result from calling this?
       gulpInst.parallel(toRun)();
     } catch (err) {
