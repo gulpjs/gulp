@@ -118,7 +118,11 @@ function handleArguments(env) {
       return logTasksSimple(gulpInst.tree());
     }
     if (opts.tasks) {
-      return logTasks(gulpInst.tree({ deep: true }), env);
+      var tree = {
+        label: 'Tasks for ' + chalk.magenta(tildify(env.configPath)),
+        nodes: gulpInst.tree({ deep: true })
+      };
+      return logTasks(tree);
     }
     try {
       gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
