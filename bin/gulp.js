@@ -30,7 +30,7 @@ var cli = new Liftoff({
 });
 
 var opts = nomnom
-  .script('gulp-next')
+  .script('gulp')
   .options(cliOptions)
   .parse();
 var tasks = opts._;
