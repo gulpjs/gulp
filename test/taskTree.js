@@ -1,43 +1,38 @@
 'use strict';
 
+var gulp = require('../');
 var taskTree = require('../lib/taskTree');
 var should = require('should');
 
 require('mocha');
 
+function noop(done){ done(); }
+
 describe('taskTree()', function() {
   it('should form a tree properly', function(done) {
-    should.exist(taskTree); // lol shutup jshint
+    var localGulp = new gulp.Gulp();
 
-    var tasks = {
-      test: {
-        dep: ['abc', 'def']
-      },
-      abc: {
-        dep: ['def']
-      },
-      def: {
-        dep: []
-      }
-    };
+    var getTree = taskTree(localGulp);
+
+    localGulp.task('fn1', noop);
+    localGulp.task('fn2', noop);
 
     var expectTree = {
-      nodes: [{
-        label: 'test',
-        nodes: ['abc', 'def']
-
-      }, {
-        label: 'abc',
-        nodes: ['def']
-
-      }, {
-        label: 'def',
-        nodes: []
-
-      }]
+      nodes: [
+        {
+          label: 'fn1',
+          nodes: []
+        },
+        {
+          label: 'fn2',
+          nodes: []
+        }
+      ]
     };
 
-    taskTree(tasks).should.eql(expectTree);
+    var tree = getTree();
+
+    tree.should.eql(expectTree);
     done();
   });
 });
