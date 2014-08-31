@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 'use strict';
-var nomnom = require('nomnom');
 var gutil = require('gulp-util');
 var chalk = require('chalk');
+var nomnom = require('nomnom');
 var semver = require('semver');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
@@ -11,6 +11,7 @@ var interpret = require('interpret');
 var v8flags = require('v8flags');
 var cliOptions = require('../lib/cliOptions');
 var completion = require('../lib/completion');
+var cliVersion = require('../package.json').version;
 
 // logging functions
 var logTasks = require('../lib/log/tasks');
@@ -28,7 +29,6 @@ var cli = new Liftoff({
   nodeFlags: v8flags.fetch()
 });
 
-var cliPackage = require('../package.json');
 var opts = nomnom
   .script('gulp-next')
   .options(cliOptions)
@@ -69,7 +69,7 @@ cli.launch({
 // the actual logic
 function handleArguments(env) {
   if (opts.version) {
-    gutil.log('CLI version', cliPackage.version);
+    gutil.log('CLI version', cliVersion);
     if (env.modulePackage) {
       gutil.log('Local version', env.modulePackage.version);
     }
@@ -91,9 +91,9 @@ function handleArguments(env) {
   }
 
   // check for semver difference between cli and local installation
-  if (semver.gt(cliPackage.version, env.modulePackage.version)) {
+  if (semver.gt(cliVersion, env.modulePackage.version)) {
     gutil.log(chalk.red('Warning: gulp version mismatch:'));
-    gutil.log(chalk.red('Global gulp is', cliPackage.version));
+    gutil.log(chalk.red('Global gulp is', cliVersion));
     gutil.log(chalk.red('Local gulp is', env.modulePackage.version));
   }
 
@@ -137,4 +137,3 @@ function handleArguments(env) {
     }
   });
 }
-
