@@ -105,6 +105,11 @@ function handleArguments(env) {
     );
   }
 
+  if (opts.tasks) {
+    logTasks(env);
+    process.exit(0);
+  }
+
   // this is what actually loads up the gulpfile
   require(env.configPath);
   gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
