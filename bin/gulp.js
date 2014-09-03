@@ -116,6 +116,11 @@ function handleArguments(env) {
       };
       return logTasks(tree);
     }
+    if (opts.tasksJson) {
+      return console.log(
+        JSON.stringify(gulpInst.tree({ deep: true }), null, 2)
+      );
+    }
     try {
       gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
       // TODO: do we care about the error/result from calling this?
