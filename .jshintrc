@@ -10,7 +10,7 @@
   "forin"         : true,     // true: Require filtering for..in loops with obj.hasOwnProperty()
   "immed"         : true,     // true: Require immediate invocations to be wrapped in parens e.g. `(function () { } ());`
   "indent"        : 2,        // {int} Number of spaces to use for indentation
-  "latedef"       : true,     // true: Require variables/functions to be defined before being used
+  "latedef"       : false,    // true: Require variables/functions to be defined before being used
   "newcap"        : false,    // true: Require capitalization of all constructor functions e.g. `new F()`
   "noarg"         : true,     // true: Prohibit use of `arguments.caller` and `arguments.callee`
   "noempty"       : true,     // true: Prohibit use of empty blocks
