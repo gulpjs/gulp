@@ -60,7 +60,7 @@ describe('gulp-prefixer', function() {
 var assert = require('assert');
 var es = require('event-stream');
 var File = require('vinyl');
-var prefixer = require('../index');
+var prefixer = require('../');
 
 describe('gulp-prefixer', function() {
   describe('in buffer mode', function() {
