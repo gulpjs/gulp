@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 'use strict';
+var path = require('path');
 var gutil = require('gulp-util');
 var chalk = require('chalk');
 var nomnom = require('nomnom');
@@ -11,6 +12,7 @@ var interpret = require('interpret');
 var v8flags = require('v8flags');
 var cliOptions = require('../lib/cliOptions');
 var completion = require('../lib/completion');
+var verifyDeps = require('../lib/verifyDependencies');
 var cliVersion = require('../package.json').version;
 
 // logging functions
@@ -74,6 +76,15 @@ function handleArguments(env) {
       gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
+  }
+
+  if (opts.verify) {
+    var pkgPath = opts.verify !== true ? opts.verify : 'package.json';
+    if (path.resolve(pkgPath) !== path.normalize(pkgPath)) {
+      pkgPath = path.join(env.configBase, pkgPath);
+    }
+    gutil.log('Verifying plugins in ' + pkgPath);
+    return verifyDeps(require(pkgPath).devDependencies || {});
   }
 
   if (!env.modulePath) {
