@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 'use strict';
+var path = require('path');
 var gutil = require('gulp-util');
 var prettyTime = require('pretty-hrtime');
 var chalk = require('chalk');
@@ -12,6 +13,7 @@ var interpret = require('interpret');
 var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
+var checkBlackList = require('../lib/blackList');
 
 // set env var for ORIGINAL cwd
 // before anything touches it
@@ -34,6 +36,7 @@ process.once('exit', function(code) {
 // parse those args m8
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
+var verifyFlag = argv.verify;
 var tasksFlag = argv.T || argv.tasks;
 var tasks = argv._;
 var toRun = tasks.length ? tasks : ['default'];
@@ -71,6 +74,10 @@ function handleArguments(env) {
       gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
+  }
+
+  if (verifyFlag) {
+    return verifyPlugins(env);
   }
 
   if (!env.modulePath) {
@@ -119,6 +126,31 @@ function handleArguments(env) {
       return logTasks(env, gulpInst);
     }
     gulpInst.start.apply(gulpInst, toRun);
+  });
+}
+
+function verifyPlugins(env) {
+  //assume package.json is located next to gulpfile.js
+  var pkgPath = path.join(env.configBase, 'package.json');
+  var devDependencies = require(pkgPath).devDependencies || {};
+
+  checkBlackList(Object.keys(devDependencies), function(err, blackListed) {
+    if (err) {
+      gutil.log(chalk.red('Error: failed to retrieve plugins black-list'));
+      gutil.log(formatError(err));
+      process.exit(1);
+    }
+
+    if (blackListed) {
+      gutil.log(chalk.red('Black-listed plugins found in this project:'));
+      for (var blDependency in blackListed) {
+        gutil.log(blDependency + ': ' + blackListed[blDependency]);
+      }
+      process.exit(1);
+    } else {
+      gutil.log(chalk.green('There are no black-listed in this project'));
+      process.exit(0);
+    }
   });
 }
 
