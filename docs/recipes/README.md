@@ -18,3 +18,4 @@
 * [Using external config file](using-external-config-file.md)
 * [Using multiple sources in one task](using-multiple-sources-in-one-task.md)
 * [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemap.md)
+* [Output both a minified and non-minified version](minified-and-non-minified.md)
