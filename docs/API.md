@@ -2,7 +2,7 @@
 
 ### gulp.src(globs[, options])
 
-Takes a glob and represents a file structure. Can be piped to plugins.
+Takes a glob and represents a file structure. Returns a [stream](http://nodejs.org/api/stream.html) of [Vinyl files](https://github.com/wearefractal/vinyl-fs) that can be [piped](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options) to plugins.
 
 ```js
 gulp.src('client/templates/*.jade')
