@@ -51,7 +51,6 @@ gulp.task('build', function(done) {
     })
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./dist'));
-  }
 });
 
 gulp.task('watch', ['build'], function() {
