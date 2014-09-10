@@ -6,7 +6,7 @@ See the [gulp introduction slideshow] for a rundown on how gulp came to be.
 
 ## Is it "gulp" or "Gulp"?
 
-gulp is always lowercase.
+gulp is always lowercase. The only exception is in the gulp logo where gulp is capitalized.
 
 ## Where can I find a list of gulp plugins?
 
