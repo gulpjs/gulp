@@ -34,7 +34,6 @@
     "pretty-hrtime": "^0.2.0",
     "semver": "^4.1.0",
     "tildify": "^1.0.0",
-    "shimmer": "^1.0.0",
     "undertaker": "^0.2.0",
     "v8flags": "^1.0.1",
     "vinyl-fs": "^0.3.0"
