@@ -14,11 +14,14 @@ var cliOptions = require('../lib/cliOptions');
 var completion = require('../lib/completion');
 var verifyDeps = require('../lib/verifyDependencies');
 var cliVersion = require('../package.json').version;
+var getBlacklist = require('../lib/getBlacklist');
 
 // logging functions
 var logTasks = require('../lib/log/tasks');
 var logEvents = require('../lib/log/events');
+var logVerify = require('../lib/log/verify');
 var logTasksSimple = require('../lib/log/tasksSimple');
+var logBlacklistError = require('../lib/log/blacklistError');
 
 // set env var for ORIGINAL cwd
 // before anything touches it
@@ -84,7 +87,15 @@ function handleArguments(env) {
       pkgPath = path.join(env.configBase, pkgPath);
     }
     gutil.log('Verifying plugins in ' + pkgPath);
-    return verifyDeps(require(pkgPath));
+    return getBlacklist(function (err, blacklist) {
+      if (err) {
+        return logBlacklistError(err);
+      }
+
+      var blacklisted = verifyDeps(require(pkgPath), blacklist);
+
+      logVerify(blacklisted);
+    });
   }
 
   if (!env.modulePath) {
