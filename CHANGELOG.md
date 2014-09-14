@@ -7,6 +7,7 @@
 - added `gulp.series` and `gulp.parallel` methods for composing tasks.
 - added single argument syntax for `gulp.task` which allows a named function to be used as the name of the task and task function.
 - added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
+- added `--verify` flag to check the dependencies in package.json against the plugin blacklist.
 
 # 3.8.5
 
