@@ -84,7 +84,7 @@ function handleArguments(env) {
       pkgPath = path.join(env.configBase, pkgPath);
     }
     gutil.log('Verifying plugins in ' + pkgPath);
-    return verifyDeps(require(pkgPath).devDependencies || {});
+    return verifyDeps(require(pkgPath));
   }
 
   if (!env.modulePath) {
