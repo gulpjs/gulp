@@ -10,7 +10,7 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 - `--cwd <dir path>` manually set the CWD. The search for the gulpfile, as well as the relativity of all requires will be from here.
 - `-T` or `--tasks` will display the task dependency tree for the loaded gulpfile
 - `--tasks-simple` will display a plaintext list of tasks for the loaded gulpfile
-- `--verify` will verify plugins referenced in project's package.json against the plugins black list 
+- `--verify` will verify plugins referenced in project's package.json against the plugins blacklist
 - `--color` will force gulp and gulp plugins to display colors even when no color support is detected
 - `--no-color` will force gulp and gulp plugins to not display colors even when color support is detected
 - `--silent` will disable all gulp logging
