@@ -1,15 +1,15 @@
 # Using multiple sources in one task
 
 ```js
-// npm install gulp merge-stream
+// npm install --save-dev gulp merge-stream
 
 var gulp = require('gulp');
 var merge = require('merge-stream');
 
-gulp.task('test', function(cb) {
+gulp.task('test', function() {
   var bootstrap = gulp.src('bootstrap/js/*.js')
     .pipe(gulp.dest('public/bootstrap'));
-    
+
   var jquery = gulp.src('jquery.cookie/jquery.cookie.js')
     .pipe(gulp.dest('public/jquery'));
 
@@ -17,7 +17,7 @@ gulp.task('test', function(cb) {
 });
 ```
 
-gulp.src will emit files in the order they were added:
+`gulp.src` will emit files in the order they were added:
 
 ```js
 // npm install gulp gulp-concat

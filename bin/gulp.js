@@ -9,6 +9,7 @@ var archy = require('archy');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
+var v8flags = require('v8flags');
 var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
@@ -20,7 +21,8 @@ process.env.INIT_CWD = process.cwd();
 var cli = new Liftoff({
   name: 'gulp',
   completions: completion,
-  extensions: interpret.jsVariants
+  extensions: interpret.jsVariants,
+  nodeFlags: v8flags.fetch()
 });
 
 // exit with 0 or 1
@@ -47,13 +49,19 @@ if (!shouldLog) {
   gutil.log = function(){};
 }
 
-// wire up a few err listeners to liftoff
 cli.on('require', function (name) {
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
 cli.on('requireFail', function (name) {
   gutil.log(chalk.red('Failed to load external module'), chalk.magenta(name));
+});
+
+cli.on('respawn', function (flags, child) {
+  var nodeFlags = chalk.magenta(flags.join(', '));
+  var pid = chalk.magenta(child.pid);
+  gutil.log('Node flags detected:', nodeFlags);
+  gutil.log('Respawned to PID:', pid);
 });
 
 cli.launch({
@@ -65,7 +73,7 @@ cli.launch({
 
 // the actual logic
 function handleArguments(env) {
-  if (versionFlag) {
+  if (versionFlag && tasks.length === 0) {
     gutil.log('CLI version', cliPackage.version);
     if (env.modulePackage) {
       gutil.log('Local version', env.modulePackage.version);
@@ -164,7 +172,7 @@ function formatError(e) {
 // wire up logging events
 function logEvents(gulpInst) {
 
-  // total hack due to fucked up error management in orchestrator
+  // total hack due to poor error management in orchestrator
   gulpInst.on('err', function () {
     failed = true;
   });

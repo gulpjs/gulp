@@ -69,27 +69,26 @@ function prefixStream(prefixText) {
 function gulpPrefixer(prefixText) {
 
   if (!prefixText) {
-    throw new PluginError(PLUGIN_NAME, "Missing prefix text!");
+    throw new PluginError(PLUGIN_NAME, 'Missing prefix text!');
   }
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
   return through.obj(function(file, enc, callback) {
     if (file.isNull()) {
-       // Do nothing if no contents
+      // return empty file
+      return callback(null, file);
     }
     if (file.isBuffer()) {
-        file.contents = Buffer.concat([prefixText, file.contents]);
+      file.contents = Buffer.concat([prefixText, file.contents]);
     }
-
     if (file.isStream()) {
-        file.contents = file.contents.pipe(prefixStream(prefixText));
+      file.contents = file.contents.pipe(prefixStream(prefixText));
     }
 
-    callback(null, file);
+    return callback(null, file);
 
   });
-
 
 };
 
