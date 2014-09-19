@@ -179,18 +179,25 @@ function logEvents(gulpInst) {
   });
 
   gulpInst.on('task_start', function (e) {
-    // so when 5 tasks start at once it only logs one time with all 5
     var batched = '\'' + chalk.cyan(e.task) + '\'';
+    // logs once when tasks `start` at the same time
     batchThese('start', batched, function(batch){
-      gutil.log('Starting', batch.join(', '),'...');
+      gutil.log('Starting', batch.join(', '), '...');
     });
   });
 
   gulpInst.on('task_stop', function (e) {
     var time = prettyTime(e.hrDuration);
     var batched = '\''+chalk.cyan(e.task) +'\' after '+chalk.magenta(time);
+    // logs once tasks `stop` at the same time
     batchThese('stop', batched, function(batch){
-      gutil.log('Finished', batch.join(', ') );
+      // `stop` events have longer logs
+      if( batch.length < 3 ){
+        gutil.log('Finished', batch.join(', ') );
+        return ;
+      }
+      gutil.log('Finished', batch.slice(0, 2).join(', ') + ', ');
+      gutil.log( batch.slice(2).join(', ') );
     });
   });
 
