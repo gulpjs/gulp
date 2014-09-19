@@ -6,8 +6,8 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 
 - `-v` or `--version` will display the global and local gulp versions
 - `--require <module path>` will require a module before running the gulpfile. This is useful for transpilers but also has other applications. You can use multiple `--require` flags
-- `--gulpfile <gulpfile path>` manually set path of gulpfile. Useful if you have multiple gulpfiles. This will set the CWD to the gulpfile directory as well.
-- `--cwd <dir path>` manually set the CWD. The search for the gulpfile, as well as the relativity of all requires will be from here.
+- `--gulpfile <gulpfile path>` will manually set path of gulpfile. Useful if you have multiple gulpfiles. This will set the CWD to the gulpfile directory as well
+- `--cwd <dir path>` will manually set the CWD. The search for the gulpfile, as well as the relativity of all requires will be from here
 - `-T` or `--tasks` will display the task dependency tree for the loaded gulpfile
 - `--tasks-simple` will display a plaintext list of tasks for the loaded gulpfile
 - `--color` will force gulp and gulp plugins to display colors even when no color support is detected
