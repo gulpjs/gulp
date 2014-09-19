@@ -13,6 +13,7 @@ var v8flags = require('v8flags');
 var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
+var batchThese = require('../lib/batchThese');
 
 // set env var for ORIGINAL cwd
 // before anything touches it
@@ -178,17 +179,26 @@ function logEvents(gulpInst) {
   });
 
   gulpInst.on('task_start', function (e) {
-    // TODO: batch these
-    // so when 5 tasks start at once it only logs one time with all 5
-    gutil.log('Starting', '\'' + chalk.cyan(e.task) + '\'...');
+    var batched = '\'' + chalk.cyan(e.task) + '\'';
+    // logs once when tasks `start` at the same time
+    batchThese('start', batched, function(batch){
+      gutil.log('Starting', batch.join(', '), '...');
+    });
   });
 
   gulpInst.on('task_stop', function (e) {
     var time = prettyTime(e.hrDuration);
-    gutil.log(
-      'Finished', '\'' + chalk.cyan(e.task) + '\'',
-      'after', chalk.magenta(time)
-    );
+    var batched = '\''+chalk.cyan(e.task) +'\' after '+chalk.magenta(time);
+    // logs once tasks `stop` at the same time
+    batchThese('stop', batched, function(batch){
+      // `stop` events have longer logs
+      if( batch.length < 3 ){
+        gutil.log('Finished', batch.join(', ') );
+        return ;
+      }
+      gutil.log('Finished', batch.slice(0, 2).join(', ') + ', ');
+      gutil.log( batch.slice(2).join(', ') );
+    });
   });
 
   gulpInst.on('task_err', function (e) {
