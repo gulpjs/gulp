@@ -2,9 +2,12 @@
 
 ### gulp.src(globs[, options])
 
-Takes a glob and represents a file structure. Returns a [stream](http://nodejs.org/api/stream.html) of [Vinyl files](https://github.com/wearefractal/vinyl-fs) that can be [piped](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options) to plugins.
+Emits files matching provided glob or an array of globs. 
+Returns a [stream](http://nodejs.org/api/stream.html) of [Vinyl files](https://github.com/wearefractal/vinyl-fs) 
+that can be [piped](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options) 
+to plugins.
 
-```js
+```javascript
 gulp.src('client/templates/*.jade')
   .pipe(jade())
   .pipe(minify())
@@ -16,7 +19,7 @@ gulp.src('client/templates/*.jade')
 #### globs
 Type: `String` or `Array`
 
-Glob or globs to read.
+Glob or array of globs to read.
 
 #### options
 Type: `Object`
@@ -37,6 +40,40 @@ Default: `true`
 
 Setting this to `false` will return `file.contents` as null and not read the file at all.
 
+#### options.base
+Type: `String`
+Default: first occurence of `*`
+
+By default the `file.base` is set to the first occurence of `*`. That is, for a 
+glob `dir1/**/whatever.txt` the `base` will be set  to `dir1` and the relative 
+path to the matching path after it `dir2/whatever.txt`. When there are no 
+occurences of `*`, e.g. `dir1/dir2/whatever.txt`, the relative path is the 
+file name and then, the output directory will correspond to the `gulp.dest`. 
+If this is not the desired outcome, you can: 
+
+```javascript
+// without the 'base' set
+gulp.src('app/**/*.scss')        //          file: 'app/css/somefile.scss'
+  .pipe(gulp.dest('build'));     //->   file base: 'app/css'
+                                 // relative path: 'somefile.scss'
+                                 //    write path: 'build/somefile.scss'
+
+// with the 'base' set
+var glob = 'app/**/*.scss';
+gulp.src(glob, { base: 'app' })  //          file: 'app/css/somefile.scss'
+  .pipe(gulp.dest('build'));     //->   file base: 'app'
+                                 // relative path: 'css/somefile.scss'
+                                 //    write path: 'build/css/somefile.scss'
+```
+
+- Change the destination folder
+```javascript
+gulp.src('app/**/*.scss')        //          file: 'app/css/somefile.scss'
+  .pipe(gulp.dest('build/css')); //->   file base: 'app/css' 
+                                 // relative path: 'somefile.scss'
+                                 //    write path: 'build/css/somefile.scss'
+```
+
 ### gulp.dest(path[, options])
 
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.  Folders that don't exist will be created.
@@ -48,6 +85,10 @@ gulp.src('./client/templates/*.jade')
   .pipe(minify())
   .pipe(gulp.dest('./build/minified_templates'));
 ```
+
+The write path is calculated by appending the file relative path to the given
+destination directory. In turn, relative paths are calculated against the file base. 
+See `gulp.src` above for more info.
 
 #### path
 Type: `String` or `Function`
