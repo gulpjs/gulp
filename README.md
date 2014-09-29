@@ -9,7 +9,7 @@
 
 ## Like what we do?
 
-[Support us via gittip](https://www.gittip.com/WeAreFractal/)
+[Support us via Gratipay](https://gratipay.com/WeAreFractal/)
 
 ## Documentation
 
