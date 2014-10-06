@@ -4,7 +4,8 @@
 #
 # Usage:
 #
-# To enable powershell <tab> completion for gulp, add the below to your $PROFILE
+# To enable powershell <tab> completion for gulp you need to be running 
+# at least PowerShell v3 or greater and add the below to your $PROFILE
 #
 #     Invoke-Expression ((gulp --completion=powershell) -join [System.Environment]::NewLine)
 #
@@ -38,7 +39,7 @@ $gulp_completion_Process = {
 	if($cache.ContainsKey($sha1gulpFile)){
 		$tasks = $cache[$sha1gulpFile];
 	} else {
-		$tasks = (gulp --tasks-simple).split('\n');
+		$tasks = (gulp --tasks-simple).split("`n");
 		$cache[$sha1gulpFile] = $tasks;
 	}
 
