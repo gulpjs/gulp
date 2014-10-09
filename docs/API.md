@@ -42,36 +42,18 @@ Setting this to `false` will return `file.contents` as null and not read the fil
 
 #### options.base
 Type: `String`
-Default: first occurence of `*`
+Default: everything before a glob starts (see [glob2base])
 
-By default the `file.base` is set to the first occurence of `*`. That is, for a 
-glob `dir1/**/whatever.txt` the `base` will be set  to `dir1` and the relative 
-path to the matching path after it `dir2/whatever.txt`. When there are no 
-occurences of `*`, e.g. `dir1/dir2/whatever.txt`, the relative path is the 
-file name and then, the output directory will correspond to the `gulp.dest`. 
-If this is not the desired outcome, you can: 
+E.g., consider `somefile.js` in `client/js/somedir`:
 
-```javascript
-// without the 'base' set
-gulp.src('app/**/*.scss')        //          file: 'app/css/somefile.scss'
-  .pipe(gulp.dest('build'));     //->   file base: 'app/css'
-                                 // relative path: 'somefile.scss'
-                                 //    write path: 'build/somefile.scss'
+```js
+gulp.src('client/js/**/*.js') // Matches 'client/js/somedir/somefile.js' and resolves `base` to `client/js/`
+  .pipe(minify())
+  .pipe(gulp.dest('build'));  // Writes 'build/somedir/somefile.js'
 
-// with the 'base' set
-var glob = 'app/**/*.scss';
-gulp.src(glob, { base: 'app' })  //          file: 'app/css/somefile.scss'
-  .pipe(gulp.dest('build'));     //->   file base: 'app'
-                                 // relative path: 'css/somefile.scss'
-                                 //    write path: 'build/css/somefile.scss'
-```
-
-- Change the destination folder
-```javascript
-gulp.src('app/**/*.scss')        //          file: 'app/css/somefile.scss'
-  .pipe(gulp.dest('build/css')); //->   file base: 'app/css' 
-                                 // relative path: 'somefile.scss'
-                                 //    write path: 'build/css/somefile.scss'
+gulp.src('client/js/**/*.js', { base: 'client' })
+  .pipe(minify())
+  .pipe(gulp.dest('build'));  // Writes 'build/js/somedir/somefile.js'
 ```
 
 ### gulp.dest(path[, options])
@@ -288,3 +270,4 @@ The path to the file that triggered the event.
 [glob-stream]: https://github.com/wearefractal/glob-stream
 [gulp-if]: https://github.com/robrich/gulp-if
 [Orchestrator]: https://github.com/robrich/orchestrator
+[glob2base]: https://github.com/wearefractal/glob2base
