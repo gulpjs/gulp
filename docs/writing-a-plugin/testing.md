@@ -7,7 +7,7 @@
 
 ## Tooling
 
-Most plugins use [mocha](https://github.com/visionmedia/mocha) and [event-stream](https://github.com/dominictarr/event-stream) to help them test. The following examples will use these tools.
+Most plugins use [mocha](https://github.com/visionmedia/mocha),[should](https://github.com/visionmedia/should.js) and [event-stream](https://github.com/dominictarr/event-stream) to help them test. The following examples will use these tools.
 
 
 ## Testing plugins for streaming mode
@@ -94,7 +94,9 @@ describe('gulp-prefixer', function() {
 });
 ```
 
+ 
+## Some plugins with high-quality Testing
 
-## Sample tests
-
+* [gulp-concat](https://github.com/wearefractal/gulp-concat/blob/master/test/main.js)
+* [gulp-header](https://github.com/godaddy/gulp-header/blob/master/test/main.js)
 * [gulp-cat](https://github.com/ben-eb/gulp-cat/blob/master/test.js)
