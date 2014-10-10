@@ -97,6 +97,5 @@ describe('gulp-prefixer', function() {
  
 ## Some plugins with high-quality Testing
 
-* [gulp-concat](https://github.com/wearefractal/gulp-concat/blob/master/test/main.js)
-* [gulp-header](https://github.com/godaddy/gulp-header/blob/master/test/main.js)
 * [gulp-cat](https://github.com/ben-eb/gulp-cat/blob/master/test.js)
+* [gulp-concat](https://github.com/wearefractal/gulp-concat/blob/master/test/main.js)
