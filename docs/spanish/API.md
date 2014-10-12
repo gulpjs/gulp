@@ -3,7 +3,7 @@
 ### gulp.src(globs[, options])
 
 Emite los archivos especificados en el glob o vector de globs. Retorna un [stream](http://nodejs.org/api/stream.html) de [objetos Vinyl ](https://github.com/wearefractal/vinyl-fs)
-que pueden ser [empipados](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options)
+que pueden ser [conectados](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options)
 a otros plugins.
 
 **Nota:** [Vinyl](https://github.com/wearefractal/vinyl) es un módulo node que describe un simple formato para archivos vía objetos `File`.
@@ -33,14 +33,14 @@ Adicionalmente a las [opciones soportadas por node-glob][node-glob documentation
 Tipo: `Boolean`
 Por defecto: `true`
 
-Si es `false` retorna `file.contents` como un `stream` en vez de un buffer de archivos. Útil al utilizar archivos grandes.
+Si es `false` devuelve `file.contents` como un `stream` en vez de un buffer de archivos. Útil al utilizar archivos grandes.
 **Nota:** No es estrictamente necesario implementar el soporte a streams en plugins.
 
 #### options.read
 Tipo: `Boolean`
 Por defecto: `true`
 
-Si es `false` retorna `file.contents` como `null`  y no lee el archivo.
+Si es `false` devuelve `file.contents` como `null`  y no lee el archivo.
 
 #### options.base
 Tipo: `String`
@@ -63,7 +63,7 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 
 ### gulp.dest(path[, options])
 
-Puede ser empipado y crea / modifica archivos. Re-emite el stream de datos de modo que puede ser empipado a múltiples directorios. Si los directorios no existen serán creados.
+Puede ser conectado y crea / modifica archivos. Re-emite el stream de datos de modo que puede ser conectado a múltiples directorios. Si los directorios no existen serán creados.
 
 ```javascript
 gulp.src('./client/templates/*.jade')
@@ -78,7 +78,7 @@ La ruta de escritura es determinada añadiendo la ruta relativa del archivo al d
 #### path
 Tipo: `String` o `Function`
 
-La ruta / directorio al cual archivos serán escritos. O una función que retorna la ruta. Esta función sera provista de un [objeto `File` de vynil](https://github.com/wearefractal/vinyl).
+La ruta / directorio al cual archivos serán escritos. O una función que devuelve la ruta. Esta función sera provista de un [objeto `File` de vynil](https://github.com/wearefractal/vinyl).
 
 #### options
 Tipo: `Object`
@@ -138,7 +138,7 @@ var exec = require('child_process').exec;
 gulp.task('jekyll', function(cb) {
   // ejecuta Jekyll
   exec('jekyll build', function(err) {
-    if (err) return cb(err); // retorna error
+    if (err) return cb(err); // devuelve error
     cb(); // tarea completada!
   });
 });
@@ -205,7 +205,7 @@ gulp.task('default', ['A', 'two']);
 
 ### gulp.watch(glob [, opts], tasks) o gulp.watch(glob [, opts, cb])
 
-Vigila modificaciones en archivos y realiza una acción si algún cambio es detectado. Siempre retorna un EventEmitter que emite eventos.
+Vigila modificaciones en archivos y realiza una acción si algún cambio es detectado. Siempre devuelve un EventEmitter que emite eventos.
 
 ### gulp.watch(glob[, opts], tasks)
 
