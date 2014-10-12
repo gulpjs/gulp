@@ -1,45 +1,46 @@
-# Getting Started
+# Primeros Pasos
 
-#### 1. Install gulp globally:
+#### 1. Instalación global de gulp:
 
 ```sh
 $ npm install --global gulp
 ```
 
-#### 2. Install gulp in your project devDependencies:
+#### 2. Instalar gulp en las devDependencies de tu proyecto:
 
 ```sh
 $ npm install --save-dev gulp
 ```
 
-#### 3. Create a `gulpfile.js` at the root of your project:
+#### 3. Crear un archivo `gulpfile.js` en el directorio raíz:
 
 ```js
 var gulp = require('gulp');
 
 gulp.task('default', function() {
-  // place code for your default task here
+  // aquí escribes el código de la tarea por defecto
 });
 ```
 
-#### 4. Run gulp:
+#### 4. Correr gulp:
 
 ```sh
 $ gulp
 ```
 
-The default task will run and do nothing.
+Ejecuta la tarea `default`. (Sin producir ningún efecto en el ejemplo anterior.)
 
-To run individual tasks, use `gulp <task> <othertask>`.
+Para correr tareas individualmente, usar `gulp <tarea> <otra_tarea>`.
 
-## Where do I go now?
 
-You have an empty gulpfile and everything is installed. How do you REALLY get started? Check out the [recipes](recipes) and the [list of articles](README.md#articles) for more information.
+## ¿Y ahora?
 
-## .src, .watch, .dest, CLI args - How do I use these things?
+Ya tienes un archivo gulp en blanco y todo está instalado, pero ¿cómo empiezo a usar gulp realmente?. Visita la página de [recetas](recipes) o la [lista de artículos](README.md#articles) para saber.
 
-For API specific documentation you can check out the [documentation for that](API.md).
+## .src, .watch, .dest, CLI args - ¿Qué es todo esto?
 
-## Available Plugins
+Para ver detalles específicos del API ver la [documentación aquí](API.md).
 
-The gulp community is growing, with new plugins being added daily. See the [main website](http://gulpjs.com/plugins/) for a complete list.
+## Plugins Disponibles
+
+La comunidad de gulp está creciendo, con nuevos plugins a diario. Visita la [página oficial](http://gulpjs.com/plugins/) para ver la lista completa.

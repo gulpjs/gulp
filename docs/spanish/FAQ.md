@@ -1,49 +1,49 @@
 # FAQ
 
-## Why gulp? Why not ____?
+## ¿Porqué Gulp y no otro?
 
-See the [gulp introduction slideshow] for a rundown on how gulp came to be.
+Consulta la [presentación introductoria] a gulp para un resumen de las motivaciones que originaron a gulp.
 
-## Is it "gulp" or "Gulp"?
+## gulp o Gulp?
 
-gulp is always lowercase. The only exception is in the gulp logo where gulp is capitalized.
+Siempre **g**ulp. La única excepción es en el logo donde Gulp aparece en mayúsculas.
 
-## Where can I find a list of gulp plugins?
+## ¿Dónde puedo conseguir una lista de plugins para gulp?
 
-gulp plugins always include the `gulpplugin` keyword. [Search gulp plugins][search-gulp-plugins] or [view all plugins][npm plugin search].
+Plugins para gulp siempre incluyen la etiqueta `gulpplugin`. [Busca gulp plugins][search-gulp-plugins] aquí o mira la lista de [todos los plugins][npm plugin search].
 
-## I want to write a gulp plugin, how do I get started?
+## Quiero escribir un plugin para gulp. ¿Cómo empiezo?
 
-See the [Writing a gulp plugin] wiki page for guidelines and an example to get you started.
+Consulta la documentación en [Crear un plugin] con ejemplos de como empezar.
 
-## My plugin does ____, is it doing too much?
+## Creo que mi plugin hace demasiado. ¿Cómo saber?
 
-Probably. Ask yourself:
+Considera las siguientes posibilidades.
 
-1. Is my plugin doing something that other plugins may need to do?
-  - If so, that piece of functionality should be a separate plugin. [Check if it already exists on npm][npm plugin search].
-1. Is my plugin doing two, completely different things based on a configuration option?
-  - If so, it may serve the community better to release it as two separate plugins
-  - If the two tasks are different, but very closely related, it's probably OK
+1. Si tu plugin incluye funcionalidad que otro plugin pudiese requerir considera llevar esa funcionalidad a otro plugin. Primero [confirma si aun no existe en npm][npm plugin search].
 
-## How should newlines be represented in plugin output?
+2. Si tu plugin realiza dos o más tareas diferentes, ajustables via configuración:
+  - Considera publicar cada caso de uso como un nuevo plugin y así beneficiar mejor a la comunidad.
+  - Si las funciones están lo suficientemente relacionadas, entonces es aceptable.
 
-Always use `\n` to prevent diff issues between operating systems.
+## ¿Qué código de nueva línea es recomendable en el output de mi plugin?
 
-## Where can I get updates on gulp?
+Utiliza siempre `\n` para evitar problemas con diff en diferentes sistemas operativos.
 
-gulp updates can be found on the following twitters:
+## ¿Cómo puedo mantenerme actualizado con gulp?
+
+Puedes estar al corriente de todo sobre gulp  a través de los siguientes enlaces de Twitter:
 
 - [@wearefractal](https://twitter.com/wearefractal)
 - [@eschoff](https://twitter.com/eschoff)
 - [@gulpjs](https://twitter.com/gulpjs)
 
-## Does gulp have an IRC channel?
+## ¿Cuál es el canal IRC de gulp?
 
-Yes, come chat with us in #gulpjs on [Freenode].
+Eres bienvenido a visitar el #gulpjs en [Freenode] y chatear con nosotros. Algunos de nosotros también hablamos Español.
 
-[Writing a gulp plugin]: writing-a-plugin/README.md
-[gulp introduction slideshow]: http://slid.es/contra/gulp
+[Crear un plugin]: writing-a-plugin/README.md
+[presentación introductoria]: http://slid.es/contra/gulp
 [Freenode]: http://freenode.net/
 [search-gulp-plugins]: http://gulpjs.com/plugins/
 [npm plugin search]: https://npmjs.org/browse/keyword/gulpplugin

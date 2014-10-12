@@ -1,15 +1,13 @@
 # Documentación de gulp
 
-* [Introducción](getting-started.md) - Como iniciarse con gulp.
-* [Documentación API](API.md) - Aprende gulp de arriba a abajo.
-* [Documentación CLI](CLI.md) - Aprende como invocar tareas y usar compiladores.
+* [Primeros Pasos](getting-started.md) - Como empezar con gulp.
+* [Documentación del API](API.md) - Aprende gulp de arriba a abajo.
+* [Documentación del CLI](CLI.md) - Aprende como invocar tareas y usar compiladores.
 * [Crear un Plugin](writing-a-plugin/README.md) - Recomendaciones para autores de plugins.
-
 
 ## FAQ
 
 Ver el [FAQ](FAQ.md) por respuestas a las preguntas más frequentes.
-
 
 ## Recetas
 
@@ -18,7 +16,6 @@ Ver el [FAQ](FAQ.md) por respuestas a las preguntas más frequentes.
 ## Más preguntas, etc.
 
 Escribe en [StackOverflow con el tag #gulp](http://stackoverflow.com/questions/tagged/gulp), o únete al chat con nosotros [#gulpjs](http://webchat.freenode.net/?channels=gulpjs) en [Freenode](http://freenode.net/).
-
 
 ## Artículos (Inglés)
 * [Introducción a gulp en Tagtree](http://tagtree.tv/gulp)
@@ -31,7 +28,6 @@ Escribe en [StackOverflow con el tag #gulp](http://stackoverflow.com/questions/t
 * [Construyendo con Gulp](http://www.smashingmagazine.com/2014/06/11/building-with-gulp/)
 * [Gulp - Fundamentos (screencast)](https://www.youtube.com/watch?v=dwSLFai8ovQ)
 * [Empezando con gulp (video serie)](http://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
-
 
 ## Licencia
 
