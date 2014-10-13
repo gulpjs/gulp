@@ -1,23 +1,23 @@
-# Recommended Modules
+# Módulos Recomendados
 
-> Sticking to this curated list of recommended modules will make sure you don't violate the plugin guidelines and ensure consistency across plugins.
+> Apegarse a los módulos de esta lista garantiza en gran parte no incurrir en violación de los lineamientos para la cración de plugins y asegura consistencia entre plugins.
 
-[Writing a Plugin](README.md) > Recommended Modules
+[Crear un plugin](README.md) > Módulos Recomendados
 
-#### Replacing a file extension
+#### Modificar la extensión de archivos
 
-Use [replace-ext](https://github.com/wearefractal/replace-ext)
+Utiliza [replace-ext](https://github.com/wearefractal/replace-ext)
 
-#### Errors
+#### Errores
 
-Use [BetterError](https://github.com/wearefractal/BetterError)
+Utiliza [BetterError](https://github.com/wearefractal/BetterError)
 
-#### String colors
+#### Colores en la terminal
 
-Use [chalk](https://github.com/sindresorhus/chalk)
+Utiliza [chalk](https://github.com/sindresorhus/chalk)
 
-#### Date formatting
+#### Formato de fechas
 
-Use [dateformat](https://github.com/felixge/node-dateformat)
+Utiliza [dateformat](https://github.com/felixge/node-dateformat)
 
-Display as `HH:MM:ss`
+Se muestra como `HH:MM:ss`
