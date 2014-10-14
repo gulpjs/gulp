@@ -1,8 +1,6 @@
-# Browserify + Uglify2 with sourcemaps
+# Browserify + Uglify2 con sourcemaps
 
-[Browserify](http://github.com/substack/node-browserify) has become an important and indispensable
-tool but requires being wrapped before working well with gulp. Below is a simple recipe for using
-Browserify with transforms and full sourcemaps that resolve to the original individual files.
+[Browserify](http://github.com/substack/node-browserify) se ha convertido en una herramienta importante e imprescindible, pero es necesario crear una interfaz para trabajar con con gulp. A continuación una simple receta para usar Browserify con transformaciones y full sourcemaps que reproducen los archivos originales individualmente.
 
 ``` javascript
 'use strict';
@@ -33,7 +31,7 @@ gulp.task('javascript', function() {
       .pipe(source(getBundleName() + '.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
+        // Agregar transformaciones a las tareas aquí.
         .pipe(uglify())
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./dist/js/'));
