@@ -1,14 +1,14 @@
-# Tests
+# Pruebas
 
-> Testear tus plugins es la única manera de asegurar calidad. Da confianza a tus usuarios y hace tu vida más fácil.
+> Probar tus plugins es una manera efectiva de garantizar calidad que inspira confianza en tus usuarios y te simplifica el trabajo.
 
-[Creando un plugin](README.md) > Tests
+[Crear un plguin](README.md) > Pruebas
 
 ## Herramientas
 
-La mayoría de los plugins usan [mocha](https://github.com/visionmedia/mocha) y [event-stream](https://github.com/dominictarr/event-stream) ayudándoles con los tests. Los siguientes ejemplos usarán estas herramientas.
+La mayoría de los plugins usan [mocha](https://github.com/visionmedia/mocha) y [event-stream](https://github.com/dominictarr/event-stream) para ayudar con las pruebas. Los siguientes ejemplos hacen uso de estas herramientas.
 
-## Test streaming mode en plugins
+## Probando plugins para modo streaming
 
 ```js
 var assert = require('assert');
@@ -21,24 +21,23 @@ describe('gulp-prefixer', function() {
 
     it('should prepend text', function(done) {
 
-      // crear el archivo de prueba
+      // crear el archivo dummy
       var fakeFile = new File({
         contents: es.readArray(['stream', 'with', 'those', 'contents'])
       });
 
-      // Crea un stream del prefixer plugin
+      // Crea un stream del plugin prefixer
       var myPrefixer = prefixer('prependthis');
 
-      // escribe el archivo de prueba en el stream
+      // escribe el archivo dummy en el stream
       myPrefixer.write(fakeFile);
 
-      // esperar a que el archivo se haya escrito 
+      // espera que el archivo sea retornado
       myPrefixer.once('data', function(file) {
-        // asegurarse de que vuelve de la forma que entró
+        // asegura de que retorna también un stream
         assert(file.isStream());
 
-        // cargar el contenido para asegurarse de que
-        // se añadió al princpio del archivo
+        // buffer el contenido para asegurar de que fue modificado
         file.contents.pipe(es.wait(function(err, data) {
           // verifica el contenido
           assert.equal(data, 'prependthisstreamwiththosecontents');
@@ -52,7 +51,7 @@ describe('gulp-prefixer', function() {
 });
 ```
 
-## Testeando plugins con buffer mode
+## Probando plugins para modo buffer
 
 ```js
 var assert = require('assert');
@@ -92,6 +91,6 @@ describe('gulp-prefixer', function() {
 });
 ```
 
-## Ejemplos de tests
+## Ejemplos de pruebas
 
 * [gulp-cat](https://github.com/ben-eb/gulp-cat/blob/master/test.js)

@@ -1,14 +1,14 @@
 # Uso de streams
 
-> Es altamente recomendable hacer plugins que soporten streams. Aquí hay alguna información relacionada con la creación de un gulp plugin que da soporte a streams
+> Es recomendable crear plugins con soporte a streams. La siguiente información es pertinente a plugins que manipulan streams.
 
-> Asegúrate de seguir las méjores prácticas con respecto a manejo de excepciones e inlcuya la linea que permita al gulp plugin volver a emitir el primer error capturado durante la transformación del contenido.
+> Asegúrate de seguir las méjores prácticas con respecto a manejo de excepciones y añadir el código que permite a gulp re-emitir el primer error capturado durante la transformación del contenido.
 
-[Creando un plugin](README.md) > Writing stream based plugins
+[Crear un plugin](README.md) > Writing stream based plugins
 
 ## Uso de streams
 
-Vamos a implementar un plugin que añada texto al principio de archivos. Este plugin da soporte a todas las formas de file.contents.
+A continuación se presenta la implementación de un plugin que prepende texto a archivos. Este plugin brinda soporte a todas las formas de `file.contents`.
 
 ```js
 var through = require('through2');
@@ -30,9 +30,9 @@ function gulpPrefixer(prefixText) {
     throw new PluginError(PLUGIN_NAME, 'Missing prefix text!');
   }
 
-  prefixText = new Buffer(prefixText); // cargar en memoria por adelantado
+  prefixText = new Buffer(prefixText); // alocado por adelantado
 
-  // creando un stream por el que cada archivo pasará
+  // crear un stream through por el que cada archivo va a pasar
   var stream = through.obj(function(file, enc, cb) {
     if (file.isBuffer()) {
       this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
@@ -40,21 +40,22 @@ function gulpPrefixer(prefixText) {
     }
 
     if (file.isStream()) {
-      // definir el streamer que transformará el contenido
+      // crea el streamer para transformar el contenido
       var streamer = prefixStream(prefixText);
-      // capturar errores del streamer y emitir un gulp plugin error
+      // maneja excepciones provenientes del streamer y emite un error
       streamer.on('error', this.emit.bind(this, 'error'));
-      // empezar la transformación
+      // inicia la transformación
       file.contents = file.contents.pipe(streamer);
     }
 
-    // asegúrate que archivo pase a través del siguiente plugin
+    // asegúrate de hacer el archivo disponible al siguiente plugin en la tubería
     this.push(file);
-    // indicar al motor de streams que hemos terminado con este archivo
+
+    // indica a gulp que hemos culminado de procesar el archivo
     cb();
   });
 
-  // devolver el stream de archivos
+  // devuelve el stream
   return stream;
 };
 
@@ -62,7 +63,7 @@ function gulpPrefixer(prefixText) {
 module.exports = gulpPrefixer;
 ```
 
-El plugin anterior se puede usar tal que así:
+El plugin anterior puede ser usado de la siguiente manera:
 
 ```js
 var gulp = require('gulp');
@@ -73,6 +74,6 @@ gulp.src('files/**/*.js', { buffer: false })
   .pipe(gulp.dest('modified-files'));
 ```
 
-## Algunos plugins usando streams
+## Algunos plugins basados en streams
 
 * [gulp-svgicons2svgfont](https://github.com/nfroidure/gulp-svgiconstosvgfont)
