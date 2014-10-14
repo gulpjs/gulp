@@ -171,7 +171,7 @@ gulp.task('algunnombre', function() {
 - dar una señal de que la tarea se ha completado,
 - y señalar que la tarea depende en que otra se complete.
 
-Por estos ejemplos, vamos suponer que tenemos dos tareas, "uno" y "dos" que quieres ejecutar en el este orden:
+Para estos ejemplos, vamos suponer que tenemos dos tareas, "uno" y "dos" que quieres ejecutar en el este orden:
 
 1. En la tarea "uno" añades la señal indicando cuando esta se ha completado. Ya sea utilizando una función callback y llamarla cuando hayas acabado o devolver una promesa o stream con los que se deba esperar a resolver o terminar respectivamente.
 

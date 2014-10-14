@@ -1,10 +1,10 @@
-# Combining streams to handle errors
+# Combinar streams que saben de erores
 
-By default, emitting an error on a stream will cause it to be thrown unless it already has a listener attached to the `error` event. This gets a bit tricky when you're working with longer pipelines of streams.
+Por defecto, emitir un error en un stream probocará una exepción en tu programa a no ser que haya un listener colocado escuchando al evento `error`. Esta situación se puede complicar cuando estas trabajando con procesos más y más largos.
 
-By using [multistream](https://github.com/feross/multistream) you can turn a series of streams into a single stream, meaning you only need to listen to the `error` event in one place in your code.
+Usando [multistream](https://github.com/feross/multistream) puedes comvertir una sucesión de streams en sólo uno, lo que quiere decir que sólo hay que escuchar al evento error de este último stream en un lugar de tu código.
 
-Here's an example of using it in a gulpfile:
+He aquí un ejemplo usándolo en un gulpfile:
 
 ```js
 var Multistream = require('multistream');
@@ -18,8 +18,8 @@ gulp.task('test', function() {
     gulp.dest('public/bootstrap')
   ]);
 
-  // any errors in the above streams will get caught
-  // by this listener, instead of being thrown:
+  // errores en el stream de arriba serán recogidos
+  // por este listener, en lugar de probocar una excepción
   combined.on('error', console.error.bind(console));
 
   return combined;

@@ -1,6 +1,6 @@
-# Rebuild only files that change
+# Reprocesar sólo cuando los archivos cambien
 
-With [`gulp-watch`](https://github.com/floatdrop/gulp-watch):
+Con [`gulp-watch`](https://github.com/floatdrop/gulp-watch):
 
 ```js
 var gulp = require('gulp');
