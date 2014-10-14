@@ -1,25 +1,25 @@
 ## Documentación del CLI
 
-### Flags o parámetros
+### Flags
 
-No necesitas conocer muchos parámetros para utilizar gulp en la terminal. Muchas de las opciones son especialmente útil para tareas.
+gulp tiene muy pocas [flags](http://es.wikipedia.org/wiki/Flag) que conocer. El resto de flags están para el caso en el que las tareas las necesiten.
 
 - `-v` o `--version` muestra la versión global y local de gulp respectivamente.
-- `--require <module path>` permite incluir algún módulo antes de ejecutar el gulpfile. Especialmente útil, pero no limitado, para [transcompiladores](http://en.wikipedia.org/wiki/Source-to-source_compiler). Puedes utilizar varios `--require` también.
-- `--gulpfile <gulpfile path>` permite especificar la ruta del gulpfile manualmente. Útil si estás utilizando múltiples gulpfiles. También establece el directorio actual (CWD) al directorio del gulpfile.
-- `--cwd <dir path>` permite establecer el directorio actual (CWD) manualmente. gulp intentará acceder al gulpfile y posibles módulos incluídos, en relación al directorio especificado.
-- `-T` o `--tasks` muestra el árbol de dependencias de tareas del gulpfile.
-- `--tasks-simple` muestra la lista de tareas del gulpfile.
-- `--color` fuerza a gulp y plugins a utilizar colores, incluso si **no** existe soporte de colores.
-- `--no-color` fuerza a gulp y plugins a no utilizar colores, incluso si existe soporte de colores.
-- `--silent` desactiva completamente el logging al correr el gulpfile.
+- `--require <module path>` permite incluir un módulo antes de ejecutar el gulpfile. Esto es útil para [transcompiladores](http://en.wikipedia.org/wiki/Source-to-source_compiler) y también tiene otros usos. Puedes user varias `--require` flags.
+- `--gulpfile <gulpfile path>` especifica la ruta del gulpfile manualmente. Útil si tienes múltiples gulpfiles. Esto también cambiará el CWD al directorio del gulpfile.
+- `--cwd <dir path>` cambiará el CWD manualmente. Tanto la búsqueda del gulpfile, como la relatividad de todos los requires se tomará desde este directorio.
+- `-T` o `--tasks` muestra el árbol de dependencias de tareas del gulpfile cargado.
+- `--tasks-simple` muestra una lista de las tareas en texto plano para el gulpfile cargado.
+- `--color` forzará a gulp y plugins a utilizar colores, incluso cuando no exista soporte.
+- `--no-color` fuerza a gulp y plugins a no utilizar colores, incluso cuando exista soporte.
+- `--silent` desactivará todo el logging de gulp.
 
-El CLI agrega `process.env.INIT_CWD`, es decir, el directorio actual (CWD) desde el que fue ejecutado.
+La CLI agrega `process.env.INIT_CWD`, la ruta original del CWD desde el que gulp fue ejecutado.
 
 ### Tareas
 
-Tareas específicas pueden ser ejecutadas vía `gulp <task>`. Solo `gulp` ejecuta la tarea registrada como `default`. gulp genera un error si la tarea `default` no existe.
+Tareas específicas pueden ser ejecutadas vía `gulp <task>`. Si sólo es escribe `gulp` se ejecutará la tarea que registraste como `default`. Y si `default` no existe gulp dará error.
 
-### Compilers
+### Compiladores
 
-Puedes conseguir una lista de los lenguajes con soporte en [interpret](https://github.com/tkellen/node-interpret#jsvariants). Si deseas añadir soporte a otro lenguaje, sigue el enlace y envía un pull request o abre un nuevo asunto en el proyecto.
+Puedes encontrar una lista de los lenguajes soportados en [interpret](https://github.com/tkellen/node-interpret#jsvariants). Si quieres añadir soporte para un nuevo lenguaje, abre allí una incidencia o pull request.

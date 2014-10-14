@@ -1,12 +1,12 @@
-# Uso de buffers
+# Utilizando buffers
 
-> La siguiente información es pertinente a plugins que manipulan buffers.
+> Aquí encontrarás informacion acerca de cómo crear un gulp plugin que manipula buffers
 
-[Crear un plugin](README.md) > Uso de buffers
+[Creando un plugin](README.md) > Uso de buffers
 
-## Uso de buffers
+## Usando buffers
 
-Si tu plugin depende en una librería que maneje buffers, es probably que tu plugin prefiera manejar `file.contents` como buffer también. A continuación se presenta la implementación de un plugin que prepende texto a archivos:
+Si tu plugin espera tener acceso a una librería que usa buffers, es probable que bases tu plugin alrededor de file.contents como buffer. Vamos a implementar un plugin que añada texto al princpio de archivos:
 
 
 ```js
@@ -62,9 +62,9 @@ gulp.src('files/**/*.js')
   .pipe(gulp.dest('modified-files'));
 ```
 
-## Manejando streams
+## Usando streams
 
-Desafortunadamente, el plugin anterior falla al utilizar `gulp.src` en modo non-buffered (streaming). Es recomendable brindar soporte a streams si es posible. Ver [Uso de streams]((dealing-with-streams.md)) para más información.
+Desafortunadamente, el plugin anterior fallará al utilizar `gulp.src` para non-buffered (streaming) mode. Debes de soportar streams también si es posible. Lee [Uso de streams]((dealing-with-streams.md)) para más información.
 
 ## Algunos plugins basados en buffers
 
