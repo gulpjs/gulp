@@ -1,6 +1,6 @@
-# Output both a minified and non-minified version
+# Escribir una version minificada y no minificada a la vez
 
-Outputting both a minified and non-minified version of your combined JavaScript files can be achieved by using `gulp-rename` and piping to `dest` twice (once before minifying and once after minifying):
+Escribir una version minificada y no minificada de tu JavaScript combiando puede conseguir usando `gulp-rename` y luego pasando los archivos a través de `dest` dos veces (una antes de minificar y otra después minificar):
 
 ```js
 'use strict';
@@ -13,9 +13,9 @@ var DEST = 'build/';
 
 gulp.task('default', function() {
   return gulp.src('foo.js')
-    // This will output the non-minified version
+    // Lo que creara la versión no minificada
     .pipe(gulp.dest(DEST))
-    // This will minify and rename to foo.min.js
+    // Lo que minificará y renombrara el foo.js
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest(DEST));

@@ -1,10 +1,10 @@
-# Sharing streams with stream factories
+# Compartiendo streams con fábricas de streams
 
-If you use the same plugins in multiple tasks you might find yourself getting that itch to DRY things up. This method will allow you to create factories to split out your commonly used stream chains.
+Si usas los mismos plugins una y otra vez en en diferentes tareas es posible que te encuentres [DRY](http://es.wikipedia.org/wiki/No_te_repitas) a ti mismo. Este método te permitirá crear fábricas para separar tus usos más comunes.
 
-We'll use [lazypipe](https://github.com/OverZealous/lazypipe) to get the job done.
+Usaremos [lazypipe](https://github.com/OverZealous/lazypipe).
 
-This is our sample file:
+Este es nuestro archivo de ejemplo:
 
 ```js
 var gulp = require('gulp');
@@ -31,7 +31,7 @@ gulp.task('coffee', function() {
 });
 ```
 
-and our file after using lazypipe looks like this:
+que tras lazypipe viene a ser:
 
 ```js
 var gulp = require('gulp');
@@ -61,4 +61,4 @@ gulp.task('coffee', function() {
 });
 ```
 
-You can see we split out our JavaScript pipeline (JSHint + Uglify) that was being reused in multiple tasks into a factory. These factories can be reused in as many tasks as you want. You can also nest factories and you can chain factories together for great effect. Splitting out each shared pipeline also gives you one central location to modify if you decide to change up your workflow.
+Puedes ver que hemos separado nuestra cadena de procesado (pipeline) JavaScript (JSHint + Uglify), basada en varias tareas, a una fábrica. Estas fábricas pueden ser usadas tantas veces como se quiera. Tambien puedes anidar y encadenar fábricas para crear interesantes resultados. Separar cadenas de procesado compartidas tambien te da un lugar central donde modificar si decides cambiar tu forma de funcionar.

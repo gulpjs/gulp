@@ -1,6 +1,6 @@
-# Only pass through changed files
+# Sólo archivos modificados
 
-Files are passed through the whole pipe chain on every run by default. By using [gulp-changed](https://github.com/sindresorhus/gulp-changed) only changed files will be passed through. This can speed up consecutive runs considerably.
+Archivos que pasan por toda la cadena del proceso por defecto. Usando [gulp-changed](https://github.com/sindresorhus/gulp-changed) sólo los que han cambiado llegarán al otro lado. Esto puede acelerar ejecuciones consecutivas de una forma considerable.
 
 
 ```js
@@ -11,16 +11,16 @@ var changed = require('gulp-changed');
 var jscs = require('gulp-jscs');
 var uglify = require('gulp-uglify');
 
-// we define some constants here so they can be reused
+// Definamos algunas constantes que puedan reusarse
 var SRC = 'src/*.js';
 var DEST = 'dist';
 
 gulp.task('default', function() {
 	return gulp.src(SRC)
-		// the `changed` task needs to know the destination directory
-		// upfront to be able to figure out which files changed
+		// La tarea `cambiado` necesita conocer el directorio de destino
+		// por adelantado y así poder averiguar qué archivos han cambiado
 		.pipe(changed(DEST))
-		// only files that has changed will pass through here
+		// sólo los archivos que han cambiado pasarán
 		.pipe(jscs())
 		.pipe(uglify())
 		.pipe(gulp.dest(DEST));

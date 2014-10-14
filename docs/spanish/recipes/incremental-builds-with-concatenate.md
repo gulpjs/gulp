@@ -1,8 +1,8 @@
-# Incremental rebuilding, including operating on full file sets
+# Procesos incrementales, incluyendo conjuntos completos de archivos
 
-The trouble with incremental rebuilds is you often want to operate on _all_ processed files, not just single files. For example, you may want to lint and module-wrap just the file(s) that have changed, then concatenate it with all other linted and module-wrapped files. This is difficult without the use of temp files.
+El problema con los procesos incrementales es que normalmente quieres realizar operaciones sobre _todos_ los archivos procesados, no simplemente archivos individuales. Por ejemplo, puede que quieras usar jshint o crear un módulo sólo de los archivos que han cambiado, luego concatenarlo con otros ya código ya limpio y modularizado. Esto es difícil sin el uso de archivos temporales.
 
-Use [gulp-cached](https://github.com/wearefractal/gulp-cached) and [gulp-remember](https://github.com/ahaurw01/gulp-remember) to achieve this.
+Usa [gulp-cached](https://github.com/wearefractal/gulp-cached) y [gulp-remember](https://github.com/ahaurw01/gulp-remember) para conseguirlo
 
 ```js
 var gulp = require('gulp');
@@ -17,21 +17,21 @@ var scriptsGlob = 'src/**/*.js';
 
 gulp.task('scripts', function() {
   return gulp.src(scriptsGlob)
-      .pipe(cached('scripts'))        // only pass through changed files
-      .pipe(jshint())                 // do special things to the changed files...
-      .pipe(header('(function () {')) // e.g. jshinting ^^^
-      .pipe(footer('})();'))          // and some kind of module wrapping
-      .pipe(remember('scripts'))      // add back all files to the stream
-      .pipe(concat('app.js'))         // do things that require all files
+      .pipe(cached('scripts'))        // sólo lo archivos que cambian
+      .pipe(jshint())                 // hacer algo con ellos
+      .pipe(header('(function () {')) // e.g. jshint ^^^
+      .pipe(footer('})();'))          // y algún tipo envolvente modular
+      .pipe(remember('scripts'))      // devolver los archivos al stream
+      .pipe(concat('app.js'))         // hacer algo con todos los archivos
       .pipe(gulp.dest('public/'));
 });
 
 gulp.task('watch', function () {
-  var watcher = gulp.watch(scriptsGlob, ['scripts']); // watch the same files in our scripts task
+  var watcher = gulp.watch(scriptsGlob, ['scripts']); // observar los mismos archivos de tus tareas
   watcher.on('change', function (event) {
-    if (event.type === 'deleted') {                   // if a file is deleted, forget about it
-      delete cached.caches.scripts[event.path];       // gulp-cached remove api
-      remember.forget('scripts', event.path);         // gulp-remember remove api
+    if (event.type === 'deleted') {                   // si un archivo se elimina olvidarlo
+      delete cached.caches.scripts[event.path];       // gulp-cached api 
+      remember.forget('scripts', event.path);         // gulp-remember api
     }
   });
 });

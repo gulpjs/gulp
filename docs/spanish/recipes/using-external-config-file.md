@@ -1,6 +1,6 @@
-# Using external config file
+# Usar un archivo de configuración externo
 
-Beneficial because it's keeping tasks DRY and config.json can be used by another task runner, like `grunt`.
+Es beneficioso porque mantiene las tareas DRY y el config.json puede ser usado por otro *task runner*, como `grunt`.
 
 -
 

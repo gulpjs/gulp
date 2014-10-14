@@ -1,6 +1,6 @@
-# Generating a file per folder
+# Generar un archivo por carpeta
 
-If you have a set of folders, and wish to perform a set of tasks on each, for instance...
+Si tienes un conjunto de carpetas, y quisieras hacer un conjunto de tareas en cada uno de ellos, por ejemplo... 
 
 ```
 /scripts
@@ -8,7 +8,7 @@ If you have a set of folders, and wish to perform a set of tasks on each, for in
 /scripts/angularjs/*.js
 ```
 
-...and want to end up with...
+...y quieres acabar con...
 
 ```
 /scripts
@@ -16,7 +16,7 @@ If you have a set of folders, and wish to perform a set of tasks on each, for in
 /scripts/angularjs.min.js
 ```
 
-...you'll need to do something like the following...
+...necesitarás hacer algo como lo siguiente...
 
 ``` javascript
 var fs = require('fs');
@@ -40,11 +40,11 @@ gulp.task('scripts', function() {
    var folders = getFolders(scriptsPath);
 
    var tasks = folders.map(function(folder) {
-      // concat into foldername.js
-      // write to output
-      // minify
-      // rename to folder.min.js
-      // write to output again
+      // concatenar en carpeta.js
+      // escribir archivo de salida
+      // minificar
+      // renombrarlo a folder.min.js
+      // escribir achivo de salida de nuevo
       return gulp.src(path.join(scriptsPath, folder, '/*.js'))
         .pipe(concat(folder + '.js'))
         .pipe(gulp.dest(scriptsPath))
@@ -57,7 +57,6 @@ gulp.task('scripts', function() {
 });
 ```
 
-A few notes:
-
-- `folders.map` - executes the function once per folder, and returns the async stream
-- `es.concat` - combines the streams and ends only when all streams emitted end
+Unas pocas notas:
+- `folders.map` - ejecuta la funcion una vez por cada carpeta y devuelver el stream asíncrono.
+- `es.concat` - combina los streams y termina sólo cuando todos los streams hallan acabado

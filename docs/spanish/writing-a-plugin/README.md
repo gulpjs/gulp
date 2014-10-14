@@ -1,32 +1,32 @@
-# Crear un plugin
+# Creando un plugin
 
-Si estás pensando en crear un plugin para gulp, te ahorrás un buen tiempo al leer la documentación en su totalidad.
+Si vas crear un tu propio plugin para gulp, te ahorrás tiempo leyendo la documentación
 
-* [Lineamientos](guidelines.md) (lectura obligada)
-* [Uso de buffers](using-buffers.md)
-* [Uso de streams](dealing-with-streams.md)
-* [Pruebas](testing.md)
+* [Guía](guidelines.md) (lectura RECOMENDADA)
+* [Utilizando buffers](using-buffers.md)
+* [Trabajando con streams](dealing-with-streams.md)
+* [Tests](testing.md)
 
-## Lo que hace.
+## Qué hace
 
-### Streams o _Canales_
+### Streaming
 
 Los plugins de gulp siempre devuelven un stream en [modo objeto](http://nodejs.org/api/stream.html#stream_object_mode) que hace lo siguiente:
 
-1. Recibe [objetos File de vynil](http://github.com/wearefractal/vinyl)
-2. Produce [objetos File de vynil](http://github.com/wearefractal/vinyl)
+1. Recibe [objetos File de vinyl](http://github.com/wearefractal/vinyl)
+2. Produce [objetos File de vinyl](http://github.com/wearefractal/vinyl)
 
-También conocidos como [transform streams](http://nodejs.org/api/stream.html#stream_class_stream_transform_1) (algunas veces también denominados _through streams_).  Transform streams son streams bidireccionales  capaces de leer y modificar objetos que los atraviesan. Piensa en un filtro de agua conectado a una tubería o manguera.
+Estos se conocen como [transform streams](http://nodejs.org/api/stream.html#stream_class_stream_transform_1) (también algunas veces denominados through streams). Transform streams son streams de lectura y escritura que manipulan los objetos que pasan a través de ellos.
 
-### Modificando archivos
+### Modificando contenido de archivos
 
-Archivos de vynil disponen de 3 tipos de atributos de contenido:
+Los archivos de vinyl pueden tener 3 formas posibles, dependiendo su atributo _contents_:
 
 - [Streams](dealing-with-streams.md)
 - [Buffers](using-buffers.md)
-- Vacío (null) - Útil por ejemplo para rimraf Useful for things like [rimraf](https://www.npmjs.org/package/rimraf), clean, etc., donde el contenido no es necesario.
+- Vacío (null) - Útil para cosas como [rimraf](https://www.npmjs.org/package/rimraf), clean, etc., donde el contenido no es necesario.
 
-## Otros recursos
+## Recursos útiles
 
 * [objeto File](https://github.com/wearefractal/gulp-util/#new-fileobj)
 * [PluginError](https://github.com/gulpjs/gulp-util#new-pluginerrorpluginname-message-options)
@@ -44,11 +44,12 @@ Archivos de vynil disponen de 3 tipos de atributos de contenido:
 
 ## Acerca de streams
 
-Si no estás familiarizado con streams, sería útil repasar el tema:
+Si no estás familiarizado con los streams, te será útil leer acerca de ellos:
 
-* https://github.com/substack/stream-handbook (lectura obligada)
+* https://github.com/substack/stream-handbook (lectura RECOMENDADA)
 * http://nodejs.org/api/stream.html
+
 * [Streams](http://nodejs-es.github.io/api/all.html#all_es_streams) - Documentación de Node en Español.
 * [Tuberías](http://es.wikipedia.org/wiki/Tuber%C3%ADa_(inform%C3%A1tica). (Wikipedia)
 
-Librerías para gulp que no manipulan streams son generalmente etiquetadas [gulpfriendly](https://npmjs.org/browse/keyword/gulpfriendly) en npm.
+Otras librerías, que no manipulan archivos a través de streams, pero están hechas para usarlas con gulp se etiquetan la palabra clave [gulpfriendly](https://npmjs.org/browse/keyword/gulpfriendly) en npm.

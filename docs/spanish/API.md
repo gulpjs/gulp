@@ -1,12 +1,10 @@
-## Documentacion del API
+## gulp API
 
-### gulp.src(globs[, options])
+### gulp.src(globs[, opciones])
 
-Emite los archivos especificados en el glob o vector de globs. Retorna un [stream](http://nodejs.org/api/stream.html) de [objetos Vinyl ](https://github.com/wearefractal/vinyl-fs)
-que pueden ser [conectados](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options)
-a otros plugins.
-
-**Nota:** [Vinyl](https://github.com/wearefractal/vinyl) es un módulo node que describe un simple formato para archivos vía objetos `File`.
+Emite los archivos especificados en el glob o vector de globs. Devuelve un [stream](http://nodejs.org/api/stream.html) de [objetos Vinyl](https://github.com/wearefractal/vinyl-fs)
+que pueden ser [conectados](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_opciones)
+a plugins.
 
 ```javascript
 gulp.src('client/templates/*.jade')
@@ -15,55 +13,51 @@ gulp.src('client/templates/*.jade')
   .pipe(gulp.dest('build/minified_templates'));
 ```
 
-`glob`, se refiere a [node-glob](https://github.com/isaacs/node-glob) o puede ser simplemente la ruta a un archivo.
+`glob` se refiere a la [sintaxis de node-glob](https://github.com/isaacs/node-glob) o directamete la ruta a un archivo.
 
 #### globs
 Tipo: `String` o `Array`
 
-Glob o vector de globs a utilizar para la búsqueda.
+Glob o vector de globs a utilizar que leer.
 
-#### options
+#### opciones
 Tipo: `Object`
 
-Opciones que utiliza el [node-glob] vía [glob-stream].
+Opciones pasadas a [node-glob] a través de [glob-stream].
 
-Adicionalmente a las [opciones soportadas por node-glob][node-glob documentation] y [glob-stream], gulp añade:
+gulp añade dos opciones además de las [soportadas por node-glob][node-glob documentation] y [glob-stream]:
 
-#### options.buffer
+#### opciones.buffer
 Tipo: `Boolean`
 Por defecto: `true`
 
-Si es `false` devuelve `file.contents` como un `stream` en vez de un buffer de archivos. Útil al utilizar archivos grandes.
-**Nota:** No es estrictamente necesario implementar el soporte a streams en plugins.
+Poner esta opción a `false` devolverá los `file.contents` como un `stream` y no cargará los archivos en memoria. Útil cuando se está trabajando con archivos grandes.
 
-#### options.read
+#### opciones.read
 Tipo: `Boolean`
 Por defecto: `true`
 
-Si es `false` devuelve `file.contents` como `null`  y no lee el archivo.
+Poner esta opción a `false` devolverá los `file.contents` como `null`  y no leerá archivo alguno.
 
-#### options.base
+#### opciones.base
 Tipo: `String`
-Por defecto: ruta completa antes del glob (ver [glob2base])
+Por defecto: todo lo anterior al glob (ver [glob2base])
 
-Por ejemplo, considera un archivo `somefile.js` en `client/js/somedir`:
+E.g., considera un archivo `somefile.js` en `client/js/somedir`:
 
 ```js
-gulp.src('client/js/**/*.js')
-// Iguala a 'client/js/somedir/somefile.js' y hace `base` `client/js/`
+gulp.src('client/js/**/*.js') // Iguala a 'client/js/somedir/somefile.js' y resuelve `base` a `client/js/`
   .pipe(minify())
-  .pipe(gulp.dest('build'));  
-  // Escribe en 'build/somedir/somefile.js'
+  .pipe(gulp.dest('build'));  // Escribe 'build/somedir/somefile.js'
 
 gulp.src('client/js/**/*.js', { base: 'client' })
   .pipe(minify())
-  .pipe(gulp.dest('build'));  
-  // Escribe 'build/js/somedir/somefile.js'
+  .pipe(gulp.dest('build'));  // Escribe 'build/js/somedir/somefile.js'
 ```
 
-### gulp.dest(path[, options])
+### gulp.dest(ruta[, opciones])
 
-Puede ser conectado y crea / modifica archivos. Re-emite el stream de datos de modo que puede ser conectado a múltiples directorios. Si los directorios no existen serán creados.
+Puede ser conectado a un stream y creará archivos. Re-emite todo dato que le pasa de modo que puede conectarse via streams a múltiples directorios. Los directorios que no existan serán creados.
 
 ```javascript
 gulp.src('./client/templates/*.jade')
@@ -73,39 +67,39 @@ gulp.src('./client/templates/*.jade')
   .pipe(gulp.dest('./build/minified_templates'));
 ```
 
-La ruta de escritura es determinada añadiendo la ruta relativa del archivo al directorio de destino. Igualmente, rutas relativas son determinadas con respecto la base del archivo. Ver `gulp.src` arriba.
+La ruta de escritura es determinada añadiendo al directorio de destino la ruta relativa del archivo. En consecuencia, las rutas relativas se calculan respecto a la base del archivo. Ver `gulp.src` arriba para más información.
 
-#### path
+#### ruta
 Tipo: `String` o `Function`
 
-La ruta / directorio al cual archivos serán escritos. O una función que devuelve la ruta. Esta función sera provista de un [objeto `File` de vynil](https://github.com/wearefractal/vinyl).
+La ruta (directorio de salida) donde escribir archivos. O una función que devuelve la devuelva, función que será provista de un [objeto `File` de vynil](https://github.com/wearefractal/vinyl).
 
-#### options
+#### opciones
 Tipo: `Object`
 
-#### options.cwd
+#### opciones.cwd
 Tipo: `String`
 Por defecto: `process.cwd()`
 
-`cwd` para el directorio a escribir, solo es efectivo si el directorio especificado es relativo.
+`cwd` para el directorio de salida, solo se tendrá en cuenta si el directorio de salida dado es relativo.
 
-#### options.mode
+#### opciones.mode
 Tipo: `String`
 Por defecto: `0777`
 
-[Permisos de acceso](http://es.wikipedia.org/wiki/Permisos_de_acceso_a_archivos#Notaci.C3.B3n_octal) en formato octal especificando el modo de los directorios a crear.
+[Permiso](http://es.wikipedia.org/wiki/Permisos_de_acceso_a_archivos#Notaci.C3.B3n_octal) en formato octal especificando el modo en el que los directorios necesitan ser creados en el directorio de destino.
 
-### gulp.task(name[, deps], fn)
+### gulp.task(nombre[, deps], fn)
 
 Define una tarea utilizando [Orchestrator].
 
 ```js
-gulp.task('somename', function() {
-  // haz algo
+gulp.task('algunnombre', function() {
+  // haz cosas
 });
 ```
 
-#### name
+#### nombre
 
 Nombre de la tarea. Tareas a ejecutar desde la línea de comandos no deben tener espacios en blanco.
 
@@ -115,31 +109,31 @@ Tipo: `Array`
 Vector de tareas a ejecutarse y completarse antes de ejecutar `mytask`.
 
 ```js
-gulp.task('mytask', ['vector', 'de', 'tareas'], function() {
-  // haz algo
+gulp.task('mitarea', ['vector', 'de', 'nombres', 'de', 'tareas'], function() {
+  // haz cosas
 });
 ```
 
-**Nota:** Si tienes tareas ejecutándose antes de completar subtareas asegúrate de que las subtareas siguen las especificaciones para tareas asíncronas: tomar una función callback o retornar una promesa o event stream.
+**Nota:** ¿Tus tareas se están ejecutando antes de que sus dependencias se completen? Asegurate de que sus depencias sigan las especificaciones asíncronas: tomar una función callback o devolver una promesa o event stream.
 
 #### fn
 
 La función que realiza las operaciones de la tarea. Generalmente de la forma `gulp.src().pipe(someplugin())`.
 
-#### Tareas asíncronas
+#### Soporte para tareas asíncronas
 
-Cualquier tarea puede ejecutarse de manera asíncrona si `fn`:
+Cualquier tarea puede hacerse asíncrona si su `fn` hace alguna de las siguientes:
 
-##### Acepta una función callback
+##### Utiliza una función callback
 
 ```javascript
-// ejecuta un comando en la shell
+// ejecuta un comando en un terminal
 var exec = require('child_process').exec;
 gulp.task('jekyll', function(cb) {
-  // ejecuta Jekyll
+  // construye Jekyll
   exec('jekyll build', function(err) {
     if (err) return cb(err); // devuelve error
-    cb(); // tarea completada!
+    cb(); // tarea terminada
   });
 });
 ```
@@ -147,7 +141,7 @@ gulp.task('jekyll', function(cb) {
 ##### Retorna un stream
 
 ```js
-gulp.task('somename', function() {
+gulp.task('algunnombre', function() {
   var stream = gulp.src('client/**/*.js')
     .pipe(minify())
     .pipe(gulp.dest('build'));
@@ -155,15 +149,15 @@ gulp.task('somename', function() {
 });
 ```
 
-##### Retorna una promesa
+##### Devuelve una promesa
 
 ```javascript
 var Q = require('q');
 
-gulp.task('somename', function() {
+gulp.task('algunnombre', function() {
   var deferred = Q.defer();
 
-  // operaciones asíncronas
+  // hacer cosas asíncronas
   setTimeout(function() {
     deferred.resolve();
   }, 1);
@@ -172,57 +166,56 @@ gulp.task('somename', function() {
 });
 ```
 
-**Nota:** Las tareas son ejecutadas con máxima concurrencia. Es decir, todas las tareas son iniciadas simultáneamente sin esperar. Para crear tareas en un orden específico, es necesario:
+**Nota:** Por defecto, las tareas se ejecutadan con máxima concurrencia. Es decir, todas las tareas son iniciadas simultáneamente sin esperar. Si quieres crear una sucesión de tareas en un orden específico, debes hacer dos cosas:
 
-- especificar cuando la tarea es completada,
-- y especificar que una tarea depende en otra para ejecutarse.
+- dar una señal de que la tarea se ha completado,
+- y señalar que la tarea depende en que otra se complete.
 
-Por ejemplo, para dos tareas, _A_ y _B_ que deben ser ejecutadas en el mismo orden se procede de la siguiente manera:
+Para estos ejemplos, vamos suponer que tenemos dos tareas, "uno" y "dos" que quieres ejecutar en el este orden:
 
-1. Al crear _A_, la función puede tomar una función callback a invocar al culminar la tarea o retornar una promesa o stream que indica a gulp esperar.
+1. En la tarea "uno" añades la señal indicando cuando esta se ha completado. Ya sea utilizando una función callback y llamarla cuando hayas acabado o devolver una promesa o stream con los que se deba esperar a resolver o terminar respectivamente.
 
-2. Al crear _B_ se especifica un vector con _A_ que establece la dependencia, es decir, para ejecutar _B_, _A_ debe primero culminar.
+1. En la tarea "dos" añades una señal indicando al motor de gulp que esta tarea depende de que la primera se complete.
 
-A continuación una posible implementación del ejemplo anterior:
+Este ejemplo sería así:
 
 ```js
 var gulp = require('gulp');
 
-// toma una función callback a invocar para informar a gulp que la tarea ha culminado
-gulp.task('A', function(cb) {
-    // operaciones síncronas o asíncronas...
-    cb(err);
-    // si err no es null o undefined, la ejecución se detiene, anunciando que falló
+// utiliza función callback a llamar para informar a gulp que ha acabado
+gulp.task('uno', function(cb) {
+    // hacer cosas -- asíncronas o lo contrario...
+    cb(err); // si err ni es null ni undefined, la ejecución se detiene, señalando que esta falló
 });
 
-// identifica que la tarea B debe ser ejecutada cuando A es completada. gulp determina que A ha culminado cuando la función callback pasada al crear A es invocada
-gulp.task('B', ['A'], function() {
-    // ya 'A' ha completado
+// establece que una tarea dependiente debe completarse antes de que esta se inicie
+gulp.task('dos', ['uno'], function() {
+    // la tarea 'uno' ha terminado ahora
 });
 
-gulp.task('default', ['A', 'two']);
+gulp.task('default', ['uno', 'dos']);
 ```
 
-### gulp.watch(glob [, opts], tasks) o gulp.watch(glob [, opts, cb])
+### gulp.watch(glob [, opciones], tareas) o gulp.watch(glob [, opciones, cb])
 
-Vigila modificaciones en archivos y realiza una acción si algún cambio es detectado. Siempre devuelve un EventEmitter que emite eventos.
+Observar archivos y hacer algo cuando un archivo cambia. Éste siempre devuelve un EventEmitter que emite `change` events.
 
-### gulp.watch(glob[, opts], tasks)
+### gulp.watch(glob[, opciones], tareas)
 
 #### glob
 Tipo: `String` o `Array`
 
-glob o vector de globs que indican que archivos serán vigilados por cambios.
+Un único glob o vector de globs que indiquen en qué archivos se han de observar cambios.
 
-#### opts
+#### opciones
 Tipo: `Object`
 
-Opciones pasadas a [`gaze`](https://github.com/shama/gaze).
+Opciones, que son pasadas a [`gaze`](https://github.com/shama/gaze).
 
-#### tasks
+#### tareas
 Tipo: `Array`
 
-Nombres de las tareas (agregadas con `gulp.task()`) a ejecutar cuando un archivo es modificado.
+Nombres de tarea(s) a ejecutar cuando un archivo cambie, añadidas con `gulp.task()`
 
 ```js
 var watcher = gulp.watch('js/**/*.js', ['uglify','reload']);
@@ -231,22 +224,22 @@ watcher.on('change', function(event) {
 });
 ```
 
-### gulp.watch(glob[, opts, cb])
+### gulp.watch(glob[, opciones, cb])
 
 #### glob
 Tipo: `String` o `Array`
 
-glob o vector de globs que indican que archivos serán vigilados por cambios.
+Un único glob o vector de globs que indiquen en qué archivos se han de observar cambios.
 
-#### opts
+#### opciones
 Tipo: `Object`
 
-Opciones pasadas a [`gaze`](https://github.com/shama/gaze).
+Opciones, que son pasadas a [`gaze`](https://github.com/shama/gaze).
 
-#### cb(event)
+#### cb(evento)
 Tipo: `Function`
 
-Función callback a invocar por cada modificación.
+Función callback a invocar para cada cambio.
 
 ```js
 gulp.watch('js/**/*.js', function(event) {
@@ -256,18 +249,18 @@ gulp.watch('js/**/*.js', function(event) {
 
 La función callback es pasada un objeto `event` que describe la modificación:
 
-##### event.type
+##### evento.type
 Tipo: `String`
 
 El tipo de cambio ocurrido, `added`, `changed` o `deleted`.
 
-##### event.path
+##### evento.path
 Tipo: `String`
 
 La ruta al archivo que originó el evento.
 
 
-[node-glob documentation]: https://github.com/isaacs/node-glob#options
+[node-glob documentation]: https://github.com/isaacs/node-glob#opciones
 [node-glob]: https://github.com/isaacs/node-glob
 [glob-stream]: https://github.com/wearefractal/glob-stream
 [gulp-if]: https://github.com/robrich/gulp-if

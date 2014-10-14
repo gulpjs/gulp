@@ -31,8 +31,7 @@ gulp.task('javascript', function() {
       .pipe(source(getBundleName() + '.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({loadMaps: true}))
-        // Agregar transformaciones a las tareas aquí.
-        .pipe(uglify())
+      .pipe(uglify())
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./dist/js/'));
   };

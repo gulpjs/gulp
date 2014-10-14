@@ -1,37 +1,37 @@
-# Running tasks in series, i.e. Task Dependency
+# Ejectuar tareas en serie, i.e. Dependencia de Tareas
 
-By default, tasks run with maximum concurrency -- e.g. it launches all the tasks at once and waits for nothing. If you want to create a series where tasks run in a particular order, you need to do two things:
+Por defecto, las tareas se ejecutan con máxima concurrencia -- e.g. se ejecutan todas a la vez y sin esperar a que nada. Si quieres crear una serie de tareas que se ejecuten en serie con un orden determinado, necesitas hacer dso cosas:
 
-- give it a hint to tell it when the task is done,
-- and give it a hint that a task depends on completion of another.
+- indicar cuando la tarea a terminado,
+- y señalar que esta depende de que otras se hallan completado.
 
-For these examples, let's presume you have two tasks, "one" and "two" that you specifically want to run in this order:
+Para estos ejemplos, vamos suponer que tenemos dos tareas, "uno" y "dos" que quieres ejecutar en el este orden:
 
-1. In task "one" you add a hint to tell it when the task is done. Either take in a callback and call it when you're done or return a promise or stream that the engine should wait to resolve or end respectively.
+1. En la tarea "uno" añades la señal indicando cuando esta se ha completado. Ya sea utilizando una función callback y llamarla cuando hayas acabado o devolver una promesa o stream con los que se deba esperar a resolver o terminar respectivamente.
 
-2. In task "two" you add a hint telling the engine that it depends on completion of the first task.
+1. En la tarea "dos" añades una señal indicando al motor de gulp que esta tarea depende de que la primera se complete.
 
-So this example would look like:
+Este ejemplo sería así:
 
 ```js
 var gulp = require('gulp');
 
-// takes in a callback so the engine knows when it'll be done
-gulp.task('one', function(cb) {
-    // do stuff -- async or otherwise
-    cb(err); // if err is not null and not undefined, the orchestration will stop, and 'two' will not run
+// utiliza función callback a llamar para informar a gulp que ha acabado
+gulp.task('uno', function(cb) {
+    // hacer cosas -- asíncronas o lo contrario...
+    cb(err); // si err ni es null ni undefined, la ejecución se detiene, señalando que esta falló
 });
 
-// identifies a dependent task must be complete before this one begins
-gulp.task('two', ['one'], function() {
-    // task 'one' is done now
+// establece que una tarea dependiente debe completarse antes de que esta se inicie
+gulp.task('dos', ['uno'], function() {
+    // la tarea 'uno' ha terminado ahora
 });
 
-gulp.task('default', ['one', 'two']);
-// alternatively: gulp.task('default', ['two']);
+gulp.task('default', ['uno', 'dos']);
+// alternativamente: gulp.task('default', ['two']);
 ```
 
-Another example, which returns the stream instead of using a callback:
+Otro ejemplo, el cual devuelve un stream en lugar de usar una función callback:
 
 ```js
 var gulp = require('gulp');
@@ -43,24 +43,24 @@ gulp.task('clean', function(cb) {
 
 gulp.task('templates', ['clean'], function() {
     var stream = gulp.src(['src/templates/*.hbs'])
-        // do some concatenation, minification, etc.
+        // concatenar, minificar, etc.
         .pipe(gulp.dest('output/templates/'));
-    return stream; // return the stream as the completion hint
+    return stream; // devolver el stream como señal completado
 
 });
 
 gulp.task('styles', ['clean'], function() {
     var stream = gulp.src(['src/styles/app.less'])
-        // do some hinting, minification, etc.
+        // lint, minificar, etc.
         .pipe(gulp.dest('output/css/app.css'));
     return stream;
 });
 
 gulp.task('build', ['templates', 'styles']);
 
-// templates and styles will be processed in parallel.
-// clean will be guaranteed to complete before either start.
-// clean will not be run twice, even though it is called as a dependency twice.
+// plantillas and estilos se llevarán a cabo en paralelo.
+// 'clean' será completada antes de que cualquiera de las dos empiezen
+// 'clean' no se ejecutará dos veces, incluso si se llama dos veces como dependencia
 
 gulp.task('default', ['build']);
 ```
