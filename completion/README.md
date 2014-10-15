@@ -14,3 +14,7 @@ Add `eval "$(gulp --completion=zsh)"` to `~/.zshrc`.
 ## Powershell
 
 Add `Invoke-Expression ((gulp --completion=powershell) -join [System.Environment]::NewLine)` to `$PROFILE`.
+
+## Fish
+
+Add `gulp --completion=fish | source` to `~/.config/fish/config.fish`.
