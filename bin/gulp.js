@@ -75,7 +75,7 @@ cli.launch({
 function handleArguments(env) {
   if (versionFlag && tasks.length === 0) {
     gutil.log('CLI version', cliPackage.version);
-    if (env.modulePackage) {
+    if (env.modulePackage && typeof env.modulePackage.version !== 'undefined') {
       gutil.log('Local version', env.modulePackage.version);
     }
     process.exit(0);
