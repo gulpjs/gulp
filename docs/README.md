@@ -1,10 +1,10 @@
 # gulp documentation
-> [Documentación en Español][SpanishDocs]
 
 * [Getting Started](getting-started.md) - How to get going with gulp
 * [API documentation](API.md) - Learn the ins and outs of using gulp
 * [CLI documentation](CLI.md) - Learn how to call tasks and use compilers
 * [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
+* [Spanish documentation][SpanishDocs] - gulp en Español.
 
 
 ## FAQ
