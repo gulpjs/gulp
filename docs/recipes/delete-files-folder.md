@@ -1,6 +1,6 @@
 # Delete files and folders
 
-You might want delete some files before running your build. Since deleting files doesn't work on the file contents there's no reason to use a gulp plugin. An excellent opportunity to use a vanilla node module.
+You might want to delete some files before running your build. Since deleting files doesn't work on the file contents, there's no reason to use a gulp plugin. An excellent opportunity to use a vanilla node module.
 
 Let's use the [`del`](https://github.com/sindresorhus/del) module for this example as it supports multiple files and [globbing](https://github.com/sindresorhus/multimatch#globbing-patterns):
 
