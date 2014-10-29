@@ -3,13 +3,13 @@
 #### 1. Install gulp globally:
 
 ```sh
-$ npm install --global gulp
+$ [sudo] npm install --global gulp
 ```
 
 #### 2. Install gulp in your project devDependencies:
 
 ```sh
-$ npm install --save-dev gulp
+$ [sudo] npm install --save-dev gulp
 ```
 
 #### 3. Create a `gulpfile.js` at the root of your project:
