@@ -14,7 +14,7 @@ var watchify = require('watchify');
 var browserify = require('browserify');
 
 gulp.task('watch', function() {
-  var bundler = watchify(browserify('src/index.js', watchify.args));
+  var bundler = watchify(browserify('./src/index.js', watchify.args));
 
   // Optionally, you can apply transforms
   // and other configuration options on the
