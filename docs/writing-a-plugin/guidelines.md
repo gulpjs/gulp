@@ -74,10 +74,10 @@ function gulpPrefixer(prefixText) {
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
-  return through.obj(function(file, enc, callback) {
+  return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
       // return empty file
-      return callback(null, file);
+      cb(null, file);
     }
     if (file.isBuffer()) {
       file.contents = Buffer.concat([prefixText, file.contents]);
@@ -86,7 +86,7 @@ function gulpPrefixer(prefixText) {
       file.contents = file.contents.pipe(prefixStream(prefixText));
     }
 
-    return callback(null, file);
+    cb(null, file);
 
   });
 
