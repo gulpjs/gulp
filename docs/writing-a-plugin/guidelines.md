@@ -37,7 +37,7 @@
 1. Use modules from our [recommended modules page](recommended-modules.md) to make your life easier
 1. Do NOT require `gulp` as a dependency or peerDependency in your plugin
   - Using gulp to test or automate your plugin workflow is totally cool, just make sure you put it as a devDependency
-  - Requiring gulp as a dependency of your plugin means that anyone who installs your plugin is also installing a new gulp, and it's entire dependency tree.
+  - Requiring gulp as a dependency of your plugin means that anyone who installs your plugin is also installing a new gulp and its entire dependency tree.
   - There is no reason you should be using gulp within your actual plugin code. If you find yourself doing this open an issue so we can help you out.
 
 ## Why are these guidelines so strict?
