@@ -1,3 +1,4 @@
+
 # Delete files and folders
 
 You might want to delete some files before running your build. Since deleting files doesn't work on the file contents, there's no reason to use a gulp plugin. An excellent opportunity to use a vanilla node module.
@@ -8,7 +9,7 @@ Let's use the [`del`](https://github.com/sindresorhus/del) module for this examp
 $ npm install --save-dev gulp del
 ```
 
-Imagine this file structure:
+Imagine the following file structure:
 
 ```
 .
@@ -40,3 +41,42 @@ gulp.task('clean:mobile', function (cb) {
 
 gulp.task('default', ['clean:mobile']);
 ```
+
+
+## Delete files in a pipeline
+
+You might want to delete some files after processing them in a pipeline.
+
+We'll use [vinyl-paths](https://github.com/sindresorhus/vinyl-paths) to easily get the file path of files in the stream and pass it to the `del` method.
+
+```sh
+$ npm install --save-dev gulp del vinyl-paths
+```
+
+Imagine the following file structure:
+
+```
+.
+├── tmp
+│   ├── rainbow.js
+│   └── unicorn.js
+└── dist
+```
+
+```js
+var gulp = require('gulp');
+var stripDebug = require('gulp-strip-debug'); // only as an example
+var del = require('del');
+var vinylPaths = require('vinyl-paths');
+
+gulp.task('clean:tmp', function () {
+  return gulp.src('tmp/*')
+    .pipe(stripDebug())
+    .pipe(gulp.dest('dist'))
+    .pipe(vinylPaths(del));
+});
+
+gulp.task('default', ['clean:tmp']);
+```
+
+Only do this if you're already using other plugins in the pipeline, otherwise just use the module directly as `gulp.src` is costly.
