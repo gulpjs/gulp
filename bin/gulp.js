@@ -100,6 +100,7 @@ function handleArguments(env) {
     gutil.log(chalk.red('Warning: gulp version mismatch:'));
     gutil.log(chalk.red('Global gulp is', cliPackage.version));
     gutil.log(chalk.red('Local gulp is', env.modulePackage.version));
+    gutil.log(chalk.red('Using local gulp'));
   }
 
   // chdir before requiring gulpfile to make sure
