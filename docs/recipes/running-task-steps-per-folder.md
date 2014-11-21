@@ -60,4 +60,4 @@ gulp.task('scripts', function() {
 A few notes:
 
 - `folders.map` - executes the function once per folder, and returns the async stream
-- `es.concat` - combines the streams and ends only when all streams emitted end
+- `merge` - combines the streams and ends only when all streams emitted end
