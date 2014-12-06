@@ -1,28 +1,28 @@
 # gulp changelog
 
-# 3.8.5
+## 3.8.5
 
 - simplify --silent and --tasks-simple
 - fix bug in autocomplete where errors would come out
 
-# 3.8.4
+## 3.8.4
 
 - CLI will use exit code 1 on exit when any task fails during the lifetime of the process
 
 
-# 3.8.3
+## 3.8.3
 
 - Tweak error formatting to work better with PluginErrors and strings
 
-# 3.8.2
+## 3.8.2
 
 - add manpage generation
 
-# 3.8.1
+## 3.8.1
 
 - the CLI now adds process.env.INIT_CWD which is the original cwd it was launched from
 
-# 3.8.0
+## 3.8.0
 
 - update vinyl-fs
   - gulp.src is now a writable passthrough, this means you can use it to add files to your pipeline at any point
@@ -40,7 +40,7 @@ gulp.src('lib/*.js')
   }));
 ```
 
-# 3.7.0
+## 3.7.0
 
 - update vinyl-fs to remove BOM from UTF8 files
 - add --tasks-simple flag for plaintext task listings
@@ -48,7 +48,7 @@ gulp.src('lib/*.js')
 - added support for transpilers via liftoff 0.11 and interpret
   - just npm install your compiler (coffee-script for example) and it will work out of the box
 
-# 3.5.5
+## 3.5.5
 
 - update deps
 - gulp.dest now support mode option, uses source file mode by default (file.stat.mode)
@@ -56,14 +56,14 @@ gulp.src('lib/*.js')
 - update gulp.env deprecation msg to be more helpful
 
 
-# 3.5.2
+## 3.5.2
 
 - add -V for version on CLI (unix standard)
 - -v is deprecated, use -V
 - add -T as an alias for --tasks
 - documentation
 
-# 3.5
+## 3.5
 
 - added `gulp.watch(globs, tasksArray)` sugar
 - remove gulp.taskQueue
@@ -71,7 +71,7 @@ gulp.src('lib/*.js')
 - deprecate gulp.env
 - add engineStrict to prevent people with node < 0.9 from installing
 
-# 3.4
+## 3.4
 
 - added `--tasks` that prints out the tree of tasks + deps
 - global cli + local install mismatch is no longer fatal
