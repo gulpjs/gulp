@@ -13,24 +13,18 @@ var source = require('vinyl-source-stream');
 var watchify = require('watchify');
 var browserify = require('browserify');
 
-gulp.task('watch', function() {
-  var bundler = watchify(browserify('./src/index.js', watchify.args));
+var bundler = watchify(browserify('./src/index.js', watchify.args));
+// add any other browserify options or transforms here
+bundler.transform('brfs');
 
-  // Optionally, you can apply transforms
-  // and other configuration options on the
-  // bundler just as you would with browserify
-  bundler.transform('brfs');
+gulp.task('js', bundle); // so you can run `gulp js` to build the file
+bundler.on('update', bundle); // on any dep update, runs the bundler
 
-  bundler.on('update', rebundle);
-
-  function rebundle() {
-    return bundler.bundle()
-      // log errors if they happen
-      .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-      .pipe(source('bundle.js'))
-      .pipe(gulp.dest('./dist'));
-  }
-
-  return rebundle();
-});
+function bundle() {
+  return bundler.bundle()
+    // log errors if they happen
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./dist'));
+}
 ```
