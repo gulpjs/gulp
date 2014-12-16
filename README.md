@@ -9,6 +9,7 @@
 
 ## Like what we do?
 
+![image](https://assets.gratipay.com/platforms/gratipay.png?etag=3Y5J02IMoomnx4fNC0jumg~~)  
 [Support us via Gratipay](https://gratipay.com/WeAreFractal/)
 
 ## Documentation
