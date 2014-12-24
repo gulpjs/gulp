@@ -9,7 +9,7 @@ var watch = require('gulp-watch');
 
 gulp.task('default', function() {
   return gulp.src('sass/*.scss')
-    .pipe(watch())
+    .pipe(watch('sass/*.scss'))
     .pipe(sass())
     .pipe(gulp.dest('dist'));
 });
