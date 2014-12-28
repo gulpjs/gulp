@@ -2,13 +2,14 @@
 
 ## 4.0.0
 
-- removed task dependency graph, everything must be composed using `gulp.series` or `gulp.parallel`
-- removed 3 argument syntax for `gulp.task` due to task dependency graph being removed.
-- added `gulp.series` and `gulp.parallel` methods for composing tasks.
-- added single argument syntax for `gulp.task` which allows a named function to be used as the name of the task and task function.
-- added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
+- replaced 3.x task system (orchestrator) with new task system (bach)
+  - removed gulp.reset
+  - removed 3 argument syntax for `gulp.task`
+  - added `gulp.series` and `gulp.parallel` methods for composing tasks. Everything must use these now.
+  - added single argument syntax for `gulp.task` which allows a named function to be used as the name of the task and task function.
+  - added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
+  - added `gulp.registry` for setting custom registries.
 - added `--verify` flag to check the dependencies in package.json against the plugin blacklist.
-- added `gulp.registry` for setting custom registries.
 - added `gulp.symlink` which functions exactly like `gulp.dest`, but symlinks instead.
 - globs passed to `gulp.src` will be evaluated in order, which means this is possible `gulp.src(['*.js', '!b*.js', 'bad.js'])` (exclude every JS file that starts with a b except bad.js)
 - added `since` option to `gulp.src` which lets you only match files that have been modified since a certain date (for incremental builds)
