@@ -11,6 +11,7 @@
   - added `gulp.registry` for setting custom registries.
 - added `--verify` flag to check the dependencies in package.json against the plugin blacklist.
 - added `gulp.symlink` which functions exactly like `gulp.dest`, but symlinks instead.
+- added `dirMode` param to `gulp.dest` and `gulp.symlink` which allows better control over the mode of the destination folder that is created.
 - globs passed to `gulp.src` will be evaluated in order, which means this is possible `gulp.src(['*.js', '!b*.js', 'bad.js'])` (exclude every JS file that starts with a b except bad.js)
 - added `since` option to `gulp.src` which lets you only match files that have been modified since a certain date (for incremental builds)
 - split CLI out into a module if you want to save bandwidth/disk space. you can install the gulp CLI using either `npm install gulp -g` or `npm install gulp-cli -g`, where gulp-cli is the smaller one (no module code included)
