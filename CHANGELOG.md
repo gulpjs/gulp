@@ -9,6 +9,8 @@
 - added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
 - added `--verify` flag to check the dependencies in package.json against the plugin blacklist.
 - added `gulp.registry` for setting custom registries.
+- added `gulp.symlink` which functions exactly like `gulp.dest`, but symlinks instead.
+- globs passed to `gulp.src` will be evaluated in order, which means this is possible `gulp.src(['*.js', '!b*.js', 'bad.js'])` (exclude every JS file that starts with a b except bad.js)
 
 ## 3.8.5
 
