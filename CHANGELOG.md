@@ -11,6 +11,7 @@
 - added `gulp.registry` for setting custom registries.
 - added `gulp.symlink` which functions exactly like `gulp.dest`, but symlinks instead.
 - globs passed to `gulp.src` will be evaluated in order, which means this is possible `gulp.src(['*.js', '!b*.js', 'bad.js'])` (exclude every JS file that starts with a b except bad.js)
+- added `since` option to `gulp.src` which lets you only match files that have been modified since a certain date (for incremental builds)
 
 ## 3.9.0
 
