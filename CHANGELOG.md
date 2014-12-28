@@ -5,6 +5,7 @@
 - replaced 3.x task system (orchestrator) with new task system (bach)
   - removed gulp.reset
   - removed 3 argument syntax for `gulp.task`
+  - using strings when registering with `gulp.task` should only be done when you will call the task with the CLI
   - added `gulp.series` and `gulp.parallel` methods for composing tasks. Everything must use these now.
   - added single argument syntax for `gulp.task` which allows a named function to be used as the name of the task and task function.
   - added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
@@ -15,6 +16,7 @@
 - globs passed to `gulp.src` will be evaluated in order, which means this is possible `gulp.src(['*.js', '!b*.js', 'bad.js'])` (exclude every JS file that starts with a b except bad.js)
 - added `since` option to `gulp.src` which lets you only match files that have been modified since a certain date (for incremental builds)
 - split CLI out into a module if you want to save bandwidth/disk space. you can install the gulp CLI using either `npm install gulp -g` or `npm install gulp-cli -g`, where gulp-cli is the smaller one (no module code included)
+- add `--tasks-json` flag to CLI to dump the whole tree out for other tools to consume
 
 ## 3.9.0
 
