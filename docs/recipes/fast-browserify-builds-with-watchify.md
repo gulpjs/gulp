@@ -19,19 +19,19 @@ var bundler = watchify(browserify('./src/index.js', watchify.args));
 // add any other browserify options or transforms here
 bundler.transform('brfs');
 
-gulp.task('js', bundle); // so you can run `gulp js` to build the file
-bundler.on('update', bundle); // on any dep update, runs the bundler
+gulp.task('bundle-js', function () {
+	return bundler.bundle()
+		.on('error', gutil.log.bind(gutil, 'Browserify Error'))
+		.pipe(source('bundle.js'))
+		// optional, remove if you dont want sourcemaps
+		  .pipe(buffer())
+		  .pipe(sourcemaps.init({loadMaps: true}))
+		  .pipe(sourcemaps.write('./'))
+		//
+		.pipe(gulp.dest('./dist'));
+});
 
-function bundle() {
-  return bundler.bundle()
-    // log errors if they happen
-    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-    .pipe(source('bundle.js'))
-    // optional, remove if you dont want sourcemaps
-      .pipe(buffer())
-      .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
-      .pipe(sourcemaps.write('./')) // writes .map file
-    //
-    .pipe(gulp.dest('./dist'));
-}
+gulp.task('watchify', function () {
+	gulp.watch('./src/**/*.js', ['bundle-js']); // on any dep update, runs the bundler
+});
 ```
