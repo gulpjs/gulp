@@ -1,5 +1,5 @@
 # Templating with Swig and YAML front-matter
-Templating can be setup using `gulp-swig`, `gulp-data`, and `gulp-front-matter`:
+Templating can be setup using `gulp-swig` and `gulp-front-matter`:
 
 ##### `page.html`
 
@@ -29,17 +29,13 @@ todos:
 ```js
 var gulp = require('gulp');
 var swig = require('gulp-swig');
-var data = require('gulp-data');
 var frontMatter = require('gulp-front-matter');
 
 gulp.task('compile-page', function() {
   gulp.src('page.html')
       .pipe(frontMatter({
-          property: 'vars',
+          property: 'data',
           remove: true
-      }))
-      .pipe(data(function(page) { 
-          return page.vars;
       }))
       .pipe(swig())
       .pipe(gulp.dest('build'));
