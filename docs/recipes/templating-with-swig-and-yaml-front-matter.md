@@ -30,13 +30,13 @@ todos:
 var gulp = require('gulp');
 var swig = require('gulp-swig');
 var data = require('gulp-data');
-var fm   = require('gulp-front-matter');
+var frontMatter = require('gulp-front-matter');
 
-gulp.task("compile-page", function() {
+gulp.task('compile-page', function() {
   gulp.src('page.html')
-      .pipe(fm({
-          property : 'vars',
-          remove   : true
+      .pipe(frontMatter({
+          property: 'vars',
+          remove: true
       }))
       .pipe(data(function(page) { 
           return page.vars;
@@ -45,5 +45,5 @@ gulp.task("compile-page", function() {
       .pipe(gulp.dest('build'));
 });
 
-gulp.task("default", ["compile-page"]);
+gulp.task('default', ['compile-page']);
 ```
