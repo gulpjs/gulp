@@ -4,8 +4,10 @@
   </a>
 </p>
 
-# gulp [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Support us][gittip-image]][gittip-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url]
-> The streaming build system
+# gulp
+**The streaming build system**
+
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Support us][gittip-image]][gittip-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
 
 ## Like what we do?
 
@@ -98,3 +100,6 @@ Anyone can help make this project better - check out the [Contributing guide](/C
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
 [coveralls-image]: http://img.shields.io/coveralls/gulpjs/gulp/master.svg
+
+[gitter-url]: https://gitter.im/gulpjs/gulp
+[gitter-image]: https://badges.gitter.im/gulpjs/gulp.png
