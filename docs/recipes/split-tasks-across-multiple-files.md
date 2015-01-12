@@ -6,7 +6,7 @@ module.
 
 Imagine the following file structure:
 
-```sh
+```
 gulpfile.js
 tasks/
 ├── dev.js
@@ -20,7 +20,7 @@ Install the `require-dir` module:
 npm install --save-dev require-dir
 ```
 
-Add the following lines to your `gulpfile.js` file.
+Add the following lines to your `gulpfile.js` file:
 
 ```js
 var requireDir = require('require-dir');
