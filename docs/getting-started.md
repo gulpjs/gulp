@@ -8,6 +8,8 @@ $ npm install --global gulp
 
 #### 2. Install gulp in your project devDependencies:
 
+(You'll need a `[package.json](http://jspkg.com/generator)` in your root folder before.)
+
 ```sh
 $ npm install --save-dev gulp
 ```
