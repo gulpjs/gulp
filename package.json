@@ -25,7 +25,7 @@
   "dependencies": {
     "gulp-cli": "gulpjs/gulp-cli#4.0",
     "undertaker": "^0.3.0",
-    "vinyl-fs": "^0.3.0"
+    "vinyl-fs": "wearefractal/vinyl-fs"
   },
   "devDependencies": {
     "coveralls": "^2.7.0",
