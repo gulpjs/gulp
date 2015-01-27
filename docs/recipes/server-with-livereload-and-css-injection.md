@@ -50,8 +50,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 gulp.task('sass', function() {
-  return gulp.src('scss/styles.scss')
-    .pipe(sass())
+  return sass('scss/styles.scss')
     .pipe(gulp.dest('css'))
     .pipe(reload({ stream:true }));
 });
