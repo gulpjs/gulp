@@ -8,12 +8,23 @@ var merge = require('merge-stream');
 
 gulp.task('test', function() {
   var bootstrap = gulp.src('bootstrap/js/*.js')
-    .pipe(gulp.dest('public/bootstrap'));
+                      .pipe(gulp.dest('public/bootstrap'));
 
   var jquery = gulp.src('jquery.cookie/jquery.cookie.js')
-    .pipe(gulp.dest('public/jquery'));
+                   .pipe(gulp.dest('public/jquery'));
 
   return merge(bootstrap, jquery);
+});
+```
+
+## Since gulp v3.8.0:
+
+```js
+gulp.task('test', function() {
+  return gulp.src('lib/*.js')
+             .pipe(uglify())
+             .pipe(gulp.src('styles/*.css'))
+             .pipe(gulp.dest('public'));
 });
 ```
 
@@ -27,6 +38,7 @@ var concat = require('gulp-concat');
 
 gulp.task('default', function() {
   return gulp.src(['foo/*', 'bar/*'])
-    .pipe(concat('result.txt'))
-    .pipe(gulp.dest('build'));
+             .pipe(concat('result.txt'))
+             .pipe(gulp.dest('build'));
 });
+```
