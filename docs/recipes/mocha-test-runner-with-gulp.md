@@ -22,7 +22,7 @@ gulp.task('default', function() {
 ### Running mocha tests when files change
 
 ```js
-// npm install gulp gulp-mocha
+// npm install gulp gulp-mocha gulp-util
 
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
