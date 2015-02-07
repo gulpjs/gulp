@@ -30,13 +30,13 @@
     "deprecated": "^0.0.1",
     "gulp-util": "^3.0.0",
     "interpret": "^0.3.2",
-    "liftoff": "^0.13.2",
+    "liftoff": "^2.0.1",
     "minimist": "^1.1.0",
     "orchestrator": "^0.3.0",
     "pretty-hrtime": "^0.2.0",
     "semver": "^4.1.0",
     "tildify": "^1.0.0",
-    "v8flags": "^1.0.1",
+    "v8flags": "^2.0.2",
     "vinyl-fs": "^0.3.0"
   },
   "devDependencies": {

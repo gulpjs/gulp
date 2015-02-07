@@ -22,7 +22,7 @@ var cli = new Liftoff({
   name: 'gulp',
   completions: completion,
   extensions: interpret.jsVariants,
-  nodeFlags: v8flags.fetch()
+  v8flags: v8flags
 });
 
 // exit with 0 or 1
