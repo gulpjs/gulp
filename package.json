@@ -43,6 +43,7 @@
     "coveralls": "^2.7.0",
     "graceful-fs": "^3.0.0",
     "istanbul": "^0.3.0",
+    "jscs": "~1.11.3",
     "jshint": "^2.5.0",
     "jshint-stylish": "^1.0.0",
     "marked-man": "^0.1.3",
@@ -55,7 +56,7 @@
   },
   "scripts": {
     "prepublish": "marked-man --name gulp docs/CLI.md > gulp.1",
-    "lint": "jshint lib bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules",
+    "lint": "jshint lib bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules && jscs lib bin test",
     "test": "npm run-script lint && mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },

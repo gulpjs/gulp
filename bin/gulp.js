@@ -14,7 +14,7 @@ var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
 
-// set env var for ORIGINAL cwd
+// Set env var for ORIGINAL cwd
 // before anything touches it
 process.env.INIT_CWD = process.cwd();
 
@@ -22,10 +22,10 @@ var cli = new Liftoff({
   name: 'gulp',
   completions: completion,
   extensions: interpret.jsVariants,
-  v8flags: v8flags
+  v8flags: v8flags,
 });
 
-// exit with 0 or 1
+// Exit with 0 or 1
 var failed = false;
 process.once('exit', function(code) {
   if (code === 0 && failed) {
@@ -33,31 +33,31 @@ process.once('exit', function(code) {
   }
 });
 
-// parse those args m8
+// Parse those args m8
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
 var tasksFlag = argv.T || argv.tasks;
 var tasks = argv._;
 var toRun = tasks.length ? tasks : ['default'];
 
-// this is a hold-over until we have a better logging system
+// This is a hold-over until we have a better logging system
 // with log levels
 var simpleTasksFlag = argv['tasks-simple'];
 var shouldLog = !argv.silent && !simpleTasksFlag;
 
 if (!shouldLog) {
-  gutil.log = function(){};
+  gutil.log = function() {};
 }
 
-cli.on('require', function (name) {
+cli.on('require', function(name) {
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
-cli.on('requireFail', function (name) {
+cli.on('requireFail', function(name) {
   gutil.log(chalk.red('Failed to load external module'), chalk.magenta(name));
 });
 
-cli.on('respawn', function (flags, child) {
+cli.on('respawn', function(flags, child) {
   var nodeFlags = chalk.magenta(flags.join(', '));
   var pid = chalk.magenta(child.pid);
   gutil.log('Node flags detected:', nodeFlags);
@@ -68,10 +68,10 @@ cli.launch({
   cwd: argv.cwd,
   configPath: argv.gulpfile,
   require: argv.require,
-  completion: argv.completion
+  completion: argv.completion,
 }, handleArguments);
 
-// the actual logic
+// The actual logic
 function handleArguments(env) {
   if (versionFlag && tasks.length === 0) {
     gutil.log('CLI version', cliPackage.version);
@@ -95,14 +95,14 @@ function handleArguments(env) {
     process.exit(1);
   }
 
-  // check for semver difference between cli and local installation
+  // Check for semver difference between cli and local installation
   if (semver.gt(cliPackage.version, env.modulePackage.version)) {
     gutil.log(chalk.red('Warning: gulp version mismatch:'));
     gutil.log(chalk.red('Global gulp is', cliPackage.version));
     gutil.log(chalk.red('Local gulp is', env.modulePackage.version));
   }
 
-  // chdir before requiring gulpfile to make sure
+  // Chdir before requiring gulpfile to make sure
   // we let them chdir as needed
   if (process.cwd() !== env.cwd) {
     process.chdir(env.cwd);
@@ -112,14 +112,14 @@ function handleArguments(env) {
     );
   }
 
-  // this is what actually loads up the gulpfile
+  // This is what actually loads up the gulpfile
   require(env.configPath);
   gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
 
   var gulpInst = require(env.modulePath);
   logEvents(gulpInst);
 
-  process.nextTick(function () {
+  process.nextTick(function() {
     if (simpleTasksFlag) {
       return logTasksSimple(env, gulpInst);
     }
@@ -135,7 +135,7 @@ function logTasks(env, localGulp) {
   tree.label = 'Tasks for ' + chalk.magenta(tildify(env.configPath));
   archy(tree)
     .split('\n')
-    .forEach(function (v) {
+    .forEach(function(v) {
       if (v.trim().length === 0) {
         return;
       }
@@ -149,7 +149,7 @@ function logTasksSimple(env, localGulp) {
     .trim());
 }
 
-// format orchestrator errors
+// Format orchestrator errors
 function formatError(e) {
   if (!e.err) {
     return e.message;
@@ -160,30 +160,30 @@ function formatError(e) {
     return e.err.toString();
   }
 
-  // normal error
+  // Normal error
   if (e.err.stack) {
     return e.err.stack;
   }
 
-  // unknown (string, number, etc.)
+  // Unknown (string, number, etc.)
   return new Error(String(e.err)).stack;
 }
 
-// wire up logging events
+// Wire up logging events
 function logEvents(gulpInst) {
 
-  // total hack due to poor error management in orchestrator
-  gulpInst.on('err', function () {
+  // Total hack due to poor error management in orchestrator
+  gulpInst.on('err', function() {
     failed = true;
   });
 
-  gulpInst.on('task_start', function (e) {
+  gulpInst.on('task_start', function(e) {
     // TODO: batch these
     // so when 5 tasks start at once it only logs one time with all 5
     gutil.log('Starting', '\'' + chalk.cyan(e.task) + '\'...');
   });
 
-  gulpInst.on('task_stop', function (e) {
+  gulpInst.on('task_stop', function(e) {
     var time = prettyTime(e.hrDuration);
     gutil.log(
       'Finished', '\'' + chalk.cyan(e.task) + '\'',
@@ -191,7 +191,7 @@ function logEvents(gulpInst) {
     );
   });
 
-  gulpInst.on('task_err', function (e) {
+  gulpInst.on('task_err', function(e) {
     var msg = formatError(e);
     var time = prettyTime(e.hrDuration);
     gutil.log(
@@ -202,7 +202,7 @@ function logEvents(gulpInst) {
     gutil.log(msg);
   });
 
-  gulpInst.on('task_not_found', function (err) {
+  gulpInst.on('task_not_found', function(err) {
     gutil.log(
       chalk.red('Task \'' + err.task + '\' is not in your gulpfile')
     );
