@@ -59,7 +59,6 @@
     "test": "npm run-script lint && mocha --reporter spec",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
-  "engineStrict": true,
   "engines": {
     "node": ">= 0.9"
   },
