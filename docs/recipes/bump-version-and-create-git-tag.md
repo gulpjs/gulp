@@ -11,6 +11,7 @@ var runSequence = require('run-sequence');
 var bump = require('gulp-bump');
 var gutil = require('gulp-util');
 var git = require('gulp-git');
+var fs = require('fs');
 
 gulp.task('bump-version', function () {
 //Note: I have hardcoded the version change type to 'patch' but it may be a good idea to use 
@@ -31,13 +32,18 @@ gulp.task('push-changes', function (cb) {
 });
 
 gulp.task('create-new-tag', function (cb) {
-  var version = require('./package.json').version;
+  var version = getPackageJsonVersion();
   git.tag(version, 'Created Tag for version: ' + version, function (error) {
     if (error) {
       return cb(error);
     }
     git.push('origin', 'master', {args: '--tags'}, cb);
   });
+  
+  function getPackageJsonVersion () {
+    //We parse the json file instead of using require because require caches multiple calls so the version number won't be updated
+    return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+  };
 });
 
 gulp.task('release', function (callback) {
