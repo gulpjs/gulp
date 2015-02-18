@@ -16,7 +16,7 @@ todos:
         <title>{{ title }}</title>
     </head>
     <body>
-        Things to do:
+        <h1>{{ title }}</h1>
         <ul>{% for todo in todos %}
           <li>{{ todo }}</li>
         {% endfor %}</ul>
