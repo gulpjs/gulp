@@ -26,14 +26,14 @@
   "man": "gulp.1",
   "dependencies": {
     "archy": "^1.0.0",
-    "chalk": "^0.5.0",
+    "chalk": "^1.0.0",
     "deprecated": "^0.0.1",
     "gulp-util": "^3.0.0",
     "interpret": "^0.5.0",
     "liftoff": "^2.0.1",
     "minimist": "^1.1.0",
     "orchestrator": "^0.3.0",
-    "pretty-hrtime": "^0.2.0",
+    "pretty-hrtime": "^1.0.0",
     "semver": "^4.1.0",
     "tildify": "^1.0.0",
     "v8flags": "^2.0.2",
@@ -51,7 +51,7 @@
     "mocha-lcov-reporter": "^0.0.1",
     "q": "^1.0.0",
     "rimraf": "^2.2.5",
-    "should": "^4.0.0"
+    "should": "^5.0.1"
   },
   "scripts": {
     "prepublish": "marked-man --name gulp docs/CLI.md > gulp.1",
