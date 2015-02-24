@@ -19,28 +19,6 @@ var getBundleName = function () {
   return version + '.' + name + '.' + 'min';
 };
 
-gulp.task('javascript', function() {
-
-  var bundler = browserify({
-    entries: ['./app.js'],
-    debug: true
-  });
-
-  var bundle = function() {
-    return bundler
-      .bundle()
-      .pipe(source(getBundleName() + '.js'))
-      .pipe(buffer())
-      .pipe(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./dist/js/'));
-  };
-
-  return bundle();
-});
-
 gulp.task('javascript', function () {
   // transform regular node stream to gulp (buffered vinyl) stream 
   var browserified = transform(function(filename) {
