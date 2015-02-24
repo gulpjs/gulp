@@ -41,14 +41,14 @@ gulp.task('javascript', function() {
   return bundle();
 });
 
-gulp.task('browserify', function () {
+gulp.task('javascript', function () {
   // transform regular node stream to gulp (buffered vinyl) stream 
   var browserified = transform(function(filename) {
     var b = browserify(filename);
     return b.bundle();
   });
   
-  return gulp.src(['./src/*.js'])
+  return gulp.src('./app.js')
     .pipe(browserified)
     .pipe(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
