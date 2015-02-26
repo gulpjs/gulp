@@ -3,7 +3,7 @@
 #### 1. Install gulp globally:
 
 ```sh
-$ npm install --global gulp
+$ npm install --global gulp-cli
 ```
 
 #### 2. Install gulp in your project devDependencies:
