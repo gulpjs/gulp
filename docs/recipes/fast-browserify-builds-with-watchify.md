@@ -21,6 +21,7 @@ bundler.transform('brfs');
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 bundler.on('update', bundle); // on any dep update, runs the bundler
+bundler.on('log', gutil.log); // output build logs to terminal
 
 function bundle() {
   return bundler.bundle()
