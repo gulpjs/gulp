@@ -24,7 +24,7 @@
 - added `gulp.symlink` which functions exactly like `gulp.dest`, but symlinks instead.
 - added `dirMode` param to `gulp.dest` and `gulp.symlink` which allows better control over the mode of the destination folder that is created.
 - globs passed to `gulp.src` will be evaluated in order, which means this is possible `gulp.src(['*.js', '!b*.js', 'bad.js'])` (exclude every JS file that starts with a b except bad.js)
-- performance for gulp.src will be improved massively
+- performance for gulp.src has improved massively
   - `gulp.src(['**/*', '!b.js'])` will no longer eat CPU since negations happen during walking now
 - added `since` option to `gulp.src` which lets you only match files that have been modified since a certain date (for incremental builds)
 - fixed `gulp.src` not following symlinks
