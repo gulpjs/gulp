@@ -35,7 +35,6 @@ A simple and modular way to do this would be the following:
 
 ```js
 var gulp = require('gulp');
-var runSequence = require('run-sequence');
 var source = require('vinyl-source-stream');
 var vinylBuffer = require('vinyl-buffer');
 var tap = require('gulp-tap');
@@ -50,13 +49,13 @@ var memory = {}; // we'll keep our assets in memory
 gulp.task('load-lib-files', function() {
   // read the lib files from the disk
   return gulp.src('src/libs/*.js')
-  // concatenate all lib files into one
-  .pipe(concat('libs.concat.js'))
-  // tap into the stream to get each file's data
-  .pipe(tap(function(file) {
-    // save the file contents in memory
-    memory[path.basename(file.path)] = file.contents.toString();
-  }));
+    // concatenate all lib files into one
+    .pipe(concat('libs.concat.js'))
+    // tap into the stream to get each file's data
+    .pipe(tap(function(file) {
+      // save the file contents in memory
+      memory[path.basename(file.path)] = file.contents.toString();
+    }));
 });
 
 gulp.task('load-versions', function() {
@@ -111,30 +110,29 @@ gulp.task('write-versions', function() {
 });
 
 //============================================ our main task
-gulp.task('default', function(taskDone) {
-  runSequence(
-    ['load-lib-files', 'load-versions'],  // load the files in parallel
-    'write-versions',  // ready to write once all resources are in memory
-    taskDone           // done
-  );
-});
+gulp.task('default', gulp.series(
+    // load the files in parallel
+    gulp.parallel('load-lib-files', 'load-versions'),
+    // ready to write once all resources are in memory
+    'write-versions'
+  )
+);
 
 //============================================ our watcher task
 // only watch after having run 'default' once so that all resources
 // are already in memory
-gulp.task('watch', ['default'], function() {
-  gulp.watch('./src/libs/*.js', function() {
-    runSequence(
-      'load-lib-files',  // we only have to load the changed files
+gulp.task('watch', gulp.series(
+  'default',
+  function() {
+    gulp.watch('./src/libs/*.js', gulp.series(
+      'load-lib-files',
       'write-versions'
-    );
-  });
+    ));
 
-  gulp.watch('./src/versions/*.js', function() {
-    runSequence(
-      'load-versions',  // we only have to load the changed files
+    gulp.watch('./src/versions/*.js', gulp.series(
+      'load-lib-files',
       'write-versions'
-    );
-  });
-});
+    ));
+  }
+));
 ```

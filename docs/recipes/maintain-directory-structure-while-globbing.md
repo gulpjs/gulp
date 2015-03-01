@@ -27,7 +27,7 @@ If you want to maintain the structure, you need to pass `{base: '.'}` to `gulp.s
 
 ```js
 gulp.task('task', function () {
-   gulp.src(['index.html', 
+   return gulp.src(['index.html', 
              'css/**', 
              'js/**', 
              'lib/**', 

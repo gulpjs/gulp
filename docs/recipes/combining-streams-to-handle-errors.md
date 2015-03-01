@@ -12,16 +12,13 @@ var uglify = require('gulp-uglify');
 var gulp = require('gulp');
 
 gulp.task('test', function() {
-  var combined = combiner.obj([
-    gulp.src('bootstrap/js/*.js'),
-    uglify(),
-    gulp.dest('public/bootstrap')
-  ]);
-
-  // any errors in the above streams will get caught
-  // by this listener, instead of being thrown:
-  combined.on('error', console.error.bind(console));
-
-  return combined;
+  return combiner.obj([
+      gulp.src('bootstrap/js/*.js'),
+      uglify(),
+      gulp.dest('public/bootstrap')
+    ])
+    // any errors in the above streams will get caught
+    // by this listener, instead of being thrown:
+    .on('error', console.error.bind(console));
 });
 ```

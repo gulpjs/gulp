@@ -39,7 +39,7 @@ gulp.task('clean:mobile', function () {
   ]);
 });
 
-gulp.task('default', ['clean:mobile']);
+gulp.task('default', gulp.series('clean:mobile'));
 ```
 
 
@@ -76,7 +76,7 @@ gulp.task('clean:tmp', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['clean:tmp']);
+gulp.task('default', gulp.series('clean:tmp'));
 ```
 
 This will only delete the tmp dir.

@@ -30,9 +30,11 @@ Beneficial because it's keeping tasks DRY and config.json can be used by another
 ###### `gulpfile.js`
 
 ```js
-// npm install --save-dev gulp gulp-uglify
+// npm install --save-dev gulp gulp-uglify merge-stream
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+var merge = require('merge-stream');
+
 var config = require('./config.json');
 
 function doStuff(cfg) {
@@ -42,7 +44,10 @@ function doStuff(cfg) {
 }
 
 gulp.task('dry', function() {
-  doStuff(config.desktop);
-  doStuff(config.mobile);
+  // return a stream to signal completion
+  return merge([
+    doStuff(config.desktop),
+    doStuff(config.mobile)
+  ])
 });
 ```

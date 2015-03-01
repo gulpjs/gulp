@@ -88,14 +88,14 @@ gulp.task('sass', function() {
 });
 
 // watch Sass files for changes, run the Sass preprocessor with the 'sass' task and reload
-gulp.task('serve', ['sass'], function() {
+gulp.task('serve', gulp.series('sass', function() {
   browserSync({
     server: {
       baseDir: 'app'
     }
   });
 
-  gulp.watch('app/scss/*.scss', ['sass']);
+  gulp.watch('scss/*.scss', gulp.series('sass'));
 });
 ```
 
