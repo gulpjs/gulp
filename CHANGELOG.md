@@ -2,6 +2,8 @@
 
 ## 4.0.0
 
+### Task system changes
+
 - replaced 3.x task system (orchestrator) with new task system (bach)
   - removed gulp.reset
   - removed 3 argument syntax for `gulp.task`
@@ -10,15 +12,23 @@
   - added single argument syntax for `gulp.task` which allows a named function to be used as the name of the task and task function.
   - added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
   - added `gulp.registry` for setting custom registries.
+
+### CLI changes
+
+- split CLI out into a module if you want to save bandwidth/disk space. you can install the gulp CLI using either `npm install gulp -g` or `npm install gulp-cli -g`, where gulp-cli is the smaller one (no module code included)
+- add `--tasks-json` flag to CLI to dump the whole tree out for other tools to consume
 - added `--verify` flag to check the dependencies in package.json against the plugin blacklist.
+
+### vinyl/vinyl-fs changes
+
 - added `gulp.symlink` which functions exactly like `gulp.dest`, but symlinks instead.
 - added `dirMode` param to `gulp.dest` and `gulp.symlink` which allows better control over the mode of the destination folder that is created.
 - globs passed to `gulp.src` will be evaluated in order, which means this is possible `gulp.src(['*.js', '!b*.js', 'bad.js'])` (exclude every JS file that starts with a b except bad.js)
+- performance for gulp.src will be improved massively
+  - `gulp.src(['**/*', '!b.js'])` will no longer eat CPU since negations happen during walking now
 - added `since` option to `gulp.src` which lets you only match files that have been modified since a certain date (for incremental builds)
 - fixed `gulp.src` not following symlinks
 - added `overwrite` option to `gulp.dest` which allows you to enable or disable overwriting of existing files
-- split CLI out into a module if you want to save bandwidth/disk space. you can install the gulp CLI using either `npm install gulp -g` or `npm install gulp-cli -g`, where gulp-cli is the smaller one (no module code included)
-- add `--tasks-json` flag to CLI to dump the whole tree out for other tools to consume
 
 ## 3.8.5
 
