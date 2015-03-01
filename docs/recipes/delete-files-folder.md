@@ -29,17 +29,17 @@ In the gulpfile we want to clean out the contents of the `mobile` folder before 
 var gulp = require('gulp');
 var del = require('del');
 
-gulp.task('clean:mobile', function (cb) {
+gulp.task('clean:mobile', function (done) {
   del([
     'dist/report.csv',
     // here we use a globbing pattern to match everything inside the `mobile` folder
     'dist/mobile/**/*',
     // we don't want to clean this file though so we negate the pattern
     '!dist/mobile/deploy.json'
-  ], cb);
+  ], done);
 });
 
-gulp.task('default', ['clean:mobile']);
+gulp.task('default', gulp.series('clean:mobile'));
 ```
 
 
@@ -76,7 +76,7 @@ gulp.task('clean:tmp', function () {
     .pipe(vinylPaths(del));
 });
 
-gulp.task('default', ['clean:tmp']);
+gulp.task('default', gulp.series('clean:tmp'));
 ```
 
 Only do this if you're already using other plugins in the pipeline, otherwise just use the module directly as `gulp.src` is costly.
