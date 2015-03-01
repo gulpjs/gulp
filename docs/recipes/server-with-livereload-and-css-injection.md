@@ -64,7 +64,7 @@ gulp.task('serve', function() {
     }
   });
 
-  gulp.watch('scss/*.scss', ['sass']);
+  gulp.watch('scss/*.scss', gulp.series('sass'));
 });
 ```
 
