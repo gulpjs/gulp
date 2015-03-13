@@ -13,12 +13,6 @@ var transform = require('vinyl-transform');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 
-var getBundleName = function () {
-  var version = require('./package.json').version;
-  var name = require('./package.json').name;
-  return version + '.' + name + '.' + 'min';
-};
-
 gulp.task('javascript', function () {
   // transform regular node stream to gulp (buffered vinyl) stream 
   var browserified = transform(function(filename) {
