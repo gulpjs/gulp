@@ -24,7 +24,7 @@
   "man": "gulp.1",
   "dependencies": {
     "gulp-cli": "gulpjs/gulp-cli#4.0",
-    "undertaker": "^0.3.0",
+    "undertaker": "^0.7.0",
     "vinyl-fs": "wearefractal/vinyl-fs"
   },
   "devDependencies": {
