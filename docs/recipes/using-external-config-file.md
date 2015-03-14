@@ -33,8 +33,9 @@ Beneficial because it's keeping tasks DRY and config.json can be used by another
 // npm install --save-dev gulp gulp-uglify merge-stream
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+var merge = require('merge-stream');
+
 var config = require('./config.json');
-var merge = require('merge2');
 
 function doStuff(cfg) {
   return gulp.src(cfg.src)
