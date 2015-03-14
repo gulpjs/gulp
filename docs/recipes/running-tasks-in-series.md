@@ -1,7 +1,7 @@
 # Running tasks in series
 
-By default, gulp CLI run tasks with maximum concurrency - e.g. it launches 
-all the tasks at once and waits for nothing. If you want to create a series 
+By default, gulp CLI run tasks with maximum concurrency - e.g. it launches
+all the tasks at once and waits for nothing. If you want to create a series
 where tasks run in a particular order, you should use `gulp.series`;
 
 ```js
@@ -22,7 +22,7 @@ gulp.task('two', function(done) {
 gulp.task('default', gulp.series('one', 'two'));
 ```
 
-Another example, using a dependency pattern. It uses 
+Another example, using a dependency pattern. It uses
 [`async-once`](https://www.npmjs.com/package/async-once) to run the `clean`
 task operations only once:
 ```js
@@ -32,7 +32,7 @@ var once = require('async-once');
 
 gulp.task('clean', once(function(done) {
   // run only once.
-  // for the next call to the clean task, once will call done with 
+  // for the next call to the clean task, once will call done with
   // the same arguments as the first call.
   del(['output'], done);
 }));
@@ -59,10 +59,10 @@ gulp.task('build', gulp.parallel('templates', 'styles'));
 gulp.task('default', gulp.parallel('build'));
 ```
 
-Note that it's an anti-pattern in Gulp 4 and the logs will show the clean task 
-running twice. Instead, `templates` and `style` should use dedicated `clean:*` 
+Note that it's an anti-pattern in Gulp 4 and the logs will show the clean task
+running twice. Instead, `templates` and `style` should use dedicated `clean:*`
 tasks:
-```
+```js
 var gulp = require('gulp');
 var del = require('del');
 
