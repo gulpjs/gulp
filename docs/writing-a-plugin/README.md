@@ -36,7 +36,6 @@ module.exports = function() {
     var error = null, 
         output = file;
     callback(error, output);
-    //TODO: what are we supposed to return?
   });
   
   return transformStream;
@@ -53,10 +52,9 @@ module.exports = function() {
    * @param {Buffer|string} file
    * @param {string=} encoding - ignored if file contains a Buffer
    * @param {function(Error, object)} callback - Call this function (optionally with an error argument and data) when you are done processing the supplied chunk.
-   * @this {Transform}
    */
   return through.obj(function(file, encoding, callback) {
-    //TODO: what are we supposed to return?
+    callback(null, file);
   });
 };
 ```
@@ -88,8 +86,7 @@ function which will operate on the input `file`.  You may also provide an option
 function if you need to emit a bit more data at the end of the stream.
 
 From within your transform function call `this.push(outputChunk)` 0 or more times to pass along transformed output from the input `file`, 
-depending on how much data you want to output.  
-You don't need to call `this.push(output)` if you provide all output to the `callback()` function.
+depending on how much data you want to output.  You don't need to call `this.push(output)` if you provide all output to the `callback()` function.
 
 Call the `callback` function only when the current file (stream/buffer) is completely consumed. 
 If an error is encountered, pass it as the first argument to the callback, otherwise set it to null. 
@@ -99,14 +96,19 @@ eg:
 
 ```js
 module.exports = function() {
-  return through.obj(function(file, encoding, callback) {
+  /**
+   * @this {Transform}
+   */
+  var transform = function(file, encoding, callback) {
+//TODO: is this actually valid for Gulp plugins?  do we just call this.push(file) once (after updating file.contents)?  
     this.push("hello ");
-    this.push("world!");
-    
+    this.push("world!");                              
     callback();
-    //TODO: what are we supposed to return?
-  });
+  }); 
+   
+  return through.obj(transform);
 };
+```
 
 Vinyl files can have 3 possible forms for the contents attribute:
 
@@ -125,7 +127,7 @@ module.exports = function() {
     return through.obj(function(file, encoding, callback) {
         if (file.isNull()) {
             // nothing to do
-            return callback(null, file);
+            return callback(null, file);    // any return value is ignored - this just keeps the return statement on the same line.
         }
 
         if (file.isStream()) {
