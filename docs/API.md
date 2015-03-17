@@ -56,6 +56,22 @@ gulp.src('client/js/**/*.js', { base: 'client' })
   .pipe(gulp.dest('build'));  // Writes 'build/js/somedir/somefile.js'
 ```
 
+### options.allowEmpty
+Type: `Boolean`
+Default: `false`
+
+When true, will allow singular globs to fail to match. Otherwise, globs which are only supposed to match one file (such as `./foo/bar.js`) will cause an error to be thrown if they don't match.
+
+```js
+// Emits an error if app/scripts.js doesn't exist
+gulp.src('app/scripts.js')
+  .pipe(...);
+
+// Won't emit an error
+gulp.src('app/scripts.js', { allowEmpty: true })
+  .pipe(...);
+```
+
 ### gulp.dest(path[, options])
 
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.  Folders that don't exist will be created.
