@@ -83,6 +83,21 @@ Default: `false`
 If true, it will create a duplex stream which passes items through and 
 emits globbed files.
 
+### options.allowEmpty
+Type: `Boolean`
+Default: `false`
+
+When true, will allow singular globs to fail to match. Otherwise, globs which are only supposed to match one file (such as `./foo/bar.js`) will cause an error to be thrown if they don't match.
+
+```js
+// Emits an error if app/scripts.js doesn't exist
+gulp.src('app/scripts.js')
+  .pipe(...);
+
+// Won't emit an error
+gulp.src('app/scripts.js', { allowEmpty: true })
+  .pipe(...);
+```
 
 ### gulp.dest(path[, options])
 
