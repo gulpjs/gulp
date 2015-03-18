@@ -92,7 +92,13 @@ Call the `callback` function only when the current file (stream/buffer) is compl
 If an error is encountered, pass it as the first argument to the callback, otherwise set it to null. 
 If you have passed all output data to `this.push()` you can omit the second argument to the callback.
 
-eg:
+Generally, a gulp plugin would update `file.contents` and then choose to either:
+
+ - call `callback(null, file)` 
+ _or_ 
+ - make one call to `this.push(file)`
+ 
+If a plugin created multiple files from a single file, it would make multiple calls to `this.push()` - eg:
 
 ```js
 module.exports = function() {
@@ -100,9 +106,9 @@ module.exports = function() {
    * @this {Transform}
    */
   var transform = function(file, encoding, callback) {
-//TODO: is this actually valid for Gulp plugins?  do we just call this.push(file) once (after updating file.contents)?  
-    this.push("hello ");
-    this.push("world!");                              
+    var files = splitFile(file);
+    this.push(files[0]);
+    this.push(files[1]);                              
     callback();
   }); 
    
@@ -110,11 +116,18 @@ module.exports = function() {
 };
 ```
 
+The [gulp-unzip](https://github.com/suisho/gulp-unzip/blob/master/index.js) plugin provides a good example of making
+multiple calls to `push()`.  It also uses a chunk transform stream with a `_flush()` function _within_ the Vinyl transform function.
+
 Vinyl files can have 3 possible forms for the contents attribute:
 
 - [Streams](dealing-with-streams.md)
 - [Buffers](using-buffers.md)
 - Empty (null) - Useful for things like rimraf, clean, where contents is not needed.
+
+A simple example showing how to detect & handle each form is provided below, for a more detailed explanation of each
+approach follow the links above.
+
 
 eg: 
 ```js
@@ -127,7 +140,7 @@ module.exports = function() {
     return through.obj(function(file, encoding, callback) {
         if (file.isNull()) {
             // nothing to do
-            return callback(null, file);    // any return value is ignored - this just keeps the return statement on the same line.
+            return callback(null, file);
         }
 
         if (file.isStream()) {
@@ -148,6 +161,23 @@ module.exports = function() {
     });
 };
 ```
+
+When looking through the code of other gulp plugins, you may notice that the transform functions will return the result of the callback:
+
+```js
+return callback(null, file);
+```
+
+...don't be confused - gulp ignores any return value of your transform function.  The code above is simply a short-hand form of:
+
+```js
+if (someCondition) {
+  callback(null, file);
+  return;
+}
+// further execution...
+```
+
 
 ## Useful resources
 
