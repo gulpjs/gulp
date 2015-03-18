@@ -18,23 +18,25 @@ A gulp plugin always returns a stream in [object mode](http://nodejs.org/api/str
 
 These are known as [transform streams](http://nodejs.org/api/stream.html#stream_class_stream_transform_1) 
 (also sometimes called through streams). 
-Transform streams are streams that are readable and writable which manipulate objects as they're being passed through.
+Transform streams are streams that are readable and writable; they manipulate objects as they're being passed through.
 
-eg:
+All gulp plugins essentially boil down to this:
 ```js
 var Transform = require('transform');
 
 module.exports = function() {
-  // Monkey patch Transform or create your own subclass, implementing `_transform()` and optionally `_flush()`.
+  // Monkey patch Transform or create your own subclass, 
+  // implementing `_transform()` and optionally `_flush()`
   var transformStream = new Transform({objectMode: true});
-  /** 
+  /**
    * @param {Buffer|string} file
    * @param {string=} encoding - ignored if file contains a Buffer
-   * @param {function(Error, object)} callback - Call this function (optionally with an error argument and data) when you are done processing the supplied chunk.
+   * @param {function(Error, object)} callback - Call this function (optionally with an 
+   *          error argument and data) when you are done processing the supplied chunk.
    */
   transformStream._transform = function(file, encoding, callback) {
     var error = null, 
-        output = file;
+        output = doSomethingWithTheFile(file);
     callback(error, output);
   });
   
@@ -48,25 +50,20 @@ Many plugins use the [through2](https://github.com/rvagg/through2/) module to si
 var through = require('through2');    // npm install --save through2
 
 module.exports = function() {
-  /** 
-   * @param {Buffer|string} file
-   * @param {string=} encoding - ignored if file contains a Buffer
-   * @param {function(Error, object)} callback - Call this function (optionally with an error argument and data) when you are done processing the supplied chunk.
-   */
   return through.obj(function(file, encoding, callback) {
     callback(null, file);
   });
 };
 ```
 
-The stream returned from `through2()` is an instance of the [Transform](https://github.com/iojs/readable-stream/blob/master/lib/_stream_transform.js)
+The stream returned from `through()` (and `this` within your transform function) is an instance of the [Transform](https://github.com/iojs/readable-stream/blob/master/lib/_stream_transform.js)
 class, which extends [Duplex](https://github.com/iojs/readable-stream/blob/master/lib/_stream_duplex.js),
 [Readable](https://github.com/iojs/readable-stream/blob/master/lib/_stream_readable.js)
-(and then parasitically from Writable) and ultimately
-[Stream](https://nodejs.org/api/stream.html).  If you need to parse additional options, you can use the alternative method:
+(and parasitically from Writable) and ultimately [Stream](https://nodejs.org/api/stream.html).  
+If you need to parse additional options, you can call the `through()` function directly:
 
 ```js
-  return through2({objectMode: true /* other options... */}, function(file, encoding, callback) { ...
+  return through({objectMode: true /* other options... */}, function(file, encoding, callback) { ...
 ```
  
 Supported options include:
@@ -85,8 +82,8 @@ The function parameter that you pass to `through.obj()` is a [_transform](https:
 function which will operate on the input `file`.  You may also provide an optional [_flush](https://nodejs.org/api/stream.html#stream_transform_flush_callback)
 function if you need to emit a bit more data at the end of the stream.
 
-From within your transform function call `this.push(outputChunk)` 0 or more times to pass along transformed output from the input `file`, 
-depending on how much data you want to output.  You don't need to call `this.push(output)` if you provide all output to the `callback()` function.
+From within your transform function call `this.push(file)` 0 or more times to pass along transformed/cloned files.  
+You don't need to call `this.push(file)` if you provide all output to the `callback()` function.
 
 Call the `callback` function only when the current file (stream/buffer) is completely consumed. 
 If an error is encountered, pass it as the first argument to the callback, otherwise set it to null. 
@@ -98,7 +95,7 @@ Generally, a gulp plugin would update `file.contents` and then choose to either:
  _or_ 
  - make one call to `this.push(file)`
  
-If a plugin created multiple files from a single file, it would make multiple calls to `this.push()` - eg:
+If a plugin creates multiple files from a single input file, it would make multiple calls to `this.push()` - eg:
 
 ```js
 module.exports = function() {
@@ -128,8 +125,6 @@ Vinyl files can have 3 possible forms for the contents attribute:
 A simple example showing how to detect & handle each form is provided below, for a more detailed explanation of each
 approach follow the links above.
 
-
-eg: 
 ```js
 var PluginError = require('gulp-util').PluginError;
 
