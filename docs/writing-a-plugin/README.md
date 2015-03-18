@@ -51,7 +51,7 @@ var through = require('through2');    // npm install --save through2
 
 module.exports = function() {
   return through.obj(function(file, encoding, callback) {
-    callback(null, file);
+    callback(null, doSomethingWithTheFile(file));
   });
 };
 ```
@@ -157,7 +157,7 @@ module.exports = function() {
 };
 ```
 
-When looking through the code of other gulp plugins, you may notice that the transform functions will return the result of the callback:
+Note: When looking through the code of other gulp plugins (and the example above), you may notice that the transform functions will return the result of the callback:
 
 ```js
 return callback(null, file);
