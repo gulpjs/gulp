@@ -207,7 +207,8 @@ Octal permission specifying the mode the directory should be created with: e.g.
 
 ### gulp.task([name,] fn)
 
-Define a task using [Undertaker].
+Define a task exposed to gulp-cli, `gulp.series`, `gulp.parallel` and
+`gulp.lastRun`; inherited from [undertaker].
 
 ```js
 gulp.task('somename', function() {
@@ -215,16 +216,26 @@ gulp.task('somename', function() {
 });
 ```
 
+Or get a task that has been registered.
+
+```js
+// somenameTask will be the registered task function
+var somenameTask = gulp.task('somename');
+```
+
 #### name
 Type: `String`
 
-Optional, The name of the task. Tasks that you want to run from the command line
-should not have spaces in them.
-
 If the name is not provided, the task will be named after the function
-`name` attribute, set on any named function.
+`name` or `displayName` property. The name argument is required if the
+`name` and `displayName` properties of `fn` are empty.
 
-[Function.name] is not writable; it cannot be set or edited.
+Since the task can be run from the command line, you should avoid using
+spaces in task names.
+
+**Note:** [Function.name] is not writable; it cannot be set or edited. If
+you need to assign a function name or use characters that aren't allowed
+in function names, use the `displayName` property.
 It will be empty for anonymous functions:
 
 ```js
@@ -237,16 +248,6 @@ bar.name === '' // true
 bar.name = 'bar'
 bar.name === '' // true
 ```
-
-You should either provide the task name or avoid anonymous functions.
-
-You can also omit the function if you only want to run a bundle of dependency tasks:
-
-```js
-gulp.task('build', ['array', 'of', 'task', 'names']);
-```
-
-**Note:** The tasks will run in parallel (all at once), so don't assume that the tasks will start/finish in order.
 
 #### fn
 Type: `Function`
@@ -511,7 +512,7 @@ The path to the file that triggered the event.
 [RxJS]: https://www.npmjs.com/package/rx
 [stream]: http://nodejs.org/api/stream.html
 [async-done]: https://www.npmjs.com/package/async-done
-[Undertaker]: https://github.com/phated/undertaker
+[undertaker]: https://github.com/gulpjs/undertaker
 [vinyl File instance]: https://github.com/gulpjs/vinyl
 [Vinyl files]: https://github.com/gulpjs/vinyl-fs
 [fs stats]: https://nodejs.org/api/fs.html#fs_class_fs_stats
