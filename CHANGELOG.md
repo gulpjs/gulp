@@ -7,7 +7,7 @@
 - replaced 3.x task system (orchestrator) with new task system (bach)
   - removed gulp.reset
   - removed 3 argument syntax for `gulp.task`
-  - using strings when registering with `gulp.task` should only be done when you will call the task with the CLI
+  - `gulp.task` should only be used when you will call the task with the CLI
   - added `gulp.series` and `gulp.parallel` methods for composing tasks. Everything must use these now.
   - added single argument syntax for `gulp.task` which allows a named function to be used as the name of the task and task function.
   - added `gulp.tree` method for retrieving the task tree. Pass `{ deep: true }` for an `archy` compatible node list.
