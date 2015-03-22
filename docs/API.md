@@ -190,7 +190,7 @@ Octal permission specifying the mode the directory should be created with: e.g.
 
 ### gulp.task([name,] fn)
 
-Define a task using [Undertaker].
+Define a task exposed to Gulp command line; inherited from [Undertaker].
 
 ```js
 gulp.task('somename', function() {
@@ -200,13 +200,14 @@ gulp.task('somename', function() {
 
 #### name
 
-Optional, The name of the task. Tasks that you want to run from the command line
-should not have spaces in them.
-
 If the name is not provided, the task will be named after the function 
-`name` attribute, set on any named function.
+`name` or `displayName` attribute. The name argument is required if `fn` has 
+empty `name` and `displayName` attributes. 
 
-[Function.name] is not writable; it cannot be set or edited.
+Since the task will be run from the command line, you should avoid using 
+spaces in them.
+
+**Note:** [Function.name] is not writable; it cannot be set or edited.
 It will be empty for anonymous functions:
 
 ```js
@@ -219,8 +220,6 @@ bar.name === '' // true
 bar.name = 'bar'
 bar.name === '' // true
 ```
-
-You should either provide the task name or avoid anonymous functions.
 
 #### fn
 
