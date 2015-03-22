@@ -211,7 +211,7 @@ Define a task exposed to gulp-cli, `gulp.series`, `gulp.parallel` and
 `gulp.lastRun`; inherited from [undertaker].
 
 ```js
-gulp.task('somename', function() {
+gulp.task(function someTask() {
   // Do stuff
 });
 ```
@@ -219,8 +219,8 @@ gulp.task('somename', function() {
 Or get a task that has been registered.
 
 ```js
-// somenameTask will be the registered task function
-var somenameTask = gulp.task('somename');
+// someTask will be the registered task function
+var someTask = gulp.task('someTask');
 ```
 
 #### name
@@ -232,6 +232,35 @@ If the name is not provided, the task will be named after the function
 
 Since the task can be run from the command line, you should avoid using
 spaces in task names.
+
+#### fn
+
+The function that performs the task's operations. Generally it takes this form:
+
+```js
+function someTask() {
+  return gulp.src(['some/glob/**/*.ext']).pipe(someplugin());
+}
+someTask.description = 'Does something';
+
+gulp.task(someTask)
+```
+
+Gulp tasks are asynchronous and Gulp uses [async-done] to wait for the task's
+completion. Tasks are called with a callback parameter to call to signal
+completion. Alternatively, Task can return a stream, a promise, a child process
+or a RxJS observable to signal the end of the task.
+
+**Warning:** Sync tasks are not supported and your function will never complete
+if the one of the above strategies is not used to signal completion. However,
+thrown errors will be caught by Gulp.
+
+#### fn properties
+
+##### fn.name
+
+`gulp.task` names the task after the function `name` property
+if the optional `name` parameter of `gulp.task` is not provided.
 
 **Note:** [Function.name] is not writable; it cannot be set or edited. If
 you need to assign a function name or use characters that aren't allowed
@@ -249,24 +278,30 @@ bar.name = 'bar'
 bar.name === '' // true
 ```
 
-#### fn
-Type: `Function`
+##### fn.displayName
 
-The function that performs the task's operations. Generally it takes this form:
+`gulp.task` names the task after the function `displayName` property
+if function is anonymous and the optional `name` parameter of `gulp.task`
+is not provided.
+
+##### fn.description
+
+gulp-cli prints this description alongside the task name when listing tasks:
+```js
+var gulp = require('gulp');
+
+function test(done){
+  done();
+}
+test.description = 'I do nothing';
+
+gulp.task(test);
 ```
-gulp.task('somename', function() {
-  return gulp.src(['some/glob/**/*.ext']).pipe(someplugin());
-})
+```shell
+$> gulp --tasks
+[12:00:02] Tasks for ~/Documents/some-project/gulpfile.js
+[12:00:02] └── test  I do nothing
 ```
-
-Gulp tasks are asynchronous and Gulp uses [async-done] to wait for the tasks'
-completion. Tasks are called with a callback parameter to call to signal
-completion. Alternatively, Task can return a stream, a promise, a child process
-or a RxJS observable to signal the end of the task.
-
-**Warning:** Sync tasks are not supported and your function will never complete
-if the one of the above strategies is not used to signal completion. However,
-thrown errors will be caught by Gulp.
 
 #### Async support
 
