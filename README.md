@@ -76,7 +76,7 @@ gulp.task('default', gulp.series('clean', 'all'));
 ## Incremental Builds
 
 You can filter out unchanged files between runs of a task using
-`gulp.src` function's `since` option and `gulp.lastRun`:
+the `gulp.src` function's `since` option and `gulp.lastRun`:
 ```js
 gulp.task('images', function() {
   return gulp.src(paths.images, {since: gulp.lastRun('images')})
@@ -92,7 +92,7 @@ Task run times are saved in memory and are lost when gulp exits. It will only
 save time during the `watch` task when running the `images` task
 for a second time.
 
-If you want to compare modification time between files instead, we recommend those plugins:
+If you want to compare modification time between files instead, we recommend these plugins:
 - [gulp-changed];
 - or [gulp-newer] - supports many:1 source:dest.
 
@@ -107,8 +107,8 @@ gulp.task('images', function() {
 });
 ```
 
-If you can't just filter out unchanged files, but need them in a later phase
-of the task, we recommend those plugins:
+If you can't simply filter out unchanged files, but need them in a later phase
+of the stream, we recommend these plugins:
 - [gulp-cached] - in-memory file cache, not for operation on sets of files
 - [gulp-remember] - pairs nicely with gulp-cached
 
@@ -119,7 +119,7 @@ gulp.task('scripts', function () {
     .pipe(cache('scripts'))    // only pass through changed files
     .pipe(header('(function () {')) // do special things to the changed files...
     .pipe(footer('})();'))     // for example,
-                               // add a stupid-simple module wrap to each file
+                               // add a simple module wrap to each file
     .pipe(remember('scripts')) // add back all files to the stream
     .pipe(concat('app.js'))    // do things that require all files
     .pipe(gulp.dest('public/'))
