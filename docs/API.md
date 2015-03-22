@@ -38,7 +38,7 @@ Type: `Boolean`
 
 Default: `true`
 
-Setting this to `false` will return `file.contents` as a stream and not 
+Setting this to `false` will return `file.contents` as a stream and not
 buffer files. This is useful when working with large files.
 
 **Note:** Plugins might not implement support for streams.
@@ -48,7 +48,7 @@ Type: `Boolean`
 
 Default: `true`
 
-Setting this to `false` will return `file.contents` as null and not read 
+Setting this to `false` will return `file.contents` as null and not read
 the file at all.
 
 ##### options.base
@@ -72,7 +72,7 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 ##### options.since
 Type: `Date` or `Number`
 
-Setting this to a Date or a time stamp will discard any file that have not been 
+Setting this to a Date or a time stamp will discard any file that have not been
 modified since the time specified.
 
 ##### options.passthrough
@@ -80,7 +80,7 @@ Type: `Boolean`
 
 Default: `false`
 
-If true, it will create a duplex stream which passes items through and 
+If true, it will create a duplex stream which passes items through and
 emits globbed files.
 
 ### options.allowEmpty
@@ -113,7 +113,7 @@ gulp.src('./client/templates/*.jade')
 ```
 
 The write path is calculated by appending the file relative path to the given
-destination directory. In turn, relative paths are calculated against 
+destination directory. In turn, relative paths are calculated against
 the file base. See `gulp.src` above for more info.
 
 #### path
@@ -130,16 +130,16 @@ Type: `String`
 
 Default: `process.cwd()`
 
-`cwd` for the output folder, only has an effect if provided output folder is 
+`cwd` for the output folder, only has an effect if provided output folder is
 relative.
 
 ##### options.mode
 Type: `String` or `Number`
 
-Default: the mode of the input file (file.stat.mode) or the process mode 
+Default: the mode of the input file (file.stat.mode) or the process mode
 if the input file has no mode property.
 
-Octal permission specifying the mode the files should be created with: e.g. 
+Octal permission specifying the mode the files should be created with: e.g.
 `"0744"`, `0744` or `484` (`0744` in base 10).
 
 ##### options.dirMode
@@ -176,7 +176,7 @@ Type: `String`
 
 Default: `process.cwd()`
 
-`cwd` for the output folder, only has an effect if provided output folder is 
+`cwd` for the output folder, only has an effect if provided output folder is
 relative.
 
 ##### options.dirMode
@@ -190,7 +190,7 @@ Octal permission specifying the mode the directory should be created with: e.g.
 
 ### gulp.task([name,] fn)
 
-Define a task exposed to Gulp command line; inherited from [Undertaker].
+Define a task exposed to gulp-cli; inherited from [Undertaker].
 
 ```js
 gulp.task('somename', function() {
@@ -198,16 +198,25 @@ gulp.task('somename', function() {
 });
 ```
 
+Or get a task that has been registered.
+
+```js
+// somenameTask will be the registered task function
+var somenameTask = gulp.task('somename');
+```
+
 #### name
 
-If the name is not provided, the task will be named after the function 
-`name` or `displayName` attribute. The name argument is required if `fn` has 
-empty `name` and `displayName` attributes. 
+If the name is not provided, the task will be named after the function
+`name` or `displayName` property. The name argument is required if the
+`name` and `displayName` properties of `fn` are empty.
 
-Since the task will be run from the command line, you should avoid using 
-spaces in them.
+Since the task will be run from the command line, you should avoid using
+spaces in task names.
 
-**Note:** [Function.name] is not writable; it cannot be set or edited.
+**Note:** [Function.name] is not writable; it cannot be set or edited. If
+you need to assign a function name or use characters that aren't allowed
+in function names, use the `displayName` property.
 It will be empty for anonymous functions:
 
 ```js
@@ -230,13 +239,13 @@ gulp.task('somename', function() {
 })
 ```
 
-Gulp tasks are asynchronous and Gulp uses [async-done] to wait for the tasks' 
-completion. Tasks are called with a callback parameter to call to signal 
+Gulp tasks are asynchronous and Gulp uses [async-done] to wait for the tasks'
+completion. Tasks are called with a callback parameter to call to signal
 completion. Alternatively, Task can return a stream, a promise, a child process
 or a RxJS observable to signal the end of the task.
 
 **Warning:** Sync tasks are not supported and your function will never complete
-if the one of the above strategies is not used to signal completion. However, 
+if the one of the above strategies is not used to signal completion. However,
 thrown errors will be caught by Gulp.
 
 #### Async support
@@ -313,8 +322,8 @@ gulp.task('sometask', function() {
 
 ### lastRun(taskName, [timeResolution])
 
-Returns the timestamp of the last time the task ran successfully. The time 
-will be the time the task started. Returns `undefined` if the task has 
+Returns the timestamp of the last time the task ran successfully. The time
+will be the time the task started. Returns `undefined` if the task has
 not run yet.
 
 #### taskName
@@ -329,13 +338,13 @@ Type: `Number`.
 
 Default: `1000` on node v0.10, `0` on node v0.12 (and iojs v1.5).
 
-Set the time resolution of the returned timestamps. Assuming 
+Set the time resolution of the returned timestamps. Assuming
 the task named "someTask" ran at `1426000004321`:
 - `gulp.lastRun('someTask', 1000)` would return `1426000004000`.
 - `gulp.lastRun('someTask', 100)` would return `1426000004300`.
 
 `timeResolution` allows you to compare a run time to a file [mtime stat][fs stats]
-attribute. This attribute time resolution may vary depending of the node version 
+attribute. This attribute time resolution may vary depending of the node version
 and the file system used:
 - on node v0.10, a file [mtime stat][fs stats] time resolution of any files will be 1s at best;
 - on node v0.12 and iojs v1.5, 1ms at best;
@@ -352,7 +361,7 @@ tasks or functions.
 When using task names, the task should already be registered.
 
 When the returned function is executed, the tasks or functions will be executed
-in parallel, all being executed at the same time. If an error occurs, 
+in parallel, all being executed at the same time. If an error occurs,
 all execution will complete.
 
 ```js
