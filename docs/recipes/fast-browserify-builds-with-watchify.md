@@ -15,7 +15,9 @@ var buffer = require('vinyl-buffer');
 var watchify = require('watchify');
 var browserify = require('browserify');
 
-var bundler = watchify(browserify('./src/index.js', watchify.args));
+var bundler = watchify(browserify(watchify.args));
+// add the file to bundle
+bundler.add('.src/index.js');
 // add any other browserify options or transforms here
 bundler.transform('brfs');
 
