@@ -35,16 +35,38 @@ var paths = {
   images: 'client/img/**/*'
 };
 
+/* Register some tasks to expose to the cli */
+gulp.task('build', gulp.series(
+  clean,
+  gulp.parallel(scripts, images)
+));
+gulp.task(clean);
+gulp.task(watch);
+
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', gulp.series('build'));
+
+
+/* Define our tasks using plain functions */
+
 // Not all tasks need to use streams
 // A gulpfile is just another node program and you can use all packages available on npm
-gulp.task('clean', function(done) {
+function clean(done) {
   // You can use multiple globbing patterns as you would with `gulp.src`
   del(['build'], done);
-});
+}
 
-gulp.task('scripts', function() {
-  // Minify and copy all JavaScript (except vendor scripts)
-  // with sourcemaps all the way down
+// Copy all static images
+function images() {
+  return gulp.src(paths.images)
+    // Pass in options to the task
+    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest('build/img'));
+}
+
+// Minify and copy all JavaScript (except vendor scripts)
+// with sourcemaps all the way down
+function scripts() {
   return gulp.src(paths.scripts)
     .pipe(sourcemaps.init())
       .pipe(coffee())
@@ -52,25 +74,13 @@ gulp.task('scripts', function() {
       .pipe(concat('all.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/js'));
-});
-
-// Copy all static images
-gulp.task('images', function() {
-  return gulp.src(paths.images)
-    // Pass in options to the task
-    .pipe(imagemin({optimizationLevel: 5}))
-    .pipe(gulp.dest('build/img'));
-});
+}
 
 // Rerun the task when a file changes
-gulp.task('watch', function() {
-  gulp.watch(paths.scripts, 'scripts');
-  gulp.watch(paths.images, 'images');
-});
-
-gulp.task('all', gulp.parallel('watch', 'scripts', 'images'));
-// The default task (called when you run `gulp` from cli)
-gulp.task('default', gulp.series('clean', 'all'));
+function watch() {
+  gulp.watch(paths.scripts, scripts);
+  gulp.watch(paths.images, images);
+}
 ```
 
 ## Incremental Builds
@@ -78,15 +88,15 @@ gulp.task('default', gulp.series('clean', 'all'));
 You can filter out unchanged files between runs of a task using
 the `gulp.src` function's `since` option and `gulp.lastRun`:
 ```js
-gulp.task('images', function() {
+function images() {
   return gulp.src(paths.images, {since: gulp.lastRun('images')})
     .pipe(imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
-});
+}
 
-gulp.task('watch', function() {
-  gulp.watch(paths.images, 'images');
-});
+function watch() {
+  gulp.watch(paths.images, images);
+}
 ```
 Task run times are saved in memory and are lost when gulp exits. It will only
 save time during the `watch` task when running the `images` task
@@ -98,13 +108,13 @@ If you want to compare modification time between files instead, we recommend the
 
 [gulp-newer] example:
 ```js
-gulp.task('images', function() {
+function images() {
   var dest = 'build/img';
   return gulp.src(paths.images)
     .pipe(newer(dest))  // pass through newer images only
     .pipe(imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest(dest));
-});
+}
 ```
 
 If you can't simply filter out unchanged files, but need them in a later phase
@@ -114,7 +124,7 @@ of the stream, we recommend these plugins:
 
 [gulp-remember] example:
 ```js
-gulp.task('scripts', function () {
+function scripts() {
   return gulp.src(scriptsGlob)
     .pipe(cache('scripts'))    // only pass through changed files
     .pipe(header('(function () {')) // do special things to the changed files...
@@ -123,7 +133,7 @@ gulp.task('scripts', function () {
     .pipe(remember('scripts')) // add back all files to the stream
     .pipe(concat('app.js'))    // do things that require all files
     .pipe(gulp.dest('public/'))
-});
+}
 ```
 
 ## Want to contribute?
