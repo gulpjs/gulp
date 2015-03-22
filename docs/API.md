@@ -190,7 +190,8 @@ Octal permission specifying the mode the directory should be created with: e.g.
 
 ### gulp.task([name,] fn)
 
-Define a task exposed to gulp-cli; inherited from [Undertaker].
+Define a task exposed to gulp-cli, `gulp.series`, `gulp.parallel` and
+`gulp.lastRun`; inherited from [undertaker].
 
 ```js
 gulp.task('somename', function() {
@@ -211,7 +212,7 @@ If the name is not provided, the task will be named after the function
 `name` or `displayName` property. The name argument is required if the
 `name` and `displayName` properties of `fn` are empty.
 
-Since the task will be run from the command line, you should avoid using
+Since the task can be run from the command line, you should avoid using
 spaces in task names.
 
 **Note:** [Function.name] is not writable; it cannot be set or edited. If
@@ -481,7 +482,7 @@ The path to the file that triggered the event.
 [RxJS]: https://www.npmjs.com/package/rx
 [stream]: http://nodejs.org/api/stream.html
 [async-done]: https://www.npmjs.com/package/async-done
-[Undertaker]: https://github.com/phated/undertaker
+[undertaker]: https://github.com/phated/undertaker
 [vinyl File instance]: https://github.com/wearefractal/vinyl
 [Vinyl files]: https://github.com/wearefractal/vinyl-fs
 [fs stats]: https://nodejs.org/api/fs.html#fs_class_fs_stats
