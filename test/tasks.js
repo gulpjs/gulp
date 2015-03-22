@@ -63,7 +63,7 @@ describe('gulp tasks', function() {
         setTimeout(function() {
           ++a;
           deferred.resolve();
-        },1);
+        }, 1);
         return deferred.promise;
       };
       fn2 = function() {
@@ -71,7 +71,7 @@ describe('gulp tasks', function() {
         setTimeout(function() {
           ++a;
           deferred.resolve();
-        },1);
+        }, 1);
         return deferred.promise;
       };
       gulp.task('test', fn);
@@ -92,13 +92,13 @@ describe('gulp tasks', function() {
         setTimeout(function() {
           ++a;
           cb(null);
-        },1);
+        }, 1);
       };
       fn2 = function(cb) {
         setTimeout(function() {
           ++a;
           cb(null);
-        },1);
+        }, 1);
       };
       gulp.task('test', fn);
       gulp.task('test2', fn2);
