@@ -17,7 +17,7 @@ var browserify = require('browserify');
 
 var bundler = watchify(browserify(watchify.args));
 // add the file to bundle
-bundler.add('.src/index.js');
+bundler.add('./src/index.js');
 // add any other browserify options or transforms here
 bundler.transform('brfs');
 
