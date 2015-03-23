@@ -194,7 +194,7 @@ Define a task exposed to gulp-cli, `gulp.series`, `gulp.parallel` and
 `gulp.lastRun`; inherited from [undertaker].
 
 ```js
-gulp.task('somename', function() {
+gulp.task(function someTask() {
   // Do stuff
 });
 ```
@@ -202,8 +202,8 @@ gulp.task('somename', function() {
 Or get a task that has been registered.
 
 ```js
-// somenameTask will be the registered task function
-var somenameTask = gulp.task('somename');
+// someTask will be the registered task function
+var someTask = gulp.task('someTask');
 ```
 
 #### name
@@ -218,7 +218,8 @@ spaces in task names.
 #### fn
 
 The function that performs the task's operations. Generally it takes this form:
-```
+
+```js
 function someTask() {
   return gulp.src(['some/glob/**/*.ext']).pipe(someplugin());
 }
