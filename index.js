@@ -12,10 +12,7 @@ util.inherits(Gulp, Undertaker);
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
 Gulp.prototype.watch = function(glob, opt, task) {
-  var isFunction = (typeof opt === 'function');
-  var isString = (typeof opt === 'string');
-  var isArray = Array.isArray(opt);
-  if (isFunction || isString || isArray) {
+  if (typeof opt === 'function') {
     task = opt;
     opt = null;
   }
