@@ -12,6 +12,7 @@ var gulp = require('gulp');
 var transform = require('vinyl-transform');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
+var gutil = require('gulp-util');
 
 gulp.task('javascript', function () {
   // transform regular node stream to gulp (buffered vinyl) stream 
@@ -24,7 +25,7 @@ gulp.task('javascript', function () {
     .pipe(browserified)
     .pipe(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
+        .pipe(uglify().on('error', gutil.log))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/js/'));
 });
