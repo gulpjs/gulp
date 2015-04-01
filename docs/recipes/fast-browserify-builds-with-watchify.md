@@ -23,7 +23,7 @@ var customOpts = {
   entries: ['./src/index.js'],
   debug: true
 };
-var opts = assign(customOpts, watchify.args);
+var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
