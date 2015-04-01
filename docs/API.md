@@ -25,6 +25,9 @@ Note that globs are evaluated in order, which means this is possible:
 gulp.src(['*.js', '!b*.js', 'bad.js'])
 ```
 
+**Note:** glob symlink following behavior is opt-in and you must specify
+`follow: true` in the options object that is passed to [node-glob].
+
 #### options
 Type: `Object`
 
