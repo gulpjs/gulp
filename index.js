@@ -11,6 +11,7 @@ util.inherits(Gulp, Undertaker);
 
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
+Gulp.prototype.symlink = vfs.symlink;
 Gulp.prototype.watch = function (glob, opt, task) {
   if (typeof opt === 'function') {
     task = opt;
