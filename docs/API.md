@@ -458,13 +458,16 @@ Type: `Array`, `String` or `Function`
 A task name, a function or an array of either.
 
 
-### gulp.watch(glob[, opts], tasks)
+### gulp.watch(glob[, opts], fn)
 
 Watch files and do something when a file changes.
 
 ```js
 gulp.watch('js/**/*.js', gulp.parallel('uglify', 'reload'));
 ```
+
+In the example, `gulp.watch` runs the function returned by gulp.parallel each
+time a file with the `js` extension in `js/` is updated.
 
 #### glob
 Type: `String` or `Array`
@@ -476,17 +479,10 @@ Type: `Object`
 
 Options, that are passed to [`gaze`][gaze].
 
-#### tasks
-Type: `Array`, `Function` or `String`
+#### fn
+Type: `Function`
 
-A task name, a function or an array of either to run when a file changes.
-
-When `tasks` is an array, the tasks will be run in parallel:
-```
-gulp.watch('*.js', [one, two]);
-// is equivalent to
-gulp.watch('*.js', gulp.parallel(one, two));
-```
+An [async](#async-support) function to run when a file changes.
 
 `gulp.watch` returns an `EventEmitter` object which emits `change` events with
 the [gaze] `event`:
