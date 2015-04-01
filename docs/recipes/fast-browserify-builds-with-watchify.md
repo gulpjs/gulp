@@ -4,7 +4,7 @@ As a [browserify](http://github.com/substack/node-browserify) project begins to 
 
 That's why [substack](http://github.com/substack) wrote [watchify](http://github.com/substack/watchify), a persistent browserify bundler that watches files for changes and *only rebuilds what it needs to*. This way, that first build might still take 30 seconds, but subsequent builds can still run in under 100ms – which is a huge improvement.
 
-Watchify doesn't have a gulp plugin, but it doesn't need one either: you can use [vinyl-source-stream](http://github.com/hughsk/vinyl-source-stream) to pipe the bundle stream into your gulp pipeline.
+Watchify doesn't have a gulp plugin, and it doesn't need one: you can use [vinyl-source-stream](http://github.com/hughsk/vinyl-source-stream) to pipe the bundle stream into your gulp pipeline.
 
 ``` javascript
 'use strict';
