@@ -18,7 +18,7 @@ Gulp.prototype.watch = function (glob, opt, task) {
   }
 
   var fn;
-  if (task) {
+  if (typeof task === 'function') {
     fn = this.parallel(task);
   }
 
