@@ -4,6 +4,8 @@
 tool but requires being wrapped before working well with gulp. Below is a simple recipe for using
 Browserify with transforms and full sourcemaps that resolve to the original individual files.
 
+See also: the [Combining Streams to Handle Errors](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) recipe for handling errors with browserify or uglify in your stream.
+
 ``` javascript
 'use strict';
 
@@ -15,12 +17,12 @@ var sourcemaps = require('gulp-sourcemaps');
 var gutil = require('gulp-util');
 
 gulp.task('javascript', function () {
-  // transform regular node stream to gulp (buffered vinyl) stream 
+  // transform regular node stream to gulp (buffered vinyl) stream
   var browserified = transform(function(filename) {
     var b = browserify({entries: filename, debug: true});
     return b.bundle();
   });
-  
+
   return gulp.src('./app.js')
     .pipe(browserified)
     .pipe(sourcemaps.init({loadMaps: true}))
