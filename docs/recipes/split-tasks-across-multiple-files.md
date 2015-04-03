@@ -1,8 +1,8 @@
 # Split tasks across multiple files
 
 If your `gulpfile.js` is starting to grow too large, you can split the tasks
-into separate files by using the [require-dir](https://github.com/aseemk/requireDir)
-module.
+into separate files by using the [gulp-hub](https://github.com/frankwallis/gulp-hub/tree/4.0)
+module as a [custom registry](https://github.com/phated/undertaker#registryregistryinstance).
 
 Imagine the following file structure:
 
@@ -14,15 +14,23 @@ tasks/
 └── test.js
 ```
 
-Install the `require-dir` module:
+Install the `gulp-hub` module:
 
 ```sh
-npm install --save-dev require-dir
+npm install --save-dev gulp-hub
 ```
 
 Add the following lines to your `gulpfile.js` file:
 
 ```js
-var requireDir = require('require-dir');
-var tasks = requireDir('./tasks');
+'use strict';
+
+var gulp = require('gulp');
+var HubRegistry = require('gulp-hub');
+
+/* load some files into the registry */
+var hub = new HubRegistry(['tasks/*.js']);
+
+/* tell gulp to use the tasks just loaded */
+gulp.registry(hub);
 ```
