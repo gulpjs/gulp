@@ -19,3 +19,4 @@
 * [Using multiple sources in one task](using-multiple-sources-in-one-task.md)
 * [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemap.md)
 * [Output both a minified and non-minified version](minified-and-non-minified.md)
+* [Running shell commands](running-shell-commands.md)
