@@ -27,3 +27,4 @@
 * [Exports as tasks](exports-as-tasks.md)
 * [Rollup with rollup-stream](rollup-with-rollup-stream.md)
 * [Run gulp task via cron job](cron-task.md)
+* [Running shell commands](running-shell-commands.md)
