@@ -22,3 +22,4 @@
 * [Output both a minified and non-minified version](minified-and-non-minified.md)
 * [Bump project version, and create new tag in Git](bump-version-and-create-git-tag.md)
 * [Templating with Swig and YAML front-matter](templating-with-swig-and-yaml-front-matter.md)
+* [Running shell commands](running-shell-commands.md)
