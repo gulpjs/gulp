@@ -126,5 +126,29 @@ describe('gulp', function() {
       updateTempFile(tempFile);
     });
 
+    it('should throw an error: passed parameter (string) is not a function', function(done) {
+      var tempFile = path.join(outpath, 'empty.txt');
+
+      createTempFile(tempFile);
+      try {
+        gulp.watch(tempFile, 'task1');
+      } catch (err) {
+        err.message.should.equal('watching ' + tempFile +  ': watch task has to be gulp.series, gulp.parallel or a function');
+        done();
+      }
+    });
+
+    it('should throw an error: passed parameter (array) is not a function', function(done) {
+      var tempFile = path.join(outpath, 'empty.txt');
+
+      createTempFile(tempFile);
+      try {
+        gulp.watch(tempFile, ['task1']);
+      } catch (err) {
+        err.message.should.equal('watching ' + tempFile +  ': watch task has to be gulp.series, gulp.parallel or a function');
+        done();
+      }
+    });
+
   });
 });
