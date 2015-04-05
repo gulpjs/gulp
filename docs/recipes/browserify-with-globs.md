@@ -48,7 +48,7 @@ gulp.task('javascript', function () {
 
     // create the Browserify instance.
     var b = browserify({
-      entries: entires,
+      entries: entries,
       debug: true,
       transform: [reactify]
     });
