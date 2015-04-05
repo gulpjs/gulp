@@ -15,6 +15,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 var reactify = require('reactify');
 
 gulp.task('javascript', function () {
