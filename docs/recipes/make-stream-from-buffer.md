@@ -28,7 +28,7 @@ You should get:
 ```sh
 └── output
     ├── version.1.complete.js # lib1.js + lib2.js + version.1.js
-    └── version.2.complete.js # lib1.js + lib2.js + version.1.js
+    └── version.2.complete.js # lib1.js + lib2.js + version.2.js
 ```
 
 A simple and modular way to do this would be the following:
