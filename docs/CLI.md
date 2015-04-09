@@ -24,3 +24,75 @@ Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` 
 ### Compilers
 
 You can find a list of supported languages at [interpret](https://github.com/tkellen/node-interpret#jsvariants). If you would like to add support for a new language send pull request/open issues there.
+
+### Examples
+
+#### Example gulpfile
+
+```js
+gulp.task('one', function(done) {
+  // do stuff
+  done();
+});
+
+gulp.task('two', function(done) {
+  // do stuff
+  done();
+});
+
+gulp.task('three', three);
+
+function three(done) {
+  done();
+}
+three.description = "This is the description of task three";
+
+gulp.task('four', gulp.series('one', 'two'));
+
+gulp.task('five',
+  gulp.series('four',
+    gulp.parallel('three', function(done) {
+      // do more stuff
+      done();
+    })
+  )
+);
+```
+
+### `-T` or `--tasks`
+
+Command: `gulp -T` or `gulp --tasks`
+
+Output:
+```shell
+[20:58:55] Tasks for ~\exampleProject\gulpfile.js
+[20:58:55] ├── one
+[20:58:55] ├── two
+[20:58:55] ├── three                                         This is the description of task three
+[20:58:55] ├─┬ four
+[20:58:55] │ └─┬ <series>
+[20:58:55] │   ├── one
+[20:58:55] │   └── two
+[20:58:55] ├─┬ five
+[20:58:55] │ └─┬ <series>
+[20:58:55] │   ├─┬ four
+[20:58:55] │   │ └─┬ <series>
+[20:58:55] │   │   ├── one
+[20:58:55] │   │   └── two
+[20:58:55] │   └─┬ <parallel>
+[20:58:55] │     ├── three
+[20:58:55] │     └── <anonymous>
+```
+
+### `--tasks-simple`
+
+Command: `gulp --tasks-simple`
+
+Output: 
+```shell
+one
+two
+three
+four
+five
+```
