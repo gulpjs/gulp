@@ -13,6 +13,12 @@ Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
 Gulp.prototype.symlink = vfs.symlink;
 Gulp.prototype.watch = function (glob, opt, task) {
+  if (typeof opt === 'string' || typeof task === 'string' ||
+    Array.isArray(opt) || Array.isArray(task)) {
+    throw new Error('watching ' + glob + ': watch task has to be ' +
+      'gulp.series, gulp.parallel or a function');
+  }
+
   if (typeof opt === 'function') {
     task = opt;
     opt = null;
