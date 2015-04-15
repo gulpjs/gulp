@@ -34,3 +34,5 @@ var hub = new HubRegistry(['tasks/*.js']);
 /* tell gulp to use the tasks just loaded */
 gulp.registry(hub);
 ```
+
+This recipe can also be found at https://github.com/frankwallis/gulp-hub/tree/4.0/examples/recipe
