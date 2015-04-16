@@ -653,6 +653,38 @@ gulp.tree({ deep: true })
 */
 ```
 
+### gulp.registry([registry])
+
+Get or set the current registry. Inherited from [undertaker] see the undertaker documention on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this you can import other tasks from different files. See the recipes for an example.
+
+#### registry
+
+A registry instance. When passed in the tasks from the current registry will be transferred to the passed in registry and the current registry will be replaced with the passed in registry
+
+#### Example
+```js
+  gulp.task('commonOne', function(done) {
+    // do stuff
+    done();
+  });
+
+  gulp.task('commonTwo', function(done) {
+    // do stuff
+    done();
+  });
+  
+  var commonReg = gulp.registry();
+  
+  console.log(commonReg);
+  /* prints
+    { _tasks:
+      { commonOne: [Function: taskWrapper],
+        commonTwo: [Function: taskWrapper] } }
+
+  */
+  
+```
+
 
 [Function.name]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name
 [gaze]: https://github.com/shama/gaze
