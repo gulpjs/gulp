@@ -22,8 +22,8 @@ describe('gulp', function() {
     var writeTimeout = 125; // Wait for it to get to the filesystem
     var writeFileWait = function(name, content, cb) {
       if (!cb) {
-        cb = function() {}
-      };
+        cb = function() {};
+      }
       setTimeout(function() {
         fs.writeFile(name, content, cb);
       }, writeTimeout);
