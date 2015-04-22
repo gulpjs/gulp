@@ -655,10 +655,10 @@ gulp.tree({ deep: true })
 
 ### gulp.registry([registry])
 
-Get or set the current registry. Inherited from [undertaker] see the undertaker documention on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this you can import registries from other sources/files. Importing your own registry has at least three use cases:
+Get or set the current registry. Inherited from [undertaker]; see the undertaker documention on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this you can import registries from other sources/files. Importing your own registry has at least three use cases:
 
 - [Sharing tasks](https://github.com/phated/undertaker#sharing-tasks)
-- [Sharing functionality](https://github.com/phated/undertaker#sharing-functionalities). (ex. you could override the task prototype to add some additional logging, or include some config settings.)
+- [Sharing functionality](https://github.com/phated/undertaker#sharing-functionalities). (e.g. you could override the task prototype to add some additional logging, or include some config settings.)
 - Handling other behavior that hooks into the registry lifecycle (see [gulp-hub](https://github.com/frankwallis/gulp-hub) for an example)
 
 To build your own custom registry see the [undertaker documentation on custom registries](https://github.com/phated/undertaker#custom-registries).
