@@ -20,4 +20,5 @@
 * [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemap.md)
 * [Browserify + Globs](browserify-with-globs.md)
 * [Output both a minified and non-minified version](minified-and-non-minified.md)
+* [Bump project version, and create new tag in Git](bump-version-and-create-git-tag.md)
 * [Templating with Swig and YAML front-matter](templating-with-swig-and-yaml-front-matter.md)
