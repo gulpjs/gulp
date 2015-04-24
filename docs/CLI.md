@@ -16,6 +16,10 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 
 The CLI adds process.env.INIT_CWD which is the original cwd it was launched from.
 
+#### Task specific flags
+
+Refer to this [StackOverflow] (http://stackoverflow.com/questions/23023650/is-it-possible-to-pass-a-flag-to-gulp-to-have-it-run-tasks-in-different-ways) link for how to add task specific flags
+
 ### Tasks
 
 Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.

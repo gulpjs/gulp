@@ -9,7 +9,7 @@ var path = require('path');
 var should = require('should');
 require('mocha');
 
-var outpath = path.join(__dirname, "./out-fixtures");
+var outpath = path.join(__dirname, './out-fixtures');
 
 describe('gulp', function() {
   describe('watch()', function() {
@@ -21,7 +21,9 @@ describe('gulp', function() {
 
     var writeTimeout = 125; // Wait for it to get to the filesystem
     var writeFileWait = function(name, content, cb) {
-      if (!cb) cb = function() {};
+      if (!cb) {
+        cb = function() {}
+      };
       setTimeout(function() {
         fs.writeFile(name, content, cb);
       }, writeTimeout);
@@ -45,17 +47,18 @@ describe('gulp', function() {
         });
 
         // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
+        writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
     it('should call the function when file changes: w/ options', function(done) {
+
       // arrange
       var tempFile = path.join(outpath, 'watch-func-options.txt');
       fs.writeFile(tempFile, tempFileContent, function() {
 
         // assert: it works if it calls done
-        var watcher = gulp.watch(tempFile, {debounceDelay:5}, function(evt) {
+        var watcher = gulp.watch(tempFile, {debounceDelay: 5}, function(evt) {
           should.exist(evt);
           should.exist(evt.path);
           should.exist(evt.type);
@@ -66,7 +69,7 @@ describe('gulp', function() {
         });
 
         // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
+        writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
@@ -113,7 +116,7 @@ describe('gulp', function() {
           a += 10;
         });
         gulp.task(task3, function() {
-          throw new Error("task3 called!");
+          throw new Error('task3 called!');
         });
 
         // assert
@@ -126,10 +129,11 @@ describe('gulp', function() {
         }, timeout);
 
         // it works if it calls the task
-        var watcher = gulp.watch(tempFile, {debounceDelay:timeout/2}, [task1,task2]);
+        var config = {debounceDelay: timeout / 2};
+        var watcher = gulp.watch(tempFile, config, [task1, task2]);
 
         // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
+        writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
@@ -151,7 +155,7 @@ describe('gulp', function() {
           a += 10;
         });
         gulp.task(task3, function() {
-          throw new Error("task3 called!");
+          throw new Error('task3 called!');
         });
 
         // assert
@@ -164,10 +168,10 @@ describe('gulp', function() {
         }, timeout);
 
         // it works if it calls the task
-        var watcher = gulp.watch(tempFile, [task1,task2]);
+        var watcher = gulp.watch(tempFile, [task1, task2]);
 
         // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
+        writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 

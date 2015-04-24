@@ -24,7 +24,7 @@ Vinyl files can have 3 possible forms for the contents attribute:
 
 - [Streams](dealing-with-streams.md)
 - [Buffers](using-buffers.md)
-- Empty (null) - Useful for things like rimraf, clean, where contents is not neeeded.
+- Empty (null) - Useful for things like rimraf, clean, where contents is not needed.
 
 ## Useful resources
 
