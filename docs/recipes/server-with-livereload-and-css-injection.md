@@ -20,9 +20,10 @@ app/
   index.html
 ```
 
-... you can easily serve files from the `app` directory and have all browsers reload when any of them change with the following:
+... you can easily serve files from the `app` directory and have all browsers reload when any of them change with the following in `gulpfile.js`:
 
 ```js
+var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
@@ -39,34 +40,81 @@ gulp.task('serve', function() {
 
 ```
 
+and including the CSS in `index.html`:
+
+```html
+<html>
+  <head>
+    ...
+    <link rel="stylesheet" href="styles/main.css">
+    ...
+
+```
+
+to serve your files and launch a browser window pointing to the default URL (http://localhost:3000) run:
+
+```bash
+gulp serve
+```
+
 
 ## + CSS pre-processors
 
 A common use-case is to reload CSS files after they've been pre-processed. Using Sass as an example, this is how you can instruct browsers to reload the CSS without doing a full-page refresh.
 
+Considering this updated file structure...
+
+```
+gulpfile.js
+app/
+  scss/
+    main.scss
+  scripts/
+    main.js
+  index.html
+```
+... you can easily watch Sass files from the `scss` directory and have all browsers reload when any of them change with the following in `gulpfile.js`:
+
 ```js
+var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 gulp.task('sass', function() {
   return sass('scss/styles.scss')
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('app/css'))
     .pipe(reload({ stream:true }));
 });
 
-// watch files for changes and reload
-gulp.task('serve', function() {
+// watch Sass files for changes, run the Sass preprocessor with the 'sass' task and reload
+gulp.task('serve', ['sass'], function() {
   browserSync({
     server: {
       baseDir: 'app'
     }
   });
 
-  gulp.watch('scss/*.scss', ['sass']);
+  gulp.watch('app/scss/*.scss', ['sass']);
 });
 ```
 
+and including the pre-processed CSS in `index.html`:
+
+```html
+<html>
+  <head>
+    ...
+    <link rel="stylesheet" href="css/main.css">
+    ...
+
+```
+
+to serve your files and launch a browser window pointing to the default URL (http://localhost:3000) run:
+
+```bash
+gulp serve
+```
 
 ## Extras
 
