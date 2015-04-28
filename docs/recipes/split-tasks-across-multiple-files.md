@@ -24,5 +24,5 @@ Add the following lines to your `gulpfile.js` file:
 
 ```js
 var requireDir = require('require-dir');
-var dir = requireDir('./tasks');
+var tasks = requireDir('./tasks');
 ```
