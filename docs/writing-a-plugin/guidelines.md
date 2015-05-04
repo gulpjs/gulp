@@ -90,7 +90,7 @@ function gulpPrefixer(prefixText) {
 
   });
 
-};
+}
 
 // Exporting the plugin main function
 module.exports = gulpPrefixer;
