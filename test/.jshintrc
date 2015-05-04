@@ -1,0 +1,5 @@
+{
+  "extends": "../.jshintrc",
+  "maxlen": null,
+  "mocha": true
+}
