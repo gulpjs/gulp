@@ -70,13 +70,20 @@ var del = require('del');
 var vinylPaths = require('vinyl-paths');
 
 gulp.task('clean:tmp', function () {
+  var vp = vinylPaths();
   return gulp.src('tmp/*')
+    .pipe(vp)
     .pipe(stripDebug())
     .pipe(gulp.dest('dist'))
-    .pipe(vinylPaths(del));
+    .on('end', function(){
+         del(vp.paths);
+    });
 });
 
 gulp.task('default', ['clean:tmp']);
 ```
+
+This will only delete the tmp dir.
+
 
 Only do this if you're already using other plugins in the pipeline, otherwise just use the module directly as `gulp.src` is costly.
