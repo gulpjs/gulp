@@ -7,7 +7,7 @@
 
 ## Tooling
 
-Most plugins use [mocha](https://github.com/mochajs/mocha),[should](https://github.com/shouldjs/should.js) and [event-stream](https://github.com/dominictarr/event-stream) to help them test. The following examples will use these tools.
+Most plugins use [mocha](https://github.com/mochajs/mocha), [should](https://github.com/shouldjs/should.js) and [event-stream](https://github.com/dominictarr/event-stream) to help them test. The following examples will use these tools.
 
 
 ## Testing plugins for streaming mode
