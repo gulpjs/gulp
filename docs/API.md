@@ -1,6 +1,6 @@
 ## gulp API docs
 
-### gulp.src(globs[, options])
+### gulp.src(glob[, options])
 
 Emits files matching provided glob or array of globs.
 Returns a [stream] of [Vinyl files] that can be [piped] to plugins.
@@ -14,7 +14,7 @@ gulp.src('client/templates/*.jade')
 
 `glob` refers to [node-glob syntax][node-glob] or it can be a direct file path.
 
-#### globs
+#### glob
 Type: `String` or `Array`
 
 Glob or array of globs to read.
@@ -86,7 +86,7 @@ Default: `false`
 If true, it will create a duplex stream which passes items through and
 emits globbed files.
 
-### options.allowEmpty
+##### options.allowEmpty
 Type: `Boolean`
 Default: `false`
 
@@ -360,7 +360,7 @@ gulp.task('sometask', function() {
 });
 ```
 
-### lastRun(taskName, [timeResolution])
+### gulp.lastRun(taskName, [timeResolution])
 
 Returns the timestamp of the last time the task ran successfully. The time
 will be the time the task started. Returns `undefined` if the task has
