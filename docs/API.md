@@ -104,7 +104,7 @@ Default: `false`
 If true, it will create a duplex stream which passes items through and
 emits globbed files.
 
-### options.allowEmpty
+##### options.allowEmpty
 Type: `Boolean`
 Default: `false`
 
@@ -389,7 +389,7 @@ gulp.task('sometask', function() {
 });
 ```
 
-### lastRun(taskName, [timeResolution])
+### gulp.lastRun(taskName, [timeResolution])
 
 Returns the timestamp of the last time the task ran successfully. The time
 will be the time the task started. Returns `undefined` if the task has
