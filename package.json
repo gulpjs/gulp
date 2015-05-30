@@ -43,7 +43,7 @@
     "coveralls": "^2.7.0",
     "graceful-fs": "^3.0.0",
     "istanbul": "^0.3.0",
-    "jscs": "~1.11.3",
+    "jscs": "~1.12.0",
     "jshint": "^2.5.0",
     "jshint-stylish": "^1.0.0",
     "marked-man": "^0.1.3",
