@@ -1,5 +1,14 @@
 # gulp changelog
 
+## 3.9.0
+
+- add babel support
+- add transpiler fallback support
+- add support for some renamed transpilers (livescript, etc)
+- add JSCS
+- update dependecies (liftoff, interpret)
+- documentation tweaks
+
 ## 3.8.11
 
 - fix node 0.12/iojs problems
