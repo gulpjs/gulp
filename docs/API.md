@@ -655,17 +655,17 @@ gulp.tree({ deep: true })
 
 ### gulp.registry([registry])
 
-Get or set the current registry. Inherited from [undertaker]; see the undertaker documention on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this you can import registries from other sources/files. Importing your own registry has at least three use cases:
+Get or set the underlying task registry. Inherited from [undertaker]; see the undertaker documention on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this, you can change registries that enhance gulp in different ways. Utilizing a custom registry has at least three use cases:
 
 - [Sharing tasks](https://github.com/phated/undertaker#sharing-tasks)
-- [Sharing functionality](https://github.com/phated/undertaker#sharing-functionalities). (e.g. you could override the task prototype to add some additional logging, or include some config settings.)
+- [Sharing functionality](https://github.com/phated/undertaker#sharing-functionalities). (e.g. you could override the task prototype to add some additional logging, bind task metadata or include some config settings.)
 - Handling other behavior that hooks into the registry lifecycle (see [gulp-hub](https://github.com/frankwallis/gulp-hub) for an example)
 
 To build your own custom registry see the [undertaker documentation on custom registries](https://github.com/phated/undertaker#custom-registries).
 
 #### registry
 
-A registry instance. When passed in the tasks from the current registry will be transferred to the passed in registry and the current registry will be replaced with the passed in registry.
+A registry instance or constructor. When passed in, the tasks from the current registry will be transferred to the new registry and then current registry will be replaced with the new registry.
 
 #### Example
 
@@ -683,14 +683,6 @@ gulp.task('one', gulp.parallel('someCompanyTask', function(done) {
   console.log('in task one');
   done();
 }));
-
-console.log(gulp.registry());
-/* output:
-{ _tasks:
-   { clean: [Function],
-     someCompanyTask: [Function],
-     one: [Function: taskWrapper] } }
-*/
 ```
 
 ```js
@@ -702,10 +694,10 @@ var DefaultRegistry = require('undertaker-registry');
 function MyCompanyTasksRegistry() {
   DefaultRegistry.call(this);
 
-  this.set('clean', function (done) {
+  this.set('clean', function(done) {
     done();
   });
-  this.set('someCompanyTask', function (done) {
+  this.set('someCompanyTask', function(done) {
     console.log('performing some company task.');
     done();
   });
@@ -714,21 +706,6 @@ util.inherits(MyCompanyTasksRegistry, DefaultRegistry);
 
 module.exports = new MyCompanyTasksRegistry();
 ```
-
-Running `gulp one` returns:
-```shell
-[09:22:48] Using gulpfile \Somedir\gulpfile.js
-[09:22:48] Starting 'one'...
-[09:22:48] Starting '<anonymous>'...
-[09:22:48] Starting '<anonymous>'...
-performing some company task.
-[09:22:48] Finished '<anonymous>' after 2.16 ms
-in task one
-[09:22:48] Finished '<anonymous>' after 3.02 ms
-[09:22:48] Finished 'one' after 9.27 ms
-
-```
-
 
 [Function.name]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name
 [gaze]: https://github.com/shama/gaze
