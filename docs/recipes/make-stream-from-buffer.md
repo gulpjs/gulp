@@ -95,7 +95,7 @@ gulp.task('write-versions', function() {
       stream.end();
     });
 
-    streamEnd = stream
+    streamEnd = streamEnd
     // transform the raw data into the stream, into a vinyl object/file
     .pipe(vinylBuffer())
     //.pipe(tap(function(file) { /* do something with the file contents here */ }))
