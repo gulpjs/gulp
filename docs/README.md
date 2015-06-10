@@ -42,7 +42,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 
 ## Examples
 
-- [Web Starter Kit](https://github.com/google/web-starter-kit)
+- [Web Starter Kit gulpfile](https://github.com/google/web-starter-kit/blob/master/gulpfile.babel.js)
 
 
 ## License
