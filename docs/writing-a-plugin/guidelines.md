@@ -77,7 +77,7 @@ function gulpPrefixer(prefixText) {
   return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
       // return empty file
-      cb(null, file);
+      return cb(null, file);
     }
     if (file.isBuffer()) {
       file.contents = Buffer.concat([prefixText, file.contents]);
