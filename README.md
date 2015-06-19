@@ -36,21 +36,22 @@ var paths = {
 };
 
 /* Register some tasks to expose to the cli */
-gulp.task('build', gulp.series(
-  clean,
-  gulp.parallel(scripts, images)
-));
+gulp.task(build);
 gulp.task(clean);
 gulp.task(watch);
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', gulp.series('build'));
-
+gulp.task('default', build);
 
 /* Define our tasks using plain functions */
 
 // Not all tasks need to use streams
 // A gulpfile is just another node program and you can use all packages available on npm
+
+function build() {
+  return gulp.series(clean, gulp.parallel(scripts, images));
+}
+
 function clean(done) {
   // You can use multiple globbing patterns as you would with `gulp.src`
   del(['build'], done);
