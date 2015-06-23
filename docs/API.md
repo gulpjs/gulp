@@ -1,5 +1,11 @@
 ## gulp API docs
 
+Jump to:
+  [gulp.src](#gulpsrcglobs-options) |
+  [gulp.dest](#gulpdestpath-options) |
+  [gulp.task](#gulptaskname-deps-fn) |
+  [gulp.watch](#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb)
+
 ### gulp.src(globs[, options])
 
 Emits files matching provided glob or an array of globs. 
