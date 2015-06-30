@@ -45,7 +45,7 @@ gulp.task('scripts', function() {
       // minify
       // rename to folder.min.js
       // write to output again
-      return gulp.src(path.join(scriptsPath, folder, '/*.js'))
+      return gulp.src(path.join(scriptsPath, folder, '/**/*.js'))
         .pipe(concat(folder + '.js'))
         .pipe(gulp.dest(scriptsPath))
         .pipe(uglify())
@@ -53,7 +53,15 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest(scriptsPath));
    });
 
-   return merge(tasks);
+   // process all remaining files in scriptsPath root into main.js and main.min.js files
+   var root = gulp.src(path.join(scriptsPath, '/*.js'))
+        .pipe(concat('main.js'))
+        .pipe(gulp.dest(scriptsPath))
+        .pipe(uglify())
+        .pipe(rename('main.min.js'))
+        .pipe(gulp.dest(scriptsPath));
+
+   return merge(tasks, root);
 });
 ```
 
