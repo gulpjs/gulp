@@ -6,8 +6,11 @@
 
 # gulp
 **The streaming build system**
-
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Support us][gittip-image]][gittip-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+
+## What is gulp?
+
+Gulp is a build system, meaning that you can use it to automate common tasks in the development of a website, it's allows you to compile preprocessed CSS, minifying JavaScript and reloading the browser and much more.
 
 ## Like what we do?
 
