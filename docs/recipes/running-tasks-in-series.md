@@ -17,9 +17,11 @@ So this example would look like:
 var gulp = require('gulp');
 
 // takes in a callback so the engine knows when it'll be done
-gulp.task('one', function(cb) {
+gulp.task('one', function (cb) {
     // do stuff -- async or otherwise
-    cb(err); // if err is not null and not undefined, the orchestration will stop, and 'two' will not run
+    fs.writeFile('filename', 'data', opts, function (err) {
+        cb(err); // if err is not null and not undefined, the orchestration will stop, and 'two' will not run
+    });
 });
 
 // identifies a dependent task must be complete before this one begins
