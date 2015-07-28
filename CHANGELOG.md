@@ -1,5 +1,54 @@
 # gulp changelog
 
+## 3.9.0
+
+- add babel support
+- add transpiler fallback support
+- add support for some renamed transpilers (livescript, etc)
+- add JSCS
+- update dependecies (liftoff, interpret)
+- documentation tweaks
+
+## 3.8.11
+
+- fix node 0.12/iojs problems
+- add node 0.12 and iojs to travis
+- update dependencies (liftoff, v8flags)
+- documentation tweaks
+
+## 3.8.10
+
+- add link to spanish docs
+- update dependencies (archy, semver, mocha, etc)
+- documentation tweaks
+
+## 3.8.9
+
+- fix local version undefined output
+- add completion for fish shell
+- fix powershell completion line splitting
+- add support for arbitrary node flags (oops, should have been a minor bump)
+- add v8flags dependency
+- update dependencies (liftoff)
+- documentation tweaks
+
+## 3.8.8
+
+- update dependencies (minimist, tildify)
+- documentation tweaks
+
+## 3.8.7
+
+- handle errors a bit better
+- update dependencies (gulp-util, semver, etc)
+- documentation tweaks
+
+## 3.8.6
+
+- remove executable flag from LICENSE
+- update dependencies (chalk, minimist, liftoff, etc)
+- documentation tweaks
+
 ## 3.8.5
 
 - simplify --silent and --tasks-simple

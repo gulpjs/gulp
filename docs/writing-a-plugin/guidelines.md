@@ -28,6 +28,8 @@
 1. Prefix any errors with the name of your plugin
   - For example: `gulp-replace: Cannot do regexp replace on a stream`
   - Use gulp-util's [PluginError](https://github.com/gulpjs/gulp-util#new-pluginerrorpluginname-message-options) class to make this easy
+1. Name your plugin appropriately: it should begin with "gulp-" if it is a gulp plugin
+  - If it is not a gulp plugin, it should not begin with "gulp-"
 1. The type of `file.contents` should always be the same going out as it was when it came in
   - If file.contents is null (non-read) just ignore the file and pass it along
   - If file.contents is a Stream and you don't support that just emit an error
@@ -77,7 +79,7 @@ function gulpPrefixer(prefixText) {
   return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
       // return empty file
-      cb(null, file);
+      return cb(null, file);
     }
     if (file.isBuffer()) {
       file.contents = Buffer.concat([prefixText, file.contents]);

@@ -61,7 +61,7 @@ gulp.task('load-lib-files', function() {
 
 gulp.task('load-versions', function() {
   memory.versions = {};
-  // read the lib files from the disk
+  // read the version files from the disk
   return gulp.src('src/versions/version.*.js')
   // tap into the stream to get each file's data
   .pipe( tap(function(file) {
