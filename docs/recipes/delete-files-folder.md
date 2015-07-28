@@ -70,14 +70,10 @@ var del = require('del');
 var vinylPaths = require('vinyl-paths');
 
 gulp.task('clean:tmp', function () {
-  var vp = vinylPaths();
   return gulp.src('tmp/*')
-    .pipe(vp)
+    .pipe(vinylPaths(del))
     .pipe(stripDebug())
-    .pipe(gulp.dest('dist'))
-    .on('end', function(){
-         del(vp.paths);
-    });
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', ['clean:tmp']);
