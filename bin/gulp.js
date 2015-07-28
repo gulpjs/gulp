@@ -9,7 +9,6 @@ var archy = require('archy');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
-var v8flags = require('v8flags');
 var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
@@ -22,7 +21,6 @@ var cli = new Liftoff({
   name: 'gulp',
   completions: completion,
   extensions: interpret.jsVariants,
-  v8flags: v8flags,
 });
 
 // Exit with 0 or 1
