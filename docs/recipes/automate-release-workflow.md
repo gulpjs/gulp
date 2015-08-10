@@ -1,4 +1,4 @@
-# Bump version number and create new Git tag
+# Automate release workflow
 
 If your project follows a semantic versioning, it may be a good idea to automatize the steps needed to do a release.
 Below you have a simple recipe that bumps the project version, commits the changes to git and creates a new tag.
