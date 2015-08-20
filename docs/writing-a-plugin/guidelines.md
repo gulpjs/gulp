@@ -48,7 +48,7 @@ gulp aims to be simple for users. By providing strict guidelines we are able to 
 
 ### What happens if I don't follow them?
 
-npm is open for everyone, and you are free to make whatever you want but these guidelines were prescribed for a reason. There are acceptances tests coming soon that will be integrated into the plugin search. If you fail to adhere to the plugin guidelines it will be publicly visible/sortable via a scoring system. People will always prefer to use plugins that match "the gulp way".
+npm is open for everyone, and you are free to make whatever you want but these guidelines were prescribed for a reason. There are acceptance tests coming soon that will be integrated into the plugin search. If you fail to adhere to the plugin guidelines it will be publicly visible/sortable via a scoring system. People will always prefer to use plugins that match "the gulp way".
 
 ### What does a good plugin look like?
 
