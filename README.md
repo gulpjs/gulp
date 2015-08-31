@@ -38,9 +38,9 @@ var paths = {
 
 // Not all tasks need to use streams
 // A gulpfile is just another node program and you can use any package available on npm
-gulp.task('clean', function(cb) {
+gulp.task('clean', function() {
   // You can use multiple globbing patterns as you would with `gulp.src`
-  del(['build'], cb);
+  return del(['build']);
 });
 
 gulp.task('scripts', ['clean'], function() {
