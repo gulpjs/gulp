@@ -29,14 +29,14 @@ In the gulpfile we want to clean out the contents of the `mobile` folder before 
 var gulp = require('gulp');
 var del = require('del');
 
-gulp.task('clean:mobile', function (cb) {
-  del([
+gulp.task('clean:mobile', function () {
+  return del([
     'dist/report.csv',
     // here we use a globbing pattern to match everything inside the `mobile` folder
     'dist/mobile/**/*',
     // we don't want to clean this file though so we negate the pattern
     '!dist/mobile/deploy.json'
-  ], cb);
+  ]);
 });
 
 gulp.task('default', ['clean:mobile']);

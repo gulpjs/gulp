@@ -39,8 +39,8 @@ Another example, which returns the stream instead of using a callback:
 var gulp = require('gulp');
 var del = require('del'); // rm -rf
 
-gulp.task('clean', function(cb) {
-    del(['output'], cb);
+gulp.task('clean', function() {
+    return del(['output']);
 });
 
 gulp.task('templates', ['clean'], function() {
