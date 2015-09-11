@@ -61,6 +61,21 @@ describe('gulp', function() {
     });
 
 
+    it('should not call the function when no file changes: no options', function(done) {
+      var tempFile = path.join(outpath, 'watch-func.txt');
+
+      createTempFile(tempFile);
+
+      var watcher = gulp.watch(tempFile, function() {
+        should.fail('Watcher erroneously called');
+      });
+
+      setTimeout(function() {
+        watcher.close();
+        done();
+      }, 10);
+    });
+
     it('should call the function when file changes: w/ options', function(done) {
       var tempFile = path.join(outpath, 'watch-func-options.txt');
 
