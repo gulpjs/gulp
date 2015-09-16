@@ -509,31 +509,42 @@ A single glob or array of globs that indicate which files to watch for changes.
 #### opts
 Type: `Object`
 
-Options, that are passed to [`gaze`][gaze].
+Options, that are passed to [`chokidar`][chokidar].
 
 #### fn
 Type: `Function`
 
 An [async](#async-support) function to run when a file changes.
 
-`gulp.watch` returns an `EventEmitter` object which emits `change` events with
-the [gaze] `event`:
+`gulp.watch` returns a wrapped [chokidar] FSWatcher object. If provided,
+the callback will be triggered upon any `add`, `change`, or `unlink` event.
+Listeners can also be set directly for any of [chokidar]'s events.
+
 ```js
 var watcher = gulp.watch('js/**/*.js', gulp.parallel('uglify', 'reload'));
-watcher.on('change', function(event) {
-  console.log('File ' + event.path + ' was ' + event.type);
+watcher.on('change', function(path, stats) {
+  console.log('File ' + path + ' was changed');
+  if (stats) {
+    console.log('changed size to ' + stats.size);
+  }
+});
+
+watcher.on('unlink', function(path) {
+  console.log('File ' + path + ' was removed');
 });
 ```
 
-##### event.type
+##### path
 Type: String
 
-The type of change that occurred, either "added", "changed" or "deleted".
+The relative path of the document.
 
-##### event.path
-Type: String
+##### stats
+Type: Object
 
-The path to the file that triggered the event.
+[File stats](http://nodejs.org/api/fs.html#fs_class_fs_stats) object when available.
+Setting the `alwaysStat` option to true will ensure that a file stat object will be
+available.
 
 ### gulp.tree(options)
 
@@ -737,7 +748,7 @@ module.exports = new MyCompanyTasksRegistry();
 ```
 
 [Function.name]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name
-[gaze]: https://github.com/shama/gaze
+[chokidar]: https://github.com/paulmillr/chokidar
 [glob-stream]: https://github.com/gulpjs/glob-stream
 [glob-parent]: https://github.com/es128/glob-parent
 [gulp-if]: https://github.com/robrich/gulp-if
