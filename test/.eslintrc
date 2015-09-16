@@ -1,0 +1,5 @@
+env:
+  mocha: true
+
+rules:
+  max-len: 0

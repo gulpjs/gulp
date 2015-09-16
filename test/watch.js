@@ -119,6 +119,10 @@ describe('gulp', function() {
           throw new Error('task3 called!');
         });
 
+        // it works if it calls the task
+        var config = {debounceDelay: timeout / 2};
+        var watcher = gulp.watch(tempFile, config, [task1, task2]);
+
         // assert
         setTimeout(function() {
           a.should.equal(11); // task1 and task2
@@ -127,10 +131,6 @@ describe('gulp', function() {
           watcher.end();
           done();
         }, timeout);
-
-        // it works if it calls the task
-        var config = {debounceDelay: timeout / 2};
-        var watcher = gulp.watch(tempFile, config, [task1, task2]);
 
         // act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
@@ -158,6 +158,9 @@ describe('gulp', function() {
           throw new Error('task3 called!');
         });
 
+        // it works if it calls the task
+        var watcher = gulp.watch(tempFile, [task1, task2]);
+
         // assert
         setTimeout(function() {
           a.should.equal(11); // task1 and task2
@@ -166,9 +169,6 @@ describe('gulp', function() {
           watcher.end();
           done();
         }, timeout);
-
-        // it works if it calls the task
-        var watcher = gulp.watch(tempFile, [task1, task2]);
 
         // act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
