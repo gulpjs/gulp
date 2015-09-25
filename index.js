@@ -3,6 +3,7 @@
 var util = require('util');
 var Undertaker = require('undertaker');
 var vfs = require('vinyl-fs');
+var chokidar = require('chokidar');
 
 function Gulp() {
   Undertaker.call(this);
@@ -30,7 +31,15 @@ Gulp.prototype.watch = function(glob, opt, task) {
     fn = this.parallel(task);
   }
 
-  return vfs.watch(glob, opt, fn);
+  var watcher = chokidar.watch(glob, opt);
+  if (fn) {
+    watcher
+      .on('change', fn)
+      .on('unlink', fn)
+      .on('add', fn);
+  }
+
+  return watcher;
 };
 
 // Let people use this class from our instance

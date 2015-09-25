@@ -36,7 +36,7 @@ describe('gulp', function() {
       createTempFile(tempFile);
 
       var watcher = gulp.watch(tempFile, function(cb) {
-        watcher.end();
+        watcher.close();
         cb();
         done();
       });
@@ -44,13 +44,30 @@ describe('gulp', function() {
       updateTempFile(tempFile);
     });
 
+    it('should execute the gulp.parallel tasks', function(done) {
+      var tempFile = path.join(outpath, 'watch-func.txt');
+
+      createTempFile(tempFile);
+
+      gulp.task('test', function(cb) {
+        watcher.close();
+        cb();
+        done();
+      });
+
+      var watcher = gulp.watch(tempFile, gulp.parallel('test'));
+
+      updateTempFile(tempFile);
+    });
+
+
     it('should call the function when file changes: w/ options', function(done) {
       var tempFile = path.join(outpath, 'watch-func-options.txt');
 
       createTempFile(tempFile);
 
-      var watcher = gulp.watch(tempFile, {debounceDelay: 5}, function(cb) {
-        watcher.end();
+      var watcher = gulp.watch(tempFile, function(cb) {
+        watcher.close();
         cb();
         done();
       });
@@ -66,14 +83,11 @@ describe('gulp', function() {
 
       createTempFile(tempFile);
 
-      var watcher = gulp.watch(relFile, {debounceDelay: 5, cwd: cwd})
-        .on('change', function(evt) {
-          should.exist(evt);
-          should.exist(evt.path);
-          should.exist(evt.type);
-          evt.type.should.equal('changed');
-          evt.path.should.equal(path.resolve(tempFile));
-          watcher.end();
+      var watcher = gulp.watch(relFile, {cwd: cwd})
+        .on('change', function(filepath) {
+          should.exist(filepath);
+          path.resolve(cwd, filepath).should.equal(path.resolve(tempFile));
+          watcher.close();
           done();
         });
 
@@ -93,12 +107,12 @@ describe('gulp', function() {
       gulp.task('task2', function(cb) {
         a += 10;
         a.should.equal(11);
-        watcher.end();
+        watcher.close();
         cb();
         done();
       });
 
-      var watcher = gulp.watch(tempFile, {debounceDelay: 25}, gulp.series('task1', 'task2'));
+      var watcher = gulp.watch(tempFile, gulp.series('task1', 'task2'));
 
       updateTempFile(tempFile);
     });
@@ -116,7 +130,7 @@ describe('gulp', function() {
       gulp.task('task2', function(cb) {
         a += 10;
         a.should.equal(11);
-        watcher.end();
+        watcher.close();
         cb();
         done();
       });
