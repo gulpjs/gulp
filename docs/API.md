@@ -125,6 +125,12 @@ gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
 
 **Note:** Are your tasks running before the dependencies are complete?  Make sure your dependency tasks are correctly using the async run hints: take in a callback or return a promise or event stream.
 
+You can also omit the function if you only want to run the dependency tasks:
+
+```js
+gulp.task('build', ['array', 'of', 'task', 'names']);
+```
+
 #### fn
 
 The function that performs the task's operations. Generally this takes the form of `gulp.src().pipe(someplugin())`.
