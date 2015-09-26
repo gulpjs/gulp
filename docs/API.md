@@ -131,6 +131,8 @@ You can also omit the function if you only want to run the dependency tasks:
 gulp.task('build', ['array', 'of', 'task', 'names']);
 ```
 
+**Note:** The tasks will run in parallel (all at once), so don't assume that the tasks will start/finish in order.
+
 #### fn
 
 The function that performs the task's operations. Generally this takes the form of `gulp.src().pipe(someplugin())`.
