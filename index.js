@@ -23,12 +23,16 @@ Gulp.prototype.watch = function(glob, opt, task) {
 
   if (typeof opt === 'function') {
     task = opt;
-    opt = null;
+    opt = {};
   }
 
   var fn;
   if (typeof task === 'function') {
     fn = this.parallel(task);
+  }
+
+  if (opt.ignoreInitial == null) {
+    opt.ignoreInitial = true;
   }
 
   var watcher = chokidar.watch(glob, opt);
