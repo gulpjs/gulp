@@ -39,13 +39,7 @@ gulp.task('javascript', function () {
 
   // "globby" replaces the normal "gulp.src" as Browserify
   // creates it's own readable stream.
-  globby(['./entries/*.js'], function(err, entries) {
-    // ensure any errors from globby are handled
-    if (err) {
-      bundledStream.emit('error', err);
-      return;
-    }
-
+  globby(['./entries/*.js']).then(function(entries) {
     // create the Browserify instance.
     var b = browserify({
       entries: entries,
@@ -56,6 +50,9 @@ gulp.task('javascript', function () {
     // pipe the Browserify stream into the stream we created earlier
     // this starts our gulp pipeline.
     b.bundle().pipe(bundledStream);
+  }).catch(function(err) {
+    // ensure any errors from globby are handled
+    bundledStream.emit('error', err);
   });
 
   // finally, we return the stream, so gulp knows when this task is done.
