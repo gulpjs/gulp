@@ -42,7 +42,7 @@ Type: `Object`
 
 Options to pass to [node-glob] through [glob-stream].
 
-Gulp supports all [options supported by node-glob][node-glob documentation] and [glob-stream] except `ignore` and adds the following options.
+gulp supports all [options supported by node-glob][node-glob documentation] and [glob-stream] except `ignore` and adds the following options.
 
 ##### options.buffer
 Type: `Boolean`
