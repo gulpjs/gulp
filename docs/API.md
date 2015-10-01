@@ -20,33 +20,43 @@ gulp.src('client/templates/*.jade')
   .pipe(gulp.dest('build/minified_templates'));
 ```
 
-`glob` refers to [node-glob syntax](https://github.com/isaacs/node-glob) or it can be a direct file path.
-
 #### globs
 Type: `String` or `Array`
 
-Glob or array of globs to read.
+Glob or array of globs to read. Globs use [node-glob syntax](https://github.com/isaacs/node-glob) except that negation is fully supported.
+
+A glob that begins with `!` excludes matching files from the glob results up to that point. For example, consider this directory structure:
+
+    client/
+      a.js
+      bob.js
+      bad.js
+
+The following expression matches `a.js` and `bad.js`:
+
+    gulp.src(['client/*.js', '!client/b*.js', 'client/bad.js'])
+    
 
 #### options
 Type: `Object`
 
 Options to pass to [node-glob] through [glob-stream].
 
-gulp adds some additional options in addition to the [options supported by node-glob][node-glob documentation] and [glob-stream]:
+Gulp supports all [options supported by node-glob][node-glob documentation] and [glob-stream] except `ignore` and adds the following options.
 
-#### options.buffer
+##### options.buffer
 Type: `Boolean`
 Default: `true`
 
 Setting this to `false` will return `file.contents` as a stream and not buffer files. This is useful when working with large files. **Note:** Plugins might not implement support for streams.
 
-#### options.read
+##### options.read
 Type: `Boolean`
 Default: `true`
 
 Setting this to `false` will return `file.contents` as null and not read the file at all.
 
-#### options.base
+##### options.base
 Type: `String`
 Default: everything before a glob starts (see [glob2base])
 
@@ -86,13 +96,13 @@ The path (output folder) to write files to. Or a function that returns it, the f
 #### options
 Type: `Object`
 
-#### options.cwd
+##### options.cwd
 Type: `String`
 Default: `process.cwd()`
 
 `cwd` for the output folder, only has an effect if provided output folder is relative.
 
-#### options.mode
+##### options.mode
 Type: `String`
 Default: `0777`
 
