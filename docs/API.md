@@ -23,7 +23,7 @@ gulp.src('client/templates/*.jade')
 #### globs
 Type: `String` or `Array`
 
-Glob or array of globs to read. Globs use [node-glob syntax](https://github.com/isaacs/node-glob) except that negation is fully supported.
+Glob or array of globs to read. Globs use [node-glob syntax] except that negation is fully supported.
 
 A glob that begins with `!` excludes matching files from the glob results up to that point. For example, consider this directory structure:
 
@@ -289,8 +289,9 @@ Type: `String`
 The path to the file that triggered the event.
 
 
-[node-glob documentation]: https://github.com/isaacs/node-glob#options
 [node-glob]: https://github.com/isaacs/node-glob
+[node-glob documentation]: https://github.com/isaacs/node-glob#options
+[node-glob syntax]: https://github.com/isaacs/node-glob
 [glob-stream]: https://github.com/wearefractal/glob-stream
 [gulp-if]: https://github.com/robrich/gulp-if
 [Orchestrator]: https://github.com/robrich/orchestrator
