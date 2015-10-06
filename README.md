@@ -55,9 +55,10 @@ gulp.task('default', gulp.series('build'));
 /* Define our tasks using plain functions */
 
 // Not all tasks need to use streams
-// A gulpfile is just another node program and you can use all packages available on npm
+// But it must return either a Promise or Stream or take a Callback and call it
 function clean() {
   // You can use multiple globbing patterns as you would with `gulp.src`
+  // If you are using del 2.0 or above, return its promise
   return del(['build']);
 }
 
