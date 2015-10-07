@@ -5,6 +5,7 @@
 ```sh
 $ npm install --global gulp
 ```
+**Note:** You may need to use sudo only for OSX, *nix, BSD etc and run your command shell as Administrator (for Windows)
 
 #### 2. Install gulp in your project devDependencies:
 
