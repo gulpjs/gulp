@@ -737,7 +737,7 @@ To build your own custom registry see the [undertaker documentation on custom re
 
 #### registry
 
-A registry instance or constructor. When passed in, the tasks from the current registry will be transferred to the new registry and then current registry will be replaced with the new registry.
+A registry instance. When passed in, the tasks from the current registry will be transferred to the new registry and then current registry will be replaced with the new registry.
 
 #### Example
 
@@ -765,16 +765,18 @@ var DefaultRegistry = require('undertaker-registry');
 
 function MyCompanyTasksRegistry() {
   DefaultRegistry.call(this);
+}
+util.inherits(MyCompanyTasksRegistry, DefaultRegistry);
 
-  this.set('clean', function(done) {
+MyCompanyTasksRegistry.prototype.init = function(gulp) {
+  gulp.task('clean', function(done) {
     done();
   });
-  this.set('someCompanyTask', function(done) {
+  gulp.task('someCompanyTask', function(done) {
     console.log('performing some company task.');
     done();
   });
-}
-util.inherits(MyCompanyTasksRegistry, DefaultRegistry);
+};
 
 module.exports = new MyCompanyTasksRegistry();
 ```
