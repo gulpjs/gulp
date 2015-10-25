@@ -74,7 +74,7 @@ describe('gulp input stream', function() {
     });
 
     it('should return a input stream with no contents when read is false', function(done) {
-      var stream = gulp.src(join(__dirname, './fixtures/*.coffee'), {read: false});
+      var stream = gulp.src(join(__dirname, './fixtures/*.coffee'), { read: false });
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
@@ -87,7 +87,7 @@ describe('gulp input stream', function() {
       });
     });
     it('should return a input stream with contents as stream when buffer is false', function(done) {
-      var stream = gulp.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
+      var stream = gulp.src(join(__dirname, './fixtures/*.coffee'), { buffer: false });
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);

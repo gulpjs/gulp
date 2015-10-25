@@ -1,8 +1,3 @@
 {
-  "env": {
-    "mocha": true
-  },
-  "rules": {
-    "max-len": 0
-  }
+  "extends": "gulp/test"
 }

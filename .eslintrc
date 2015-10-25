@@ -1,14 +1,3 @@
 {
-  "extends": [
-    "node-style-guide"
-  ],
-  "rules": {
-    indent: [2, 2],
-    "max-statements": [2, 50],
-    "new-cap": 0,
-    "no-eq-null": 2,
-    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
-    "space-in-brackets": 0,
-    "strict": [2, "global"]
-  }
+  "extends": "gulp"
 }
