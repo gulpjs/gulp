@@ -31,11 +31,11 @@ describe('gulp', function() {
 
     it('should call the function when file changes: no options', function(done) {
 
-      // arrange
+      // Arrange
       var tempFile = path.join(outpath, 'watch-func.txt');
       fs.writeFile(tempFile, tempFileContent, function() {
 
-        // assert: it works if it calls done
+        // Assert: it works if it calls done
         var watcher = gulp.watch(tempFile, function(evt) {
           should.exist(evt);
           should.exist(evt.path);
@@ -46,19 +46,19 @@ describe('gulp', function() {
           done();
         });
 
-        // act: change file
+        // Act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
     it('should call the function when file changes: w/ options', function(done) {
 
-      // arrange
+      // Arrange
       var tempFile = path.join(outpath, 'watch-func-options.txt');
       fs.writeFile(tempFile, tempFileContent, function() {
 
-        // assert: it works if it calls done
-        var watcher = gulp.watch(tempFile, {debounceDelay: 5}, function(evt) {
+        // Assert: it works if it calls done
+        var watcher = gulp.watch(tempFile, { debounceDelay: 5 }, function(evt) {
           should.exist(evt);
           should.exist(evt.path);
           should.exist(evt.type);
@@ -68,21 +68,21 @@ describe('gulp', function() {
           done();
         });
 
-        // act: change file
+        // Act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
     it('should not drop options when no callback specified', function(done) {
-      // arrange
+      // Arrange
       var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
-      // by passing a cwd option, ensure options are not lost to gaze
+      // By passing a cwd option, ensure options are not lost to gaze
       var relFile = '../watch-func-nodrop-options.txt';
       var cwd = outpath + '/subdir';
       fs.writeFile(tempFile, tempFileContent, function() {
 
-        // assert: it works if it calls done
-        var watcher = gulp.watch(relFile, {debounceDelay: 5, cwd: cwd})
+        // Assert: it works if it calls done
+        var watcher = gulp.watch(relFile, { debounceDelay: 5, cwd: cwd })
             .on('change', function(evt) {
               should.exist(evt);
               should.exist(evt.path);
@@ -93,13 +93,13 @@ describe('gulp', function() {
               done();
             });
 
-        // act: change file
+        // Act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
     it('should run many tasks: w/ options', function(done) {
-      // arrange
+      // Arrange
       var tempFile = path.join(outpath, 'watch-task-options.txt');
       var task1 = 'task1';
       var task2 = 'task2';
@@ -119,26 +119,26 @@ describe('gulp', function() {
           throw new Error('task3 called!');
         });
 
-        // assert
+        // It works if it calls the task
+        var config = { debounceDelay: timeout / 2 };
+        var watcher = gulp.watch(tempFile, config, [task1, task2]);
+
+        // Assert
         setTimeout(function() {
-          a.should.equal(11); // task1 and task2
+          a.should.equal(11); // Task1 and task2
 
           gulp.reset();
           watcher.end();
           done();
         }, timeout);
 
-        // it works if it calls the task
-        var config = {debounceDelay: timeout / 2};
-        var watcher = gulp.watch(tempFile, config, [task1, task2]);
-
-        // act: change file
+        // Act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
     it('should run many tasks: no options', function(done) {
-      // arrange
+      // Arrange
       var tempFile = path.join(outpath, 'watch-many-tasks-no-options.txt');
       var task1 = 'task1';
       var task2 = 'task2';
@@ -158,19 +158,19 @@ describe('gulp', function() {
           throw new Error('task3 called!');
         });
 
-        // assert
+        // It works if it calls the task
+        var watcher = gulp.watch(tempFile, [task1, task2]);
+
+        // Assert
         setTimeout(function() {
-          a.should.equal(11); // task1 and task2
+          a.should.equal(11); // Task1 and task2
 
           gulp.reset();
           watcher.end();
           done();
         }, timeout);
 
-        // it works if it calls the task
-        var watcher = gulp.watch(tempFile, [task1, task2]);
-
-        // act: change file
+        // Act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });

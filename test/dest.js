@@ -47,7 +47,7 @@ describe('gulp output stream', function() {
     });
 
     it('should return a output stream that does not write non-read files', function(done) {
-      var instream = gulp.src(join(__dirname, './fixtures/**/*.txt'), {read: false});
+      var instream = gulp.src(join(__dirname, './fixtures/**/*.txt'), { read: false });
       var outstream = gulp.dest(outpath);
       instream.pipe(outstream);
 
@@ -69,12 +69,12 @@ describe('gulp output stream', function() {
     });
 
     it('should return a output stream that writes streaming files', function(done) {
-      var instream = gulp.src(join(__dirname, './fixtures/**/*.txt'), {buffer: false});
+      var instream = gulp.src(join(__dirname, './fixtures/**/*.txt'), { buffer: false });
       var outstream = instream.pipe(gulp.dest(outpath));
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
-        // data should be re-emitted right
+        // Data should be re-emitted right
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -95,15 +95,15 @@ describe('gulp output stream', function() {
     });
 
     it('should return a output stream that writes streaming files into new directories (buffer: false)', function(done) {
-      testWriteDir({buffer: false}, done);
+      testWriteDir({ buffer: false }, done);
     });
 
     it('should return a output stream that writes streaming files into new directories (read: false)', function(done) {
-      testWriteDir({read: false}, done);
+      testWriteDir({ read: false }, done);
     });
 
     it('should return a output stream that writes streaming files into new directories (read: false, buffer: false)', function(done) {
-      testWriteDir({buffer: false, read: false}, done);
+      testWriteDir({ buffer: false, read: false }, done);
     });
 
     function testWriteDir(srcOptions, done) {
@@ -112,7 +112,7 @@ describe('gulp output stream', function() {
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
-        // data should be re-emitted right
+        // Data should be re-emitted right
         should.exist(file);
         should.exist(file.path);
         join(file.path, '').should.equal(join(outpath, './stuff'));
