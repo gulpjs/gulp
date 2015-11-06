@@ -23,11 +23,11 @@ describe('gulp tasks', function() {
       a = 0;
       fn = function() {
         this.should.equal(gulp);
-        ++a;
+        a += 1;
       };
       fn2 = function() {
         this.should.equal(gulp);
-        ++a;
+        a += 1;
       };
       gulp.task('test', fn);
       gulp.task('test2', fn2);
@@ -41,11 +41,11 @@ describe('gulp tasks', function() {
       a = 0;
       fn = function() {
         this.should.equal(gulp);
-        ++a;
+        a += 1;
       };
       fn2 = function() {
         this.should.equal(gulp);
-        ++a;
+        a += 1;
       };
       gulp.task('test', fn);
       gulp.task('test2', fn2);
@@ -61,7 +61,7 @@ describe('gulp tasks', function() {
       fn = function() {
         var deferred = Q.defer();
         setTimeout(function() {
-          ++a;
+          a += 1;
           deferred.resolve();
         }, 1);
         return deferred.promise;
@@ -69,7 +69,7 @@ describe('gulp tasks', function() {
       fn2 = function() {
         var deferred = Q.defer();
         setTimeout(function() {
-          ++a;
+          a += 1;
           deferred.resolve();
         }, 1);
         return deferred.promise;
@@ -90,13 +90,13 @@ describe('gulp tasks', function() {
       a = 0;
       fn = function(cb) {
         setTimeout(function() {
-          ++a;
+          a += 1;
           cb(null);
         }, 1);
       };
       fn2 = function(cb) {
         setTimeout(function() {
-          ++a;
+          a += 1;
           cb(null);
         }, 1);
       };
@@ -130,7 +130,7 @@ describe('gulp tasks', function() {
       a = 0;
       fn = function() {
         this.should.equal(gulp);
-        ++a;
+        a += 1;
       };
       gulp.task('test', fn);
       gulp.run('test');
@@ -144,7 +144,7 @@ describe('gulp tasks', function() {
       a = 0;
       fn = function() {
         this.should.equal(gulp);
-        ++a;
+        a += 1;
       };
       gulp.task('default', fn);
       gulp.run();
