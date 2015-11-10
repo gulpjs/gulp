@@ -7,16 +7,19 @@ The below `js` task bundles all the `.js` files under `src/` as entry points and
 
 ```js
 var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
 var browserify = require('browserify');
 var gutil = require('gulp-util');
+var tap = require('gulp-tap');
+var buffer = require('gulp-buffer');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
 
 gulp.task('js', function () {
 
   return gulp.src('src/**/*.js', {base: 'src'})
 
-    // transform file objects using gulp-map plugin
-    .pipe(plugins.tap(function (file) {
+    // transform file objects using gulp-tap plugin
+    .pipe(tap(function (file) {
 
       gutil.log('bundling ' + file.path);
 
@@ -26,16 +29,15 @@ gulp.task('js', function () {
     }))
 
     // transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)
-    .pipe(plugins.buffer())
+    .pipe(buffer())
 
     // load and init sourcemaps
-    .pipe(plugins.sourcemaps.init({loadMaps: true}))
+    .pipe(sourcemaps.init({loadMaps: true}))
 
-    // uglify
-    .pipe(plugins.uglify())
+    .pipe(uglify())
 
     // write sourcemaps
-    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(sourcemaps.write('./'))
 
     .pipe(gulp.dest('dest'));
 
