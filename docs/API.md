@@ -1,10 +1,15 @@
 ## gulp API docs
 
-Jump to:
-  [gulp.src](#gulpsrcglobs-options) |
-  [gulp.dest](#gulpdestpath-options) |
-  [gulp.task](#gulptaskname--deps--fn) |
-  [gulp.watch](#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb)
+* [gulp.src](#gulpsrcglobs-options) - Emit files matching one or more globs
+* [gulp.dest](#gulpdestpath-options) - Write files to directories
+* [gulp.symlink](#gulpsymlinkfolder-options) - Write files to symlinks
+* [gulp.task](#gulptaskname-fn) - Define tasks
+* [gulp.lastRun](#gulplastruntaskname-timeresolution) - Get timestamp of last successful run
+* [gulp.parallel](#gulpparalleltasks) - Run tasks in parallel
+* [gulp.series](#gulpseriestasks) - Run tasks in series
+* [gulp.watch](#gulpwatchglob-opts-fn) - Do something when a file changes
+* [gulp.tree](#gulptreeoptions) - Get the tree of tasks
+* [gulp.registry](#gulpregistryregistry) - Get or set the task registry
 
 ### gulp.src(globs[, options])
 
