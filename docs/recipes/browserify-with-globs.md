@@ -49,7 +49,12 @@ gulp.task('javascript', function () {
 
     // pipe the Browserify stream into the stream we created earlier
     // this starts our gulp pipeline.
-    b.bundle().pipe(bundledStream);
+    b.bundle()
+      .on('error', function (error) {
+          gutil.log('Browserify Error', error.message);
+          this.emit('end');
+      })
+      .pipe(bundledStream);
   }).catch(function(err) {
     // ensure any errors from globby are handled
     bundledStream.emit('error', err);
