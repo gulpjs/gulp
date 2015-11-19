@@ -78,7 +78,7 @@ gulp.task('default', ['watch', 'scripts', 'images']);
 We recommend these plugins:
 
 - [gulp-changed](https://github.com/sindresorhus/gulp-changed) - only pass through changed files
-- [gulp-cached](https://github.com/wearefractal/gulp-cached) - in-memory file cache, not for operation on sets of files
+- [gulp-cached](https://github.com/contra/gulp-cached) - in-memory file cache, not for operation on sets of files
 - [gulp-remember](https://github.com/ahaurw01/gulp-remember) - pairs nicely with gulp-cached
 - [gulp-newer](https://github.com/tschaub/gulp-newer) - pass through newer source files only, supports many:1 source:dest
 
@@ -88,23 +88,23 @@ Anyone can help make this project better - check out the [Contributing guide](/C
 
 ## Like what we do?
 
-[Support us via Gratipay](https://gratipay.com/WeAreFractal/)
+[Support us via Gratipay](https://gratipay.com/~WeAreFractal/)
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-[gittip-url]: https://www.gittip.com/WeAreFractal/
-[gittip-image]: http://img.shields.io/gittip/WeAreFractal.svg
+[gittip-url]: https://gratipay.com/~WeAreFractal/
+[gittip-image]: https://img.shields.io/gittip/WeAreFractal.svg
 
-[downloads-image]: http://img.shields.io/npm/dm/gulp.svg
-[npm-url]: https://npmjs.org/package/gulp
-[npm-image]: http://img.shields.io/npm/v/gulp.svg
+[downloads-image]: https://img.shields.io/npm/dm/gulp.svg
+[npm-url]: https://www.npmjs.com/package/gulp
+[npm-image]: https://img.shields.io/npm/v/gulp.svg
 
 [travis-url]: https://travis-ci.org/gulpjs/gulp
-[travis-image]: http://img.shields.io/travis/gulpjs/gulp.svg
+[travis-image]: https://img.shields.io/travis/gulpjs/gulp.svg
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
-[coveralls-image]: http://img.shields.io/coveralls/gulpjs/gulp/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.png
