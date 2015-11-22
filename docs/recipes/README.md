@@ -16,6 +16,7 @@
 * [Sharing streams with stream factories](sharing-streams-with-stream-factories.md)
 * [Specifying a new cwd (current working directory)](specifying-a-cwd.md)
 * [Split tasks across multiple files](split-tasks-across-multiple-files.md)
+* [Using ES6 with Gulp](using-es6-with-gulp.md)
 * [Using external config file](using-external-config-file.md)
 * [Using multiple sources in one task](using-multiple-sources-in-one-task.md)
 * [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemap.md)
