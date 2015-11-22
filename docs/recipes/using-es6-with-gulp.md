@@ -1,6 +1,6 @@
 # Using ES6 with Gulp
 
-To use [ES6](http://es6-features.org/) with [Gulp.js]() you will need to have:
+To use [ES6](http://es6-features.org/) with [Gulp.js](http://gulpjs.com) you will need to have:
 
 * [Gulp](https://github.com/gulpjs/gulp/releases/tag/v3.9.0) @ 3.9.0 or higher
 * [babel-core](https://www.npmjs.com/package/babel-core)
