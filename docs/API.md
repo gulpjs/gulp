@@ -165,6 +165,19 @@ gulp.task('jekyll', function(cb) {
 });
 ```
 
+##### Use a callback after a stream ends
+
+```javascript
+gulp.task('somename', function(cb) {
+  someAsyncAction(function(res) {
+    var stream = gulp.src('client/**/*.js')
+      .pipe(minify())
+      .pipe(gulp.dest('build'))
+      .on('end', cb);
+  });
+});
+```
+
 ##### Return a stream
 
 ```js
