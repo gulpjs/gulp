@@ -17,7 +17,7 @@ In particular, this community seeks the following types of contributions:
 - ideas: participate in an Issues thread or start your own to have your voice
 heard
 - resources: submit a PR to add to [docs README.md](/docs/README.md) with links to related content
-- outline sections: help us ensure that this repository is comprehensive. if
+- outline sections: help us ensure that this repository is comprehensive. If
 there is a topic that is overlooked, please add it, even if it is just a stub
 in the form of a header and single sentence. Initially, most things fall into
 this category
