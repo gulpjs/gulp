@@ -108,7 +108,7 @@ Default: `0777`
 
 Octal permission string specifying mode for any folders that need to be created for output folder.
 
-### gulp.task(name[, deps], fn)
+### gulp.task(name [, deps, fn])
 
 Define a task using [Orchestrator].
 
@@ -119,6 +119,7 @@ gulp.task('somename', function() {
 ```
 
 #### name
+Type: `String`
 
 The name of the task. Tasks that you want to run from the command line should not have spaces in them.
 
@@ -135,7 +136,7 @@ gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
 
 **Note:** Are your tasks running before the dependencies are complete?  Make sure your dependency tasks are correctly using the async run hints: take in a callback or return a promise or event stream.
 
-You can also omit the function if you only want to run the dependency tasks:
+You can also omit the function if you only want to run a bundle of dependency tasks:
 
 ```js
 gulp.task('build', ['array', 'of', 'task', 'names']);
@@ -144,8 +145,21 @@ gulp.task('build', ['array', 'of', 'task', 'names']);
 **Note:** The tasks will run in parallel (all at once), so don't assume that the tasks will start/finish in order.
 
 #### fn
+Type: `Function`
 
-The function that performs the task's operations. Generally this takes the form of `gulp.src().pipe(someplugin())`.
+The function performs the task's main operations. Generally this takes the form of:
+
+```js
+gulp.task('buildStuff', function() {
+  // Do something that "builds stuff"
+  var stream = gulp.src(/*some source path*/)
+  .pipe(somePlugin())
+  .pipe(someOtherPlugin())
+  .pipe(gulp.dest(/*some destination*/));
+  
+  return stream;
+  });
+```
 
 #### Async task support
 
