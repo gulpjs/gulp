@@ -40,6 +40,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 * [Gulp - The Basics (screencast)](https://www.youtube.com/watch?v=dwSLFai8ovQ)
 * [Get started with gulp (video series)](http://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
 * [Optimize your web code with gulp](http://www.linuxuser.co.uk/tutorials/optimise-your-web-code-with-gulp-js)
+* [Automate Your Tasks Easily with Gulp.js ](https://scotch.io/tutorials/automate-your-tasks-easily-with-gulp-js)
 
 
 ## Examples
