@@ -16,7 +16,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('js', function () {
 
-  return gulp.src('src/**/*.js', {base: 'src'})
+  return gulp.src('src/**/*.js', {read: false}) // no need of reading file because browserify does.
 
     // transform file objects using gulp-tap plugin
     .pipe(tap(function (file) {
