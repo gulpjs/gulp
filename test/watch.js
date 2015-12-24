@@ -60,6 +60,23 @@ describe('gulp', function() {
       updateTempFile(tempFile);
     });
 
+    it('should work with destructuring', function(done) {
+      var tempFile = path.join(outpath, 'watch-func.txt');
+      var watch = gulp.watch;
+      var parallel = gulp.parallel;
+      var task = gulp.task;
+      createTempFile(tempFile);
+
+      task('test', function(cb) {
+        watcher.close();
+        cb();
+        done();
+      });
+
+      var watcher = watch(tempFile, parallel('test'));
+
+      updateTempFile(tempFile);
+    });
 
     it('should not call the function when no file changes: no options', function(done) {
       var tempFile = path.join(outpath, 'watch-func.txt');
