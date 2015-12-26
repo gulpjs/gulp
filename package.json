@@ -29,7 +29,7 @@
     "chalk": "^1.0.0",
     "deprecated": "^0.0.1",
     "gulp-util": "^3.0.0",
-    "interpret": "^0.6.2",
+    "interpret": "^1.0.0",
     "liftoff": "^2.1.0",
     "minimist": "^1.1.0",
     "orchestrator": "^0.3.0",
