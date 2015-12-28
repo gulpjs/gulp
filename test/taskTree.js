@@ -1,42 +1,43 @@
-'use strict';
+'use strict'
+/* global describe, it */
 
-var taskTree = require('../lib/taskTree');
-var should = require('should');
+var taskTree = require('../lib/taskTree')
+var should = require('should')
 
-require('mocha');
+require('mocha')
 
-describe('taskTree()', function() {
-  it('should form a tree properly', function(done) {
-    should.exist(taskTree); // Lol shutup jshint
+describe('taskTree()', function () {
+  it('should form a tree properly', function (done) {
+    should.exist(taskTree) // Lol shutup jshint
 
     var tasks = {
       test: {
-        dep: ['abc', 'def'],
+        dep: ['abc', 'def']
       },
       abc: {
-        dep: ['def'],
+        dep: ['def']
       },
       def: {
-        dep: [],
-      },
-    };
+        dep: []
+      }
+    }
 
     var expectTree = {
       nodes: [
         {
           label: 'test',
-          nodes: ['abc', 'def'],
+          nodes: ['abc', 'def']
         }, {
           label: 'abc',
-          nodes: ['def'],
+          nodes: ['def']
         }, {
           label: 'def',
-          nodes: [],
-        },
-      ],
-    };
+          nodes: []
+        }
+      ]
+    }
 
-    taskTree(tasks).should.eql(expectTree);
-    done();
-  });
-});
+    taskTree(tasks).should.eql(expectTree)
+    done()
+  })
+})
