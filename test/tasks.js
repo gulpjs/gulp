@@ -33,7 +33,7 @@ describe('gulp tasks', function () {
       }
       gulp.task('test', fn)
       gulp.task('test2', fn2)
-      gulp.run('test', 'test2')
+      gulp.start('test', 'test2')
       a.should.equal(2)
       gulp.reset()
       done()
@@ -52,8 +52,8 @@ describe('gulp tasks', function () {
       }
       gulp.task('test', fn)
       gulp.task('test2', fn2)
-      gulp.run('test')
-      gulp.run('test2')
+      gulp.start('test')
+      gulp.start('test2')
       a.should.equal(2)
       gulp.reset()
       done()
@@ -80,7 +80,7 @@ describe('gulp tasks', function () {
       }
       gulp.task('test', fn)
       gulp.task('test2', fn2)
-      gulp.run('test')
+      gulp.start('test')
       gulp.start('test2', function () {
         gulp.isRunning.should.equal(false)
         a.should.equal(2)
@@ -107,7 +107,7 @@ describe('gulp tasks', function () {
       }
       gulp.task('test', fn)
       gulp.task('test2', fn2)
-      gulp.run('test')
+      gulp.start('test')
       gulp.start('test2', function () {
         gulp.isRunning.should.equal(false)
         a.should.equal(2)
@@ -140,7 +140,7 @@ describe('gulp tasks', function () {
         ++a
       }
       gulp.task('test', fn)
-      gulp.run('test')
+      gulp.start('test')
       a.should.equal(1)
       gulp.isRunning.should.equal(false)
       gulp.reset()
