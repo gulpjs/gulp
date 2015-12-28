@@ -32,9 +32,10 @@
     "interpret": "^1.0.0",
     "liftoff": "^2.1.0",
     "minimist": "^1.1.0",
-    "orchestrator": "^0.3.0",
     "pretty-hrtime": "^1.0.0",
     "semver": "^4.1.0",
+    "thunk-stream": "^1.1.1",
+    "thunks": "^4.1.1",
     "tildify": "^1.0.0",
     "v8flags": "^2.0.2",
     "vinyl-fs": "^0.3.0"
