@@ -8,9 +8,9 @@ Jump to:
 
 ### gulp.src(globs[, options])
 
-Emits files matching provided glob or an array of globs. 
-Returns a [stream](http://nodejs.org/api/stream.html) of [Vinyl files](https://github.com/wearefractal/vinyl-fs) 
-that can be [piped](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options) 
+Emits files matching provided glob or an array of globs.
+Returns a [stream](http://nodejs.org/api/stream.html) of [Vinyl files](https://github.com/wearefractal/vinyl-fs)
+that can be [piped](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options)
 to plugins.
 
 ```javascript
@@ -35,7 +35,7 @@ A glob that begins with `!` excludes matching files from the glob results up to 
 The following expression matches `a.js` and `bad.js`:
 
     gulp.src(['client/*.js', '!client/b*.js', 'client/bad.js'])
-    
+
 
 #### options
 Type: `Object`
@@ -85,7 +85,7 @@ gulp.src('./client/templates/*.jade')
 ```
 
 The write path is calculated by appending the file relative path to the given
-destination directory. In turn, relative paths are calculated against the file base. 
+destination directory. In turn, relative paths are calculated against the file base.
 See `gulp.src` above for more info.
 
 #### path
@@ -110,7 +110,7 @@ Octal permission string specifying mode for any folders that need to be created 
 
 ### gulp.task(name [, deps, fn])
 
-Define a task using [Orchestrator].
+Define a task.
 
 ```js
 gulp.task('somename', function() {
@@ -134,15 +134,14 @@ gulp.task('mytask', ['array', 'of', 'task', 'names'], function() {
 });
 ```
 
-**Note:** Are your tasks running before the dependencies are complete?  Make sure your dependency tasks are correctly using the async run hints: take in a callback or return a promise or event stream.
-
-You can also omit the function if you only want to run a bundle of dependency tasks:
+But we don't recommend using it. You can use `gulp.seq`, `gulp.all` and `gulp.co` to compose your tasks.
 
 ```js
-gulp.task('build', ['array', 'of', 'task', 'names']);
+// The tasks will run in sequence
+gulp.task('build', gulp.seq('array', 'of', 'task', 'names'));
+// The tasks will run in parallel
+gulp.task('build', gulp.all('array', 'of', 'task', 'names'));
 ```
-
-**Note:** The tasks will run in parallel (all at once), so don't assume that the tasks will start/finish in order.
 
 #### fn
 Type: `Function`
@@ -156,16 +155,23 @@ gulp.task('buildStuff', function() {
   .pipe(somePlugin())
   .pipe(someOtherPlugin())
   .pipe(gulp.dest(/*some destination*/));
-  
+
   return stream;
-  });
+});
 ```
 
-#### Async task support
 
-Tasks can be made asynchronous if its `fn` does one of the following:
+#### Define sync or async task
 
-##### Accept a callback
+##### Sync task
+
+```js
+gulp.task('sync_task', function() {
+  // Do something that "builds sync stuff"
+});
+```
+
+##### Accept a thunk function(aka `callback`)
 
 ```javascript
 // run a command in a shell
@@ -176,6 +182,20 @@ gulp.task('jekyll', function(cb) {
     if (err) return cb(err); // return error
     cb(); // finished task
   });
+});
+```
+
+##### Return a thunk function
+
+```javascript
+var exec = require('child_process').exec;
+gulp.task('thunk_task', function() {
+  return function(done) {
+    exec('jekyll build', function(err) {
+      if (err) return done(err); // return error
+      done(); // finished task
+    });
+  };
 });
 ```
 
@@ -192,52 +212,113 @@ gulp.task('somename', function() {
 
 ##### Return a promise
 
-```javascript
+```js
 var Q = require('q');
-
-gulp.task('somename', function() {
+gulp.task('promise_task', function() {
   var deferred = Q.defer();
 
-  // do async stuff
   setTimeout(function() {
     deferred.resolve();
   }, 1);
-
   return deferred.promise;
-});
+})
 ```
 
-**Note:** By default, tasks run with maximum concurrency -- e.g. it launches all the tasks at once and waits for nothing. If you want to create a series where tasks run in a particular order, you need to do two things:
+##### generator task
 
-- give it a hint to tell it when the task is done,
-- and give it a hint that a task depends on completion of another.
-
-For these examples, let's presume you have two tasks, "one" and "two" that you specifically want to run in this order:
-
-1. In task "one" you add a hint to tell it when the task is done.  Either take in a callback and call it when you're
-done or return a promise or stream that the engine should wait to resolve or end respectively.
-
-2. In task "two" you add a hint telling the engine that it depends on completion of the first task.
-
-So this example would look like this:
+You can do magical async tasks as [thunks](https://github.com/thunks/thunks) do.
 
 ```js
-var gulp = require('gulp');
-
-// takes in a callback so the engine knows when it'll be done
-gulp.task('one', function(cb) {
-    // do stuff -- async or otherwise
-    cb(err); // if err is not null and not undefined, the run will stop, and note that it failed
+gulp.task('generator_task', function *() {
+  yield somePromise;
+  yield someThunk;
+  yield gulp.all('a', 'b', 'c');
+  yield gulp.seq('e', 'f', 'g');
+  yield gulp.co('h', 'i', ['g', 'k'], 'l');
+  // ...
 });
-
-// identifies a dependent task must be complete before this one begins
-gulp.task('two', ['one'], function() {
-    // task 'one' is done now
-});
-
-gulp.task('default', ['one', 'two']);
 ```
 
+### gulp.start('task1', 'task2', ...[, cb])
+Run tasks in order. Return thunk function.
+
+```js
+// Run 'default' task
+gulp.start();
+// Run 'default' task with callback
+gulp.start(cb);
+gulp.start()(cb);
+
+// Run tasks 'a', 'b', 'c' in sequence
+gulp.start('a', 'b', 'c');
+// with callback
+gulp.start('a', 'b', 'c', cb);
+gulp.start('a', 'b', 'c')(cb);
+
+// Run tasks 'a', 'b', 'c' in parallel
+gulp.start(['a', 'b', 'c']);
+// with callback
+gulp.start(['a', 'b', 'c'], cb);
+gulp.start(['a', 'b', 'c'])(cb);
+
+// Run tasks 'a', then run 'b', 'c' in parallel, then run 'd'
+gulp.start('a', ['b', 'c'], 'd');
+// with callback
+gulp.start('a', ['b', 'c'], 'd', cb);
+gulp.start('a', ['b', 'c'], 'd')(cb);
+```
+
+### gulp.co('task1', 'task2', ...)
+Compose tasks in order. It return thunk function that contain the tasks. The tasks will not run until you call the thunk function.
+
+```js
+// Compose tasks 'a', 'b', 'c', tasks will run in sequence
+gulp.co('a', 'b', 'c');
+// Compose tasks 'a', 'b', 'c', tasks will run in parallel
+gulp.co(['a', 'b', 'c']);
+// Compose tasks 'a', 'b', 'c', task 'a' will run first, then 'b', 'c' in parallel, then 'd'.
+gulp.co('a', ['b', 'c'], 'd');
+```
+
+Define a task with `gulp.co`
+```js
+gulp.task('build', gulp.co('a', ['b', 'c'], 'd'));
+// run it
+gulp.start('build');
+```
+
+### gulp.all('task1', 'task2', ...)
+Compose tasks in parallel. It return thunk function that contain the tasks. The tasks will not run until you call the thunk function.
+
+```js
+// Compose tasks 'a', 'b', 'c', tasks will run in parallel
+gulp.all('a', 'b', 'c');
+gulp.all(['a', 'b', 'c']);
+```
+
+Define a task with `gulp.all`
+```js
+gulp.task('build', gulp.all('a', 'b', 'c'));
+// run it
+gulp.start('build');
+```
+
+### gulp.seq('task1', 'task2', ...)
+Compose tasks in sequence. It return thunk function that contain the tasks. The tasks will not run until you call the thunk function.
+
+```js
+// Compose tasks 'a', 'b', 'c', tasks will run in sequence
+gulp.seq('a', 'b', 'c');
+gulp.seq(['a', 'b', 'c']);
+```
+
+
+Define a task with `gulp.seq`
+```js
+gulp.task('build', gulp.seq('a', 'b', 'c'));
+// run it
+gulp.start('build');
+```
 
 ### gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts, cb])
 
