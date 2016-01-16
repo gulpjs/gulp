@@ -47,9 +47,9 @@ Gulp.prototype.watch = function(glob, opt, task) {
   var watcher = chokidar.watch(glob, opt);
   if (fn) {
     watcher
-      .on('change', fn)
-      .on('unlink', fn)
-      .on('add', fn);
+      .on('change', function() { fn(); })
+      .on('unlink', function() { fn(); })
+      .on('add', function() { fn(); });
   }
 
   return watcher;
