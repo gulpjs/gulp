@@ -37,10 +37,12 @@ In your project directory, create a file named `gulpfile.js` in your project roo
 ```js
 var gulp = require('gulp');
 
-gulp.task('default', function(done) {
+gulp.task('default', defaultTask);
+
+function defaultTask(done) {
   // place code for your default task here
   done();
-});
+}
 ```
 
 #### Test it out
@@ -62,6 +64,10 @@ Using gulpfile ~/my-project/gulpfile.js
 [11:15:51] Starting 'default'...
 [11:15:51] Finished 'default' after 103 μs
 ```
+
+## .src, .watch, .dest, .parallel, .series, CLI args - How do I use these things?
+
+For API specific documentation, you can check out the [documentation for that](API.md).
 
 ## Where do I go now?
 
