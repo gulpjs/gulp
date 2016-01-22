@@ -38,9 +38,9 @@ gulp updates can be found on the following twitters:
 - [@eschoff](https://twitter.com/eschoff)
 - [@gulpjs](https://twitter.com/gulpjs)
 
-## Does gulp have an IRC channel?
+## Does gulp have an chat channel?
 
-Yes, come chat with us in #gulpjs on [Freenode].
+Yes, come chat with us on [Gitter](https://gitter.im/gulpjs/gulp).
 
 [Writing a gulp plugin]: writing-a-plugin/README.md
 [gulp introduction slideshow]: http://slid.es/contra/gulp
