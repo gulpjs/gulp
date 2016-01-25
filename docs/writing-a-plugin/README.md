@@ -107,7 +107,7 @@ module.exports = function() {
     this.push(files[0]);
     this.push(files[1]);                              
     callback();
-  }); 
+  }; 
    
   return through.obj(transform);
 };
