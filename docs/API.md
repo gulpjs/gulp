@@ -504,7 +504,7 @@ Type: `Array`, `String` or `Function`
 A task name, a function or an array of either.
 
 
-### gulp.watch(glob[, opts], fn)
+### gulp.watch(glob[, opts][, fn])
 
 Watch files and do something when a file changes.
 File watching is provided by the [`chokidar`][chokidar] module.
@@ -515,7 +515,7 @@ Please report any file watching problems directly to its
 gulp.watch('js/**/*.js', gulp.parallel('uglify', 'reload'));
 ```
 
-In the example, `gulp.watch` runs the function returned by gulp.parallel each
+In the example, `gulp.watch` runs the function returned by `gulp.parallel` each
 time a file with the `js` extension in `js/` is updated.
 
 #### glob
@@ -548,12 +548,14 @@ Read about the full set of options in [`chokidar`'s README][chokidar].
 #### fn
 Type: `Function`
 
-An [async](#async-support) function to run when a file changes.
+An [async](#async-support) function to run when a file changes. Does not provide
+access to the `path` parameter.
 
 `gulp.watch` returns a wrapped [chokidar] FSWatcher object. If provided,
 the callback will be triggered upon any `add`, `change`, or `unlink` event.
 Listeners can also be set directly for any of [chokidar]'s events, such as
-`addDir`, `unlinkDir`, and `error`.
+`addDir`, `unlinkDir`, and `error`. You must set listeners directly to get
+access to chokidar's callback parameters, such as `path`.
 
 ```js
 var watcher = gulp.watch('js/**/*.js', gulp.parallel('uglify', 'reload'));
@@ -569,7 +571,7 @@ watcher.on('unlink', function(path) {
 ##### path
 Type: `String`
 
-The relative path of the document.
+Path to the file. If `opts.cwd` is set, `path` is relative to it.
 
 ##### stats
 Type: `Object`

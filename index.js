@@ -35,6 +35,8 @@ Gulp.prototype.watch = function(glob, opt, task) {
     opt = {};
   }
 
+  opt = opt || {};
+
   var fn;
   if (typeof task === 'function') {
     fn = this.parallel(task);

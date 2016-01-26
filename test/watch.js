@@ -126,6 +126,10 @@ describe('gulp', function() {
       updateTempFile(tempFile);
     });
 
+    it('should work without options or callback', function() {
+      gulp.watch('x');
+    });
+
     it('should run many tasks: w/ options', function(done) {
       var tempFile = path.join(outpath, 'watch-task-options.txt');
       var a = 0;
