@@ -22,3 +22,4 @@
 * [Browserify + Globs](browserify-with-globs.md)
 * [Output both a minified and non-minified version](minified-and-non-minified.md)
 * [Templating with Swig and YAML front-matter](templating-with-swig-and-yaml-front-matter.md)
+* [Exports as tasks](exports-as-tasks.md)
