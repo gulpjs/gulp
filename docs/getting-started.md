@@ -40,7 +40,7 @@ To run individual tasks, use `gulp <task> <othertask>`.
 
 You have an empty gulpfile and everything is installed. How do you REALLY get started? Check out the [recipes](recipes) and the [list of articles](README.md#articles) for more information.
 
-## .src, .watch, .dest, .parallel, .serial, CLI args - How do I use these things?
+## .src, .watch, .dest, .parallel, .series, CLI args - How do I use these things?
 
 For API specific documentation you can check out the [documentation for that](API.md).
 
