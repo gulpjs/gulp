@@ -12,7 +12,6 @@
   "eqnull": true,
   "funcscope": true,
   "strict": true,
-  "globalstrict": true,
   "undef": true,
   "unused": true,
   "node": true
