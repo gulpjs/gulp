@@ -7,11 +7,14 @@
 # gulp
 **The streaming build system**
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Support us][gittip-image]][gittip-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
 
-## Like what we do?
+## What is gulp?
 
-[Support us via Gratipay](https://gratipay.com/WeAreFractal/)
+- **Automation** - gulp is a toolkit that helps you automate painful or time-consuming tasks in your development workflow.
+- **Platform-agnostic** - Integrations are built into all major IDEs and people are using gulp with PHP, .NET, Node.js, Java, and other platforms.
+- **Strong Ecosystem** - Use npm modules to do anything you want + over 2000 curated plugins for streaming file transformations
+- **Simple** - By providing only a minimal API surface, gulp is easy to learn and simple to use
 
 ## Documentation
 
@@ -140,13 +143,7 @@ function scripts() {
 
 ## Want to contribute?
 
-Anyone can help make this project better - check out the [Contributing guide](/CONTRIBUTING.md)!
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
-[gittip-url]: https://www.gittip.com/WeAreFractal/
-[gittip-image]: http://img.shields.io/gittip/WeAreFractal.svg
+Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
 
 [downloads-image]: http://img.shields.io/npm/dm/gulp.svg
 [npm-url]: https://npmjs.org/package/gulp
