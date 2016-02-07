@@ -11,8 +11,10 @@
 
 ## What is gulp?
 
-gulp is a toolkit that will help you automate painful or time-consuming tasks in your development workflow. For web development (if that's your thing) it can help you by doing CSS preprocessing, JS transpiling, minification, live reloading, and much more.
-Integrations are built into all major IDEs and people are loving gulp across PHP, .NET, Node.js, Java, and more. With over **2000 plugins** (and plenty you can do without plugins), gulp lets you quit messing with build systems and get back to work.
+- **Automation** - gulp is a toolkit that helps you automate painful or time-consuming tasks in your development workflow.
+- **Platform-agnostic** - Integrations are built into all major IDEs and people are using gulp with PHP, .NET, Node.js, Java, and other platforms.
+- **Strong Ecosystem** - Use npm modules to do anything you want + over 2000 curated plugins for streaming file transformations
+- **Simple** - By providing only a minimal API surface, gulp is easy to learn and simple to use
 
 ## Documentation
 
@@ -87,12 +89,7 @@ We recommend these plugins:
 
 ## Want to contribute?
 
-Anyone can help make this project better - check out the [Contributing guide](/CONTRIBUTING.md)!
-
-## Like what we do?
-
-[Support us via Gratipay](https://gratipay.com/~WeAreFractal/)
-
+Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
 
 [downloads-image]: https://img.shields.io/npm/dm/gulp.svg
 [npm-url]: https://www.npmjs.com/package/gulp
