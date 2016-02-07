@@ -7,7 +7,7 @@
 # gulp
 **The streaming build system**
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Support us][gittip-image]][gittip-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
 
 ## What is gulp?
 
@@ -16,7 +16,10 @@ Integrations are built into all major IDEs and people are loving gulp across PHP
 
 ## Documentation
 
-For a Getting started guide, API docs, recipes, making a plugin, etc. see the [documentation page](/docs/README.md)!
+For a Getting started guide, API docs, recipes, making a plugin, etc. check out or docs!
+
+- Need something reliable? Check out the [documentation for the current release](/docs/README.md)!
+- Want to help us test the latest and greatest? Check out the [documentation for the next release](https://github.com/gulpjs/gulp/tree/4.0)!
 
 ## Sample `gulpfile.js`
 
@@ -90,11 +93,6 @@ Anyone can help make this project better - check out the [Contributing guide](/C
 
 [Support us via Gratipay](https://gratipay.com/~WeAreFractal/)
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
-[gittip-url]: https://gratipay.com/~WeAreFractal/
-[gittip-image]: https://img.shields.io/gittip/WeAreFractal.svg
 
 [downloads-image]: https://img.shields.io/npm/dm/gulp.svg
 [npm-url]: https://www.npmjs.com/package/gulp
