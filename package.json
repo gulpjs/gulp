@@ -18,7 +18,8 @@
     "index.js",
     "lib",
     "bin",
-    "completion"
+    "completion",
+    "gulp.1"
   ],
   "bin": {
     "gulp": "./bin/gulp.js"
