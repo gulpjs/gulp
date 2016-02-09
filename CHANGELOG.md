@@ -1,5 +1,11 @@
 # gulp changelog
 
+## 3.9.1
+
+- update interpret to 1.0.0 (support for babel-register)
+- fix to include manpages in published tarball
+- documentation/recipe updates
+
 ## 3.9.0
 
 - add babel support
