@@ -25,7 +25,7 @@
   "dependencies": {
     "chokidar": "^1.2.0",
     "gulp-cli": "^1.0.0",
-    "undertaker": "^0.13.0",
+    "undertaker": "^0.15.0",
     "vinyl-fs": "^2.0.0"
   },
   "devDependencies": {
