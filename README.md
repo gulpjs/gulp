@@ -27,6 +27,7 @@ var gulp = require('gulp');
 var rename = require('gulp-rename');
 var less = require('gulp-less');
 var cssmin = require('gulp-cssmin');
+var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var del = require('del');
@@ -37,7 +38,7 @@ var paths = {
     dest: 'assets/styles/'
   },
   scripts: {
-    src: 'src/scripts/**/*.js',
+    src: 'src/scripts/**/*.coffee',
     dest: 'assets/scripts/'
   }
 };
@@ -68,7 +69,8 @@ function styles() {
 }
 
 function scripts() {
-  return gulp.src(paths.scripts.src)
+  return gulp.src(paths.scripts.src, { sourcemaps: true })
+    .pipe(coffee())
     .pipe(uglify())
     .pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest));
@@ -120,6 +122,7 @@ import gulp from 'gulp';
 import rename from 'gulp-rename';
 import less from 'gulp-less';
 import cssmin from 'gulp-cssmin';
+import coffee from 'gulp-coffee';
 import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
 import del from 'del';
@@ -130,7 +133,7 @@ const paths = {
     dest: 'assets/styles/'
   },
   scripts: {
-    src: 'src/scripts/**/*.js',
+    src: 'src/scripts/**/*.coffee',
     dest: 'assets/scripts/'
   }
 };
@@ -151,7 +154,8 @@ function styles() {
 }
 
 function scripts() {
-  return gulp.src(paths.scripts.src)
+  return gulp.src(paths.scripts.src, { sourcemaps: true })
+    .pipe(coffee())
     .pipe(uglify())
     .pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest));
