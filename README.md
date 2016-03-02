@@ -23,13 +23,13 @@ For a Getting started guide, API docs, recipes, making a plugin, etc. see the [d
 This file is just a quick sample to give you a taste of what gulp does.
 
 ```js
-var gulp = require('gulp'),
-  rename = require('gulp-rename'),
-  less = require('gulp-less'),
-  cssmin = require('gulp-cssmin'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
-  del = require('del');
+var gulp = require('gulp');
+var rename = require('gulp-rename');
+var less = require('gulp-less');
+var cssmin = require('gulp-cssmin');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var del = require('del');
 
 var paths = {
   styles: {
@@ -70,7 +70,7 @@ function styles() {
 function scripts() {
   return gulp.src(paths.scripts.src)
     .pipe(uglify())
-    .pipe(concat(main.min.js))
+    .pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
@@ -89,15 +89,12 @@ gulp.task(watch);
  * Notice that you can specify if tasks can run in parallel or not
  * using `gulp.series` and `gulp.parallel`
  */
-gulp.task('build',
-  gulp.series(clean),
-  gulp.parallel(styles, scripts));
+gulp.task('build', gulp.series(clean, gulp.parallel(styles, scripts)));
 
 /*
  * Expose default task that can be called by just running `gulp` from cli
  */
-gulp.task('default',
-  gulp.series(build))
+gulp.task('default', build);
 ```
 
 ## Use last JavaScript version in your gulpfile
@@ -156,7 +153,7 @@ function styles() {
 function scripts() {
   return gulp.src(paths.scripts.src)
     .pipe(uglify())
-    .pipe(concat(main.min.js))
+    .pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
@@ -168,12 +165,9 @@ function watch() {
 gulp.task(clean);
 gulp.task(watch);
 
-gulp.task('build',
-  gulp.series(clean),
-  gulp.parallel(styles, scripts));
+gulp.task('build', gulp.series(clean, gulp.parallel(styles, scripts)));
 
-gulp.task('default',
-  gulp.series('build'))
+gulp.task('default', build);
 ```
 
 ## Incremental Builds
