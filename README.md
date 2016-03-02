@@ -49,7 +49,7 @@ var paths = {
 function clean() {
   // You can use multiple globbing patterns as you would with `gulp.src`,
   // for example if you are using del 2.0 or above, return its promise
-  del([ 'assets' ]);
+  return del([ 'assets' ]);
 }
 
 /* 
@@ -139,7 +139,7 @@ const paths = {
 };
 
 function clean() {
-  del([ 'assets' ]);
+  return del([ 'assets' ]);
 }
 
 function styles() {
