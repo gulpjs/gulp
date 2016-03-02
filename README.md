@@ -108,7 +108,15 @@ Node already supports a lot of **ES2015**, to avoid compatibility problem we sug
 npm install --save-dev babel-core -babel-preset-es2015
 ```
 
-Here's the same sample from above written in **ES2015**.
+Then create a **.babelrc** file with the rpeset configuration.
+
+```js
+{
+  "presets": [ "es2015" ]
+}
+```
+
+And here's the same sample from above written in **ES2015**.
 
 ```js
 import gulp from 'gulp';
