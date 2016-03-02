@@ -108,7 +108,7 @@ Node already supports a lot of **ES2015**, to avoid compatibility problem we sug
 npm install --save-dev babel-core -babel-preset-es2015
 ```
 
-Then create a **.babelrc** file with the rpeset configuration.
+Then create a **.babelrc** file with the preset configuration.
 
 ```js
 {
