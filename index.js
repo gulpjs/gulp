@@ -10,7 +10,21 @@ function Gulp() {
 
   // Bind the functions for destructuring
   this.watch = this.watch.bind(this);
-  this.task = this.task.bind(this);
+  this.task = function(name, fn) {
+    if (typeof name === 'function') {
+      fn = name;
+      name = fn.displayName || fn.name;
+    }
+
+    if (!fn) {
+      fn = this._getTask(name);
+      fn.displayName = fn.displayName || name;
+
+      return fn;
+    }
+
+    this._setTask(name, fn);
+  }.bind(this);
   this.series = this.series.bind(this);
   this.parallel = this.parallel.bind(this);
   this.registry = this.registry.bind(this);
