@@ -38,7 +38,7 @@ module.exports = function() {
     var error = null, 
         output = doSomethingWithTheFile(file);
     callback(error, output);
-  });
+  };
   
   return transformStream;
 };
