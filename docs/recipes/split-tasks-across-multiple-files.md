@@ -1,8 +1,19 @@
 # Split tasks across multiple files
 
-If your `gulpfile.js` is starting to grow too large, you can split the tasks
-into separate files by using the [require-dir](https://github.com/aseemk/requireDir)
-module.
+If your `gulpfile.js` is starting to grow too large, you can split
+the tasks into separate files using one of the methods below.
+
+
+## Using `gulp-require-tasks`
+
+You can use the [gulp-require-tasks][gulp-require-tasks]
+module to automatically load all your tasks from the individual files.
+
+Please see the [module's README][gulp-require-tasks] for up-to-date instructions.
+
+## Using `require-dir`
+
+You can also use the [require-dir][require-dir] module to load your tasks manually.
 
 Imagine the following file structure:
 
@@ -26,3 +37,7 @@ Add the following lines to your `gulpfile.js` file:
 var requireDir = require('require-dir');
 var tasks = requireDir('./tasks');
 ```
+
+
+  [gulp-require-tasks]: https://github.com/betsol/gulp-require-tasks
+  [require-dir]:        https://github.com/aseemk/requireDir
