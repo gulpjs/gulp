@@ -47,7 +47,7 @@ var paths = {
  * and you can use all packages available on npm, but it must return either a
  * Promise, a Stream or take a callback and call it
  */
-function clean() {
+export.clean = function clean() {
   // You can use multiple globbing patterns as you would with `gulp.src`,
   // for example if you are using del 2.0 or above, return its promise
   return del([ 'assets' ]);
@@ -56,7 +56,7 @@ function clean() {
 /* 
  * Define our tasks using plain functions
  */
-function styles() {
+export.styles = function styles() {
   return gulp.src(paths.styles.src)
     .pipe(less())
     .pipe(cssmin())
@@ -68,7 +68,10 @@ function styles() {
     .pipe(gulp.dest(paths.styles.dest));
 }
 
-function scripts() {
+/*
+ * You can use CommonJS module notation to declare tasks
+ */
+export.scripts = function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
     .pipe(coffee())
     .pipe(uglify())
@@ -76,25 +79,19 @@ function scripts() {
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
-function watch() {
+export.watch = function watch() {
   gulp.watch(paths.scripts.src, scripts);
   gulp.watch(paths.styles.src, styles);
 }
 
 /* 
- * Register some tasks to expose to the cli
- */
-gulp.task(clean);
-gulp.task(watch);
-
-/* 
- * Notice that you can specify if tasks can run in parallel or not
- * using `gulp.series` and `gulp.parallel`
+ * You can still use gulp.task to expose tasks and specify if tasks
+ * can run in parallel or not using `gulp.series` and `gulp.parallel`
  */
 gulp.task('build', gulp.series(clean, gulp.parallel(styles, scripts)));
 
 /*
- * Expose default task that can be called by just running `gulp` from cli
+ * Define default task that can be called by just running `gulp` from cli
  */
 gulp.task('default', build);
 ```
@@ -142,7 +139,15 @@ function clean() {
   return del([ 'assets' ]);
 }
 
-function styles() {
+/*
+ * For small tasks you can use arrow functions and export
+ */
+export () => del([ 'assets' ]) as clean;
+
+/*
+ * You can still declare named functions and export them as tasks
+ */
+export function styles() {
   return gulp.src(paths.styles.src)
     .pipe(less())
     .pipe(cssmin())
@@ -153,7 +158,7 @@ function styles() {
     .pipe(gulp.dest(paths.styles.dest));
 }
 
-function scripts() {
+export function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
     .pipe(coffee())
     .pipe(uglify())
@@ -161,13 +166,10 @@ function scripts() {
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
-function watch() {
+export function watch() {
   gulp.watch(paths.scripts.src, scripts);
   gulp.watch(paths.styles.src, styles);
 }
-
-gulp.task(clean);
-gulp.task(watch);
 
 gulp.task('build', gulp.series(clean, gulp.parallel(styles, scripts)));
 
