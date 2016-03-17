@@ -53,8 +53,9 @@ cli.on('require', function(name) {
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
-cli.on('requireFail', function(name) {
+cli.on('requireFail', function(name, error) {
   gutil.log(chalk.red('Failed to load external module'), chalk.magenta(name));
+  gutil.log(error.message);
 });
 
 cli.on('respawn', function(flags, child) {
