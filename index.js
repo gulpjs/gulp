@@ -4,6 +4,7 @@ var util = require('util');
 var Undertaker = require('undertaker');
 var vfs = require('vinyl-fs');
 var chokidar = require('chokidar');
+var debounce = require('debounce');
 
 function Gulp() {
   Undertaker.call(this);
@@ -44,6 +45,10 @@ Gulp.prototype.watch = function(glob, opt, task) {
 
   if (opt.ignoreInitial == null) {
     opt.ignoreInitial = true;
+  }
+
+  if (typeof opt.wait === 'number') {
+    fn = debounce(fn, opt.wait);
   }
 
   var watcher = chokidar.watch(glob, opt);
