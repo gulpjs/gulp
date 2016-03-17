@@ -23,6 +23,8 @@ The community has written [recipes](recipes#recipes) for common gulp use-cases.
 
 Post on [StackOverflow with a #gulp tag](https://stackoverflow.com/questions/tagged/gulp) or come chat with us in [#gulpjs](https://webchat.freenode.net/?channels=gulpjs) on [Freenode](https://freenode.net/).
 
+## Videos
+* [Intro to Gulp 4](https://youtu.be/N42LQ2dLoA8) presented by @addyosmani and @gauntface
 
 ## Books
 * [Developing a gulp Edge](http://shop.oreilly.com/product/9781939902146.do)
