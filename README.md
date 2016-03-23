@@ -16,14 +16,68 @@
 
 ## Documentation
 
-For a Getting started guide, API docs, recipes, making a plugin, etc. check out or docs!
-
-- Need something reliable? Check out the [documentation for the current release](/docs/README.md)!
-- Want to help us test the latest and greatest? Check out the [documentation for the next release](https://github.com/gulpjs/gulp/tree/4.0)!
+For a Getting started guide, API docs, recipes, making a plugin, etc. see the [documentation page](/docs/README.md)!
 
 ## Sample `gulpfile.js`
 
 This file will give you a taste of what gulp does.
+
+Note: As of Node v4, we're able to use some features of ES6 without the need for Babel. However "import" modules are not currently supported. Without Babel you'll still need to use `require()`.
+
+### ES6
+
+```js
+'use strict';
+
+import gulp from 'gulp';
+import coffee from 'gulp-coffee';
+import uglify from 'gulp-uglify';
+import imagemin from 'gulp-imagemin';
+import sourcemaps from 'gulp-sourcemaps';
+import del from 'del';
+
+const dirs = {
+  src: 'client',
+  dist: 'build'
+};
+
+const paths = {
+  scripts: ['${dirs.src}/js/**/*.coffee', '!${dirs.src}/external/**/*.coffee'],
+  images: '${dirs.src}/img/**/*'
+};
+
+gulp.task('scripts', ['clean'], () => {
+  // Minify and copy all JavaScript (except vendor scripts)
+  // with sourcemaps all the way down
+  return gulp.src(paths.scripts)
+    .pipe(sourcemaps.init())
+      .pipe(coffee())
+      .pipe(uglify())
+      .pipe(concat('all.min.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('${dirs.dist}/js'));
+});
+
+// Copy all static images
+gulp.task('images', ['clean'], () => {
+  return gulp.src(paths.images)
+    // Pass in options to the task
+    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest('${dirs.dist}/img'));
+});
+
+// Rerun the task when a file changes
+gulp.task('watch', () => {
+  gulp.watch(paths.scripts, ['scripts']);
+  gulp.watch(paths.images, ['images']);
+});
+
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', ['watch', 'scripts', 'images']);
+```
+
+### ES5
+Here's the same Gulpfile using ES5.
 
 ```js
 var gulp = require('gulp');
@@ -39,16 +93,40 @@ var paths = {
   images: 'client/img/**/*'
 };
 
-// Not all tasks need to use streams
-// A gulpfile is just another node program and you can use any package available on npm
-gulp.task('clean', function() {
-  // You can use multiple globbing patterns as you would with `gulp.src`
-  return del(['build']);
-});
+/* Register some tasks to expose to the cli */
+gulp.task('build', gulp.series(
+  clean,
+  gulp.parallel(scripts, images)
+));
+gulp.task(clean);
+gulp.task(watch);
 
-gulp.task('scripts', ['clean'], function() {
-  // Minify and copy all JavaScript (except vendor scripts)
-  // with sourcemaps all the way down
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', gulp.series('build'));
+
+
+/* Define our tasks using plain functions */
+
+// Not all tasks need to use streams
+// A gulpfile is just another node program and you can use all packages available on npm
+// But it must return either a Promise or Stream or take a Callback and call it
+function clean() {
+  // You can use multiple globbing patterns as you would with `gulp.src`
+  // If you are using del 2.0 or above, return its promise
+  return del(['build']);
+}
+
+// Copy all static images
+function images() {
+  return gulp.src(paths.images)
+    // Pass in options to the task
+    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest('build/img'));
+}
+
+// Minify and copy all JavaScript (except vendor scripts)
+// with sourcemaps all the way down
+function scripts() {
   return gulp.src(paths.scripts)
     .pipe(sourcemaps.init())
       .pipe(coffee())
@@ -56,48 +134,86 @@ gulp.task('scripts', ['clean'], function() {
       .pipe(concat('all.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/js'));
-});
-
-// Copy all static images
-gulp.task('images', ['clean'], function() {
-  return gulp.src(paths.images)
-    // Pass in options to the task
-    .pipe(imagemin({optimizationLevel: 5}))
-    .pipe(gulp.dest('build/img'));
-});
+}
 
 // Rerun the task when a file changes
-gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['scripts']);
-  gulp.watch(paths.images, ['images']);
-});
-
-// The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'scripts', 'images']);
+function watch() {
+  gulp.watch(paths.scripts, scripts);
+  gulp.watch(paths.images, images);
+}
 ```
 
 ## Incremental Builds
 
-We recommend these plugins:
+You can filter out unchanged files between runs of a task using
+the `gulp.src` function's `since` option and `gulp.lastRun`:
+```js
+function images() {
+  return gulp.src(paths.images, {since: gulp.lastRun('images')})
+    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest('build/img'));
+}
 
-- [gulp-changed](https://github.com/sindresorhus/gulp-changed) - only pass through changed files
-- [gulp-cached](https://github.com/contra/gulp-cached) - in-memory file cache, not for operation on sets of files
-- [gulp-remember](https://github.com/ahaurw01/gulp-remember) - pairs nicely with gulp-cached
-- [gulp-newer](https://github.com/tschaub/gulp-newer) - pass through newer source files only, supports many:1 source:dest
+function watch() {
+  gulp.watch(paths.images, images);
+}
+```
+Task run times are saved in memory and are lost when gulp exits. It will only
+save time during the `watch` task when running the `images` task
+for a second time.
+
+If you want to compare modification time between files instead, we recommend these plugins:
+- [gulp-changed];
+- or [gulp-newer] - supports many:1 source:dest.
+
+[gulp-newer] example:
+```js
+function images() {
+  var dest = 'build/img';
+  return gulp.src(paths.images)
+    .pipe(newer(dest))  // pass through newer images only
+    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest(dest));
+}
+```
+
+If you can't simply filter out unchanged files, but need them in a later phase
+of the stream, we recommend these plugins:
+- [gulp-cached] - in-memory file cache, not for operation on sets of files
+- [gulp-remember] - pairs nicely with gulp-cached
+
+[gulp-remember] example:
+```js
+function scripts() {
+  return gulp.src(scriptsGlob)
+    .pipe(cache('scripts'))    // only pass through changed files
+    .pipe(header('(function () {')) // do special things to the changed files...
+    .pipe(footer('})();'))     // for example,
+                               // add a simple module wrap to each file
+    .pipe(remember('scripts')) // add back all files to the stream
+    .pipe(concat('app.js'))    // do things that require all files
+    .pipe(gulp.dest('public/'))
+}
+```
 
 ## Want to contribute?
 
 Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
 
-[downloads-image]: https://img.shields.io/npm/dm/gulp.svg
-[npm-url]: https://www.npmjs.com/package/gulp
-[npm-image]: https://img.shields.io/npm/v/gulp.svg
+[downloads-image]: http://img.shields.io/npm/dm/gulp.svg
+[npm-url]: https://npmjs.org/package/gulp
+[npm-image]: http://img.shields.io/npm/v/gulp.svg
 
 [travis-url]: https://travis-ci.org/gulpjs/gulp
-[travis-image]: https://img.shields.io/travis/gulpjs/gulp.svg
+[travis-image]: http://img.shields.io/travis/gulpjs/gulp.svg
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg
+[coveralls-image]: http://img.shields.io/coveralls/gulpjs/gulp/master.svg
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.png
+
+[gulp-cached]: https://github.com/wearefractal/gulp-cached
+[gulp-remember]: https://github.com/ahaurw01/gulp-remember
+[gulp-changed]: https://github.com/sindresorhus/gulp-changed
+[gulp-newer]: https://github.com/tschaub/gulp-newer
