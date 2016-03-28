@@ -24,12 +24,12 @@ This file is just a quick sample to give you a taste of what gulp does.
 
 ```js
 var gulp = require('gulp');
-var rename = require('gulp-rename');
 var less = require('gulp-less');
-var cssmin = require('gulp-cssmin');
-var coffee = require('gulp-coffee');
+var babel = require('gulp-babel');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var cleanCSS = require('gulp-clean-css');
 var del = require('del');
 
 var paths = {
@@ -38,7 +38,7 @@ var paths = {
     dest: 'assets/styles/'
   },
   scripts: {
-    src: 'src/scripts/**/*.coffee',
+    src: 'src/scripts/**/*.js',
     dest: 'assets/scripts/'
   }
 };
@@ -47,48 +47,57 @@ var paths = {
  * and you can use all packages available on npm, but it must return either a
  * Promise, a Stream or take a callback and call it
  */
-export.clean = function clean() {
+function clean() {
   // You can use multiple globbing patterns as you would with `gulp.src`,
   // for example if you are using del 2.0 or above, return its promise
   return del([ 'assets' ]);
 }
 
-/* 
+/*
  * Define our tasks using plain functions
  */
-export.styles = function styles() {
+function styles() {
   return gulp.src(paths.styles.src)
     .pipe(less())
-    .pipe(cssmin())
-    // pass in options to the task
+    .pipe(cleanCSS())
+    // pass in options to the stream
     .pipe(rename({
-          basename: 'main',
-          suffix: '.min'
-        }))
+      basename: 'main',
+      suffix: '.min'
+    }))
     .pipe(gulp.dest(paths.styles.dest));
 }
 
-/*
- * You can use CommonJS module notation to declare tasks
- */
-export.scripts = function scripts() {
+function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
-    .pipe(coffee())
+    .pipe(babel())
     .pipe(uglify())
     .pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
-export.watch = function watch() {
+function watch() {
   gulp.watch(paths.scripts.src, scripts);
   gulp.watch(paths.styles.src, styles);
 }
 
-/* 
- * You can still use gulp.task to expose tasks and specify if tasks
- * can run in parallel or not using `gulp.series` and `gulp.parallel`
+/*
+ * You can use CommonJS `exports` module notation to declare tasks
  */
-gulp.task('build', gulp.series(clean, gulp.parallel(styles, scripts)));
+exports.clean = clean;
+exports.styles = styles;
+exports.scripts = scripts;
+exports.watch = watch;
+
+/*
+ * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
+ */
+var build = gulp.series(clean, gulp.parallel(styles, scripts));
+
+/*
+ * You can still use `gulp.task` to expose tasks
+ */
+gulp.task('build', build);
 
 /*
  * Define default task that can be called by just running `gulp` from cli
@@ -101,7 +110,7 @@ gulp.task('default', build);
 Node already supports a lot of **ES2015**, to avoid compatibility problem we suggest to install Babel and rename your `gulpfile.js` as `gulpfile.babel.js`.
 
 ```sh
-npm install --save-dev babel-core -babel-preset-es2015
+npm install --save-dev babel-register babel-preset-es2015
 ```
 
 Then create a **.babelrc** file with the preset configuration.
@@ -116,12 +125,12 @@ And here's the same sample from above written in **ES2015**.
 
 ```js
 import gulp from 'gulp';
-import rename from 'gulp-rename';
 import less from 'gulp-less';
-import cssmin from 'gulp-cssmin';
-import coffee from 'gulp-coffee';
+import babel from 'gulp-babel';
 import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
+import rename from 'gulp-rename';
+import cleanCSS from 'gulp-clean-css';
 import del from 'del';
 
 const paths = {
@@ -130,19 +139,16 @@ const paths = {
     dest: 'assets/styles/'
   },
   scripts: {
-    src: 'src/scripts/**/*.coffee',
+    src: 'src/scripts/**/*.js',
     dest: 'assets/scripts/'
   }
 };
 
-function clean() {
-  return del([ 'assets' ]);
-}
-
 /*
  * For small tasks you can use arrow functions and export
  */
-export () => del([ 'assets' ]) as clean;
+const clean = () => del([ 'assets' ]);
+export { clean };
 
 /*
  * You can still declare named functions and export them as tasks
@@ -150,17 +156,18 @@ export () => del([ 'assets' ]) as clean;
 export function styles() {
   return gulp.src(paths.styles.src)
     .pipe(less())
-    .pipe(cssmin())
+    .pipe(cleanCSS())
+    // pass in options to the stream
     .pipe(rename({
-          basename: 'main',
-          suffix: '.min'
-        }))
+      basename: 'main',
+      suffix: '.min'
+    }))
     .pipe(gulp.dest(paths.styles.dest));
 }
 
 export function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
-    .pipe(coffee())
+    .pipe(babel())
     .pipe(uglify())
     .pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest));
@@ -171,9 +178,13 @@ export function watch() {
   gulp.watch(paths.styles.src, styles);
 }
 
-gulp.task('build', gulp.series(clean, gulp.parallel(styles, scripts)));
+const build = gulp.series(clean, gulp.parallel(styles, scripts));
+export { build };
 
-gulp.task('default', build);
+/*
+ * Export a default task
+ */
+export default build;
 ```
 
 ## Incremental Builds
