@@ -20,6 +20,7 @@
 * [Using multiple sources in one task](using-multiple-sources-in-one-task.md)
 * [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemap.md)
 * [Browserify + Globs](browserify-with-globs.md)
+* [Browserify + Globs (multiple destination)](browserify-multiple-destination.md)
 * [Output both a minified and non-minified version](minified-and-non-minified.md)
 * [Templating with Swig and YAML front-matter](templating-with-swig-and-yaml-front-matter.md)
 * [Exports as tasks](exports-as-tasks.md)
