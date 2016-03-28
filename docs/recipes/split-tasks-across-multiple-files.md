@@ -3,6 +3,9 @@
 If your `gulpfile.js` is starting to grow too large, you can split
 the tasks into separate files using one of the methods below.
 
+> Be advised, that this approach is [considered deprecated][deprecated]
+> and could lead to problems when migrating to the `gulp 4`.
+
 
 ## Using `gulp-require-tasks`
 
@@ -41,3 +44,4 @@ var tasks = requireDir('./tasks');
 
   [gulp-require-tasks]: https://github.com/betsol/gulp-require-tasks
   [require-dir]:        https://github.com/aseemk/requireDir
+  [deprecated]:         https://github.com/gulpjs/gulp/pull/1554#issuecomment-202614391
