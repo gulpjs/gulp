@@ -295,7 +295,7 @@ The callback will be passed an object, `event`, that describes the change:
 ##### event.type
 Type: `String`
 
-The type of change that occurred, either `added`, `changed` or `deleted`.
+The type of change that occurred, either `added`, `changed`, `deleted` or `renamed`.
 
 ##### event.path
 Type: `String`
