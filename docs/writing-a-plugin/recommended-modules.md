@@ -10,7 +10,7 @@ Use [replace-ext](https://github.com/wearefractal/replace-ext)
 
 #### Errors
 
-Use [BetterError](https://github.com/wearefractal/BetterError) when it is finished
+Use [BetterError](https://github.com/contra/BetterError) when it is finished
 
 #### String colors
 
