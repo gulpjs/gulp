@@ -44,7 +44,7 @@ Post on [StackOverflow with a #gulp tag](https://stackoverflow.com/questions/tag
 * [Get started with gulp (video series)](https://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
 * [Optimize your web code with gulp](http://www.linuxuser.co.uk/tutorials/optimise-your-web-code-with-gulp-js)
 * [Automate Your Tasks Easily with Gulp.js ](https://scotch.io/tutorials/automate-your-tasks-easily-with-gulp-js)
-
+* [How to upgrade to Gulp v4](https://www.liquidlight.co.uk/blog/article/how-do-i-update-to-gulp-4/)
 
 ## Examples
 
