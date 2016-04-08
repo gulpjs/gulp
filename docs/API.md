@@ -177,6 +177,17 @@ gulp.task('jekyll', function(cb) {
     cb(); // finished task
   });
 });
+
+// use an async result in a pipe
+gulp.task('somename', function(cb) {
+  getFilesAsync(function(err, res) {
+    if (err) return cb(err);
+    var stream = gulp.src(res)
+      .pipe(minify())
+      .pipe(gulp.dest('build'))
+      .on('end', cb);
+  });
+});
 ```
 
 ##### Return a stream
