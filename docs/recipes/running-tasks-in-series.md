@@ -41,7 +41,7 @@ gulp.task('templates', gulp.series('clean', function() {
   return gulp.src(['src/templates/*.hbs'])
     // do some concatenation, minification, etc.
     .pipe(gulp.dest('output/templates/'));
-});
+}));
 
 gulp.task('styles', gulp.series('clean', function() {
   return gulp.src(['src/styles/app.less'])
