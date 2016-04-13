@@ -43,6 +43,6 @@ With the aforementioned approach the grunt tasks get registered within gulp's ta
 There's a *gulpfriendly* node module `gulp-grunt` [available](https://www.npmjs.org/package/gulp-grunt) which takes a different approach. It spawns child processes and within them the grunt tasks are executed. The way it works implies some limitations though:
 
 * It is at the moment not possible to pass options / cli args etc. to the grunt tasks via `gulp-grunt`
-* All grunt tasks have to be defined in a seperate Gruntfile
+* All grunt tasks have to be defined in a separate Gruntfile
 * You need to have the Grunt CLI installed
 * The output of some grunt tasks gets malformatted (.i.e. color coding).
