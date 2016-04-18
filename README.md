@@ -196,14 +196,22 @@ export default build;
 You can filter out unchanged files between runs of a task using
 the `gulp.src` function's `since` option and `gulp.lastRun`:
 ```js
+const paths = {
+  ...
+  images: {
+    src: 'src/images/**/*.{jpg,jpeg,png}',
+    dest: 'build/img/'
+  }
+}
+
 function images() {
-  return gulp.src(paths.images, {since: gulp.lastRun('images')})
+  return gulp.src(paths.images.src, {since: gulp.lastRun('images')})
     .pipe(imagemin({optimizationLevel: 5}))
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest(paths.images.dest));
 }
 
 function watch() {
-  gulp.watch(paths.images, images);
+  gulp.watch(paths.images.src, images);
 }
 ```
 Task run times are saved in memory and are lost when gulp exits. It will only
