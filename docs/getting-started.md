@@ -11,6 +11,8 @@ $ npm install --global gulp-cli
 
 #### 2. Install gulp in your project devDependencies:
 
+__notice: Before gulp 4.0 publishs, you need to install it by another way.__
+
 ```sh
 $ npm install --save-dev gulp
 ```
