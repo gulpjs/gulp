@@ -1,6 +1,6 @@
 # Browserify + Globs
 
-[Browserify + Uglify2](https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md) shows how to setup a basic gulp task to bundle a JavaScript file with it's dependencies, and minify the bundle with UglifyJS while preserving source maps.
+[Browserify + Uglify2](https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md) shows how to setup a basic gulp task to bundle a JavaScript file with its dependencies, and minify the bundle with UglifyJS while preserving source maps.
 It does not, however, show how one may use gulp and Browserify with multiple entry files.
 
 See also: the [Combining Streams to Handle Errors](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) recipe for handling errors with Browserify or UglifyJS in your stream.
