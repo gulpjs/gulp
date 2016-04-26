@@ -29,7 +29,7 @@ var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
 
 gulp.task('default', function() {
-      gulp.watch('src/*.js', ['mocha']);
+      gulp.watch(['lib/**', 'test/**'], ['mocha']);
 });
 
 gulp.task('mocha', function() {
