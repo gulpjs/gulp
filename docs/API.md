@@ -7,7 +7,7 @@
 * [gulp.lastRun](#gulplastruntaskname-timeresolution) - Get timestamp of last successful run
 * [gulp.parallel](#gulpparalleltasks) - Run tasks in parallel
 * [gulp.series](#gulpseriestasks) - Run tasks in series
-* [gulp.watch](#gulpwatchglob-opts-fn) - Do something when a file changes
+* [gulp.watch](#gulpwatchglobs-opts-fn) - Do something when a file changes
 * [gulp.tree](#gulptreeoptions) - Get the tree of tasks
 * [gulp.registry](#gulpregistryregistry) - Get or set the task registry
 
