@@ -1,58 +1,51 @@
-# gulp documentation
+## Table of Contents
 
-* [Getting Started](getting-started.md) - How to get going with gulp
-* [API documentation](API.md) - Learn the ins and outs of using gulp
-* [CLI documentation](CLI.md) - Learn how to call tasks and use compilers
-* [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
-* [Spanish documentation][SpanishDocs] - gulp en Español.
-
-
-## FAQ
-
-See the [FAQ](FAQ.md) for the answers to commonly asked questions.
-
-
-## Recipes
-
-The community has written [recipes](recipes#recipes) for common gulp use-cases.
-
-
-## Still got questions?
-
-Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagged/gulp), or come chat with us in [#gulpjs](http://webchat.freenode.net/?channels=gulpjs) on [Freenode](http://freenode.net/).
-
-## Videos
-* [Intro to Gulp 4](https://youtu.be/N42LQ2dLoA8) presented by @addyosmani and @gauntface
-
-## Books
-* [Developing a gulp Edge](http://shop.oreilly.com/product/9781939902146.do)
-
-
-## Articles
-* [Tagtree intro to gulp video](http://tagtree.tv/gulp)
-* [Introduction to node.js streams](https://github.com/substack/stream-handbook)
-* [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
-* [Getting started with gulp (by @markgdyr)](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
-* [A cheatsheet for gulp](https://github.com/osscafe/gulp-cheatsheet)
-* [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
-* [Inspiration (slides) about why gulp was made](http://slid.es/contra/gulp)
-* [Building With Gulp](http://www.smashingmagazine.com/2014/06/11/building-with-gulp/)
-* [Gulp - The Basics (screencast)](https://www.youtube.com/watch?v=dwSLFai8ovQ)
-* [Get started with gulp (video series)](http://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
-* [Optimize your web code with gulp](http://www.linuxuser.co.uk/tutorials/optimise-your-web-code-with-gulp-js)
-* [How to upgrade to Gulp v4](https://www.liquidlight.co.uk/blog/article/how-do-i-update-to-gulp-4/)
-
-## Examples
-
-- [Web Starter Kit gulpfile](https://github.com/google/web-starter-kit/blob/master/gulpfile.js)
-
-
-## License
-
-All the documentation is covered by the CC0 license *(do whatever you want with it - public domain)*.
-
-[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
-
-To the extent possible under law, [Fractal](http://wearefractal.com) has waived all copyright and related or neighboring rights to this work.
-
-[SpanishDocs]: https://github.com/bucaran/gulp-docs-es
+* [Readme](/README.md)
+* [Getting Started](getting-started.md)
+* [API Documentation](api/README.md)
+  * [gulp.src](api/src.md)
+  * [gulp.dest](api/dest.md)
+  * [gulp.symlink](api/symlink.md)
+  * [gulp.task](api/task.md)
+  * [gulp.lastRun](api/last-run.md)
+  * [gulp.parallel](api/parallel.md)
+  * [gulp.series](api/series.md)
+  * [gulp.watch](api/watch.md)
+  * [gulp.registry](api/registry.md)
+  * [gulp.tree](api/tree.md)
+* [Command Line Documentation](command-line/README.md)
+* [Plugins](plugins/README.md)
+  * [Usage](plugins/usage.md)
+  * [Discovery](plugins/discovery.md)
+  * [Blacklist](plugins/blacklist.md)
+* [Plugin Authors](plugin-authors/README.md)
+  * [Guidelines](plugin-authors/guidelines.md)
+  * [Streams](plugin-authors/streams.md)
+  * [Buffers](plugin-authors/buffers.md)
+  * [Testing](plugin-authors/testing.md)
+  * [Recommended Modules](plugin-authors/recommended-modules.md)
+* [Recipes](recipes/README.md)
+  * [Combining streams to handle errors](recipes/combining-streams-to-handle-errors.md)
+  * [Delete files and folders](recipes/delete-files-folder.md)
+  * [Fast browserify builds with watchify](recipes/fast-browserify-builds-with-watchify.md)
+  * [Incremental rebuilding, including operating on full file sets](recipes/incremental-builds-with-concatenate.md)
+  * [Make stream from buffer (memory contents)](recipes/make-stream-from-buffer.md)
+  * [Mocha test-runner with gulp](recipes/mocha-test-runner-with-gulp.md)
+  * [Only pass through changed files](recipes/only-pass-through-changed-files.md)
+  * [Pass parameters from the command line](recipes/pass-arguments-from-cli.md)
+  * [Rebuild only files that change](recipes/rebuild-only-files-that-change.md)
+  * [Generating a file per folder](recipes/running-task-steps-per-folder.md)
+  * [Running tasks in series](recipes/running-tasks-in-series.md)
+  * [Server with live-reloading and CSS injection](recipes/server-with-livereload-and-css-injection.md)
+  * [Sharing streams with stream factories](recipes/sharing-streams-with-stream-factories.md)
+  * [Specifying a new cwd (current working directory)](recipes/specifying-a-cwd.md)
+  * [Split tasks across multiple files](recipes/split-tasks-across-multiple-files.md)
+  * [Using external config file](recipes/using-external-config-file.md)
+  * [Using multiple sources in one task](recipes/using-multiple-sources-in-one-task.md)
+  * [Browserify + Uglify with sourcemaps](recipes/browserify-uglify-sourcemap.md)
+  * [Browserify + Globs](recipes/browserify-with-globs.md)
+  * [Output both a minified and non-minified version](recipes/minified-and-non-minified.md)
+  * [Bump project version, and create new tag in Git](recipes/bump-version-and-create-git-tag.md)
+  * [Templating with Swig and YAML front-matter](recipes/templating-with-swig-and-yaml-front-matter.md)
+  * [Running shell commands](recipes/running-shell-commands.md)
+* [FAQ](faq.md)
