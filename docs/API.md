@@ -481,27 +481,30 @@ Type: `Array`, `String` or `Function`
 A task name, a function or an array of either.
 
 
-### gulp.watch(glob[, opts][, fn])
+### gulp.watch(globs[, opts][, fn])
 
-Watch files and do something when a file changes.
-File watching is provided by the [`chokidar`][chokidar] module.
-Please report any file watching problems directly to its
-[issue tracker](https://github.com/paulmillr/chokidar/issues).
+Takes a path string, an array of path strings, a [glob][node-glob] string or an array of [glob][node-glob] strings as `globs` to watch on the filesystem. Also optionally takes `options` to configure the watcher and a `fn` to execute when a file changes.
+
+Returns an instance of [`chokidar`][chokidar].
 
 ```js
-gulp.watch('js/**/*.js', gulp.parallel('uglify', 'reload'));
+gulp.watch('js/**/*.js', gulp.parallel('concat', 'uglify'));
 ```
 
 In the example, `gulp.watch` runs the function returned by `gulp.parallel` each
 time a file with the `js` extension in `js/` is updated.
 
-#### glob
+#### globs
 Type: `String` or `Array`
 
-A single glob or array of globs that indicate which files to watch for changes.
+A path string, an array of path strings, a [glob][node-glob] string or an array of [glob][node-glob] strings that indicate which files to watch for changes.
 
 #### opts
 Type: `Object`
+
+* `delay` (milliseconds, default: `200`). The delay to wait before triggering the fn. Useful for waiting on many changes before doing the work on changed files, e.g. find-and-replace on many files.
+* `queue` (boolean, default: `true`). Whether or not a file change should queue the fn execution if the fn is already running. Useful for a long running fn.
+* `ignoreInitial` (boolean, default: `true`). If set to `false` the `fn` is called during [chokidar][chokidar] instantiation as it discovers the file paths. Useful if it is desirable to trigger the `fn` during startup. __Passed through to [chokidar][chokidar], but defaulted to `true` instead of `false`.__
 
 Options that are passed to [`chokidar`][chokidar].
 
@@ -525,17 +528,21 @@ Read about the full set of options in [`chokidar`'s README][chokidar].
 #### fn
 Type: `Function`
 
-An [async](#async-support) function to run when a file changes. Does not provide
-access to the `path` parameter.
+If the `fn` is passed, it will be called when the watcher emits a `change`, `add` or `unlink` event. It is automatically debounced with a default delay of 200 milliseconds and subsequent calls will be queued and called upon completion. These defaults can be changed using the `options`.
 
-`gulp.watch` returns a wrapped [chokidar] FSWatcher object. If provided,
-the callback will be triggered upon any `add`, `change`, or `unlink` event.
-Listeners can also be set directly for any of [chokidar]'s events, such as
-`addDir`, `unlinkDir`, and `error`. You must set listeners directly to get
+The `fn` is passed a single argument, `callback`, which is a function that must be called when work in the `fn` is complete. Instead of calling the `callback` function, [async completion][async-completion] can be signalled by:
+  * Returning a `Stream` or `EventEmitter`
+  * Returning a `Child Process`
+  * Returning a `Promise`
+  * Returning an `Observable`
+
+Once async completion is signalled, if another run is queued, it will be executed.
+
+`gulp.watch` returns a wrapped [chokidar] FSWatcher object. Listeners can also be set directly for any of [chokidar]'s events, such as `addDir`, `unlinkDir`, and `error`. You must set listeners directly to get
 access to chokidar's callback parameters, such as `path`.
 
 ```js
-var watcher = gulp.watch('js/**/*.js', gulp.parallel('uglify', 'reload'));
+var watcher = gulp.watch('js/**/*.js', gulp.parallel('concat', 'uglify'));
 watcher.on('change', function(path, stats) {
   console.log('File ' + path + ' was changed');
 });
@@ -779,7 +786,7 @@ module.exports = new MyCompanyTasksRegistry();
 
 [Function.name]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name
 [chokidar]: https://github.com/paulmillr/chokidar
-[glob-stream]: https://github.com/wearefractal/glob-stream
+[glob-stream]: https://github.com/gulpjs/glob-stream
 [glob2base]: https://github.com/wearefractal/glob2base
 [gulp-if]: https://github.com/robrich/gulp-if
 [node-glob documentation]: https://github.com/isaacs/node-glob#options
@@ -792,3 +799,4 @@ module.exports = new MyCompanyTasksRegistry();
 [vinyl File instance]: https://github.com/wearefractal/vinyl
 [Vinyl files]: https://github.com/wearefractal/vinyl-fs
 [fs stats]: https://nodejs.org/api/fs.html#fs_class_fs_stats
+[async-completion]: https://github.com/gulpjs/async-done#completion-and-error-resolution
