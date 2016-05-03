@@ -18,3 +18,5 @@ export default function dev() {
   gulp.watch('src/*.js', ['build']);
 }
 ```
+
+This will **not** work with the gulp-cli version bundled with gulp 3.x. You must use the latest published version.
