@@ -108,7 +108,7 @@ Default: `0777`
 
 Octal permission string specifying mode for any folders that need to be created for output folder.
 
-### gulp.task(name [, deps, fn])
+### gulp.task(name [, deps] [, fn])
 
 Define a task using [Orchestrator].
 
