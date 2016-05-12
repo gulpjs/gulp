@@ -48,6 +48,15 @@ Options to pass to [node-glob] through [glob-stream].
 gulp adds some additional options in addition to the
 [options supported by node-glob][node-glob documentation] and [glob-stream]:
 
+##### options.cwd
+
+The working directory the folder is relative to.
+
+Type: `String`
+
+Default: `process.cwd()`
+
+
 ##### options.buffer
 Type: `Boolean`
 
