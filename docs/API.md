@@ -3,7 +3,7 @@
 Jump to:
   [gulp.src](#gulpsrcglobs-options) |
   [gulp.dest](#gulpdestpath-options) |
-  [gulp.task](#gulptaskname--deps-fn) |
+  [gulp.task](#gulptaskname--deps--fn) |
   [gulp.watch](#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb)
 
 ### gulp.src(globs[, options])
