@@ -3,7 +3,7 @@
 Jump to:
   [gulp.src](#gulpsrcglobs-options) |
   [gulp.dest](#gulpdestpath-options) |
-  [gulp.task](#gulptaskname--deps-fn) |
+  [gulp.task](#gulptaskname--deps--fn) |
   [gulp.watch](#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb)
 
 ### gulp.src(globs[, options])
@@ -108,7 +108,7 @@ Default: `0777`
 
 Octal permission string specifying mode for any folders that need to be created for output folder.
 
-### gulp.task(name [, deps, fn])
+### gulp.task(name [, deps] [, fn])
 
 Define a task using [Orchestrator].
 
