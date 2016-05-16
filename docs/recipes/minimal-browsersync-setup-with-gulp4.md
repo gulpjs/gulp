@@ -94,14 +94,16 @@ This is trivially accomplished with `gulp.series`
 const watch = () => gulp.watch(paths.scripts.src, gulp.series(scripts, reload));
 ```
 
-### 4. Expose the default task
+## Step 4: Bring it all together
+
+The last step is to expose the default task
 
 ```javascript
 const dev = gulp.series(clean, scripts, serve, watch);
 export default dev;
 ```
 
-### 5. And profit
+And profit
 
 ```bash
 $ gulp
@@ -139,7 +141,7 @@ function scripts() {
 }
 
 function reload(done) {
-  browserSync.reload();
+  server.reload();
   done();
 }
 
