@@ -94,10 +94,10 @@ Anyone can help make this project better - check out our [Contributing guide](/C
 [npm-image]: https://img.shields.io/npm/v/gulp.svg
 
 [travis-url]: https://travis-ci.org/gulpjs/gulp
-[travis-image]: https://img.shields.io/travis/gulpjs/gulp.svg
+[travis-image]: https://img.shields.io/travis/gulpjs/gulp/master.svg
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
-[gitter-image]: https://badges.gitter.im/gulpjs/gulp.png
+[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
