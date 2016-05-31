@@ -5,7 +5,7 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][dependency-image]][dependency-url] [![Gitter chat][gitter-image]][gitter-url]
 
 ## What is gulp?
 
@@ -98,6 +98,9 @@ Anyone can help make this project better - check out our [Contributing guide](/C
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg
+
+[dependency-url]: https://david-dm.org/gulpjs/gulp
+[dependency-image]: https://david-dm.org/gulpjs/gulp.svg
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
