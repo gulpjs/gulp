@@ -29,6 +29,7 @@
     "archy": "^1.0.0",
     "chalk": "^1.0.0",
     "deprecated": "^0.0.1",
+    "glob-watcher": "^3.0.0",
     "gulp-util": "^3.0.0",
     "interpret": "^1.0.0",
     "liftoff": "^2.1.0",
@@ -38,13 +39,13 @@
     "semver": "^4.1.0",
     "tildify": "^1.0.0",
     "v8flags": "^2.0.2",
-    "vinyl-fs": "^0.3.0"
+    "vinyl-fs": "^2.0.0"
   },
   "devDependencies": {
     "coveralls": "^2.7.0",
     "eslint": "^1.7.3",
     "eslint-config-gulp": "^2.0.0",
-    "graceful-fs": "^3.0.0",
+    "graceful-fs": "^4.0.0",
     "istanbul": "^0.3.0",
     "jscs": "^2.3.5",
     "jscs-preset-gulp": "^1.0.0",
