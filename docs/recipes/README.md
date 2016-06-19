@@ -25,3 +25,4 @@
 * [Templating with Swig and YAML front-matter](templating-with-swig-and-yaml-front-matter.md)
 * [Run Grunt Tasks from Gulp](run-grunt-tasks-from-gulp.md)
 * [Exports as tasks](exports-as-tasks.md)
+* [Rollup with rollup-stream](rollup-with-rollup-stream.md)
