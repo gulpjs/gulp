@@ -51,7 +51,7 @@ gulp.task('rollup', function() {
         // transform the code further here.
 
     // if you want to output with a different name from the input file, use gulp-rename here.
-//  .pipe(rename('index.js'))
+    //.pipe(rename('index.js'))
 
     // write the sourcemap alongside the output file.
     .pipe(sourcemaps.write('.'))
