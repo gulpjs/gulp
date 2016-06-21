@@ -40,9 +40,9 @@
 
 - add babel support
 - add transpiler fallback support
-- add support for some renamed transpilers (livescript, etc)
+- add support for some renamed transpilers: livescript, etc
 - add JSCS
-- update dependecies (liftoff, interpret)
+- update dependencies (liftoff, interpret)
 - documentation tweaks
 
 ## 3.8.11
