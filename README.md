@@ -5,7 +5,9 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url] [![OpenCollective](https://opencollective.com/gulpjs/backers/badge.svg)](#backers) 
+[![OpenCollective](https://opencollective.com/gulpjs/sponsors/badge.svg)](#sponsors)
+
 
 ## What is gulp?
 
@@ -101,3 +103,73 @@ Anyone can help make this project better - check out our [Contributing guide](/C
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
+
+
+## Backers
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/gulpjs#backer)]
+
+<a href="https://opencollective.com/gulpjs/backer/0/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/1/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/2/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/3/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/4/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/5/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/6/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/7/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/8/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/9/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/10/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/11/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/12/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/13/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/14/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/15/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/16/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/17/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/18/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/19/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/20/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/21/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/22/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/23/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/24/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/25/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/26/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/27/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/28/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/backer/29/website" target="_blank"><img src="https://opencollective.com/gulpjs/backer/29/avatar.svg"></a>
+
+
+## Sponsors
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/gulpjs#sponsor)]
+
+<a href="https://opencollective.com/gulpjs/sponsor/0/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/1/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/2/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/3/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/4/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/5/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/6/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/7/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/8/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/9/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/10/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/11/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/12/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/13/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/14/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/15/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/16/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/17/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/18/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/19/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/20/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/21/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/22/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/23/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/24/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/25/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/26/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/27/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/28/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/gulpjs/sponsor/29/website" target="_blank"><img src="https://opencollective.com/gulpjs/sponsor/29/avatar.svg"></a>
