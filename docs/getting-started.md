@@ -9,13 +9,19 @@ to make sure your old version doesn't collide with gulp-cli.__
 $ npm install --global gulp-cli
 ```
 
-#### 2. Install gulp in your project devDependencies:
+#### 2. Initialize your project directory:
+
+```sh
+$ npm init
+```
+
+#### 3. Install gulp in your project devDependencies:
 
 ```sh
 $ npm install --save-dev gulp
 ```
 
-#### 3. Create a `gulpfile.js` at the root of your project:
+#### 4. Create a `gulpfile.js` at the root of your project:
 
 ```js
 var gulp = require('gulp');
@@ -25,7 +31,7 @@ gulp.task('default', function() {
 });
 ```
 
-#### 4. Run gulp:
+#### 5. Run gulp:
 
 ```sh
 $ gulp
