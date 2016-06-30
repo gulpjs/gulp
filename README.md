@@ -5,7 +5,8 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
+
 
 ## What is gulp?
 
@@ -89,6 +90,18 @@ We recommend these plugins:
 
 Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
 
+## Backers
+
+Support us with a monthly donation and help us continue our activities.
+
+[![Backers][backers-image]][members-url] [![Become a Backer][become-backer-image]][support-url]
+
+## Sponsors
+
+Become a sponsor to get your logo on our README on Github.
+
+[![Sponsors][sponsors-image]][members-url] [![Become a Sponsor][become-sponsor-image]][support-url]
+
 [downloads-image]: https://img.shields.io/npm/dm/gulp.svg
 [npm-url]: https://www.npmjs.com/package/gulp
 [npm-image]: https://img.shields.io/npm/v/gulp.svg
@@ -101,3 +114,16 @@ Anyone can help make this project better - check out our [Contributing guide](/C
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
+
+[backer-url]: #backers
+[backer-badge]: https://opencollective.com/gulpjs/backers/badge.svg?color=blue
+[sponsor-url]: #sponsors
+[sponsor-badge]: https://opencollective.com/gulpjs/sponsors/badge.svg?color=blue
+
+[members-url]: https://opencollective.com/gulpjs#members-wall
+[support-url]: https://opencollective.com/gulpjs#support
+
+[backers-image]: https://opencollective.com/gulpjs/backers.svg
+[become-backer-image]: https://opencollective.com/static/images/become_backer.svg
+[sponsors-image]: https://opencollective.com/gulpjs/sponsors.svg
+[become-sponsor-image]: https://opencollective.com/static/images/become_sponsor.svg
