@@ -22,7 +22,7 @@ var cli = new Liftoff({
   name: 'gulp',
   completions: completion,
   extensions: interpret.jsVariants,
-  v8flags: v8flags,
+  v8flags: v8flags
 });
 
 // Exit with 0 or 1
@@ -68,7 +68,7 @@ cli.launch({
   cwd: argv.cwd,
   configPath: argv.gulpfile,
   require: argv.require,
-  completion: argv.completion,
+  completion: argv.completion
 }, handleArguments);
 
 // The actual logic
