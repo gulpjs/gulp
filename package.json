@@ -29,6 +29,7 @@
     "archy": "^1.0.0",
     "chalk": "^1.0.0",
     "deprecated": "^0.0.1",
+    "glob-watcher": "^0.0.8",
     "gulp-util": "^3.0.0",
     "interpret": "^1.0.0",
     "liftoff": "^2.1.0",
@@ -38,7 +39,7 @@
     "semver": "^4.1.0",
     "tildify": "^1.0.0",
     "v8flags": "^2.0.2",
-    "vinyl-fs": "^0.3.0"
+    "vinyl-fs": "^2.4.3"
   },
   "devDependencies": {
     "coveralls": "^2.7.0",
