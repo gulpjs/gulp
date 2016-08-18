@@ -4,7 +4,10 @@ var util = require('util');
 var Orchestrator = require('orchestrator');
 var gutil = require('gulp-util');
 var deprecated = require('deprecated');
-var vfs = require('vinyl-fs');
+
+var vfsWrap = require('./vinyl-fs-wrap');
+vfsWrap.init();
+var vfs = vfsWrap.vfs;
 
 function Gulp() {
   Orchestrator.call(this);
