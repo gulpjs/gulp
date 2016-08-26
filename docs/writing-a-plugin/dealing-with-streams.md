@@ -2,7 +2,7 @@
 
 > It is highly recommended to write plugins supporting streams. Here is some information on creating a gulp plugin that supports streams.
 
-> Make sure to follow the best practice regarding error handling and add the line that make the gulp plugin re-emit the first error caught during the transformation of the content
+> Make sure to follow the best practices regarding error handling and add a line that makes the gulp plugin re-emit the first error caught during the transformation of the content.
 
 [Writing a Plugin](README.md) > Writing stream based plugins
 
