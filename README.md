@@ -78,11 +78,11 @@ gulp.task('scripts', ['clean'], function() {
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down
   return gulp.src(paths.scripts)
-    .pipe(sourcemaps.init())
-      .pipe(coffee())
-      .pipe(uglify())
-      .pipe(concat('all.min.js'))
-    .pipe(sourcemaps.write())
+    .pipe($.sourcemaps.init())
+      .pipe($.coffee())
+      .pipe($.uglify())
+      .pipe($.concat('all.min.js'))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('build/js'));
 });
 
@@ -90,7 +90,7 @@ gulp.task('scripts', ['clean'], function() {
 gulp.task('images', ['clean'], function() {
   return gulp.src(paths.images)
     // Pass in options to the task
-    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe($.imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
 });
 
