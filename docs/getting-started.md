@@ -6,7 +6,7 @@ __If you have previously installed a version of gulp globally, please run `npm r
 to make sure your old version doesn't collide with gulp-cli.__
 
 ```sh
-$ npm install --global gulp-cli
+$ npm install gulp-cli --global
 ```
 
 #### 2. Initialize your project directory:
@@ -18,7 +18,7 @@ $ npm init
 #### 3. Install gulp in your project devDependencies:
 
 ```sh
-$ npm install --save-dev gulp
+$ npm install gulp --save-dev
 ```
 
 #### 4. Create a `gulpfile.js` at the root of your project:
