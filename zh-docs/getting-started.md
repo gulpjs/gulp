@@ -43,7 +43,7 @@ $ gulp
 
 ## 现在我要去哪里？
 
-你现在有一个空的 gulpfile文件 ，并且安装了所需的一切。 你怎样真正地开始呢？ 查看 [recipes](参考手册)和[文章列表](README.md#articles) 获取更多信息。
+你现在有一个空的 gulpfile文件 ，并且安装了所需的一切。 你怎样真正地开始呢？ 查看 [参考手册](recipes)和[文章列表](README.md#articles) 获取更多信息。
 
 ## .src, .watch, .dest, CLI 参数列表 - 我如何使用这些东西呢？
 
