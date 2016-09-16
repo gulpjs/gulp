@@ -14,41 +14,42 @@ Why?
 >
 >Our function , needs to take a glob , and a width as inputs, and do its magic and push the file each run generates , to a destination and minify the responsified image.
 
+
+
+Recipe
+------
+ - INSTALL PLUGINS
+
 First up, install all the plugins we need
 - One plugin to responsify - or - scale our image to desired widths while maintaining aspect ratio
 - One plugin to rename the image as <image>-<width>.ext
 - One plugin to apply compression on the renamed image
 - One plugin to cache them all
-AND, Let a Function bind them all.
-
-Remember LOTR? 
+AND, Let a Function bind them all.Remember LOTR?
 
 ```bash
-bash $ npm install --save-dev gulp-responsive 
-bash $ npm install --save-dev gulp-imagemin 
+bash $ npm install --save-dev gulp-responsive
+bash $ npm install --save-dev gulp-imagemin
 bash $ npm install --save-dev imagemin
 bash $ npm install --save-dev imagemin-jpeg-recompress
-bash $ npm install --save-dev imagemin-pngquant 
-
+bash $ npm install --save-dev imagemin-pngquant
+bash $ npm install --save-dev gulp-cache
 ```
-
-Soo, the function is as shown below.
+ - Require everything we installed
 
 ```js
-var $ = require('gulp');
-/*
-require gulp-load-plugins, and call it, assigning it to a variable $$.
-gulp-load-plugins will require individually.,
-all the plugins installed in package.json at the root directory are required when required.
-plugins are available for perusal, via camelcased names, minus gulp
-eg: gulp-clean-css is accessed by $$.cleanCss
-*/
-var $$ = require('gulp-load-plugins')();
+var gulp = require('gulp');
+var responsive = require('gulp-responsive');
+var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
 
 //image lossy compression plugins
 var compressJpg = require('imagemin-jpeg-recompress');
 var pngquant = require('imagemin-pngquant');
+```
+ - Write the function
 
+```js
 /*
 @generateResponsiveImages
 *@Description:takes in a src of globs, to stream matching image files , a width,
@@ -62,19 +63,12 @@ var generateResponsiveImages = function(src, width, dest) {
     //declare a default destination
     if (!dest)
         dest = 'build/images';
-    //case 1: src glob -  images/**/*
-    // the base is the directory immediately preceeding the glob - images/ in this case
-    //case 2: images/fixed/flourish.png : the base here is images/fixed/ - we are overriding
-    // that by setting base to images.This is done so that, the path beginning after images/
-    // - is the path under our destination - without us setting the base, dest would be,
-    //build/images/flourish.png.But with us setting the base, the destination would be
-    // build/images/fixed/flourish.png
-    return $.src(src, {
+    return gulp.src(src, {
         base: 'images'
     })
 
     //generate resized images according to the width passed
-    .pipe($$.responsive({
+    .pipe(responsive({
             //match all pngs within the src stream
             '**/*.png': [{
                 width: width,
@@ -100,33 +94,33 @@ var generateResponsiveImages = function(src, width, dest) {
 
         }))
         //once the file is resized to width, minify it using the plugins available per format
-        .pipe($$.if('*.jpg', compressJpg({
+        .pipe(if('*.jpg', compressJpg({
             min: 30,
             max: 90,
             target: 0.5
         })()))
         //use file based cache gulp-cache and it will minify only changed or new files
         //if it is not a new file and if the contents havent changed, the file is served from cache
-        .pipe($$.cache($$.imagemin({
+        .pipe(cache(imagemin({
             verbose: true
         })))
 
 
     //write to destination - dest + path from base
-    .pipe($.dest(dest));
+    .pipe(gulp.dest(dest));
 }
 ```
-Add an array of widths you want to scale your images to
+ - Add an array of widths you want to scale your images to
 ```js
 //declare the widths at which you need to resize an image
 var widths = ['480', '640', '800', '960', '1280', '1600'];
 
 ```
-Now , create a task to invoke the function.
+ - Now , create a task to invoke the function
 ```js
 //Take in a callback to ensure notifying the gulp engine, that the task is done
 //required since, you are not returning a stream in this task
-$.task('generateResponsiveImages', function(callback) {
+gulp.task('generateResponsiveImages', function(callback) {
     var src = ['images/**/*.{jpg,png}'];
     for (var i = widths.length - 1; i >= 0; i--) {
         generateResponsiveImages(src, widths[i]);
@@ -136,4 +130,3 @@ $.task('generateResponsiveImages', function(callback) {
 });
 
 ```
-
