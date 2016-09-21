@@ -22,6 +22,9 @@
   - Testing a gulp plugin is easy, you don't even need gulp to test it
   - Look at other plugins for examples
 1. Add `gulpplugin` as a keyword in your `package.json` so you show up on our search
+1. Your plugin API should be a function that returns a stream
+  - If you need to store state somewhere, do it internally
+  - If you need to pass state/options between plugins, tack it on the file object
 1. Do not throw errors inside a stream
   - Instead, you should emit it as an **error** event.
   - If you encounter an error **outside** the stream, such as invalid configuration while creating the stream, you may throw it.
