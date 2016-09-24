@@ -16,6 +16,19 @@ describe('gulp tasks', function() {
       gulp.reset();
       done();
     });
+    it('should set dep and fn defaults when only called with a name param', function(done) {
+      var noop, fn;
+      fn = function() {
+        return null;
+      };
+      noop = function() {};
+      gulp.task('test', ['a', 'b'], fn);
+      gulp.task('test');
+      gulp.tasks.test.fn.should.eql(noop);
+      gulp.tasks.test.dep.should.eql([]);
+      gulp.reset();
+      done();
+    });
   });
   describe('run()', function() {
     it('should run multiple tasks', function(done) {
