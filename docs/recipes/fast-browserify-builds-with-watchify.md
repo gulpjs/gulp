@@ -16,14 +16,13 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
-var assign = require('lodash.assign');
 
 // add custom browserify options here
 var customOpts = {
   entries: ['./src/index.js'],
   debug: true
 };
-var opts = assign({}, watchify.args, customOpts);
+var opts = Object.assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts)); 
 
 // add transformations here
