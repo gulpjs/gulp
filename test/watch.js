@@ -11,8 +11,8 @@ require('mocha');
 
 var outpath = path.join(__dirname, './out-fixtures');
 
-describe('gulp', function() {
-  describe('watch()', function() {
+describe('gulp', () => {
+  describe('watch()', () => {
     beforeEach(rimraf.bind(null, outpath));
     beforeEach(mkdirp.bind(null, outpath));
     afterEach(rimraf.bind(null, outpath));
@@ -24,19 +24,19 @@ describe('gulp', function() {
       if (!cb) {
         cb = function() {};
       }
-      setTimeout(function() {
+      setTimeout(() => {
         fs.writeFile(name, content, cb);
       }, writeTimeout);
     };
 
-    it('should call the function when file changes: no options', function(done) {
+    it('should call the function when file changes: no options', done => {
 
       // Arrange
       var tempFile = path.join(outpath, 'watch-func.txt');
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, () => {
 
         // Assert: it works if it calls done
-        var watcher = gulp.watch(tempFile, function(evt) {
+        var watcher = gulp.watch(tempFile, evt => {
           should.exist(evt);
           should.exist(evt.path);
           should.exist(evt.type);
@@ -51,14 +51,14 @@ describe('gulp', function() {
       });
     });
 
-    it('should call the function when file changes: w/ options', function(done) {
+    it('should call the function when file changes: w/ options', done => {
 
       // Arrange
       var tempFile = path.join(outpath, 'watch-func-options.txt');
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, () => {
 
         // Assert: it works if it calls done
-        var watcher = gulp.watch(tempFile, { debounceDelay: 5 }, function(evt) {
+        var watcher = gulp.watch(tempFile, { debounceDelay: 5 }, evt => {
           should.exist(evt);
           should.exist(evt.path);
           should.exist(evt.type);
@@ -73,17 +73,17 @@ describe('gulp', function() {
       });
     });
 
-    it('should not drop options when no callback specified', function(done) {
+    it('should not drop options when no callback specified', done => {
       // Arrange
       var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
       // By passing a cwd option, ensure options are not lost to gaze
       var relFile = '../watch-func-nodrop-options.txt';
       var cwd = outpath + '/subdir';
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, () => {
 
         // Assert: it works if it calls done
         var watcher = gulp.watch(relFile, { debounceDelay: 5, cwd: cwd })
-            .on('change', function(evt) {
+            .on('change', evt => {
               should.exist(evt);
               should.exist(evt.path);
               should.exist(evt.type);
@@ -98,7 +98,7 @@ describe('gulp', function() {
       });
     });
 
-    it('should run many tasks: w/ options', function(done) {
+    it('should run many tasks: w/ options', done => {
       // Arrange
       var tempFile = path.join(outpath, 'watch-task-options.txt');
       var task1 = 'task1';
@@ -107,15 +107,15 @@ describe('gulp', function() {
       var a = 0;
       var timeout = writeTimeout * 2.5;
 
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, () => {
 
-        gulp.task(task1, function() {
+        gulp.task(task1, () => {
           a++;
         });
-        gulp.task(task2, function() {
+        gulp.task(task2, () => {
           a += 10;
         });
-        gulp.task(task3, function() {
+        gulp.task(task3, () => {
           throw new Error('task3 called!');
         });
 
@@ -124,7 +124,7 @@ describe('gulp', function() {
         var watcher = gulp.watch(tempFile, config, [task1, task2]);
 
         // Assert
-        setTimeout(function() {
+        setTimeout(() => {
           a.should.equal(11); // Task1 and task2
 
           gulp.reset();
@@ -137,7 +137,7 @@ describe('gulp', function() {
       });
     });
 
-    it('should run many tasks: no options', function(done) {
+    it('should run many tasks: no options', done => {
       // Arrange
       var tempFile = path.join(outpath, 'watch-many-tasks-no-options.txt');
       var task1 = 'task1';
@@ -146,15 +146,15 @@ describe('gulp', function() {
       var a = 0;
       var timeout = writeTimeout * 2.5;
 
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, () => {
 
-        gulp.task(task1, function() {
+        gulp.task(task1, () => {
           a++;
         });
-        gulp.task(task2, function() {
+        gulp.task(task2, () => {
           a += 10;
         });
-        gulp.task(task3, function() {
+        gulp.task(task3, () => {
           throw new Error('task3 called!');
         });
 
@@ -162,7 +162,7 @@ describe('gulp', function() {
         var watcher = gulp.watch(tempFile, [task1, task2]);
 
         // Assert
-        setTimeout(function() {
+        setTimeout(() => {
           a.should.equal(11); // Task1 and task2
 
           gulp.reset();

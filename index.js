@@ -32,9 +32,9 @@ Gulp.prototype.watch = function(glob, opt, fn) {
 
   // Array of tasks given
   if (Array.isArray(fn)) {
-    return vfs.watch(glob, opt, function() {
+    return vfs.watch(glob, opt, () => {
       this.start.apply(this, fn);
-    }.bind(this));
+    });
   }
 
   return vfs.watch(glob, opt, fn);
