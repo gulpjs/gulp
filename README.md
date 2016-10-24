@@ -209,6 +209,9 @@ function images() {
 function watch() {
   gulp.watch(paths.images.src, images);
 }
+
+gulp.task(images);
+gulp.task(watch);
 ```
 Task run times are saved in memory and are lost when gulp exits. It will only
 save time during the `watch` task when running the `images` task
