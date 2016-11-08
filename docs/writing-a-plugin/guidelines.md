@@ -14,8 +14,8 @@
   - For example: A JS minification plugin should not have an option that adds a header as well
 1. Your plugin shouldn't do things that other plugins are responsible for
   - It should not concat, [gulp-concat](https://github.com/contra/gulp-concat) does that
-  - It should not add headers, [gulp-header](https://github.com/godaddy/gulp-header) does that
-  - It should not add footers, [gulp-footer](https://github.com/godaddy/gulp-footer) does that
+  - It should not add headers, [gulp-header](https://www.npmjs.com/package/gulp-header) does that
+  - It should not add footers, [gulp-footer](https://www.npmjs.com/package/gulp-footer) does that
   - If it's a common but optional use case, document that your plugin is often used with another plugin
   - Make use of other plugins within your plugin! This reduces the amount of code you have to write and ensures a stable ecosystem.
 1. Your plugin **must be tested**
