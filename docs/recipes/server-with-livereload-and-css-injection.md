@@ -96,7 +96,7 @@ gulp.task('serve', gulp.series('sass', function() {
   });
 
   gulp.watch('scss/*.scss', gulp.series('sass'));
-});
+}));
 ```
 
 and including the pre-processed CSS in `index.html`:
