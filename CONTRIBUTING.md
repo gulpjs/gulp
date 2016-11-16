@@ -43,8 +43,8 @@ Undertaker handles task management in Gulp: the `gulp.task()`, `gulp.series()`
 and `gulp.parallel()` functions. `gulp.series()` and `gulp.parallel()` are in
 turn powered by Bach.
 
-https://github.com/gulpjs/undertaker
-https://github.com/gulpjs/bach
+- https://github.com/gulpjs/undertaker
+- https://github.com/gulpjs/bach
 
 ## vinyl-fs: file streams
 
@@ -55,16 +55,16 @@ and then puts them back into the filesystem when `gulp.dest()` is called.
 The file objects themselves are vinyl objects: that's another library (a simple
 one!)
 
-https://github.com/gulpjs/vinyl-fs
-https://github.com/gulpjs/vinyl
+- https://github.com/gulpjs/vinyl-fs
+- https://github.com/gulpjs/vinyl
 
 ## chokidar: file watching
 
 `gulp.watch()` is using chokidar for file watching. It's actually wrapped in a
 small library on the gulp organisation, gulp-watcher.
 
-https://github.com/paulmillr/chokidar
-https://github.com/gulpjs/glob-watcher
+- https://github.com/paulmillr/chokidar
+- https://github.com/gulpjs/glob-watcher
 
 ## gulp-cli: running gulp
 
@@ -72,8 +72,8 @@ Finally, we have gulp-cli. This uses liftoff to take what people run in the
 command line and run the correct tasks. It works with both gulp 4 and older
 versions of gulp.
 
-https://github.com/gulpjs/gulp-cli
-https://github.com/js-cli/js-liftoff
+- https://github.com/gulpjs/gulp-cli
+- https://github.com/js-cli/js-liftoff
 
 # Conduct
 
