@@ -61,7 +61,7 @@ one!)
 ## chokidar: file watching
 
 `gulp.watch()` is using chokidar for file watching. It's actually wrapped in a
-small library on the gulp organisation, gulp-watcher.
+small library on the gulp organization, glob-watcher.
 
 - https://github.com/paulmillr/chokidar
 - https://github.com/gulpjs/glob-watcher
