@@ -35,6 +35,7 @@ A glob that begins with `!` excludes matching files from the glob results up to 
 The following expression matches `a.js` and `bad.js`:
 
     gulp.src(['client/*.js', '!client/b*.js', 'client/bad.js'])
+    I got a test, the expression does not matches `bad.js`
 
 
 #### options
