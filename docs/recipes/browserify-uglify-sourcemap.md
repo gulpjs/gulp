@@ -4,7 +4,9 @@
 tool but requires being wrapped before working well with gulp. Below is a simple recipe for using
 Browserify with full sourcemaps that resolve to the original individual files.
 
-See also: the [Combining Streams to Handle Errors](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) recipe for handling errors with browserify or uglify in your stream.
+See also: the [Combining Streams to Handle Errors](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) recipe for handling errors with browserify or uglify in your stream. 
+
+A simple `gulpfile.js` file for Browserify + Uglify2 with sourcemaps:
 
 ``` javascript
 'use strict';
