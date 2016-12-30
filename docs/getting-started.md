@@ -1,6 +1,6 @@
 # Getting Started
 
-*If you've previously installed a version of gulp globally, run `npm rm --global gulp` before following these instructions.*
+*If you've previously installed gulp globally, run `npm rm --global gulp` before following these instructions.*
 
 #### Install the `gulp` command
 
@@ -42,12 +42,7 @@ To run multiple tasks, you can use `gulp <task> <othertask>`.
 
 ## Where do I go now?
 
-You have an empty gulpfile and everything is installed. Check out the [recipes](recipes) and the [list of articles](README.md#articles) for more information.
-
-## .src, .watch, .dest, CLI args - How do I use these things?
-
-For API specific documentation you can check out the [documentation for that](API.md).
-
-## Available Plugins
-
-The gulp community is growing, with new plugins being added daily. See the [main website](http://gulpjs.com/plugins/) for a complete list.
+- [API Documentation](API.md)
+- [Recipes](recipes)
+- [Help Articles](README.md#articles)
+- [Plugins](http://gulpjs.com/plugins/)
