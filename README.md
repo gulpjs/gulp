@@ -88,7 +88,7 @@ We recommend these plugins:
 
 ## Want to test the latest and greatest?
 
-We're hard at work on our latest release, but we need your help! Install it, use it, and open issues if anything isn't right!
+We're hard at work on our latest release, but we need your help testing it!
 
 ```sh
 npm install gulpjs/gulp#4.0
