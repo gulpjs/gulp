@@ -86,6 +86,16 @@ We recommend these plugins:
 - [gulp-remember](https://github.com/ahaurw01/gulp-remember) - pairs nicely with gulp-cached
 - [gulp-newer](https://github.com/tschaub/gulp-newer) - pass through newer source files only, supports many:1 source:dest
 
+## Want to test the latest and greatest?
+
+We're hard at work on our latest release, but we need your help! Install it, use it, and open issues if anything isn't right!
+
+```sh
+npm install gulpjs/gulp#4.0
+```
+
+There's a slew of major (wonderful) changes in 4.0, so make sure you check out the [docs on that branch](https://github.com/gulpjs/gulp/tree/4.0)!
+
 ## Want to contribute?
 
 Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
