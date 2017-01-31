@@ -5,7 +5,7 @@
   "homepage": "http://gulpjs.com",
   "repository": "gulpjs/gulp",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
-  "tags": [
+  "keywords": [
     "build",
     "stream",
     "system",
