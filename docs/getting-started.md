@@ -7,6 +7,7 @@
 ```sh
 npm install --global gulp-cli
 ```
+You may need administrator permissions, so if you encounter write permission errors during installation, use ``sudo npm install --global gulp-cli``, instead.
 
 #### Install `gulp` in your devDependencies
 
