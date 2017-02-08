@@ -1,6 +1,6 @@
 # Getting Started
 
-*If you've previously installed gulp globally, run `npm rm --global gulp` before following these instructions.*
+*If you've previously installed gulp globally, run `npm rm --global gulp gulp-cli` before following these instructions.*
 
 #### Install the `gulp` command
 
