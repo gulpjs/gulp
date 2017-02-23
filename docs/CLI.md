@@ -22,7 +22,20 @@ Refer to this [StackOverflow](http://stackoverflow.com/questions/23023650/is-it-
 
 ### Tasks
 
-Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task gulp will error.
+Tasks can be executed by running `gulp <task> <task>...`.
+
+If more than one task is listed, Gulp will execute all of them
+concurrently, that is, as if they had all been listed as dependencies of
+a single task.
+
+Gulp does not serialize tasks listed on the command line. From using
+other comparable tools users may expect to execute something like
+`gulp clean build`, with tasks named `clean` and `build`. This will not
+produce the intended result, as the two tasks will be executed
+concurrently.
+
+Just running `gulp` will execute the task `default`. If there is no
+`default` task, gulp will error.
 
 ### Compilers
 
