@@ -17,6 +17,25 @@ gulp.task('test', function() {
 });
 ```
 
+To control the order in which the streams are output once merged:
+
+```js
+// npm install --save-dev gulp ordered-merge-stream
+
+var gulp = require('gulp');
+var orderedMerge = require('ordered-merge-stream');
+
+gulp.task('test', function() {
+  var bootstrap = gulp.src('bootstrap/js/*.js')
+    .pipe(gulp.dest('public/bootstrap'));
+
+  var jquery = gulp.src('jquery.cookie/jquery.cookie.js')
+    .pipe(gulp.dest('public/jquery'));
+
+  return orderedMerge([bootstrap, jquery]);
+});
+```
+
 `gulp.src` will emit files in the order they were added:
 
 ```js
