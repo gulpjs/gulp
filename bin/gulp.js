@@ -13,6 +13,8 @@ var v8flags = require('v8flags');
 var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
 var taskTree = require('../lib/taskTree');
+var fs = require('fs');
+var path = require('path');
 
 // Set env var for ORIGINAL cwd
 // before anything touches it
@@ -49,6 +51,44 @@ if (!shouldLog) {
   gutil.log = function() {};
 }
 
+// .gulprc
+var GULPRC_FILENAME = '.gulprc';
+var GULPFILE_FILENAME = 'gulpfile.js';
+var rcDir = (function () {
+  var rcFile, gulpFile, pre, cur = process.cwd();
+  while (cur !== pre) {
+    rcFile = path.resolve(cur, GULPRC_FILENAME);
+    if (fs.existsSync(rcFile)) {
+      return cur;
+    }
+    gulpFile = path.resolve(cur, GULPFILE_FILENAME);
+    if (fs.existsSync(gulpFile)) {
+      return;
+    }
+    pre = cur;
+    cur = path.resolve(cur, '..');
+  }
+})();
+var rc = (function () {
+  if (rcDir) {
+    try {
+      var rcFile = path.resolve(rcDir, GULPRC_FILENAME);
+      var content = fs.readFileSync(rcFile, "utf8");
+      var rc = JSON.parse(content);
+      if (rc.cwd) {
+        rc.cwd = path.resolve(rcDir, rc.cwd);
+      }
+      if (rc.gulpfile) {
+        rc.gulpfile = path.resolve(rcDir, rc.gulpfile);
+      }
+      return rc;
+    } catch (err) {
+      gutil.log(chalk.red('Failed to load', GULPRC_FILENAME));
+    }
+  }
+  return {};
+})();
+
 cli.on('require', function(name) {
   gutil.log('Requiring external module', chalk.magenta(name));
 });
@@ -65,8 +105,8 @@ cli.on('respawn', function(flags, child) {
 });
 
 cli.launch({
-  cwd: argv.cwd,
-  configPath: argv.gulpfile,
+  cwd: argv.cwd || rc.cwd,
+  configPath: argv.gulpfile || rc.gulpfile,
   require: argv.require,
   completion: argv.completion,
 }, handleArguments);
