@@ -16,7 +16,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
-var assign = require('lodash.assign');
+var assign = require('lodash').assign;
 
 // add custom browserify options here
 var customOpts = {
