@@ -206,7 +206,7 @@ function logEvents(gulpInst) {
     gutil.log(
       chalk.red('Task \'' + err.task + '\' is not in your gulpfile')
     );
-    gutil.log('Please check the documentation for proper gulpfile formatting');
+    gutil.log('To list available tasks, try running: gulp --tasks');
     process.exit(1);
   });
 }
