@@ -51,7 +51,7 @@ That is not welcome behavior. We interpret the term "harassment" as
 including the definition in the
 [Citizen Code of Conduct](http://citizencodeofconduct.org/);
 if you have any lack of clarity about what might be included in that concept,
-please read their definition. In particular, we don't tolerate behavior that
+please read their definition. In particular, we don't tolerate behaviour that
 excludes people in socially marginalized groups.
 
 Private harassment is also unacceptable. No matter who you are, if you feel
