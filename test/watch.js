@@ -149,7 +149,7 @@ describe('gulp', function() {
       fs.writeFile(tempFile, tempFileContent, function() {
 
         gulp.task(task1, function() {
-          a++;
+          a += 1;
         });
         gulp.task(task2, function() {
           a += 10;

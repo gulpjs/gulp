@@ -123,7 +123,7 @@ describe('gulp input stream', function() {
       var a = 0;
       stream.on('error', done);
       stream.on('data', function() {
-        ++a;
+        a += 1;
       });
       stream.on('end', function() {
         a.should.equal(2);
@@ -136,7 +136,7 @@ describe('gulp input stream', function() {
       var stream = gulp.src(join(__dirname, './fixtures/test.coffee'));
       stream.on('error', done);
       stream.on('data', function(file) {
-        ++a;
+        a += 1;
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
