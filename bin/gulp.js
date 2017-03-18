@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+try{
+  var cs = require('coffee-script');
+} catch(e){}
 
 'use strict';
 var gutil = require('gulp-util');
