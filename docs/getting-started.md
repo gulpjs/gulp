@@ -15,6 +15,7 @@ Run this command in your project directory:
 ```sh
 npm install --save-dev gulp
 ```
+Note: this should also amend your `package.json` automatically.  If you don't have one, you can write a new file with only the contents `{}`.
 
 #### Create a `gulpfile`
 
