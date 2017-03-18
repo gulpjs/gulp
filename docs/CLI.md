@@ -20,6 +20,12 @@ The CLI adds process.env.INIT_CWD which is the original cwd it was launched from
 
 Refer to this [StackOverflow](http://stackoverflow.com/questions/23023650/is-it-possible-to-pass-a-flag-to-gulp-to-have-it-run-tasks-in-different-ways) link for how to add task specific flags
 
+### Flags in Dependency Modules
+
+- `--color` or `--no-color` allows to override the determination of whether or
+not to include ANSI color-codes in the log streams from gulp and gulp-util.
+See the [has-color package](https://github.com/sindresorhus/has-color).
+
 ### Tasks
 
 Tasks can be executed by running `gulp <task> <task>...`.
