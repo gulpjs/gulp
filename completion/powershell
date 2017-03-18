@@ -9,11 +9,22 @@
 #
 #     Invoke-Expression ((gulp --completion=powershell) -join [System.Environment]::NewLine)
 #
-#
+
+# walks up to find the gulpfile (and supports extensions other than .js)
+function Get-GulpFilePath($startPath) {
+    $r = resolve-path "$startPath/gulpfile.*" 
+    if ($r) {
+        return $r[0]
+    }
+    $newPath = resolve-path -ea 0 "$startPath/../" -ErrorVariable x
+    if( $newPath.Path -eq $startPath ) {
+        return;
+    }
+    return Get-GulpFilePath($newPath)
+}
 
 $gulp_completion_Process = {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameter)
-
 
 	# Load up an assembly to read the gulpfile's sha1
 	if(-not $global:GulpSHA1Managed) {
@@ -29,25 +40,26 @@ $gulp_completion_Process = {
 	$cache = $global:GulpfileShaCache;
 
 	# Get the gulpfile's sha1
-	$sha1gulpFile = (resolve-path gulpfile.js -ErrorAction Ignore | %{
+	$sha1gulpFile = ((Get-GulpFilePath .) | %{
 		$file = [System.IO.File]::Open($_.Path, "open", "read")
 		[string]::join('', ($global:GulpSHA1Managed.ComputeHash($file) | %{ $_.ToString("x2") }))
 		$file.Dispose()
 	})
 
-	# lookup the sha1 for previously cached task lists.
-	if($cache.ContainsKey($sha1gulpFile)){
-		$tasks = $cache[$sha1gulpFile];
-	} else {
-		$tasks = (gulp --tasks-simple).split("`n");
-		$cache[$sha1gulpFile] = $tasks;
-	}
+    if ($sha1gulpFile) {
+        # lookup the sha1 for previously cached task lists.
+        if($cache.ContainsKey($sha1gulpFile)){
+            $tasks = $cache[$sha1gulpFile];
+        } else {
+            $tasks = (gulp --tasks-simple).split("`n");
+            $cache[$sha1gulpFile] = $tasks;
+        }
 
-
-    $tasks |
-        where { $_.startswith($commandName) }
-        Sort-Object |
-        foreach { New-Object System.Management.Automation.CompletionResult $_, $_, 'ParameterValue', ('{0}' -f $_) }
+        $tasks |
+            where { $_.startswith($commandName) }
+            Sort-Object |
+            foreach { New-Object System.Management.Automation.CompletionResult $_, $_, 'ParameterValue', ('{0}' -f $_) }
+    }
 }
 
 if (-not $global:options) {
