@@ -8,7 +8,7 @@
 
 ## Dealing with streams
 
-Let's implement a plugin prepending some text to files. This plugin supports all possible forms of file.contents.
+Let's implement a plugin prepending some text to files. This plugin supports all possible forms of file contents.
 
 ```js
 var through = require('through2');
@@ -73,7 +73,7 @@ gulp.src('files/**/*.js', { buffer: false })
   .pipe(gulp.dest('modified-files'));
 ```
 
-## Some plugins using streams
+## Some plugins using streams
 
 * [gulp-svgicons2svgfont](https://github.com/nfroidure/gulp-svgiconstosvgfont)
 
