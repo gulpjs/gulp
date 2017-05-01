@@ -6,8 +6,8 @@ var should = require('should');
 require('mocha');
 
 describe('gulp tasks', function() {
-  describe('task()', function() {
-    it('should define a task', function(done) {
+  describe('task()', () => {
+    it('should define a task', done => {
       var fn;
       fn = function() {};
       gulp.task('test', fn);
@@ -55,12 +55,12 @@ describe('gulp tasks', function() {
       gulp.reset();
       done();
     });
-    it('should run all async promise tasks', function(done) {
+    it('should run all async promise tasks', done => {
       var a, fn, fn2;
       a = 0;
       fn = function() {
         var deferred = Q.defer();
-        setTimeout(function() {
+        setTimeout(() => {
           ++a;
           deferred.resolve();
         }, 1);
@@ -68,7 +68,7 @@ describe('gulp tasks', function() {
       };
       fn2 = function() {
         var deferred = Q.defer();
-        setTimeout(function() {
+        setTimeout(() => {
           ++a;
           deferred.resolve();
         }, 1);
@@ -77,7 +77,7 @@ describe('gulp tasks', function() {
       gulp.task('test', fn);
       gulp.task('test2', fn2);
       gulp.run('test');
-      gulp.run('test2', function() {
+      gulp.run('test2', () => {
         gulp.isRunning.should.equal(false);
         a.should.equal(2);
         gulp.reset();
@@ -85,17 +85,17 @@ describe('gulp tasks', function() {
       });
       gulp.isRunning.should.equal(true);
     });
-    it('should run all async callback tasks', function(done) {
+    it('should run all async callback tasks', done => {
       var a, fn, fn2;
       a = 0;
       fn = function(cb) {
-        setTimeout(function() {
+        setTimeout(() => {
           ++a;
           cb(null);
         }, 1);
       };
       fn2 = function(cb) {
-        setTimeout(function() {
+        setTimeout(() => {
           ++a;
           cb(null);
         }, 1);
@@ -103,7 +103,7 @@ describe('gulp tasks', function() {
       gulp.task('test', fn);
       gulp.task('test2', fn2);
       gulp.run('test');
-      gulp.run('test2', function() {
+      gulp.run('test2', () => {
         gulp.isRunning.should.equal(false);
         a.should.equal(2);
         gulp.reset();
@@ -111,8 +111,8 @@ describe('gulp tasks', function() {
       });
       gulp.isRunning.should.equal(true);
     });
-    it('should emit task_not_found and throw an error when task is not defined', function(done) {
-      gulp.on('task_not_found', function(err) {
+    it('should emit task_not_found and throw an error when task is not defined', done => {
+      gulp.on('task_not_found', err => {
         should.exist(err);
         should.exist(err.task);
         err.task.should.equal('test');

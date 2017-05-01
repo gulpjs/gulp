@@ -27,7 +27,7 @@ var cli = new Liftoff({
 
 // Exit with 0 or 1
 var failed = false;
-process.once('exit', function(code) {
+process.once('exit', code => {
   if (code === 0 && failed) {
     process.exit(1);
   }
@@ -49,15 +49,15 @@ if (!shouldLog) {
   gutil.log = function() {};
 }
 
-cli.on('require', function(name) {
+cli.on('require', name => {
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
-cli.on('requireFail', function(name) {
+cli.on('requireFail', name => {
   gutil.log(chalk.red('Failed to load external module'), chalk.magenta(name));
 });
 
-cli.on('respawn', function(flags, child) {
+cli.on('respawn', (flags, child) => {
   var nodeFlags = chalk.magenta(flags.join(', '));
   var pid = chalk.magenta(child.pid);
   gutil.log('Node flags detected:', nodeFlags);
@@ -119,7 +119,7 @@ function handleArguments(env) {
   var gulpInst = require(env.modulePath);
   logEvents(gulpInst);
 
-  process.nextTick(function() {
+  process.nextTick(() => {
     if (simpleTasksFlag) {
       return logTasksSimple(env, gulpInst);
     }
@@ -135,7 +135,7 @@ function logTasks(env, localGulp) {
   tree.label = 'Tasks for ' + chalk.magenta(tildify(env.configPath));
   archy(tree)
     .split('\n')
-    .forEach(function(v) {
+    .forEach(v => {
       if (v.trim().length === 0) {
         return;
       }
@@ -173,17 +173,17 @@ function formatError(e) {
 function logEvents(gulpInst) {
 
   // Total hack due to poor error management in orchestrator
-  gulpInst.on('err', function() {
+  gulpInst.on('err', () => {
     failed = true;
   });
 
-  gulpInst.on('task_start', function(e) {
+  gulpInst.on('task_start', e => {
     // TODO: batch these
     // so when 5 tasks start at once it only logs one time with all 5
     gutil.log('Starting', '\'' + chalk.cyan(e.task) + '\'...');
   });
 
-  gulpInst.on('task_stop', function(e) {
+  gulpInst.on('task_stop', e => {
     var time = prettyTime(e.hrDuration);
     gutil.log(
       'Finished', '\'' + chalk.cyan(e.task) + '\'',
@@ -191,7 +191,7 @@ function logEvents(gulpInst) {
     );
   });
 
-  gulpInst.on('task_err', function(e) {
+  gulpInst.on('task_err', e => {
     var msg = formatError(e);
     var time = prettyTime(e.hrDuration);
     gutil.log(
@@ -202,7 +202,7 @@ function logEvents(gulpInst) {
     gutil.log(msg);
   });
 
-  gulpInst.on('task_not_found', function(err) {
+  gulpInst.on('task_not_found', err => {
     gutil.log(
       chalk.red('Task \'' + err.task + '\' is not in your gulpfile')
     );
