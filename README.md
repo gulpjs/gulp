@@ -110,14 +110,14 @@ gulp.task('default', build);
 Node already supports a lot of **ES2015**, to avoid compatibility problem we suggest to install Babel and rename your `gulpfile.js` as `gulpfile.babel.js`.
 
 ```sh
-npm install --save-dev babel-register babel-preset-es2015
+npm install --save-dev gulp-babel babel-preset-env
 ```
 
 Then create a **.babelrc** file with the preset configuration.
 
 ```js
 {
-  "presets": [ "es2015" ]
+  "presets": [ "env" ]
 }
 ```
 
