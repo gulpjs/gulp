@@ -9,7 +9,7 @@ If you plan to create your own Gulp plugin, you will save time by reading the fu
 
 ## What it does
 
-### Streaming file objects
+### Streaming file objects
 
 A gulp plugin always returns a stream in [object mode](http://nodejs.org/api/stream.html#stream_object_mode) that does the following:
 
