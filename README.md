@@ -96,6 +96,8 @@ npm install gulpjs/gulp#4.0
 
 There's a slew of major (wonderful) changes in 4.0, so make sure you check out the [docs on that branch](https://github.com/gulpjs/gulp/tree/4.0)!
 
+Profile & speed-up your `gulpfile.js` builds using [gulpt](https://github.com/jaguard/gulpt) & [time-require](https://github.com/jaguard/time-require).
+
 ## Want to contribute?
 
 Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
