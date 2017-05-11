@@ -11,7 +11,7 @@ var tildify = require('tildify');
 var interpret = require('interpret');
 var v8flags = require('v8flags');
 var completion = require('../lib/completion');
-var argv = require('minimist')(process.argv.slice(2));
+var argv = gutil.env;
 var taskTree = require('../lib/taskTree');
 
 // Set env var for ORIGINAL cwd
