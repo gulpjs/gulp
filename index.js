@@ -40,6 +40,21 @@ Gulp.prototype.watch = function(glob, opt, fn) {
   return vfs.watch(glob, opt, fn);
 };
 
+function MissingFlagsError(missingFlags) {
+  Error.call(this);
+  this.missingFlags = missingFlags;
+}
+util.inherits(MissingFlagsError, Error);
+
+Gulp.prototype.requireNodeFlags = function () {
+  var missingFlags = Array.prototype.filter.call(arguments, function (arg) {
+    return process.execArgv.indexOf(arg) < 0;
+  });
+  if (missingFlags.length) {
+    throw new MissingFlagsError(missingFlags);
+  }
+};
+
 // Let people use this class from our instance
 Gulp.prototype.Gulp = Gulp;
 

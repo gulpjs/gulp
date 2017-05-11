@@ -113,7 +113,17 @@ function handleArguments(env) {
   }
 
   // This is what actually loads up the gulpfile
-  require(env.configPath);
+  try {
+    require(env.configPath);
+  } catch (e) {
+    if (e.missingFlags) {
+      var respawn = require('flagged-respawn/lib/respawn');
+      respawn([process.argv[0]].concat(process.execArgv).concat(e.missingFlags).concat(process.argv.slice(1)));
+      return;
+    } else {
+      throw e;
+    }
+  }
   gutil.log('Using gulpfile', chalk.magenta(tildify(env.configPath)));
 
   var gulpInst = require(env.modulePath);
