@@ -16,18 +16,13 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var reactify = require('reactify');
 
 gulp.task('javascript', function () {
-  // set up the browserify instance on a task basis
-  var b = browserify({
+  // Bundle with browserify and then run gulp transforms on index.js, producing ./dist/js/app.js
+  browserify({
     entries: './entry.js',
-    debug: true,
-    // defining transforms here will avoid crashing your stream
-    transform: [reactify]
-  });
-
-  return b.bundle()
+    debug: true
+  }).bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
