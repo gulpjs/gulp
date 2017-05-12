@@ -61,3 +61,26 @@ Gulp.prototype.run = deprecated.method('gulp.run() has been deprecated. ' +
 
 var inst = new Gulp();
 module.exports = inst;
+
+/**************************************************************
+Upgrade: gulp pipe condition
+/*************************************************************/
+(function(gulp) {
+  var src = gulp.src;
+  gulp.src = function(globs, options){
+    var res = src.apply(gulp, [globs, options]);
+    var injector = function(res){
+      var pipe = res.pipe;
+      res.pipe = function(fn){
+        if(fn === null){
+          return res;
+        }
+        res = pipe.apply(res, [fn]);
+        injector(res);
+        return res;
+      };
+    };
+    injector(res);
+    return res;
+  };
+}(inst));
