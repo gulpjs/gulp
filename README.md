@@ -52,9 +52,9 @@ gulp.task('scripts', ['clean'], function() {
   // with sourcemaps all the way down
   return gulp.src(paths.scripts)
     .pipe(sourcemaps.init())
-      .pipe(coffee())
-      .pipe(uglify())
-      .pipe(concat('all.min.js'))
+    .pipe(coffee())
+    .pipe(uglify())
+    .pipe(concat('all.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/js'));
 });
