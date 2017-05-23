@@ -26,6 +26,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 
 ## Books
 * [Developing a gulp Edge](http://shop.oreilly.com/product/9781939902146.do)
+* [Getting Started with Gulp – Second Edition](https://www.packtpub.com/application-development/getting-started-gulp-%E2%80%93-second-edition) - Travis Maynard, Packt (April 2017)
 
 
 ## Articles
