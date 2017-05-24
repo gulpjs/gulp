@@ -25,16 +25,16 @@ Type: `String` or `Array`
 
 Glob or array of globs to read. Globs use [node-glob syntax] except that negation is fully supported.
 
-A glob that begins with `!` excludes matching files from the glob results up to that point. For example, consider this directory structure:
+A glob that begins with `!` excludes matching files from the glob results. For example, consider this directory structure:
 
     client/
       a.js
       bob.js
       bad.js
 
-The following expression matches `a.js` and `bad.js`:
+The following expression matches `a.js`:
 
-    gulp.src(['client/*.js', '!client/b*.js', 'client/bad.js'])
+    gulp.src(['client/*.js', '!client/b*.js'])
 
 
 #### options
