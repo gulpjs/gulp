@@ -36,6 +36,7 @@ process.once('exit', function(code) {
 // Parse those args m8
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
+var helpFlag = argv.h || argv.help;
 var tasksFlag = argv.T || argv.tasks;
 var tasks = argv._;
 var toRun = tasks.length ? tasks : ['default'];
@@ -78,6 +79,18 @@ function handleArguments(env) {
     if (env.modulePackage && typeof env.modulePackage.version !== 'undefined') {
       gutil.log('Local version', env.modulePackage.version);
     }
+    process.exit(0);
+  }
+
+  if (helpFlag) {
+    console.log('Usage: gulp [-v|--version] [--require=<module path>]');
+    console.log('            [--gulpfile=<path>] [--cwd=<dir>] [-T|--tasks]');
+    console.log('            [--tasks-simple] [--color|--no-color]');
+    console.log('            <task> [<othertask>]');
+    console.log('');
+    console.log('Help:     https://github.com/gulpjs/gulp/tree/master/docs');
+    console.log('Homepage: http://gulpjs.com/');
+
     process.exit(0);
   }
 
