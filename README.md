@@ -28,17 +28,44 @@ This file will give you a taste of what gulp does.
 
 ```js
 var gulp = require('gulp');
-var coffee = require('gulp-coffee');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var imagemin = require('gulp-imagemin');
-var sourcemaps = require('gulp-sourcemaps');
+
+/*
+require gulp-load-plugins, and call it
+gulp-load-plugins will require individually,
+all the plugins installed in package.json at the root directory.
+plugins are available for perusal, via camelcased names, minus gulp
+eg: gulp-clean-css is accessed by $.cleanCss
+*/
+var $ = require('gulp-load-plugins')();
+
+//NOTE: the plugin del , doesn't begin with a "gulp-". Hence we manually load it into gulpfile
+
 var del = require('del');
 
 var paths = {
   scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
   images: 'client/img/**/*'
 };
+
+
+/*
+Anatomy of a gulp function
+//If you do not pass a glob , make sure you define your glob before calling gulp.src();
+function doSomething(glob){
+  gulp.src(glob)
+  .pipe(plugin 1)
+  .pipe(plugin 2)
+  .
+  .
+  pipe(plugin <n>)
+  .gulp.dest('path string');
+}
+*/
+
+/*
+Anatomy of a gulp task
+gulp.task(<task-name>,[dependencies array],body);
+*/
 
 // Not all tasks need to use streams
 // A gulpfile is just another node program and you can use any package available on npm
@@ -51,11 +78,11 @@ gulp.task('scripts', ['clean'], function() {
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down
   return gulp.src(paths.scripts)
-    .pipe(sourcemaps.init())
-      .pipe(coffee())
-      .pipe(uglify())
-      .pipe(concat('all.min.js'))
-    .pipe(sourcemaps.write())
+    .pipe($.sourcemaps.init())
+      .pipe($.coffee())
+      .pipe($.uglify())
+      .pipe($.concat('all.min.js'))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('build/js'));
 });
 
@@ -63,7 +90,7 @@ gulp.task('scripts', ['clean'], function() {
 gulp.task('images', ['clean'], function() {
   return gulp.src(paths.images)
     // Pass in options to the task
-    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe($.imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
 });
 
@@ -71,6 +98,42 @@ gulp.task('images', ['clean'], function() {
 gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['scripts']);
   gulp.watch(paths.images, ['images']);
+});
+
+//Illustrting a cache implementation in gulp
+var optimizeStyles = function(src) {
+    if(!src){
+      var src = 'css/**/*.css';//<glob>
+    }
+    return gulp.src(src).
+    pipe($.cached('styles')).
+    pipe($.autoprefixer({
+        browsers: ['last 2 versions']
+    })).
+    pipe($.dest(function(file) {
+        return file.base
+    })).
+    pipe($.remember('auto-prefixed-stylesheets')).
+    pipe($.concat('app.css')).
+    pipe($.dest('build/css')).
+    pipe($.cleanCss()).
+    pipe($.rename({
+        suffix: '.min'
+    })).
+    pipe(gulp.dest('build/css'));
+}
+/*
+NOTE: We use two caches above. first with gulp-cached and then with gulp-remember
+Because , gulp-cached only pipes modifications down the pipeline
+On the first run , everything is new and thus cached
+On subsequent runs, only modified files are updated on the gulp-remember cache
+*/
+
+//define styles optimiser task
+//*@return returns a stream to notify on task completion
+$.task('optimizeStyles', function() {
+    var src = ['css/**/*.css', 'fonts/google/**/*.css'];
+    return optimizeStyles(src);
 });
 
 // The default task (called when you run `gulp` from cli)
