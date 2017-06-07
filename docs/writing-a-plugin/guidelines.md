@@ -84,11 +84,14 @@ function gulpPrefixer(prefixText) {
       // return empty file
       return cb(null, file);
     }
-    if (file.isBuffer()) {
+    else if (file.isBuffer()) {
       file.contents = Buffer.concat([prefixText, file.contents]);
     }
-    if (file.isStream()) {
+    else if (file.isStream()) {
       file.contents = file.contents.pipe(prefixStream(prefixText));
+    } else {
+      cb('Could not determine file type');
+      return;
     }
 
     cb(null, file);
