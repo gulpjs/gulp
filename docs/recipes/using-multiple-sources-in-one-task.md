@@ -4,7 +4,7 @@
 // npm install --save-dev gulp merge-stream
 
 var gulp = require('gulp');
-var merge = require('merge-stream');
+var es = require('event-stream');
 
 gulp.task('test', function() {
   var bootstrap = gulp.src('bootstrap/js/*.js')
@@ -13,7 +13,7 @@ gulp.task('test', function() {
   var jquery = gulp.src('jquery.cookie/jquery.cookie.js')
     .pipe(gulp.dest('public/jquery'));
 
-  return merge(bootstrap, jquery);
+  return es.merge(bootstrap, jquery);
 });
 ```
 
@@ -30,3 +30,4 @@ gulp.task('default', function() {
     .pipe(concat('result.txt'))
     .pipe(gulp.dest('build'));
 });
+```
