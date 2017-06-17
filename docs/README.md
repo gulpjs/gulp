@@ -5,7 +5,6 @@
 * [CLI documentation](CLI.md) - Learn how to call tasks and use compilers
 * [Writing a Plugin](writing-a-plugin/README.md) - So you're writing a gulp plugin? Go here for the essential dos and don'ts.
 * [Why Use Pump?](why-use-pump/README.md) - Why you should use the `pump` module instead of calling `.pipe` yourself.
-* [Spanish documentation][SpanishDocs] - gulp en Español.
 * [Simplified Chinese documentation][SimplifiedChineseDocs] - gulp 简体中文文档.
 * [Korean documentation][KoreanDocs] - gulp 한국어 참조 문서.
 
