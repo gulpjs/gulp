@@ -8,10 +8,11 @@ var vfs = require('vinyl-fs');
 
 function Gulp() {
   Orchestrator.call(this);
+  // Allow `task` to run independently of `gulp`
+  this.task = Gulp.prototype.add.bind(this);
 }
 util.inherits(Gulp, Orchestrator);
 
-Gulp.prototype.task = Gulp.prototype.add;
 Gulp.prototype.run = function() {
   // `run()` is deprecated as of 3.5 and will be removed in 4.0
   // Use task dependencies instead
