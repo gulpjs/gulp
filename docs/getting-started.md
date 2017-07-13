@@ -13,8 +13,8 @@ Make sure that you've installed Node and npm before attempting to install gulp.
 npm install --global gulp-cli
 ```
 
-#### Create a package.json
-If you don't have a package.json, create one. If you need help, run an npm init which will walk you through giving it a name, version, and description.
+#### Create a `package.json`
+If you don't have a package.json, create one. If you need help, run an `npm init` which will walk you through giving it a name, version, description, etc.
 
 
 #### Install `gulp` in your devDependencies
