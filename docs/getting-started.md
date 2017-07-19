@@ -59,7 +59,7 @@ To run multiple tasks, you can use `gulp <task> <othertask>`.
 
 ## Where do I go now?
 
-- [API Documentation](API.md)
-- [Recipes](recipes)
-- [Help Articles](README.md#articles)
-- [Plugins](http://gulpjs.com/plugins/)
+- [API Documentation](API.md) gulp's programming interface, defined
+- [Recipes](recipes) specific examples from the community
+- [In Depth Help](https://travismaynard.com/writing/getting-started-with-gulp) a tutorial from the the guy who wrote the book
+- [Plugins](http://gulpjs.com/plugins/) building blocks for your gulp file
