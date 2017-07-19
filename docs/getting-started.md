@@ -1,11 +1,16 @@
 # Getting Started
 
-*If you've [previously installed](https://medium.com/gulpjs/gulp-sips-command-line-interface-e53411d4467) gulp globally, run `npm rm --global gulp` before following these instructions.*
+*If you've previously installed gulp globally, run `npm rm --global gulp` before following these instructions.* For more information, read this [Sip](https://medium.com/gulpjs/gulp-sips-command-line-interface-e53411d4467).
 
 #### Check for Node and npm
 Make sure that you've installed Node and npm before attempting to install gulp.
 
-```node --version```
+```sh
+node --version
+```
+```sh
+npm --version
+```
 
 #### Install the `gulp` command
 
@@ -45,6 +50,8 @@ Run the gulp command in your project directory:
 gulp
 ```
 
+To run multiple tasks, you can use `gulp <task> <othertask>`.
+
 #### Result
 
 Voila! The default task will run and do nothing.
@@ -54,8 +61,6 @@ Using gulpfile ~/my-project/gulpfile.js
 [11:15:51] Starting 'default'...
 [11:15:51] Finished 'default' after 103 μs
 ```
-
-To run multiple tasks, you can use `gulp <task> <othertask>`.
 
 ## Where do I go now?
 
