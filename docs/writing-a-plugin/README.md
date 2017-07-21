@@ -22,7 +22,7 @@ Transform streams are streams that are readable and writable; they manipulate ob
 
 All gulp plugins essentially boil down to this:
 ```js
-var Transform = require('transform');
+var Transform = require('stream').Transform;
 
 module.exports = function() {
   // Monkey patch Transform or create your own subclass,
@@ -44,7 +44,7 @@ module.exports = function() {
 };
 ```
 
-Many plugins use the [through2](https://github.com/rvagg/through2/) module to simplify their code:
+Alternatively you could pass your transform and flush functions to the `Transform` constructor or even extend `Transform` with ES6 classes, as described by the [Node.js docs](https://nodejs.org/docs/latest/api/stream.html#stream_implementing_a_transform_stream). However, many plugins prefer to use the [through2](https://github.com/rvagg/through2/) module to simplify their code:
 
 ```js
 var through = require('through2');    // npm install --save through2
