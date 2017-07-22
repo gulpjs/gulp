@@ -22,29 +22,26 @@ Transform streams are streams that are readable and writable; they manipulate ob
 
 All gulp plugins essentially boil down to this:
 ```js
-var Transform = require('transform');
+var Transform = require('stream').Transform;
 
-module.exports = function() {
-  // Monkey patch Transform or create your own subclass,
-  // implementing `_transform()` and optionally `_flush()`
-  var transformStream = new Transform({objectMode: true});
-  /**
-   * @param {Buffer|string} file
-   * @param {string=} encoding - ignored if file contains a Buffer
-   * @param {function(Error, object)} callback - Call this function (optionally with an
-   *          error argument and data) when you are done processing the supplied chunk.
-   */
-  transformStream._transform = function(file, encoding, callback) {
-    var error = null,
-        output = doSomethingWithTheFile(file);
-    callback(error, output);
-  };
-
-  return transformStream;
-};
+-module.exports = function() {
+-  // Monkey patch Transform or create your own subclass,
+-  // implementing `_transform()` and optionally `_flush()`
+-  var transformStream = new Transform({objectMode: true});
+-  /**
+-   * @param {Buffer|string} file
+-   * @param {string=} encoding - ignored if file contains a Buffer
+-   * @param {function(Error, object)} callback - Call this function (optionally with an
+-   *          error argument and data) when you are done processing the supplied chunk.
+-   */
+-  transformStream._transform = function(file, encoding, callback) {
+-    var error = null,
+-        output = doSomethingWithTheFile(file);
+-    callback(error, output);
+-  };
 ```
 
-Many plugins use the [through2](https://github.com/rvagg/through2/) module to simplify their code:
+Alternatively you could pass your transform and flush functions to the constructor or even extend `Transform` with ES6 classes, as described by the [Node.js docs](https://nodejs.org/docs/latest/api/stream.html#stream_implementing_a_transform_stream). However, many plugins prefer to use the [through2](https://github.com/rvagg/through2/) module to simplify their code:
 
 ```js
 var through = require('through2');    // npm install --save through2
