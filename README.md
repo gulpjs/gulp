@@ -145,13 +145,12 @@ const paths = {
 };
 
 /*
- * For small tasks you can use arrow functions and export
+ * For small tasks you can export arrow functions
  */
-const clean = () => del([ 'assets' ]);
-export { clean };
+export const clean = () => del([ 'assets' ]);
 
 /*
- * You can still declare named functions and export them as tasks
+ * You can also declare named functions and export them as tasks
  */
 export function styles() {
   return gulp.src(paths.styles.src)
@@ -173,13 +172,21 @@ export function scripts() {
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
-export function watch() {
+ /*
+  * You could even use `export as` to rename exported tasks
+  */
+function watchFiles() {
   gulp.watch(paths.scripts.src, scripts);
   gulp.watch(paths.styles.src, styles);
 }
+export { watchFiles as watch };
 
-const build = gulp.series(clean, gulp.parallel(styles, scripts));
-export { build };
+/*
+ * You can still use `gulp.task`
+ * for example to set task names that would otherwise be invalid
+ */
+const clean = gulp.series(clean, gulp.parallel(styles, scripts));
+gulp.task('clean', clean);
 
 /*
  * Export a default task
