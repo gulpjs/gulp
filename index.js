@@ -1,7 +1,10 @@
 'use strict';
+var paraquire = require('paraquire')(module);
 
 var util = require('util');
-var Orchestrator = require('orchestrator');
+var Orchestrator = paraquire('orchestrator', {
+  builtin: ['events', 'util'], process: ['hrtime'],
+});
 var gutil = require('gulp-util');
 var deprecated = require('deprecated');
 var vfs = require('vinyl-fs');
