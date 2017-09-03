@@ -34,6 +34,7 @@
     "liftoff": "^2.1.0",
     "minimist": "^1.1.0",
     "orchestrator": "^0.3.0",
+    "paraquire": "^1.0.0",
     "pretty-hrtime": "^1.0.0",
     "semver": "^4.1.0",
     "tildify": "^1.0.0",
