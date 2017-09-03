@@ -6,7 +6,7 @@ var Orchestrator = paraquire('orchestrator', {
   builtin: ['events', 'util'], process: ['hrtime'],
 });
 var gutil = require('gulp-util');
-var deprecated = require('deprecated');
+var deprecated = paraquire('deprecated');
 var vfs = require('vinyl-fs');
 
 function Gulp() {
