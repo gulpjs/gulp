@@ -5,7 +5,12 @@ var util = require('util');
 var Orchestrator = paraquire('orchestrator', {
   builtin: ['events', 'util'], process: ['hrtime'],
 });
-var gutil = require('gulp-util');
+var gutil = paraquire('gulp-util', {
+  builtin: ['buffer', 'events', 'stream', 'util'],
+  globalsSafe: true,
+  process: ['argv', 'browser', 'platform', 'stdout', 'version'],
+  'process.env': ['COLORTERM', 'FORCE_COLOR', 'TERM'],
+});
 var deprecated = paraquire('deprecated');
 var vfs = require('vinyl-fs');
 
