@@ -11,7 +11,8 @@ var tildify = require('tildify');
 var interpret = require('interpret');
 var v8flags = require('v8flags');
 var completion = require('../lib/completion');
-var argv = require('minimist')(process.argv.slice(2));
+var cmdArgv = process.argv.slice(2);
+var argv = require('minimist')(cmdArgv);
 var taskTree = require('../lib/taskTree');
 
 // Set env var for ORIGINAL cwd
@@ -20,6 +21,7 @@ process.env.INIT_CWD = process.cwd();
 
 var cli = new Liftoff({
   name: 'gulp',
+  processTitle: ['gulp'].concat(cmdArgv).join(' '),
   completions: completion,
   extensions: interpret.jsVariants,
   v8flags: v8flags,
