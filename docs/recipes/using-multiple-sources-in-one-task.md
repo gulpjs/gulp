@@ -17,6 +17,28 @@ gulp.task('test', function() {
 });
 ```
 
+An alternate solution for gulp >v4
+```js
+// npm install --save-dev gulp merge-stream
+
+var gulp = require('gulp');
+var gulpStreamToPromise = require('gulp-stream-to-promise');
+
+gulp.task('test', function() {
+  var bootstrap = gulp.src('bootstrap/js/*.js')
+    .pipe(gulp.dest('public/bootstrap'));
+
+  var jquery = gulp.src('jquery.cookie/jquery.cookie.js')
+    .pipe(gulp.dest('public/jquery'));
+
+  return Promise.all([
+    gulpStreamToPromise(bootstrap), 
+    gulpStreamToPromise(jquery)
+  ]);
+});
+
+```
+
 `gulp.src` will emit files in the order they were added:
 
 ```js
