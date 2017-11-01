@@ -29,7 +29,7 @@ Gulp.prototype.watch = function(glob, opt, fn) {
     fn = opt;
     opt = null;
   }
-
+	
   // Array of tasks given
   if (Array.isArray(fn)) {
     return vfs.watch(glob, opt, function() {
@@ -43,7 +43,7 @@ Gulp.prototype.watch = function(glob, opt, fn) {
 // Let people use this class from our instance
 Gulp.prototype.Gulp = Gulp;
 
-// Deprecations
+// Test with Deprecations
 deprecated.field('gulp.env has been deprecated. ' +
   'Use your own CLI parser instead. ' +
   'We recommend using yargs or minimist.',
@@ -59,5 +59,6 @@ Gulp.prototype.run = deprecated.method('gulp.run() has been deprecated. ' +
   Gulp.prototype.run
 );
 
+//This is a new line
 var inst = new Gulp();
 module.exports = inst;
