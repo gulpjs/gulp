@@ -14,8 +14,8 @@ that can be [piped](http://nodejs.org/api/stream.html#stream_readable_pipe_desti
 to plugins.
 
 ```javascript
-gulp.src('client/templates/*.jade')
-  .pipe(jade())
+gulp.src('client/templates/*.pug')
+  .pipe(pug())
   .pipe(minify())
   .pipe(gulp.dest('build/minified_templates'));
 ```
@@ -77,8 +77,8 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.  Folders that don't exist will be created.
 
 ```javascript
-gulp.src('./client/templates/*.jade')
-  .pipe(jade())
+gulp.src('./client/templates/*.pug')
+  .pipe(pug())
   .pipe(gulp.dest('./build/templates'))
   .pipe(minify())
   .pipe(gulp.dest('./build/minified_templates'));
