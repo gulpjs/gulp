@@ -18,7 +18,7 @@ npm --version
 npm install --global gulp-cli
 ```
 
-#### Create a `package.json`in your project directory
+#### Create a `package.json` in your project directory
 If you don't have a package.json, create one. If you need help, run an `npm init` which will walk you through giving it a name, version, description, etc.
 
 
