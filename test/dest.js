@@ -4,7 +4,7 @@ var gulp = require('../');
 var should = require('should');
 var join = require('path').join;
 var rimraf = require('rimraf');
-var fs = require('graceful-fs');
+var fs = require('fs');
 
 require('mocha');
 
