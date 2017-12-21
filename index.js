@@ -1,10 +1,10 @@
 'use strict';
 
-var util = require('util');
-var Orchestrator = require('orchestrator');
-var gutil = require('gulp-util');
-var deprecated = require('deprecated');
-var vfs = require('vinyl-fs');
+var util = require('util'),
+    Orchestrator = require('orchestrator'),
+    gutil = require('gulp-util'),
+    deprecated = require('deprecated'),
+    vfs = require('vinyl-fs');
 
 function Gulp() {
   Orchestrator.call(this);
