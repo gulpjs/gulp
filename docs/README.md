@@ -21,7 +21,7 @@ The community has written [recipes](recipes#recipes) for common gulp use-cases.
 
 ## Still got questions?
 
-Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagged/gulp) or come chat with us in [#gulpjs](http://webchat.freenode.net/?channels=gulpjs) on [Freenode](http://freenode.net/).
+Post on [StackOverflow with a #gulp tag](https://stackoverflow.com/questions/tagged/gulp) or come chat with us in [#gulpjs](https://webchat.freenode.net/?channels=gulpjs) on [Freenode](https://freenode.net/).
 
 
 ## Books
@@ -32,14 +32,14 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 ## Articles
 * [Tagtree intro to gulp video](http://tagtree.io/gulp)
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
-* [Video introduction to node.js streams](http://www.youtube.com/watch?v=QgEuZ52OZtU)
-* [Getting started with gulp (by @markgdyr)](http://markgoodyear.com/2014/01/getting-started-with-gulp/)
+* [Video introduction to node.js streams](https://www.youtube.com/watch?v=QgEuZ52OZtU)
+* [Getting started with gulp (by @markgdyr)](https://markgoodyear.com/2014/01/getting-started-with-gulp/)
 * [A cheatsheet for gulp](https://github.com/osscafe/gulp-cheatsheet)
 * [Why you shouldn’t create a gulp plugin (or, how to stop worrying and learn to love existing node packages)](http://blog.overzealous.com/post/74121048393/why-you-shouldnt-create-a-gulp-plugin-or-how-to-stop)
 * [Inspiration (slides) about why gulp was made](http://slid.es/contra/gulp)
 * [Building With Gulp](http://www.smashingmagazine.com/2014/06/11/building-with-gulp/)
 * [Gulp - The Basics (screencast)](https://www.youtube.com/watch?v=dwSLFai8ovQ)
-* [Get started with gulp (video series)](http://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
+* [Get started with gulp (video series)](https://www.youtube.com/playlist?list=PLRk95HPmOM6PN-G1xyKj9q6ap_dc9Yckm)
 * [Optimize your web code with gulp](http://www.linuxuser.co.uk/tutorials/optimise-your-web-code-with-gulp-js)
 * [Automate Your Tasks Easily with Gulp.js ](https://scotch.io/tutorials/automate-your-tasks-easily-with-gulp-js)
 
@@ -53,7 +53,7 @@ Post on [StackOverflow with a #gulp tag](http://stackoverflow.com/questions/tagg
 
 All the documentation is covered by the CC0 license *(do whatever you want with it - public domain)*.
 
-[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
+[![CC0](https://i.creativecommons.org/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 To the extent possible under law, [Fractal](http://wearefractal.com) has waived all copyright and related or neighboring rights to this work.
 

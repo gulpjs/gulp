@@ -9,8 +9,8 @@ Jump to:
 ### gulp.src(globs[, options])
 
 Emits files matching provided glob or an array of globs.
-Returns a [stream](http://nodejs.org/api/stream.html) of [Vinyl files](https://github.com/gulpjs/vinyl-fs)
-that can be [piped](http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options)
+Returns a [stream](https://nodejs.org/api/stream.html) of [Vinyl files](https://github.com/gulpjs/vinyl-fs)
+that can be [piped](https://nodejs.org/api/stream.html#stream_readable_pipe_destination_options)
 to plugins.
 
 ```javascript

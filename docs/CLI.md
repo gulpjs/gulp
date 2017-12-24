@@ -18,7 +18,7 @@ The CLI adds process.env.INIT_CWD which is the original cwd it was launched from
 
 #### Task specific flags
 
-Refer to this [StackOverflow](http://stackoverflow.com/questions/23023650/is-it-possible-to-pass-a-flag-to-gulp-to-have-it-run-tasks-in-different-ways) link for how to add task specific flags
+Refer to this [StackOverflow](https://stackoverflow.com/questions/23023650/is-it-possible-to-pass-a-flag-to-gulp-to-have-it-run-tasks-in-different-ways) link for how to add task specific flags
 
 ### Tasks
 

@@ -1,6 +1,6 @@
 # Browserify + Uglify2 with sourcemaps
 
-[Browserify](http://github.com/substack/node-browserify) has become an important and indispensable
+[Browserify](https://github.com/substack/node-browserify) has become an important and indispensable
 tool but requires being wrapped before working well with gulp. Below is a simple recipe for using
 Browserify with full sourcemaps that resolve to the original individual files.
 
