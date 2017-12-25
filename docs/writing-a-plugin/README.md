@@ -11,12 +11,12 @@ If you plan to create your own Gulp plugin, you will save time by reading the fu
 
 ### Streaming file objects
 
-A gulp plugin always returns a stream in [object mode](http://nodejs.org/api/stream.html#stream_object_mode) that does the following:
+A gulp plugin always returns a stream in [object mode](https://nodejs.org/api/stream.html#stream_object_mode) that does the following:
 
-1. Takes in [vinyl File objects](http://github.com/gulpjs/vinyl)
-2. Outputs [vinyl File objects](http://github.com/gulpjs/vinyl) (via `transform.push()` and/or the plugin's callback function)
+1. Takes in [vinyl File objects](https://github.com/gulpjs/vinyl)
+2. Outputs [vinyl File objects](https://github.com/gulpjs/vinyl) (via `transform.push()` and/or the plugin's callback function)
 
-These are known as [transform streams](http://nodejs.org/api/stream.html#stream_class_stream_transform_1)
+These are known as [transform streams](https://nodejs.org/api/stream.html#stream_class_stream_transform_1)
 (also sometimes called through streams).
 Transform streams are streams that are readable and writable; they manipulate objects as they're being passed through.
 
@@ -195,6 +195,6 @@ if (someCondition) {
 If you're unfamiliar with streams, you will need to read up on them:
 
 * https://github.com/substack/stream-handbook (a MUST read)
-* http://nodejs.org/api/stream.html
+* https://nodejs.org/api/stream.html
 
 Other libraries that are not file manipulating through streams but are made for use with gulp are tagged with the [gulpfriendly](https://npmjs.org/browse/keyword/gulpfriendly) keyword on npm.

@@ -67,4 +67,4 @@ Using gulpfile ~/my-project/gulpfile.js
 - [API Documentation](API.md) - The programming interface, defined
 - [Recipes](recipes) - Specific examples from the community
 - [In Depth Help](https://travismaynard.com/writing/getting-started-with-gulp) - A tutorial from the the guy who wrote the book
-- [Plugins](http://gulpjs.com/plugins/) - Building blocks for your gulp file
+- [Plugins](https://gulpjs.com/plugins/) - Building blocks for your gulp file
