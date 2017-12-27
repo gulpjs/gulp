@@ -1,8 +1,8 @@
 # Fast browserify builds with watchify
 
-As a [browserify](https://github.com/substack/node-browserify) project begins to expand, the time to bundle it slowly gets longer and longer. While it might start at 1 second, it's possible to be waiting 30 seconds for your project to build on particularly large projects.
+As a [browserify](https://github.com/browserify/browserify) project begins to expand, the time to bundle it slowly gets longer and longer. While it might start at 1 second, it's possible to be waiting 30 seconds for your project to build on particularly large projects.
 
-That's why [substack](https://github.com/substack) wrote [watchify](https://github.com/substack/watchify), a persistent browserify bundler that watches files for changes and *only rebuilds what it needs to*. This way, that first build might still take 30 seconds, but subsequent builds can still run in under 100ms – which is a huge improvement.
+That's why [substack](https://github.com/substack) wrote [watchify](https://github.com/browserify/watchify), a persistent browserify bundler that watches files for changes and *only rebuilds what it needs to*. This way, that first build might still take 30 seconds, but subsequent builds can still run in under 100ms – which is a huge improvement.
 
 Watchify doesn't have a gulp plugin, and it doesn't need one: you can use [vinyl-source-stream](https://github.com/hughsk/vinyl-source-stream) to pipe the bundle stream into your gulp pipeline.
 
