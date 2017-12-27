@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('../');
-var fs = require('graceful-fs');
+var fs = require('fs');
 var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
 var path = require('path');
