@@ -32,7 +32,6 @@
     "coveralls": "^2.7.0",
     "eslint": "^1.7.3",
     "eslint-config-gulp": "^2.0.0",
-    "graceful-fs": "^3.0.0",
     "istanbul": "^0.3.0",
     "jscs": "^2.3.5",
     "jscs-preset-gulp": "^1.0.0",
