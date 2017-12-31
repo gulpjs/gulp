@@ -9,8 +9,7 @@ If your plugin is relying on a buffer based library, you will probably choose to
 
 ```js
 var through = require('through2');
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
+var PluginError = require('plugin-error');
 
 // consts
 const PLUGIN_NAME = 'gulp-prefixer';

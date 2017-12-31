@@ -10,7 +10,7 @@ var runSequence = require('run-sequence');
 var conventionalChangelog = require('gulp-conventional-changelog');
 var conventionalGithubReleaser = require('conventional-github-releaser');
 var bump = require('gulp-bump');
-var gutil = require('gulp-util');
+var log = require('gulplog');
 var git = require('gulp-git');
 var fs = require('fs');
 
@@ -38,7 +38,7 @@ gulp.task('bump-version', function () {
 // use minimist (https://www.npmjs.com/package/minimist) to determine with a
 // command argument whether you are doing a 'major', 'minor' or a 'patch' change.
   return gulp.src(['./bower.json', './package.json'])
-    .pipe(bump({type: "patch"}).on('error', gutil.log))
+    .pipe(bump({type: "patch"}).on('error', log.error))
     .pipe(gulp.dest('./'));
 });
 

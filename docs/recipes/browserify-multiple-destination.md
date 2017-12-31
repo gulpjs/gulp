@@ -8,7 +8,7 @@ The below `js` task bundles all the `.js` files under `src/` as entry points and
 ```js
 var gulp = require('gulp');
 var browserify = require('browserify');
-var gutil = require('gulp-util');
+var log = require('gulplog');
 var tap = require('gulp-tap');
 var buffer = require('gulp-buffer');
 var sourcemaps = require('gulp-sourcemaps');
@@ -21,7 +21,7 @@ gulp.task('js', function () {
     // transform file objects using gulp-tap plugin
     .pipe(tap(function (file) {
 
-      gutil.log('bundling ' + file.path);
+      log.info('bundling ' + file.path);
 
       // replace file contents with browserify's bundle stream
       file.contents = browserify(file.path, {debug: true}).bundle();

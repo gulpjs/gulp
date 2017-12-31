@@ -14,7 +14,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var globby = require('globby');
 var through = require('through2');
-var gutil = require('gulp-util');
+var log = require('gulplog');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var reactify = require('reactify');
@@ -33,7 +33,7 @@ gulp.task('javascript', function () {
     .pipe(sourcemaps.init({loadMaps: true}))
       // Add gulp plugins to the pipeline here.
       .pipe(uglify())
-      .on('error', gutil.log)
+      .on('error', log.error)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/js/'));
 

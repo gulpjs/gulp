@@ -126,7 +126,7 @@ A simple example showing how to detect & handle each form is provided below, for
 approach follow the links above.
 
 ```js
-var PluginError = require('gulp-util').PluginError;
+var PluginError = require('plugin-error');
 
 // consts
 var PLUGIN_NAME = 'gulp-example';
@@ -176,11 +176,10 @@ if (someCondition) {
 
 ## Useful resources
 
-* [File object](https://github.com/gulpjs/gulp-util/#new-fileobj)
-* [PluginError](https://github.com/gulpjs/gulp-util#new-pluginerrorpluginname-message-options)
-* [event-stream](https://github.com/dominictarr/event-stream)
-* [BufferStream](https://github.com/nfroidure/BufferStream)
-* [gulp-util](https://github.com/gulpjs/gulp-util)
+* [File object](https://github.com/gulpjs/vinyl)
+* [PluginError](https://github.com/gulpjs/plugin-error)
+* [through2](https://www.npmjs.com/package/through2)
+* [bufferstreams](https://www.npmjs.com/package/bufferstreams)
 
 
 ## Sample plugins

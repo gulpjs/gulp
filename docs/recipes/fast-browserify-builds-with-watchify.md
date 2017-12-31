@@ -14,7 +14,7 @@ var browserify = require('browserify');
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var gutil = require('gulp-util');
+var log = require('gulplog');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 
@@ -31,12 +31,12 @@ var b = watchify(browserify(opts));
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
-b.on('log', gutil.log); // output build logs to terminal
+b.on('log', log.info); // output build logs to terminal
 
 function bundle() {
   return b.bundle()
     // log errors if they happen
-    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+    .on('error', log.error.bind(log, 'Browserify Error'))
     .pipe(source('bundle.js'))
     // optional, remove if you don't need to buffer file contents
     .pipe(buffer())
