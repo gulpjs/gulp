@@ -1,27 +1,34 @@
 {
   "name": "gulp",
-  "description": "The streaming build system",
   "version": "4.0.0-alpha.3",
+  "description": "The streaming build system.",
   "homepage": "http://gulpjs.com",
-  "repository": "gulpjs/gulp",
-  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
-  "keywords": [
-    "build",
-    "stream",
-    "system",
-    "make",
-    "tool",
-    "asset",
-    "pipeline"
+  "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
+  "contributors": [
+    "Eric Schoffstall <yo@contra.io>",
+    "Blaine Bublitz <blaine.bublitz@gmail.com>"
   ],
+  "repository": "gulpjs/gulp",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "main": "index.js",
   "files": [
+    "LICENSE",
     "index.js",
     "bin"
   ],
   "bin": {
     "gulp": "./bin/gulp.js"
   },
-  "man": "gulp.1",
+  "scripts": {
+    "lint": "eslint . && jscs index.js bin/ test/",
+    "pretest": "npm run lint",
+    "test": "mocha --async-only",
+    "cover": "istanbul cover _mocha --report lcovonly",
+    "coveralls": "npm run cover && istanbul-coveralls"
+  },
   "dependencies": {
     "glob-watcher": "^5.0.0",
     "gulp-cli": "^2.0.0",
@@ -29,27 +36,27 @@
     "vinyl-fs": "^3.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.7.0",
     "eslint": "^1.7.3",
     "eslint-config-gulp": "^2.0.0",
-    "istanbul": "^0.3.0",
+    "expect": "^1.20.2",
+    "istanbul": "^0.4.3",
+    "istanbul-coveralls": "^1.0.3",
     "jscs": "^2.3.5",
     "jscs-preset-gulp": "^1.0.0",
-    "mkdirp": "^0.5.0",
-    "mocha": "^2.0.1",
-    "mocha-lcov-reporter": "^1.0.0",
-    "q": "^1.0.0",
-    "rimraf": "^2.2.5",
-    "should": "^5.0.1"
+    "mkdirp": "^0.5.1",
+    "mocha": "^3.0.0",
+    "rimraf": "^2.2.5"
   },
-  "scripts": {
-    "lint": "eslint . && jscs *.js bin/ test/",
-    "pretest": "npm run lint",
-    "test": "mocha --reporter spec",
-    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
-  },
-  "engines": {
-    "node": ">= 0.9"
-  },
-  "license": "MIT"
+  "keywords": [
+    "build",
+    "stream",
+    "system",
+    "make",
+    "tool",
+    "asset",
+    "pipeline",
+    "series",
+    "parallel",
+    "streaming"
+  ]
 }
