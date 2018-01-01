@@ -20,8 +20,7 @@
 There are a few ways to install:
 
 * gulp v4.0.0 - `npm install gulp@next`
-* gulp v4.0.0-alpha.3 - `npm install gulpjs/gulp#4.0.0-alpha.3`
-* gulp v4.0.0-alpha.2 - `npm install gulpjs/gulp#4.0.0-alpha.2`
+* gulp v4.0.0-alpha.3 - `npm install gulpjs/gulp#v4.0.0-alpha.3`
 * gulp v3.9.1 - `npm install gulp`
 
 ## Documentation
