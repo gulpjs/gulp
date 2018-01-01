@@ -2,10 +2,10 @@
 
 With [BrowserSync](https://browsersync.io) and gulp, you can easily create a development server that is accessible to any device on the same WiFi network. BrowserSync also has live-reload built in, so there's nothing else to configure.
 
-First install the module:
+First install the modules:
 
 ```sh
-$ npm install --save-dev browser-sync
+$ npm install --save-dev gulp@next browser-sync
 ```
 
 Then, considering the following file structure...

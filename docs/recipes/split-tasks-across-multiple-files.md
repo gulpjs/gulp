@@ -17,7 +17,7 @@ tasks/
 Install the `gulp-hub` module:
 
 ```sh
-npm install --save-dev gulp-hub
+npm install --save-dev gulp@next gulp-hub
 ```
 
 Add the following lines to your `gulpfile.js` file:

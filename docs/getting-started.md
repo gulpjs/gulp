@@ -27,7 +27,7 @@ If you don't have a package.json, create one. If you need help, run an `npm init
 Run this command in your project directory:
 
 ```sh
-npm install --save-dev gulp
+npm install --save-dev gulp@next
 ```
 
 #### Create a `gulpfile`

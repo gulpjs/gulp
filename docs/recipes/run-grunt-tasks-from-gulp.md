@@ -7,7 +7,7 @@ It is possible to run Grunt tasks / Grunt plugins from within Gulp. This can be 
 very simple example `gulpfile.js`:
 
 ```js
-// npm install gulp grunt grunt-contrib-copy --save-dev
+// npm install gulp@next grunt grunt-contrib-copy --save-dev
 
 var gulp = require('gulp');
 var grunt = require('grunt');

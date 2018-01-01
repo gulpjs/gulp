@@ -1,7 +1,7 @@
 # Pass arguments from the command line
 
 ```js
-// npm install --save-dev gulp gulp-if gulp-uglify minimist
+// npm install --save-dev gulp@next gulp-if gulp-uglify minimist
 
 var gulp = require('gulp');
 var gulpif = require('gulp-if');

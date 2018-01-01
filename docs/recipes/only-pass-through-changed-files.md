@@ -4,7 +4,7 @@ Files are passed through the whole pipe chain on every run by default. By using 
 
 
 ```js
-// npm install --save-dev gulp gulp-changed gulp-jscs gulp-uglify
+// npm install --save-dev gulp@next gulp-changed gulp-jscs gulp-uglify
 
 var gulp = require('gulp');
 var changed = require('gulp-changed');
