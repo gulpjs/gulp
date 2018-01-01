@@ -5,7 +5,7 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
 
 
 ## What is gulp?
@@ -15,12 +15,21 @@
 - **Strong Ecosystem** - Use npm modules to do anything you want + over 2000 curated plugins for streaming file transformations
 - **Simple** - By providing only a minimal API surface, gulp is easy to learn and simple to use
 
+## Installation
+
+There are a few ways to install:
+
+* gulp v4.0.0 - `npm install gulp@next`
+* gulp v4.0.0-alpha.3 - `npm install gulpjs/gulp#4.0.0-alpha.3`
+* gulp v4.0.0-alpha.2 - `npm install gulpjs/gulp#4.0.0-alpha.2`
+* gulp v3.9.1 - `npm install gulp`
+
 ## Documentation
 
 For a Getting started guide, API docs, recipes, making a plugin, etc. check out our docs!
 
-- Need something reliable? Check out the [documentation for the current release](/docs/README.md)!
-- Want to help us test the latest and greatest? Check out the [documentation for the next release](https://github.com/gulpjs/gulp/tree/4.0)!
+- Check out the [documentation for v4.0.0](/docs/README.md)! __Note: these docs might be behind while we get everything updated.__
+- Using the older v3.9.1? Check out the [documentation at the v3.9.1 tag](https://github.com/gulpjs/gulp/tree/v3.9.1/docs)!
 
 ## Sample `gulpfile.js`
 
@@ -259,16 +268,6 @@ function scripts() {
 }
 ```
 
-## Want to test the latest and greatest?
-
-We're hard at work on our latest release, but we need your help testing it!
-
-```sh
-npm install gulpjs/gulp#4.0
-```
-
-There's a slew of major (wonderful) changes in 4.0, so make sure you check out the [docs on that branch](https://github.com/gulpjs/gulp/tree/4.0)!
-
 ## Want to contribute?
 
 Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
@@ -290,7 +289,10 @@ Become a sponsor to get your logo on our README on Github.
 [npm-image]: https://img.shields.io/npm/v/gulp.svg
 
 [travis-url]: https://travis-ci.org/gulpjs/gulp
-[travis-image]: https://img.shields.io/travis/gulpjs/gulp/master.svg
+[travis-image]: https://img.shields.io/travis/gulpjs/gulp.svg?label=travis-ci
+
+[appveyor-url]: https://ci.appveyor.com/project/gulpjs/gulp
+[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/gulp.svg?label=appveyor
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg
