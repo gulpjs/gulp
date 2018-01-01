@@ -28,7 +28,7 @@ There are a few ways to install:
 
 For a Getting started guide, API docs, recipes, making a plugin, etc. check out our docs!
 
-- Check out the [documentation for v4.0.0](/docs/README.md)! __Note: these docs might be behind while we get everything updated.__
+- Check out the [documentation for v4.0.0](/docs/README.md)! __Excuse our dust; these docs might be behind while we get everything updated. Please open an issue if something isn't working.__
 - Using the older v3.9.1? Check out the [documentation at the v3.9.1 tag](https://github.com/gulpjs/gulp/tree/v3.9.1/docs)!
 
 ## Sample `gulpfile.js`
