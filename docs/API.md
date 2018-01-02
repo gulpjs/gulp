@@ -259,6 +259,8 @@ completion. Tasks are called with a callback parameter to call to signal
 completion. Alternatively, Task can return a stream, a promise, a child process
 or a RxJS observable to signal the end of the task.
 
+In case you use ES2017 (Node 7.6 and up) you can also mark a [function as async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). This instructs you javascript engine to wrap the function into a promise.
+
 **Warning:** Sync tasks are not supported and your function will never complete
 if the one of the above strategies is not used to signal completion. However,
 thrown errors will be caught by Gulp.
@@ -314,6 +316,23 @@ $> gulp --tasks
 ```
 
 #### Async support
+
+##### ES2017 async function
+
+ES2017 standardized [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). Such function returns by definition always a promise. The javascript engine wraps an async function into a promise and enures that such a promise will be automatically resolved when the async function returns or it will be rejected upon any uncaught exception. 
+
+This makes the explicit done() call required by gulp 4 obsolete and avoids the "Did you forget to signal async completion?" error message. Further more it allows you to write asynchonous code in a synchonous style by using the await statement. 
+
+Node 7.6 and up offer full support for async functions.
+
+```js
+gulp.task('clean', async () => {
+  doSomething();
+  // No done() needed. As the method is marked as async this will not 
+  // trigger a "Did you forget to signal async completion?" error.
+});
+```
+
 
 ##### Accept a callback
 
