@@ -31,7 +31,7 @@ var b = watchify(browserify(opts));
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
-b.on('log', log.info); // output build logs to terminal
+b.on('log', log.info.bind(log)); // output build logs to terminal
 
 function bundle() {
   return b.bundle()
