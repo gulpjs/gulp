@@ -197,8 +197,8 @@ export { watchFiles as watch };
  * You can still use `gulp.task`
  * for example to set task names that would otherwise be invalid
  */
-const clean = gulp.series(clean, gulp.parallel(styles, scripts));
-gulp.task('clean', clean);
+const build = gulp.series(clean, gulp.parallel(styles, scripts));
+gulp.task('build', build);
 
 /*
  * Export a default task
