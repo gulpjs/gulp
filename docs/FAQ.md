@@ -1,3 +1,8 @@
+<!-- front-matter
+id: faq
+title: FAQ
+-->
+
 # FAQ
 
 ## Why gulp? Why not ____?

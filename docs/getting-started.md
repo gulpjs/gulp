@@ -1,3 +1,8 @@
+<!-- front-matter
+id: getting-started
+title: Getting Started
+-->
+
 # Getting Started
 
 *If you've previously installed gulp globally, run `npm rm --global gulp` before following these instructions.* For more information, read this [Sip](https://medium.com/gulpjs/gulp-sips-command-line-interface-e53411d4467).

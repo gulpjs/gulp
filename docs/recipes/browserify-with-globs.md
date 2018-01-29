@@ -1,3 +1,8 @@
+<!-- front-matter
+id: browserify-with-globs
+title: Browserify + Globs
+-->
+
 # Browserify + Globs
 
 [Browserify + Uglify2](https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md) shows how to setup a basic gulp task to bundle a JavaScript file with its dependencies, and minify the bundle with UglifyJS while preserving source maps.

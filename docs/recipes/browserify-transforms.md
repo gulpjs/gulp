@@ -1,3 +1,8 @@
+<!-- front-matter
+id: browserify-transforms
+title: Browserify + Transforms
+-->
+
 # Browserify + Transforms
 
 [Browserify](https://github.com/browserify/browserify) has become an important and indispensable

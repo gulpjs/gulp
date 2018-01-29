@@ -1,3 +1,8 @@
+<!-- front-matter
+id: cli
+title: CLI
+-->
+
 ## gulp CLI docs
 
 ### Flags
@@ -105,7 +110,7 @@ Output:
 
 Command: `gulp --tasks-simple`
 
-Output: 
+Output:
 ```shell
 one
 two

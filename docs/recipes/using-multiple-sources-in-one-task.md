@@ -1,3 +1,8 @@
+<!-- front-matter
+id: using-multiple-sources-in-one-task
+title: Using Multiple Sources in One Task
+-->
+
 # Using multiple sources in one task
 
 ```js

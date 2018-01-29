@@ -1,3 +1,8 @@
+<!-- front-matter
+id: dealing-with-streams
+title: Dealing with Streams
+-->
+
 # Dealing with streams
 
 > It is highly recommended to write plugins supporting streams. Here is some information on creating a gulp plugin that supports streams.
@@ -75,4 +80,3 @@ gulp.src('files/**/*.js', { buffer: false })
 ## Some plugins using streams
 
 * [gulp-svgicons2svgfont](https://github.com/nfroidure/gulp-svgiconstosvgfont)
-

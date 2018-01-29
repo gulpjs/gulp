@@ -1,3 +1,8 @@
+<!-- front-matter
+id: incremental-builds-with-concatenate
+title: Incremental Rebuilding
+-->
+
 # Incremental rebuilding, including operating on full file sets
 
 The trouble with incremental rebuilds is you often want to operate on _all_ processed files, not just single files. For example, you may want to lint and module-wrap just the file(s) that have changed, then concatenate it with all other linted and module-wrapped files. This is difficult without the use of temp files.

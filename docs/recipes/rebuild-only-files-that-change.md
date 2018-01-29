@@ -1,3 +1,8 @@
+<!-- front-matter
+id: rebuild-only-files-that-change
+title: Rebuild only files that Change
+-->
+
 # Rebuild only files that change
 
 With [`gulp-watch`](https://github.com/floatdrop/gulp-watch):

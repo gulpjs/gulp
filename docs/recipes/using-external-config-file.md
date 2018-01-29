@@ -1,3 +1,8 @@
+<!-- front-matter
+id: using-external-config-file
+title: Using External Config File
+-->
+
 # Using external config file
 
 Beneficial because it's keeping tasks DRY and config.json can be used by another task runner, like `grunt`.

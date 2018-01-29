@@ -1,3 +1,8 @@
+<!-- front-matter
+id: guidelines
+title: Guidelines
+-->
+
 # Guidelines
 
 > While these guidelines are totally optional, we **HIGHLY** recommend that everyone follows them. Nobody wants to use a bad plugin. These guidelines will actually help make your life easier by giving you assurance that your plugin fits well within gulp.

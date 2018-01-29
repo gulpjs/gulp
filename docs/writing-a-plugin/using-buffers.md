@@ -1,3 +1,8 @@
+<!-- front-matter
+id: using-buffers
+title: Using Buffers
+-->
+
 # Using buffers
 
 > Here is some information on creating gulp plugin that manipulates buffers.

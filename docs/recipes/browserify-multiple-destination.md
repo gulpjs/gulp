@@ -1,3 +1,8 @@
+<!-- front-matter
+id: browserify-multiple-destination
+title: Browserify + Globs
+-->
+
 # Browserify + Globs (multiple destination)
 
 This example shows how to set up a task of bundling multiple entry points into multiple destinations using browserify.

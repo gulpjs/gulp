@@ -1,3 +1,8 @@
+<!-- front-matter
+id: run-grunt-tasks-from-gulp
+title: Run Grunt Tasks from Gulp
+-->
+
 # Run Grunt Tasks from Gulp
 
 It is possible to run Grunt tasks / Grunt plugins from within Gulp. This can be useful during a gradual migration from Grunt to Gulp or if there's a specific plugin that you need. With the described approach no Grunt CLI and no Gruntfile is required.
@@ -32,7 +37,7 @@ gulp.task('copy', function (done) {
 
 ```
 
-Now start the task with: 
+Now start the task with:
 `gulp copy`
 
 With the aforementioned approach the grunt tasks get registered within gulp's task system. **Keep in mind grunt tasks are usually blocking (unlike gulp), therefore no other task (not even a gulp task) can run until a grunt task is completed.**

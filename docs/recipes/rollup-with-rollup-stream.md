@@ -1,3 +1,8 @@
+<!-- front-matter
+id: rollup-with-rollup-stream
+title: Rollup with Rollup-Stream
+-->
+
 # Rollup with rollup-stream
 
 Like Browserify, [Rollup](https://rollupjs.org/) is a bundler and thus only fits naturally into gulp if it's at the start of the pipeline. Unlike Browserify, Rollup doesn't natively produce a stream as output and needs to be wrapped before it can take this position. [rollup-stream](https://github.com/Permutatrix/rollup-stream) does this for you, producing output just like that of Browserify's `bundle()` method&mdash;as a result, most of the Browserify recipes here will also work with rollup-stream.

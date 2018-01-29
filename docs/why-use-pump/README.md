@@ -1,3 +1,8 @@
+<!-- front-matter
+id: why-use-pump
+title: Why Use Pump
+-->
+
 # Why Use Pump?
 
 When using `pipe` from the Node.js streams, errors are not propagated forward

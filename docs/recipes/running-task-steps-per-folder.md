@@ -1,3 +1,8 @@
+<!-- front-matter
+id: running-task-steps-per-folder
+title: Generating a file per Folder
+-->
+
 # Generating a file per folder
 
 If you have a set of folders, and wish to perform a set of tasks on each, for instance...
@@ -44,11 +49,11 @@ gulp.task('scripts', function() {
         // concat into foldername.js
         .pipe(concat(folder + '.js'))
         // write to output
-        .pipe(gulp.dest(scriptsPath)) 
+        .pipe(gulp.dest(scriptsPath))
         // minify
         .pipe(uglify())    
         // rename to folder.min.js
-        .pipe(rename(folder + '.min.js')) 
+        .pipe(rename(folder + '.min.js'))
         // write to output again
         .pipe(gulp.dest(scriptsPath));    
    });

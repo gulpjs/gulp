@@ -1,3 +1,8 @@
+<!-- front-matter
+id: sharing-streams-with-stream-factories
+title: Sharing Streams with Stream Factories
+-->
+
 # Sharing streams with stream factories
 
 If you use the same plugins in multiple tasks you might find yourself getting that itch to DRY things up. This method will allow you to create factories to split out your commonly used stream chains.

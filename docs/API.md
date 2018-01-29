@@ -1,3 +1,8 @@
+<!-- front-matter
+id: api
+title: API
+-->
+
 ## gulp API docs
 
 * [gulp.src](#gulpsrcglobs-options) - Emit files matching one or more globs

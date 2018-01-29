@@ -1,3 +1,8 @@
+<!-- front-matter
+id: testing
+title: Testing
+-->
+
 # Testing
 
 > Testing your plugin is the only way to ensure quality. It brings confidence to your users and makes your life easier.

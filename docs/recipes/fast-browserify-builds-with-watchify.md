@@ -1,3 +1,8 @@
+<!-- front-matter
+id: fast-browserify-builds-with-watchify
+title: Fast Browserify builds with Watchify
+-->
+
 # Fast browserify builds with watchify
 
 As a [browserify](https://github.com/browserify/browserify) project begins to expand, the time to bundle it slowly gets longer and longer. While it might start at 1 second, it's possible to be waiting 30 seconds for your project to build on particularly large projects.
@@ -24,7 +29,7 @@ var customOpts = {
   debug: true
 };
 var opts = assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts)); 
+var b = watchify(browserify(opts));
 
 // add transformations here
 // i.e. b.transform(coffeeify);

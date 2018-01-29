@@ -1,3 +1,8 @@
+<!-- front-matter
+id: running-shell-commands
+title: Running Shell Commands
+-->
+
 # Running Shell Commands
 
 Sometimes it is helpful to be able to call existing command line tools from gulp.

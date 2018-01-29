@@ -1,3 +1,8 @@
+<!-- front-matter
+id: combining-streams-to-handle-errors
+title: Combining Streams to Handle Errors
+-->
+
 # Combining streams to handle errors
 
 By default, emitting an error on a stream will cause it to be thrown unless it already has a listener attached to the `error` event. This gets a bit tricky when you're working with longer pipelines of streams.
