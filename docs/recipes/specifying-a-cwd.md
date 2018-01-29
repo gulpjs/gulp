@@ -1,3 +1,10 @@
+<!-- front-matter
+id: specifying-a-cwd
+title: Specifying a New cwd
+hide_title: true
+sidebar_label: Specifying a New cwd
+-->
+
 # Specifying a new cwd (current working directory)
 
 This is helpful for projects using a nested directory structure, such as:

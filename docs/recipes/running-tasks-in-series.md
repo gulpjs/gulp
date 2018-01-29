@@ -1,3 +1,10 @@
+<!-- front-matter
+id: running-tasks-in-series
+title: Running Tasks in Series
+hide_title: true
+sidebar_label: Running Tasks in Series
+-->
+
 # Running tasks in series
 
 By default, gulp CLI run tasks with maximum concurrency - e.g. it launches

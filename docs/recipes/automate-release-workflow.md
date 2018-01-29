@@ -1,3 +1,10 @@
+<!-- front-matter
+id: automate-release-workflow
+title: Automate Release Workflow
+hide_title: true
+sidebar_label: Automate Release Workflow
+-->
+
 # Automate release workflow
 
 If your project follows a semantic versioning, it may be a good idea to automatize the steps needed to do a release.

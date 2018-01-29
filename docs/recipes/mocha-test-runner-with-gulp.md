@@ -1,3 +1,10 @@
+<!-- front-matter
+id: mocha-test-runner-with-gulp
+title: Mocha test-runner with Gulp
+hide_title: true
+sidebar_label: Mocha test-runner with Gulp
+-->
+
 # Mocha test-runner with gulp
 
 ### Passing shared module in all tests

@@ -1,3 +1,10 @@
+<!-- front-matter
+id: recommended-modules
+title: Recommended Modules
+hide_title: true
+sidebar_label: Recommended Modules
+-->
+
 # Recommended Modules
 
 > Sticking to this curated list of recommended modules will make sure you don't violate the plugin guidelines and ensure consistency across plugins.

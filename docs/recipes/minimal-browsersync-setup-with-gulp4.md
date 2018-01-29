@@ -1,3 +1,10 @@
+<!-- front-matter
+id: minimal-browsersync-setup-with-gulp4
+title: Minimal BrowserSync setup with Gulp 4
+hide_title: true
+sidebar_label: Minimal BrowserSync setup with Gulp 4
+-->
+
 # Minimal BrowserSync setup with Gulp 4
 
 [BrowserSync](https://www.browsersync.io/) is a great tool to streamline
