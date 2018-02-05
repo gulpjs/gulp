@@ -5,8 +5,7 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
-
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url] [![CodeTriage Badge][codetriage-image]][codetriage-url]
 
 ## What is gulp?
 
@@ -313,3 +312,6 @@ Become a sponsor to get your logo on our README on Github.
 [gulp-remember]: https://github.com/ahaurw01/gulp-remember
 [gulp-changed]: https://github.com/sindresorhus/gulp-changed
 [gulp-newer]: https://github.com/tschaub/gulp-newer
+
+[codetriage-url]: https://www.codetriage.com/gulpjs/gulp
+[codetriage-image]: https://www.codetriage.com/gulpjs/gulp/badges/users.svg
