@@ -1,5 +1,5 @@
 Note: these docs are for version v4.0.0 (aka `gulp@next`) If you're on gulp
-v3.9.1, which is the current standard `npm` release, you probably want [that
+v3.9.1, which is the current default `npm` release, you probably want [that
 version's documentation](https://github.com/gulpjs/gulp/blob/v3.9.1/docs/API.md).
 
 ## gulp API docs
