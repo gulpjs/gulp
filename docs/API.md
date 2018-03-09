@@ -451,7 +451,7 @@ and the file system used:
 
 ### gulp.parallel(...tasks)
 
-Takes a number of task names or functions and returns a function of the composed
+Takes a number of task names or asynchronous functions and returns a asynchronous function of the composed
 tasks or functions.
 
 When using task names, the task should already be registered.
@@ -480,12 +480,12 @@ gulp.task('default', gulp.parallel('one', 'two', function(done) {
 #### tasks
 Type: `Array`, `String` or `Function`
 
-A task name, a function or an array of either.
+A task name, a asynchronous function or an array of either.
 
 
 ### gulp.series(...tasks)
 
-Takes a number of task names or functions and returns a function of the composed
+Takes a number of task names or asynchronous functions and returns a asynchronous function of the composed
 tasks or functions.
 
 When using task names, the task should already be registered.
@@ -514,7 +514,7 @@ gulp.task('default', gulp.series('one', 'two', function(done) {
 #### tasks
 Type: `Array`, `String` or `Function`
 
-A task name, a function or an array of either.
+A task name, a asynchronous function or an array of either.
 
 
 ### gulp.watch(globs[, opts][, fn])
