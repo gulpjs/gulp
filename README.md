@@ -279,7 +279,7 @@ Support us with a monthly donation and help us continue our activities.
 
 ## Sponsors
 
-Become a sponsor to get your logo on our README on Github.
+Become a sponsor to get your logo on our README on GitHub.
 
 [![Sponsors][sponsors-image]][support-url]
 
