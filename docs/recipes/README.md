@@ -21,6 +21,7 @@
 * [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemap.md)
 * [Browserify + Globs](browserify-with-globs.md)
 * [Browserify + Globs (multiple destination)](browserify-multiple-destination.md)
+* [Browserify + Vueify + Watchify](browserify-vueify.md)
 * [Output both a minified and non-minified version](minified-and-non-minified.md)
 * [Templating with Swig and YAML front-matter](templating-with-swig-and-yaml-front-matter.md)
 * [Run Grunt Tasks from Gulp](run-grunt-tasks-from-gulp.md)
