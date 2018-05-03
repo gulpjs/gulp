@@ -121,6 +121,8 @@ gulp.task('default', build);
 
 Node already supports a lot of **ES2015**, to avoid compatibility problem we suggest to install Babel and rename your `gulpfile.js` as `gulpfile.babel.js`.
 
+_Why `.babel.js` suffix? We are using [js-interpret](https://github.com/js-cli/js-interpret) behind the scenes to automatically require dependencies for configuration files such as `gulpfile.js`. So when `js-interpret` sees `.babel.js` suffix, it [requires Babel automatically](https://github.com/js-cli/js-interpret/blob/5dbc34cb669a2c13b2572f416b2194f40153db01/index.js#L1-L2)._
+
 ```sh
 npm install --save-dev babel-register babel-preset-es2015
 ```
