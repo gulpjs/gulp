@@ -38,7 +38,7 @@ function getFolders(dir) {
 
 gulp.task('scripts', function(done) {
    var folders = getFolders(scriptsPath);
-   if (folder.length === 0) return done(); // nothing to do!
+   if (folders.length === 0) return done(); // nothing to do!
    var tasks = folders.map(function(folder) {
       return gulp.src(path.join(scriptsPath, folder, '/**/*.js'))
         // concat into foldername.js
