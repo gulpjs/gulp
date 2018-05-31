@@ -7,7 +7,7 @@ sidebar_label: Watching Files
 
 # Watching Files
 
-The `watch()` API connects [globs][globs-docs] to [tasks][creating-tasks-docs] using a file system watcher. It watches for changes to files that match the globs and executes the task when a change occurs. If the task doesn't signal [Async Completion][async-completion-doc], it will never be run a second time.
+The `watch()` API connects [globs](6-explaining-globs.md) to [tasks](3-creating-tasks.md) using a file system watcher. It watches for changes to files that match the globs and executes the task when a change occurs. If the task doesn't signal [Async Completion](4-async-completion.md), it will never be run a second time.
 
 This API provides built-in delay and queueing based on most-common-use defaults.
 
