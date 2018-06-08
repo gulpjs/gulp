@@ -182,11 +182,15 @@ function watchFiles() {
 export { watchFiles as watch };
 
 /*
+ * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
+ */
+const build = gulp.series(clean, gulp.parallel(styles, scripts));
+
+/*
  * You can still use `gulp.task`
  * for example to set task names that would otherwise be invalid
  */
-const clean = gulp.series(clean, gulp.parallel(styles, scripts));
-gulp.task('clean', clean);
+gulp.task('build', build);
 
 /*
  * Export a default task
