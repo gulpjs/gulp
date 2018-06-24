@@ -5,7 +5,6 @@
 
   "rules": {
     "comma-dangle": ["off"],
-    "node/no-deprecated-api": ["off"],
     "no-multi-spaces": ["off"],
     "padded-blocks": ["off"],
     "space-before-function-paren": ["off"]

@@ -117,8 +117,8 @@ describe('gulp.dest()', function() {
       expect(file.path).toEqual(path.join(outpath, './stuff'));
     });
     outstream.on('end', function() {
-      fs.exists(path.join(outpath, 'stuff'), function(exists) {
-        expect(exists).toExist();
+      fs.access(path.join(outpath, 'stuff'), function(err) {
+        expect(err).toNotExist();
         done();
       });
     });
