@@ -1,6 +1,6 @@
 {
   "name": "gulp",
-  "version": "4.0.0",
+  "version": "4.1.0-dev",
   "description": "The streaming build system.",
   "homepage": "http://gulpjs.com",
   "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
