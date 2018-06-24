@@ -15,27 +15,27 @@ var outpath = path.join(__dirname, './out-fixtures');
 
 var tempFileContent = 'A test generated this file and it is safe to delete';
 
-function createTempFile(path) {
+function createTempFile (path) {
   fs.writeFileSync(path, tempFileContent);
 }
 
-function updateTempFile(path) {
-  setTimeout(function() {
+function updateTempFile (path) {
+  setTimeout(function () {
     fs.appendFileSync(path, ' changed');
   }, 125);
 }
 
-describe('gulp.watch()', function() {
+describe('gulp.watch()', function () {
   beforeEach(rimraf.bind(null, outpath));
   beforeEach(mkdirp.bind(null, outpath));
   afterEach(rimraf.bind(null, outpath));
 
-  it('should call the function when file changes: no options', function(done) {
+  it('should call the function when file changes: no options', function (done) {
     var tempFile = path.join(outpath, 'watch-func.txt');
 
     createTempFile(tempFile);
 
-    var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function(cb) {
+    var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function (cb) {
       watcher.close();
       cb();
       done();
@@ -44,12 +44,12 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
-  it('should execute the gulp.parallel tasks', function(done) {
+  it('should execute the gulp.parallel tasks', function (done) {
     var tempFile = path.join(outpath, 'watch-func.txt');
 
     createTempFile(tempFile);
 
-    gulp.task('test', function(cb) {
+    gulp.task('test', function (cb) {
       watcher.close();
       cb();
       done();
@@ -60,14 +60,14 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
-  it('should work with destructuring', function(done) {
+  it('should work with destructuring', function (done) {
     var tempFile = path.join(outpath, 'watch-func.txt');
     var watch = gulp.watch;
     var parallel = gulp.parallel;
     var task = gulp.task;
     createTempFile(tempFile);
 
-    task('test', function(cb) {
+    task('test', function (cb) {
       watcher.close();
       cb();
       done();
@@ -78,28 +78,28 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
-  it('should not call the function when no file changes: no options', function(done) {
+  it('should not call the function when no file changes: no options', function (done) {
     var tempFile = path.join(outpath, 'watch-func.txt');
 
     createTempFile(tempFile);
 
-    var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function() {
+    var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function () {
       // TODO: proper fail here
       expect('Watcher erroneously called');
     });
 
-    setTimeout(function() {
+    setTimeout(function () {
       watcher.close();
       done();
     }, 10);
   });
 
-  it('should call the function when file changes: w/ options', function(done) {
+  it('should call the function when file changes: w/ options', function (done) {
     var tempFile = path.join(outpath, 'watch-func-options.txt');
 
     createTempFile(tempFile);
 
-    var watcher = gulp.watch('watch-func-options.txt', { cwd: outpath }, function(cb) {
+    var watcher = gulp.watch('watch-func-options.txt', { cwd: outpath }, function (cb) {
       watcher.close();
       cb();
       done();
@@ -108,7 +108,7 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
-  it('should not drop options when no callback specified', function(done) {
+  it('should not drop options when no callback specified', function (done) {
     var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
     // By passing a cwd option, ensure options are not lost to gaze
     var relFile = '../watch-func-nodrop-options.txt';
@@ -117,7 +117,7 @@ describe('gulp.watch()', function() {
     createTempFile(tempFile);
 
     var watcher = gulp.watch(relFile, { cwd: cwd })
-      .on('change', function(filepath) {
+      .on('change', function (filepath) {
         expect(filepath).toExist();
         expect(path.resolve(cwd, filepath)).toEqual(path.resolve(tempFile));
         watcher.close();
@@ -127,23 +127,23 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
-  it('should work without options or callback', function(done) {
+  it('should work without options or callback', function (done) {
     // TODO: check we return watcher?
     gulp.watch('x');
     done();
   });
 
-  it('should run many tasks: w/ options', function(done) {
+  it('should run many tasks: w/ options', function (done) {
     var tempFile = path.join(outpath, 'watch-task-options.txt');
     var a = 0;
 
     createTempFile(tempFile);
 
-    gulp.task('task1', function(cb) {
+    gulp.task('task1', function (cb) {
       a++;
       cb();
     });
-    gulp.task('task2', function(cb) {
+    gulp.task('task2', function (cb) {
       a += 10;
       expect(a).toEqual(11);
       watcher.close();
@@ -156,17 +156,17 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
-  it('should run many tasks: no options', function(done) {
+  it('should run many tasks: no options', function (done) {
     var tempFile = path.join(outpath, 'watch-many-tasks-no-options.txt');
     var a = 0;
 
     createTempFile(tempFile);
 
-    gulp.task('task1', function(cb) {
+    gulp.task('task1', function (cb) {
       a++;
       cb();
     });
-    gulp.task('task2', function(cb) {
+    gulp.task('task2', function (cb) {
       a += 10;
       expect(a).toEqual(11);
       watcher.close();
@@ -179,7 +179,7 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
-  it('should throw an error: passed parameter (string) is not a function', function(done) {
+  it('should throw an error: passed parameter (string) is not a function', function (done) {
     var filename = 'empty.txt';
     var tempFile = path.join(outpath, filename);
 
@@ -192,7 +192,7 @@ describe('gulp.watch()', function() {
     }
   });
 
-  it('should throw an error: passed parameter (array) is not a function', function(done) {
+  it('should throw an error: passed parameter (array) is not a function', function (done) {
     var filename = 'empty.txt';
     var tempFile = path.join(outpath, filename);
 

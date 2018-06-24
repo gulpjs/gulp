@@ -1,9 +1,5 @@
 {
   "env": {
     "mocha": true
-  },
-
-  "rules": {
-    "space-before-function-paren": ["off"]
   }
 }
