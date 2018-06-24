@@ -23,7 +23,7 @@
     "gulp": "./bin/gulp.js"
   },
   "scripts": {
-    "lint": "eslint . # index.js bin/ test/",
+    "lint": "eslint index.js bin/ test/",
     "pretest": "npm run lint",
     "test": "nyc --reporter=html --reporter=text mocha",
     "cover": "nyc report --reporter=text-lcov | coveralls",
