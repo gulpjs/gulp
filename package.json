@@ -38,7 +38,11 @@
   "devDependencies": {
     "coveralls": "^3.0.1",
     "eslint": "^5.0.0",
-    "eslint-config-gulp": "^3.0.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
     "expect": "^1.20.2",
     "mkdirp": "^0.5.1",
     "mocha": "^5.2.0",
