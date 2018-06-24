@@ -25,9 +25,9 @@
   "scripts": {
     "lint": "eslint index.js bin/ test/",
     "pretest": "npm run lint",
-    "test": "nyc --reporter=html --reporter=text mocha",
-    "cover": "nyc report --reporter=text-lcov | coveralls",
-    "coveralls": "npm run cover"
+    "test": "mocha --async-only",
+    "test-cover": "nyc --reporter=html --reporter=text mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
     "glob-watcher": "^5.0.0",
