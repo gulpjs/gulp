@@ -4,9 +4,6 @@
   },
 
   "rules": {
-    "comma-dangle": ["off"],
-    "no-multi-spaces": ["off"],
-    "padded-blocks": ["off"],
     "space-before-function-paren": ["off"]
   }
 }

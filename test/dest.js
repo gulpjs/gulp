@@ -123,5 +123,4 @@ describe('gulp.dest()', function() {
       });
     });
   }
-
 });

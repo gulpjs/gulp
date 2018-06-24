@@ -31,7 +31,7 @@ describe('gulp.src()', function() {
   it('should return a input stream for multiple globs', function(done) {
     var globArray = [
       './fixtures/stuff/run.dmc',
-      './fixtures/stuff/test.dmc',
+      './fixtures/stuff/test.dmc'
     ];
     var stream = gulp.src(globArray, { cwd: __dirname });
 
@@ -54,7 +54,7 @@ describe('gulp.src()', function() {
     var expectedPath = path.join(__dirname, './fixtures/stuff/run.dmc');
     var globArray = [
       './fixtures/stuff/*.dmc',
-      '!fixtures/stuff/test.dmc',
+      '!fixtures/stuff/test.dmc'
     ];
     var stream = gulp.src(globArray, { cwd: __dirname });
 
