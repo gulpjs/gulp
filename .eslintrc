@@ -3,7 +3,6 @@
 
   "rules": {
     "semi": ["error", "always"],
-    "no-extra-semi": ["error"],
-    "space-before-function-paren": ["off"]
+    "no-extra-semi": ["error"]
   }
 }
