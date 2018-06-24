@@ -1,6 +1,6 @@
 {
   "name": "gulp",
-  "version": "4.0.0",
+  "version": "4.1.0-dev",
   "description": "The streaming build system.",
   "homepage": "http://gulpjs.com",
   "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
@@ -23,11 +23,11 @@
     "gulp": "./bin/gulp.js"
   },
   "scripts": {
-    "lint": "eslint . && jscs index.js bin/ test/",
+    "lint": "eslint index.js bin/ test/",
     "pretest": "npm run lint",
     "test": "mocha --async-only",
-    "cover": "istanbul cover _mocha --report lcovonly",
-    "coveralls": "npm run cover && istanbul-coveralls"
+    "test-cover": "nyc --reporter=html --reporter=text mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
     "glob-watcher": "^5.0.0",
@@ -36,15 +36,17 @@
     "vinyl-fs": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^1.7.3",
-    "eslint-config-gulp": "^2.0.0",
+    "coveralls": "^3.0.1",
+    "eslint": "^5.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
     "expect": "^1.20.2",
-    "istanbul": "^0.4.3",
-    "istanbul-coveralls": "^1.0.3",
-    "jscs": "^2.3.5",
-    "jscs-preset-gulp": "^1.0.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^3.0.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
     "rimraf": "^2.2.5"
   },
   "keywords": [

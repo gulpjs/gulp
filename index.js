@@ -5,7 +5,7 @@ var Undertaker = require('undertaker');
 var vfs = require('vinyl-fs');
 var watch = require('glob-watcher');
 
-function Gulp() {
+function Gulp () {
   Undertaker.call(this);
 
   // Bind the functions for destructuring
@@ -22,7 +22,7 @@ util.inherits(Gulp, Undertaker);
 Gulp.prototype.src = vfs.src;
 Gulp.prototype.dest = vfs.dest;
 Gulp.prototype.symlink = vfs.symlink;
-Gulp.prototype.watch = function(glob, opt, task) {
+Gulp.prototype.watch = function (glob, opt, task) {
   if (typeof opt === 'string' || typeof task === 'string' ||
     Array.isArray(opt) || Array.isArray(task)) {
     throw new Error('watching ' + glob + ': watch task has to be ' +
