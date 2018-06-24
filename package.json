@@ -23,7 +23,7 @@
     "gulp": "./bin/gulp.js"
   },
   "scripts": {
-    "lint": "eslint . && jscs index.js bin/ test/",
+    "lint": "eslint . # index.js bin/ test/",
     "pretest": "npm run lint",
     "test": "nyc --reporter=html --reporter=text mocha",
     "cover": "nyc report --reporter=text-lcov | coveralls",
@@ -40,8 +40,6 @@
     "eslint": "^1.7.3",
     "eslint-config-gulp": "^2.0.0",
     "expect": "^1.20.2",
-    "jscs": "^2.3.5",
-    "jscs-preset-gulp": "^1.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
