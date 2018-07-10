@@ -773,7 +773,7 @@ gulp.tree({ deep: true })
 
 ### gulp.registry([registry])
 
-Get or set the underlying task registry. Inherited from [undertaker]; see the undertaker documention on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this, you can change registries that enhance gulp in different ways. Utilizing a custom registry has at least three use cases:
+Get or set the underlying task registry. Inherited from [undertaker]; see the undertaker documentation on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this, you can change registries that enhance gulp in different ways. Utilizing a custom registry has at least three use cases:
 
 - [Sharing tasks](https://github.com/phated/undertaker#sharing-tasks)
 - [Sharing functionality](https://github.com/phated/undertaker#sharing-functionalities) (e.g. you could override the task prototype to add some additional logging, bind task metadata or include some config settings.)
