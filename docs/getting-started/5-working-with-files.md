@@ -94,5 +94,5 @@ exports.default = function() {
 [creating-tasks-docs]: 3-creating-tasks.md
 [overlapping-globs-docs]: 6-explaining-globs.md#overlapping-globs
 [node-streams-docs]: https://nodejs.org/api/stream.html
-[symlink-api-docs]: LINK_NEEDED
-[src-options-api-docs]: LINK_NEEDED
+[symlink-api-docs]: ../documentation-missing.md
+[src-options-api-docs]: ../documentation-missing.md
