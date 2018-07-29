@@ -7,7 +7,7 @@ sidebar_label: Docs
 
 # gulp documentation
 
-* [Getting Started](getting-started.md) - Get started with gulp
+* [Getting Started](getting-started/) - Get started with gulp
 * [API documentation](API.md) - The programming interface, defined
 * [CLI documentation](CLI.md) - Learn how to call tasks and use compilers
 * [Writing a Plugin](writing-a-plugin/) - The essentials of writing a gulp plugin
