@@ -52,17 +52,21 @@ npm install --save-dev gulp
 ```
 
 ### Verify your gulp versions
+
 ```sh
 gulp --version
 ```
+
+Ensure the output matches the screenshot below or you might need to restart the steps in this guide.
+
 ![Output: CLI version 2.0.1 & Local version 4.0.0][img-gulp-version-command]
 
 ### Create a gulpfile
 Using your text editor, create a file named gulpfile.js in your project root with these contents:
 ```js
-function defaultTask(done) {
+function defaultTask(cb) {
   // place code for your default task here
-  done();
+  cb();
 }
 
 exports.default = defaultTask

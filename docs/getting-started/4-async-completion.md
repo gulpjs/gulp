@@ -32,7 +32,7 @@ exports.default = streamTask;
 
 ```js
 function promiseTask() {
-  return Promise.resolve('some ignored value');
+  return Promise.resolve('the value is ignored');
 }
 
 exports.default = promiseTask;
@@ -79,12 +79,12 @@ exports.default = observableTask;
 
 ### Using an error-first callback
 
-If nothing is returned from your task, you must use the error-first callback to signal completion. The callback will be passed to your task as the only argument - named `done()` in the examples below.
+If nothing is returned from your task, you must use the error-first callback to signal completion. The callback will be passed to your task as the only argument - named `cb()` in the examples below.
 
 ```js
-function callbackTask(done) {
-  // `done()` should be called by some async work
-  done();
+function callbackTask(cb) {
+  // `cb()` should be called by some async work
+  cb();
 }
 
 exports.default = callbackTask;
@@ -93,9 +93,9 @@ exports.default = callbackTask;
 To indicate to gulp that an error occurred in a task using an error-first callback, call it with an `Error` as the only argument.
 
 ```js
-function callbackError(done) {
-  // `done()` should be called by some async work
-  done(new Error('kaboom'));
+function callbackError(cb) {
+  // `cb()` should be called by some async work
+  cb(new Error('kaboom'));
 }
 
 exports.default = callbackError;
@@ -106,8 +106,8 @@ However, you'll often pass this callback to another API instead of calling it yo
 ```js
 const fs = require('fs');
 
-function passingCallback(done) {
-  fs.access('gulpfile.js', done);
+function passingCallback(cb) {
+  fs.access('gulpfile.js', cb);
 }
 
 exports.default = passingCallback;

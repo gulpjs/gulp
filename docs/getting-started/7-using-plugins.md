@@ -103,6 +103,7 @@ exports.default = function() {
         const code = uglify.minify(file.contents.toString())
         file.contents = Buffer.from(code)
       }
+      cb(null, file);
     }))
     .pipe(dest('output/'));
 }

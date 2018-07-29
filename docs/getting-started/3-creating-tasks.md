@@ -160,17 +160,18 @@ exports.build = series(
 );
 ```
 
-When a composed operation is run, each task will be executed every time it was referenced.  For example, a `clean` task referenced before two different tasks would be run twice and lead to undesired results.  Tasks can be wrapped with the [async-once][async-once] module if this **(not recommended)** pattern is needed.
+When a composed operation is run, each task will be executed every time it was referenced.  For example, a `clean` task referenced before two different tasks would be run twice and lead to undesired results.  Instead, refactor the `clean` task to be specified in the final composition.
+
+If you have code like this:
 
 ```js
-// This pattern is NOT recommended but some edge cases might require it.
-const { series } = require('gulp');
-const once = require('async-once');
+// This is INCORRECT
+const { series, parallel } = require('gulp');
 
-const clean = once(function(cb) {
+const clean = function(cb) {
   // body omitted
   cb();
-});
+};
 
 const css = series(clean, function(cb) {
   // body omitted
@@ -180,9 +181,32 @@ const css = series(clean, function(cb) {
 const javascript = series(clean, function(cb) {
   // body omitted
   cb();
-})
+});
 
-exports.build = series(css, javascript);
+exports.build = parallel(css, javascript);
+```
+
+Migrate to this:
+
+```js
+const { series, parallel } = require('gulp');
+
+function clean(cb) {
+  // body omitted
+  cb();
+}
+
+function css(cb) {
+  // body omitted
+  cb();
+}
+
+function javascript(cb) {
+  // body omitted
+  cb();
+}
+
+exports.build = series(clean, parallel(css, javascript));
 ```
 
 [async-completion-docs]: 4-async-completion.md

@@ -35,7 +35,7 @@ exports.default = function() {
 }
 ```
 
-`dest()`  is given an output directory string which is generally used as a terminator stream. When it receives a file passed through the pipeline, it writes the contents and other details out to the filesystem at a given directory.  The `symlink()` method is also available and operates like `dest()`, but creates links instead of files (see [`symlink()`][symlink-api-docs] for details).
+`dest()` is given an output directory string and also produces a [Node stream][node-streams-docs] which is generally used as a terminator stream. When it receives a file passed through the pipeline, it writes the contents and other details out to the filesystem at a given directory.  The `symlink()` method is also available and operates like `dest()`, but creates links instead of files (see [`symlink()`][symlink-api-docs] for details).
 
 Most often plugins will be placed between `src()` and `dest()` using the `.pipe()` method and will transform the files within the stream.
 
@@ -61,9 +61,9 @@ exports.default = function() {
 
 ## Output in phases
 
-`dest()` can be used in the middle of a pipeline to write intermediate states to the filesystem. When a file is received, the current state is written out to the filesystem, the path is updated to represent the new location of the output file, then that file is passed down the pipeline.
+`dest()` can be used in the middle of a pipeline to write intermediate states to the filesystem. When a file is received, the current state is written out to the filesystem, the path is updated to represent the new location of the output file, then that file continues down the pipeline.
 
-This feature can be useful to create an unminified and minified file with the same pipeline.
+This feature can be useful to create unminified and minified files with the same pipeline.
 
 ```js
 const { src, dest } = require('gulp');

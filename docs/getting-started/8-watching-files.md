@@ -15,17 +15,17 @@ This API provides built-in delay and queueing based on most-common-use defaults.
 const { watch, series } = require('gulp');
 
 function clean(cb) {
-  // Body omitted
+  // body omitted
   cb();
 }
 
 function javascript(cb) {
-  // Body omitted
+  // body omitted
   cb();
 }
 
 function css(cb) {
-  // Body omitted
+  // body omitted
   cb();
 }
 
@@ -51,7 +51,7 @@ const { watch } = require('gulp');
 
 // All events will be watched
 watch('src/*.js', { events: 'all' }, function(cb) {
-  // Body omitted
+  // body omitted
   cb();
 });
 ```
@@ -67,7 +67,7 @@ const { watch } = require('gulp');
 
 // The task will be executed upon startup
 watch('src/*.js', { ignoreInitial: false }, function(cb) {
-  // Body omitted
+  // body omitted
   cb();
 });
 ```
@@ -83,7 +83,7 @@ const { watch } = require('gulp');
 
 // The task will be run (concurrently) for every change made
 watch('src/*.js', { queue: false }, function(cb) {
-  // Body omitted
+  // body omitted
   cb();
 });
 ```
@@ -99,7 +99,7 @@ const { watch } = require('gulp');
 
 // The task won't be run until 500ms have elapsed since the first change
 watch('src/*.js', { delay: 500 }, function(cb) {
-  // Body omitted
+  // body omitted
   cb();
 });
 ```
