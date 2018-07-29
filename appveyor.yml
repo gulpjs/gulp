@@ -1,5 +1,5 @@
-# http://www.appveyor.com/docs/appveyor-yml
-# http://www.appveyor.com/docs/lang/nodejs-iojs
+# https://www.appveyor.com/docs/appveyor-yml
+# https://www.appveyor.com/docs/lang/nodejs-iojs
 
 environment:
   matrix:

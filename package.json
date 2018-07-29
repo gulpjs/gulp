@@ -2,8 +2,8 @@
   "name": "gulp",
   "version": "4.0.0",
   "description": "The streaming build system.",
-  "homepage": "http://gulpjs.com",
-  "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
+  "homepage": "https://gulpjs.com",
+  "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
   "contributors": [
     "Eric Schoffstall <yo@contra.io>",
     "Blaine Bublitz <blaine.bublitz@gmail.com>"

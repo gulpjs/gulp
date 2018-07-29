@@ -834,9 +834,9 @@ module.exports = new MyCompanyTasksRegistry();
 [gulp-if]: https://github.com/robrich/gulp-if
 [node-glob documentation]: https://github.com/isaacs/node-glob#options
 [node-glob]: https://github.com/isaacs/node-glob
-[piped]: http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options
+[piped]: https://nodejs.org/api/stream.html#stream_readable_pipe_destination_options
 [RxJS]: https://www.npmjs.com/package/rx
-[stream]: http://nodejs.org/api/stream.html
+[stream]: https://nodejs.org/api/stream.html
 [async-done]: https://www.npmjs.com/package/async-done
 [undertaker]: https://github.com/gulpjs/undertaker
 [vinyl File instance]: https://github.com/gulpjs/vinyl
