@@ -5,135 +5,119 @@ hide_title: true
 sidebar_label: src()
 -->
 
-# `gulp.src(globs[, options])`
+# src()
 
-Emits files matching provided glob or array of globs.
-Returns a [stream] of [Vinyl files] that can be [piped] to plugins.
+Creates a stream for reading [Vinyl][vinyl-concepts] objects from the file system.
+
+**Note:** Any UTF-8 BOMs will be removed from UTF-8 files read by `src()`, unless disabled using the `removeBOM` option.
+
+## Usage
 
 ```javascript
-gulp.src('client/templates/*.pug')
-  .pipe(pug())
-  .pipe(minify())
-  .pipe(gulp.dest('build/minified_templates'));
+const { src, dest } = require('gulp');
+
+function copy() {
+  return src('input/*.js')
+    .pipe(dest('output/'));
+}
+
+exports.copy = copy;
 ```
 
-`glob` refers to [node-glob syntax][node-glob] or it can be a direct file path.
 
-## globs
-Type: `String` or `Array`
-
-Glob or array of globs to read. Globs use [node-glob syntax] except that negation is fully supported.
-
-A glob that begins with `!` excludes matching files from the glob results up to that point. For example, consider this directory structure:
-
-    client/
-      a.js
-      bob.js
-      bad.js
-
-The following expression matches `a.js` and `bad.js`:
-
-    gulp.src(['client/*.js', '!client/b*.js', 'client/bad.js'])
-
-
-Note that globs are evaluated in order, which means this is possible:
+## Signature
 
 ```js
-// exclude every JS file that starts with a b except bad.js
-gulp.src(['*.js', '!b*.js', 'bad.js'])
+src(globs, [options])
 ```
 
-**Note:** glob symlink following behavior is opt-in and you must specify
-`follow: true` in the options object that is passed to [node-glob].
+### Parameters
 
-## options
-Type: `Object`
+| parameter | type | note |
+|:--------------:|:------:|-------|
+| globs | string <br> array | [Globs][globs-concepts] to watch on the file system. |
+| options | object | Detailed in [Options][options-section] below. |
 
-Options to pass to [node-glob] through [glob-stream].
+### Returns
 
-gulp adds some additional options in addition to the
-[options supported by node-glob][node-glob documentation] and [glob-stream]:
+A stream that can be used at the beginning or in the middle of a pipeline to add files based on the given globs.
 
-### options.cwd
+### Errors
 
-The working directory the folder is relative to.
+When the `globs` argument can only match one file (such as `foo/bar.js`) and no match is found, throws an error with the message, "File not found with singular glob". To suppress this error, set the `allowEmpty` option to `true`.
 
-Type: `String`
+When an invalid glob is given in `globs`, throws an error with the message, "Invalid glob argument".
 
-Default: `process.cwd()`
+### Options
+
+**For options that accept a function, the passed function will be called with each Vinyl object and must return a value of another listed type.**
 
 
-### options.buffer
-Type: `Boolean`
+| name | type | default | note |
+|:--------:|:------:|------------|--------|
+| buffer | boolean <br> function | true | When true, file contents are buffered into memory. If false, the Vinyl object's `contents` property will be a paused stream. Contents of large files may not be able to be buffered. <br> **Note:** Plugins may not implement support for streaming contents. |
+| read | boolean <br> function | true | If false, files will be not be read and their Vinyl objects won't be writable to disk via `.dest()`. |
+| since | date <br> timestamp <br> function | | When set, only creates Vinyl objects for files that have been modified since the specified time. |
+| removeBOM | boolean <br> function | true | When true, removes the BOM from UTF-8 encoded files. If false, ignores a BOM.. |
+| sourcemaps | boolean <br> function | false | If true, enables [sourcemaps][sourcemaps-section] support on Vinyl objects created. Loads inline sourcemaps and resolves external sourcemap links. |
+| resolveSymlinks | boolean <br> function | true | When true, recursively resolves symbolic links to their targets. If false, preserves the symbolic links and sets the Vinyl object's `symlink` property to the original file's path. |
+| cwd | string | `process.cwd()` | The directory that will be combined with any relative path to form an absolute path. Is ignored for absolute paths. Use to avoid combining `globs` with `path.join()`. <br> _This option is passed directly to [glob-stream][glob-stream-external]._ |
+| base | string | | Explicitly set the `base` property on created Vinyl objects. Detailed in [API Concepts][glob-base-concepts]. <br> _This option is passed directly to [glob-stream][glob-stream-external]._ |
+| cwdbase | boolean | false | If true, `cwd` and `base` options should be aligned. <br> _This option is passed directly to [glob-stream][glob-stream-external]._ |
+| root | string | | The root path that `globs` are resolved against. <br> _This option is passed directly to [glob-stream][glob-stream-external]._ |
+| allowEmpty | boolean | false | When false, `globs` which can only match one file (such as `foo/bar.js`) causes an error to be thrown if they don't find a match. If true, suppresses glob failures. <br> _This option is passed directly to [glob-stream][glob-stream-external]._ |
+| uniqueBy | string <br> function | `'path'` | Remove duplicates from the stream by comparing the string property name or the result of the function. <br> **Note:** When using a function, the function receives the streamed data (objects containing `cwd`, `base`, `path` properties). |
+| dot | boolean | false | If true, compare globs against dot files, like `.gitignore`. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| silent | boolean | true | When true, suppresses warnings from printing on `stderr`. <br> **Note:** This option is passed directly to [node-glob][node-glob-external] but defaulted to `true` instead of `false`. |
+| mark | boolean | false | If true, a `/` character will be appended to directory matches. Generally not needed because paths are normalized within the pipeline. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| nosort | boolean | false | If true, disables sorting the glob results. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| stat | boolean | false | If true, `fs.stat()` is called on all results. This adds extra overhead and generally should not be used. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| strict | boolean | false | If true, an error will be thrown if an unexpected problem is encountered while attempting to read a directory. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| nounique | boolean | false | When false, prevents duplicate files in the result set. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| debug | boolean | false | If true, debugging information will be logged to the command line. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| nobrace | boolean | false | If true, avoids expanding brace sets - e.g. `{a,b}` or `{1..3}`. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| noglobstar | boolean | false | If true, treats double-star glob character as single-star glob character. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| noext | boolean | false | If true, avoids matching [extglob][extglob-docs] patterns - e.g. `+(ab)`. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| nocase | boolean | false | If true, performs a case-insensitive match. <br> **Note:** On case-insensitive file systems, non-magic patterns will match by default. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| matchBase | boolean | false | If true and globs don't contain any `/` characters, traverses all directories and matches that glob - e.g. `*.js` would be treated as equivalent to `**/*.js`. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| nodir | boolean | false | If true, only matches files, not directories. <br> **Note:** To match only directories, end your glob with a `/`. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| ignore | string <br> array | | Globs to exclude from matches. This option is combined with negated `globs`. <br> **Note:** These globs are always matched against dot files, regardless of any other settings. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| follow | boolean | false | If true, symlinked directories will be traversed when expanding `**` globs. <br> **Note:** This can cause problems with cyclical links. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| realpath | boolean | false | If true, `fs.realpath()` is called on all results. This may result in dangling links. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| cache | object | | A previously generated cache object - avoids some file system calls. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| statCache | object | | A previously generated cache of `fs.Stat` results - avoids some file system calls. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| symlinks | object | | A previously generated cache of symbolic links - avoids some file system calls. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
+| nocomment | boolean | false | When false, treat a `#` character at the start of a glob as a comment. <br> _This option is passed directly to [node-glob][node-glob-external]._ |
 
-Default: `true`
+## Sourcemaps
 
-Setting this to `false` will return `file.contents` as a stream and not
-buffer files. This is useful when working with large files.
+Sourcemap support is built directly into `src()` and `dest()`, but is disabled by default. Enable it to produce inline or external sourcemaps.
 
-**Note:** Plugins might not implement support for streams.
-
-### options.read
-Type: `Boolean`
-
-Default: `true`
-
-Setting this to `false` will return `file.contents` as null and not read
-the file at all.
-
-### options.base
-Type: `String`
-
-Default: everything before a glob starts (see [glob-parent])
-
-E.g., consider `somefile.js` in `client/js/somedir`:
-
+Inline sourcemaps:
 ```js
-// Matches 'client/js/somedir/somefile.js' and resolves `base` to `client/js/`
-gulp.src('client/js/**/*.js')
-  .pipe(minify())
-  .pipe(gulp.dest('build'));  // Writes 'build/somedir/somefile.js'
+const { src, dest } = require('gulp');
+const uglify = require('gulp-uglify');
 
-gulp.src('client/js/**/*.js', { base: 'client' })
-  .pipe(minify())
-  .pipe(gulp.dest('build'));  // Writes 'build/js/somedir/somefile.js'
+src('input/**/*.js', { sourcemaps: true })
+  .pipe(uglify())
+  .pipe(dest('output/', { sourcemaps: true }));
 ```
 
-### options.since
-Type: `Date` or `Number`
-
-Setting this to a Date or a time stamp will discard any file that have not been
-modified since the time specified.
-
-### options.passthrough
-Type: `Boolean`
-
-Default: `false`
-
-If true, it will create a duplex stream which passes items through and
-emits globbed files.
-
-### options.allowEmpty
-Type: `Boolean`
-
-Default: `false`
-
-When true, will allow singular globs to fail to match. Otherwise, globs which are only supposed to match one file (such as `./foo/bar.js`) will cause an error to be thrown if they don't match.
-
+External sourcemaps:
 ```js
-// Emits an error if app/scripts.js doesn't exist
-gulp.src('app/scripts.js')
-  .pipe(...);
+const { src, dest } = require('gulp');
+const uglify = require('gulp-uglify');
 
-// Won't emit an error
-gulp.src('app/scripts.js', { allowEmpty: true })
-  .pipe(...);
+src('input/**/*.js', { sourcemaps: true })
+  .pipe(uglify())
+  .pipe(dest('output/', { sourcemaps: '.' }));
 ```
 
-[glob-stream]: https://github.com/gulpjs/glob-stream
-[glob-parent]: https://github.com/es128/glob-parent
-[node-glob documentation]: https://github.com/isaacs/node-glob#options
-[node-glob]: https://github.com/isaacs/node-glob
-[piped]: http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options
-[stream]: http://nodejs.org/api/stream.html
-[Vinyl files]: https://github.com/gulpjs/vinyl-fs
+[sourcemaps-section]: #sourcemaps
+[options-section]: #options
+[vinyl-concepts]: concepts.md#vinyl
+[glob-base-concepts]: concepts.md#glob-base
+[globs-concepts]: concepts.md#globs
+[extglob-docs]: LINK_NEEDED
+[node-glob-external]: https://github.com/isaacs/node-glob
+[glob-stream-external]: https://github.com/gulpjs/glob-stream
