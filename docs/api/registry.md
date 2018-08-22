@@ -5,60 +5,59 @@ hide_title: true
 sidebar_label: registry()
 -->
 
-# `gulp.registry([registry])`
+# registry()
 
-Get or set the underlying task registry. Inherited from [undertaker]; see the undertaker documention on [registries](https://github.com/phated/undertaker#registryregistryinstance). Using this, you can change registries that enhance gulp in different ways. Utilizing a custom registry has at least three use cases:
 
-- [Sharing tasks](https://github.com/phated/undertaker#sharing-tasks)
-- [Sharing functionality](https://github.com/phated/undertaker#sharing-functionalities) (e.g. you could override the task prototype to add some additional logging, bind task metadata or include some config settings.)
-- Handling other behavior that hooks into the registry lifecycle (see [gulp-hub](https://github.com/frankwallis/gulp-hub) for an example)
+Allows custom registries to be plugged into the task system, which can provide shared tasks or augmented functionality.
 
-To build your own custom registry see the [undertaker documentation on custom registries](https://github.com/phated/undertaker#custom-registries).
+**Note:** Only tasks registered with `task()` will be provided to the custom registry. The task functions passed directly to `series()` or `parallel()` will not be provided - if you need to customize the registry behavior, compose tasks with string references.
 
-## registry
+When assigning a new registry, each task from the current registry will be transferred and the current registry will be replaced with the new one. This allows for adding multiple custom registries in sequential order.
 
-A registry instance. When passed in, the tasks from the current registry will be transferred to the new registry and then current registry will be replaced with the new registry.
+See [Creating Custom Registries][creating-custom-registries] for details.
 
-## Example
-
-This example shows how to create and use a simple custom registry to add tasks.
+## Usage
 
 ```js
-//gulpfile.js
-var gulp = require('gulp');
+const { registry, task, series } = require('gulp');
+const FwdRef = require('undertaker-forward-reference');
 
-var companyTasks = require('./myCompanyTasksRegistry.js');
+registry(FwdRef());
 
-gulp.registry(companyTasks);
+task('default', series('forward-ref'));
 
-gulp.task('one', gulp.parallel('someCompanyTask', function(done) {
-  console.log('in task one');
-  done();
-}));
+task('forward-ref', function(cb) {
+  // body omitted
+  cb();
+});
 ```
+
+## Signature
 
 ```js
-//myCompanyTasksRegistry.js
-var util = require('util');
-
-var DefaultRegistry = require('undertaker-registry');
-
-function MyCompanyTasksRegistry() {
-  DefaultRegistry.call(this);
-}
-util.inherits(MyCompanyTasksRegistry, DefaultRegistry);
-
-MyCompanyTasksRegistry.prototype.init = function(gulp) {
-  gulp.task('clean', function(done) {
-    done();
-  });
-  gulp.task('someCompanyTask', function(done) {
-    console.log('performing some company task.');
-    done();
-  });
-};
-
-module.exports = new MyCompanyTasksRegistry();
+registry([registryInstance])
 ```
 
-[undertaker]: https://github.com/gulpjs/undertaker
+### Parameters
+
+| parameter | type | note |
+|:--------------:|:-----:|--------|
+| registryInstance | object | An instance - not the class - of a custom registry. |
+
+### Returns
+
+If a `registryInstance` is passed, nothing will be returned. If no arguments are passed, returns the current registry instance.
+
+### Errors
+
+When a constructor (instead of an instance) is passed as `registryInstance`, throws an error with the message, "Custom registries must be instantiated, but it looks like you passed a constructor".
+
+When a registry without a `get` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `get` function".
+
+When a registry without a `set` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `set` function".
+
+When a registry without an `init` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `init` function"
+
+When a registry without a `tasks` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `tasks` function".
+
+[creating-custom-registries]: LINK_NEEDED
