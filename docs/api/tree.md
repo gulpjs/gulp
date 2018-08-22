@@ -5,151 +5,174 @@ hide_title: true
 sidebar_label: tree()
 -->
 
-# `gulp.tree(options)`
+# tree()
 
-Returns the tree of tasks. Inherited from [undertaker]. See the [undertaker docs for this function](https://github.com/phated/undertaker#treeoptions--object).
+Fetches the current task dependency tree - in the rare case that it is needed.
 
-## options
-Type: `Object`
+Generally, `tree()` won't be used by gulp consumers, but it is exposed so the CLI can show the dependency graph of the tasks defined in a gulpfile.
 
-Options to pass to [undertaker].
+## Usage
 
-### options.deep
-Type: `Boolean`
-
-Default: `false`
-
-If set to `true` whole tree should be returned.
-
-## Example gulpfile
-
+Example gulpfile:
 ```js
-gulp.task('one', function(done) {
-  // do stuff
-  done();
-});
 
-gulp.task('two', function(done) {
-  // do stuff
-  done();
-});
+const { series, parallel } = require('gulp');
 
-gulp.task('three', function(done) {
-  // do stuff
-  done();
-});
+function one(cb) {
+  // body omitted
+  cb();
+}
 
-gulp.task('four', gulp.series('one', 'two'));
+function two(cb) {
+  // body omitted
+  cb();
+}
 
-gulp.task('five',
-  gulp.series('four',
-    gulp.parallel('three', function(done) {
-      // do more stuff
-      done();
-    })
-  )
+function three(cb) {
+  // body omitted
+  cb();
+}
+
+const four = series(one, two);
+
+const five = series(four,
+  parallel(three, function(cb) {
+    // Body omitted
+    cb();
+  })
 );
+
+module.exports = { one, two, three, four, five };
 ```
 
-## Example tree output
+Output for `tree()`:
+```js
+{
+  label: 'Tasks',
+  nodes: [ 'one', 'two', 'three', 'four', 'five' ]
+}
+```
+
+
+Output for `tree({ deep: true })`:
+```js
+{
+  label: "Tasks",
+  nodes: [
+    {
+      label: "one",
+      type: "task",
+      nodes: []
+    },
+    {
+      label: "two",
+      type: "task",
+      nodes: []
+    },
+    {
+      label: "three",
+      type: "task",
+      nodes: []
+    },
+    {
+      label: "four",
+      type: "task",
+      nodes: [
+        {
+          label: "<series>",
+          type: "function",
+          branch: true,
+          nodes: [
+            {
+              label: "one",
+              type: "function",
+              nodes: []
+            },
+            {
+              label: "two",
+              type: "function",
+              nodes: []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      label: "five",
+      type: "task",
+      nodes: [
+        {
+          label: "<series>",
+          type: "function",
+          branch: true,
+          nodes: [
+            {
+              label: "<series>",
+              type: "function",
+              branch: true,
+              nodes: [
+                {
+                  label: "one",
+                  type: "function",
+                  nodes: []
+                },
+                {
+                  label: "two",
+                  type: "function",
+                  nodes: []
+                }
+              ]
+            },
+            {
+              label: "<parallel>",
+              type: "function",
+              branch: true,
+              nodes: [
+                {
+                  label: "three",
+                  type: "function",
+                  nodes: []
+                },
+                {
+                  label: "<anonymous>",
+                  type: "function",
+                  nodes: []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Signature
 
 ```js
-gulp.tree()
-
-// output: [ 'one', 'two', 'three', 'four', 'five' ]
-
-gulp.tree({ deep: true })
-
-/*output: [
-   {
-      "label":"one",
-      "type":"task",
-      "nodes":[]
-   },
-   {
-      "label":"two",
-      "type":"task",
-      "nodes":[]
-   },
-   {
-      "label":"three",
-      "type":"task",
-      "nodes":[]
-   },
-   {
-      "label":"four",
-      "type":"task",
-      "nodes":[
-          {
-            "label":"<series>",
-            "type":"function",
-            "nodes":[
-               {
-                  "label":"one",
-                  "type":"task",
-                  "nodes":[]
-               },
-               {
-                  "label":"two",
-                  "type":"task",
-                  "nodes":[]
-               }
-            ]
-         }
-      ]
-   },
-   {
-      "label":"five",
-      "type":"task",
-      "nodes":[
-         {
-            "label":"<series>",
-            "type":"function",
-            "nodes":[
-               {
-                  "label":"four",
-                  "type":"task",
-                  "nodes":[
-                     {
-                        "label":"<series>",
-                        "type":"function",
-                        "nodes":[
-                           {
-                              "label":"one",
-                              "type":"task",
-                              "nodes":[]
-                           },
-                           {
-                              "label":"two",
-                              "type":"task",
-                              "nodes":[]
-                           }
-                        ]
-                     }
-                  ]
-               },
-               {
-                  "label":"<parallel>",
-                  "type":"function",
-                  "nodes":[
-                     {
-                        "label":"three",
-                        "type":"task",
-                        "nodes":[]
-                     },
-                     {
-                        "label":"<anonymous>",
-                        "type":"function",
-                        "nodes":[]
-                     }
-                  ]
-               }
-            ]
-         }
-      ]
-   }
-]
-*/
+tree([options])
 ```
 
-[undertaker]: https://github.com/gulpjs/undertaker
+### Parameters
+
+| parameter | type | note |
+|:--------------:|------:|--------|
+| options | object | Detailed in [Options][options-section] below. |
+
+### Returns
+
+An object detailing the tree of registered tasks - containing nested objects with `'label'` and `'nodes'` properties (which is [archy][archy-external] compatible).
+
+Each object may have a `type` property that can be used to determine if the node is a `task` or `function`.
+
+Each object may have a `branch` property that - when `true` - indicates the node was created using `series()` or `parallel()`.
+
+### Options
+
+| name | type | default | note |
+|:-------:|:-------:|------------|--------|
+| deep | boolean | false | If true, the entire tree will be returned. When false, only top level tasks will be returned. |
+
+[options-section]: #options
+[archy-external]: https://www.npmjs.com/package/archy
