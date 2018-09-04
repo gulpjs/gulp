@@ -18,7 +18,6 @@ jobs:
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -27,16 +26,18 @@ jobs:
           - v1-dependencies-
       - run:
           name: Install npm 
-          command: npm install
-        
+          command: npm install        
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-        
+          key: v1-dependencies-{{ checksum "package.json" }}        
       - run:
-          name: Coveralls tests 
-          command: npm run coveralls
+          name: Unit Tests
+          command: npm test        
+      # Coverage broken
+      # - run:
+      #     name: Code Coverage 
+      #     command: npm run coveralls
   node6:
     docker:
       # specify the version you desire here
@@ -51,7 +52,6 @@ jobs:
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -60,17 +60,18 @@ jobs:
           - v1-dependencies-
       - run:
           name: Install npm 
-          command: npm install
-        
+          command: npm install        
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
       - run:
-          name: Coveralls tests 
-          command: npm run coveralls
+          name: Unit Tests
+          command: npm test        
+      # Coverage broken
+      # - run:
+      #     name: Code Coverage 
+      #     command: npm run coveralls
 
 workflows:
   version: 2
