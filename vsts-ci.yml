@@ -5,19 +5,11 @@
 
 pool:
   vmImage: 'Ubuntu 16.04'
-
-queue:
-  parallel: 2 # Limit to two agents at a time
-  matrix:
-    node8:
-      versionSpec: '8.x'
-    node6:
-      versionSpec: '6.x'
     
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: $(versionSpec) 
+    versionSpec: '8.x' 
   displayName: 'Install Node.js'
 
 - script: |
