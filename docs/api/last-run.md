@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-lastrun
+id: lastrun
 title: lastRun()
 hide_title: true
 sidebar_label: lastRun()

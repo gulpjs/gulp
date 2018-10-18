@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-watch
+id: watch
 title: watch()
 hide_title: true
 sidebar_label: watch()

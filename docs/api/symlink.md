@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-symlink
+id: symlink
 title: symlink()
 hide_title: true
 sidebar_label: symlink()

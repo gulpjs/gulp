@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-src
+id: src
 title: src()
 hide_title: true
 sidebar_label: src()

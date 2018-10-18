@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-registry
+id: registry
 title: registry()
 hide_title: true
 sidebar_label: registry()

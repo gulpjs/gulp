@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-series
+id: series
 title: series()
 hide_title: true
 sidebar_label: series()
