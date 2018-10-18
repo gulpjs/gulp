@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-concepts
+id: concepts
 title: API Concepts
 hide_title: true
 sidebar_label: Concepts

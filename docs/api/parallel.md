@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-parallel
+id: parallel
 title: parallel()
 hide_title: true
 sidebar_label: parallel()

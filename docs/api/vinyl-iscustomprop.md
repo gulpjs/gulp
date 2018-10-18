@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-vinyl-iscustomprop
+id: vinyl-iscustomprop
 title: Vinyl.isCustomProp()
 hide_title: true
 sidebar_label: Vinyl.isCustomProp()

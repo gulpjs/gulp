@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-vinyl-isvinyl
+id: vinyl-isvinyl
 title: Vinyl.isVinyl()
 hide_title: true
 sidebar_label: Vinyl.isVinyl()

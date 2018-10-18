@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-tree
+id: tree
 title: tree()
 hide_title: true
 sidebar_label: tree()

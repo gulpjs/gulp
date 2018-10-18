@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-task
+id: task
 title: task()
 hide_title: true
 sidebar_label: task()

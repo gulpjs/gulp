@@ -1,5 +1,5 @@
 <!-- front-matter
-id: api-dest
+id: dest
 title: dest()
 hide_title: true
 sidebar_label: dest()
