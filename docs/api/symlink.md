@@ -10,7 +10,7 @@ sidebar_label: symlink()
 Creates a stream for linking [Vinyl][vinyl-concepts] objects to the file system.
 
 ## Usage
-'
+
 ```js
 const { src, symlink } = require('gulp');
 

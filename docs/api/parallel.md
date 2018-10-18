@@ -7,7 +7,7 @@ sidebar_label: parallel()
 
 # parallel()
 
-Combines task functions and/or composed operations into larger operations that will be executed simultaneously. The composed operations from `series()` and `parallel()` can be nested to any depth.
+Combines task functions and/or composed operations into larger operations that will be executed simultaneously. There are no imposed limits on the nesting depth of composed operations using `series()` and `parallel()`.
 
 ## Usage
 

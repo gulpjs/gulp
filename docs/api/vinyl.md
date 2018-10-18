@@ -120,7 +120,7 @@ All internally managed paths - any instance property except `contents` and `stat
 
 ## Normalization and concatenation
 
-All path properties are normalized by their setters. Concatenate paths with `/`, instead of using `path.join()`, and normalization will occur properly on all platforms. Never concatenate with `\` - it  is a valid filename character on posix system.
+All path properties are normalized by their setters. Concatenate paths with `/`, instead of using `path.join()`, and normalization will occur properly on all platforms. Never concatenate with `\` - it  is a valid filename character on POSIX system.
 
 ```js
 const file = new File();
