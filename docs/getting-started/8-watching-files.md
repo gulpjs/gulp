@@ -35,7 +35,7 @@ watch('src/*.css', css);
 watch('src/*.js', series(clean, javascript));
 ```
 
-## Warning: Avoid synchronous
+## Warning: avoid synchronous
 
 A watcher's task cannot be synchronous, like tasks registered into the task system. If you pass a sync task, the completion can't be determined and the task won't run again - it is assumed to still be running.
 
