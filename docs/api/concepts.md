@@ -54,7 +54,9 @@ File system modes determine what permissions exist for a file. Most files and di
 
 ## Modules
 
-Gulp is made up of many small modules that are pulled together to work cohesively. By utilizing [semver][semver-external] within the small modules, we can release bug fixes and features without publishing new versions of gulp. If you encounter an issue related to one of these modules, open an issue on the individual project repository.
+Gulp is made up of many small modules that are pulled together to work cohesively. By utilizing [semver][semver-external] within the small modules, we can release bug fixes and features without publishing new versions of gulp. Often, when you don't see progress on the main repository, work is being done in one of these modules.
+
+If you're having trouble, ensure your current modules are updated - using the `npm update` command. If the problem persists, open an issue on the individual project repository.
 
 * [undertaker][undertaker-external] - the task registration system
 * [vinyl][vinyl-external] - the virtual file objects

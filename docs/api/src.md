@@ -9,7 +9,7 @@ sidebar_label: src()
 
 Creates a stream for reading [Vinyl][vinyl-concepts] objects from the file system.
 
-**Note:** Any UTF-8 BOMs will be removed from UTF-8 files read by `src()`, unless disabled using the `removeBOM` option.
+**Note:** BOMs (byte order marks) have no purpose in UTF-8 and will be removed from UTF-8 files read by `src()`, unless disabled using the `removeBOM` option.
 
 ## Usage
 
@@ -58,7 +58,7 @@ When an invalid glob is given in `globs`, throws an error with the message, "Inv
 | buffer | boolean <br> function | true | When true, file contents are buffered into memory. If false, the Vinyl object's `contents` property will be a paused stream. Contents of large files may not be able to be buffered. <br> **Note:** Plugins may not implement support for streaming contents. |
 | read | boolean <br> function | true | If false, files will be not be read and their Vinyl objects won't be writable to disk via `.dest()`. |
 | since | date <br> timestamp <br> function | | When set, only creates Vinyl objects for files that have been modified since the specified time. |
-| removeBOM | boolean <br> function | true | When true, removes the BOM from UTF-8 encoded files. If false, ignores a BOM.. |
+| removeBOM | boolean <br> function | true | When true, removes the BOM from UTF-8 encoded files. If false, ignores a BOM. |
 | sourcemaps | boolean <br> function | false | If true, enables [sourcemaps][sourcemaps-section] support on Vinyl objects created. Loads inline sourcemaps and resolves external sourcemap links. |
 | resolveSymlinks | boolean <br> function | true | When true, recursively resolves symbolic links to their targets. If false, preserves the symbolic links and sets the Vinyl object's `symlink` property to the original file's path. |
 | cwd | string | `process.cwd()` | The directory that will be combined with any relative path to form an absolute path. Is ignored for absolute paths. Use to avoid combining `globs` with `path.join()`. <br> _This option is passed directly to [glob-stream][glob-stream-external]._ |
