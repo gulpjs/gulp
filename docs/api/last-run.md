@@ -80,4 +80,4 @@ A file's [mtime stat][fs-stats-concepts] precision may vary depending on the nod
 
 
 [timestamp-precision-section]: #timestamp-precision
-[fs-stats-concepts]: concepts.md#file-system-stats
+[fs-stats-concepts]: ../api/concepts.md#file-system-stats

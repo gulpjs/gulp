@@ -105,6 +105,6 @@ task(build);
 ```
 
 [task-metadata-section]: #task-metadata
-[task-concepts]: concepts.md#tasks
+[task-concepts]: ../api/concepts.md#tasks
 [creating-tasks-docs]: ../getting-started/3-creating-tasks.md
 [function-name-external]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name

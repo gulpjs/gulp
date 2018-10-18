@@ -135,7 +135,7 @@ console.log(file.path);
 [vinyl-instance-section]: #vinyl-instance
 [instance-properties-section]: #instance-properties
 [normalization-and-concatenation-section]: #normalization-and-concatenation
-[glob-base-concepts]: concepts.md#glob-base
-[fs-stats-concepts]: concepts.md#file-system-stats
+[glob-base-concepts]: ../api/concepts.md#glob-base
+[fs-stats-concepts]: ../api/concepts.md#file-system-stats
 [using-plugins-docs]: ../getting-started/7-using-plugins.md
 [cloneable-readable-external]: https://github.com/mcollina/cloneable-readable

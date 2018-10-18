@@ -130,8 +130,8 @@ Removes globs that are being watched, while the watcher continues with the remai
 | globs | string <br> array | The globs to be removed. |
 
 [chokidar-instance-section]: #chokidar-instance
-[tasks-concepts]: concepts.md#tasks
-[globs-concepts]: concepts.md#globs
-[fs-stats-concepts]: concepts.md#file-system-stats
+[tasks-concepts]: ../api/concepts.md#tasks
+[globs-concepts]: ../api/concepts.md#globs
+[fs-stats-concepts]: ../api/concepts.md#file-system-stats
 [chokidar-external]: https://github.com/paulmillr/chokidar
 [fsevents-external]: https://github.com/strongloop/fsevents

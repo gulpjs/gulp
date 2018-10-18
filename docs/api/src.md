@@ -115,9 +115,9 @@ src('input/**/*.js', { sourcemaps: true })
 
 [sourcemaps-section]: #sourcemaps
 [options-section]: #options
-[vinyl-concepts]: concepts.md#vinyl
-[glob-base-concepts]: concepts.md#glob-base
-[globs-concepts]: concepts.md#globs
+[vinyl-concepts]: ../api/concepts.md#vinyl
+[glob-base-concepts]: ../api/concepts.md#glob-base
+[globs-concepts]: ../api/concepts.md#globs
 [extglob-docs]: ../documentation-missing.md
 [node-glob-external]: https://github.com/isaacs/node-glob
 [glob-stream-external]: https://github.com/gulpjs/glob-stream
