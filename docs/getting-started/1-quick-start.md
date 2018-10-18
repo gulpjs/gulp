@@ -9,7 +9,7 @@ sidebar_label: Quick Start
 
 If you've previously installed gulp globally, run `npm rm --global gulp` before following these instructions. For more information, read this [Sip][sip-article].
 
-### Check for node, npm, and npx
+## Check for node, npm, and npx
 ```sh
 node --version
 ```
@@ -25,13 +25,13 @@ npx --version
 
 If they are not installed, follow the instructions [here][node-install].
 
-### Install the gulp command line utility
+## Install the gulp command line utility
 ```sh
 npm install --global gulp-cli
 ```
 
 
-### Create a project directory and navigate into it
+## Create a project directory and navigate into it
 ```sh
 npx mkdirp my-project
 ```
@@ -39,19 +39,19 @@ npx mkdirp my-project
 cd my-project
 ```
 
-### Create a package.json file in your project directory
+## Create a package.json file in your project directory
 ```sh
 npm init
 ```
 
 This will guide you through giving your project a name, version, description, etc.
 
-### Install the gulp package in your devDependencies
+## Install the gulp package in your devDependencies
 ```sh
 npm install --save-dev gulp@next
 ```
 
-### Verify your gulp versions
+## Verify your gulp versions
 
 ```sh
 gulp --version
@@ -61,7 +61,7 @@ Ensure the output matches the screenshot below or you might need to restart the 
 
 ![Output: CLI version 2.0.1 & Local version 4.0.0][img-gulp-version-command]
 
-### Create a gulpfile
+## Create a gulpfile
 Using your text editor, create a file named gulpfile.js in your project root with these contents:
 ```js
 function defaultTask(cb) {
@@ -72,14 +72,14 @@ function defaultTask(cb) {
 exports.default = defaultTask
 ```
 
-### Test it
+## Test it
 Run the gulp command in your project directory:
 ```sh
 gulp
 ```
 To run multiple tasks, you can use `gulp <task> <othertask>`.
 
-### Result
+## Result
 The default task will run and do nothing.
 ![Output: Starting default & Finished default][img-gulp-command]
 
