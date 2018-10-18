@@ -72,7 +72,7 @@ When any passed options don't conform to the [instance property definitions][ins
 | path | string | | The full, absolute file path. Will be [normalized][normalization-and-concatenation-section] and have trailing separators removed. |
 | history | array | `[ ]` | An array of paths to pre-populate the `history` of a Vinyl instance. Usually comes from deriving a new Vinyl object from a previous Vinyl object. If `path` and `history` are both passed, `path` is appended to `history`. Each item will be [normalized][normalization-and-concatenation-section] and have trailing separators removed. |
 | stat | object | | An instance of `fs.Stats`, usually the result of calling `fs.stat()` on a file. Used to determine if a Vinyl object represents a directory or symbolic link. |
-| contents | ReadableStream <br> Buffer <br> null | null | The contents of the file. If `contents` is a ReadableStream, it is wrapped in a [cloneable-readable][cloneable-readable-external] stream. |
+| contents | ReadableStream <br> Buffer <br> `null` | `null` | The contents of the file. If `contents` is a ReadableStream, it is wrapped in a [cloneable-readable][cloneable-readable-external] stream. |
 
 Any other properties on `options` will be directly assigned to the Vinyl instance.
 
