@@ -210,6 +210,6 @@ exports.build = series(clean, parallel(css, javascript));
 ```
 
 [async-completion-docs]: ../getting-started/4-async-completion.md
-[using-async-await-docs]: ../getting-started/4-async-completion.md#using-asyncawait
+[using-async-await-docs]: ../getting-started/4-async-completion.md#using-async-await
 [img-gulp-tasks-command]: https://gulpjs.com/img/docs-gulp-tasks-command.png
 [async-once]: https://github.com/gulpjs/async-once
