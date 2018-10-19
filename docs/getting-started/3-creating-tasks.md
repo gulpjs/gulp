@@ -7,7 +7,7 @@ sidebar_label: Creating Tasks
 
 # Creating Tasks
 
-Each gulp task is an asynchronous JavaScript function - a function that accepts an error-first callback or returns a stream, promise, event emitter, child process, or observable ([more on that later](4-async-completion.md)). Due to some platform limitations, synchronous tasks aren't supported, though there is a pretty nifty [alternative](4-async-completion.md#using-asyncawait).
+Each gulp task is an asynchronous JavaScript function - a function that accepts an error-first callback or returns a stream, promise, event emitter, child process, or observable ([more on that later][async-completion-docs]). Due to some platform limitations, synchronous tasks aren't supported, though there is a pretty nifty [alternative][using-async-await-docs].
 
 ## Exporting
 

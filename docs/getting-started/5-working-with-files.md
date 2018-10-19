@@ -9,9 +9,9 @@ sidebar_label: Working with Files
 
 The `src()` and `dest()` methods are exposed by gulp to interact with files on your computer.
 
-`src()` is given a [glob](6-explaining-globs.md) to read from the file system and produces a [Node stream][node-streams-docs]. It locates all matching files and reads them into memory to pass through the stream.
+`src()` is given a [glob][explaining-globs-docs] to read from the file system and produces a [Node stream][node-streams-docs]. It locates all matching files and reads them into memory to pass through the stream.
 
-The stream produced by `src()` should be returned from a task to signal async completion, as mentioned in [Creating Tasks](3-creating-tasks.md).
+The stream produced by `src()` should be returned from a task to signal async completion, as mentioned in [Creating Tasks][creating-tasks-docs].
 
 ```js
 const { src, dest } = require('gulp');
@@ -41,7 +41,7 @@ Most often plugins will be placed between `src()` and `dest()` using the `.pipe(
 
 ## Adding files to the stream
 
-`src()` can also be placed in the middle of a pipeline to add files to the stream based on the given globs. The additional files will only be available to transformations later in the stream.  If [globs overlap](6-explaining-globs.md#overlapping-globs), the files will be added again.
+`src()` can also be placed in the middle of a pipeline to add files to the stream based on the given globs. The additional files will only be available to transformations later in the stream.  If [globs overlap][overlapping-globs-docs], the files will be added again.
 
 This can be useful for transpiling some files before adding plain JavaScript files to the pipeline and uglifying everything.
 
