@@ -90,9 +90,9 @@ exports.default = function() {
 * Streaming mode exists mainly to operate on large files that can't fit in memory, like giant images or movies. The contents are streamed from the filesystem in small chunks instead of loaded all at once. If you need to use streaming mode, look for a plugin that supports it or write your own.
 * Empty mode contains no contents and is useful when only working with file metadata.
 
-[explaining-globs-docs]: 6-explaining-globs.md
-[creating-tasks-docs]: 3-creating-tasks.md
-[overlapping-globs-docs]: 6-explaining-globs.md#overlapping-globs
+[explaining-globs-docs]: ../getting-started/6-explaining-globs.md
+[creating-tasks-docs]: ../getting-started/3-creating-tasks.md
+[overlapping-globs-docs]: ../getting-started/6-explaining-globs.md#overlapping-globs
 [node-streams-docs]: https://nodejs.org/api/stream.html
-[symlink-api-docs]: ../documentation-missing.md
-[src-options-api-docs]: ../documentation-missing.md
+[symlink-api-docs]: ../api/symlink.md
+[src-options-api-docs]: ../api/src.md#options

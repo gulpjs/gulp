@@ -115,8 +115,8 @@ __Be careful:__ The returned chokidar instance doesn't have queueing, delay, or 
 Gulp has an optional dependency called [fsevents][fsevents-package], which is a Mac-specific file watcher. If you see an installation warning for fsevents - _"npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents"_ - it is not an issue.
 If fsevents installation is skipped, a fallback watcher will be used and any errors occurring in your gulpfile aren't related to this warning.
 
-[globs-docs]: 6-explaining-globs.md
-[creating-tasks-docs]: 3-creating-tasks.md
-[async-completion-doc]: 4-async-completion.md
+[globs-docs]: ../getting-started/6-explaining-globs.md
+[creating-tasks-docs]: ../getting-started/3-creating-tasks.md
+[async-completion-doc]: ../getting-started/4-async-completion.md
 [chokidar-module-package]: https://www.npmjs.com/package/chokidar
 [fsevents-package]: https://www.npmjs.com/package/fsevents
