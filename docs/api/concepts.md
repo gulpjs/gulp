@@ -26,7 +26,7 @@ An adapter exposes:
 
 ## Tasks
 
-Each gulp task is an asynchronous JavaScript function that accepts an error-first callback or returns a stream, promise, event emitter, child process, or observable. Due to some platform limitations, synchronous tasks aren't supported.
+Each gulp task is an asynchronous JavaScript function that either accepts an error-first callback or returns a stream, promise, event emitter, child process, or observable. Due to some platform limitations, synchronous tasks aren't supported.
 
 For a more detailed explanation, see [Creating Tasks][creating-tasks-doc].
 
