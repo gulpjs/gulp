@@ -166,7 +166,7 @@ An object detailing the tree of registered tasks - containing nested objects wit
 
 Each object may have a `type` property that can be used to determine if the node is a `task` or `function`.
 
-Each object may have a `branch` property that - when `true` - indicates the node was created using `series()` or `parallel()`.
+Each object may have a `branch` property that, when `true`, indicates the node was created using `series()` or `parallel()`.
 
 ### Options
 
