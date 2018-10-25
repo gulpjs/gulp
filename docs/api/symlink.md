@@ -71,15 +71,15 @@ When `directory` is a function that returns an empty string or `undefined`, emit
 
 ## Symbolic links on Windows
 
-When creating symbolic links on Windows, a `type` argument is passed to Node's `fs.symlink()` method which specifies the type of target being linked. The link type is set to:
-`'file'` when the target is a regular file
-`'junction'` when the target is a directory
-`'dir'` when the target is a directory and the user disables the `useJunctions` option
+When creating symbolic links on Windows, a `type` argument is passed to Node's `fs.symlink()` method which specifies the type of target being linked. The link type is set to:  
+* `'file'` when the target is a regular file
+* `'junction'` when the target is a directory
+* `'dir'` when the target is a directory and the user disables the `useJunctions` option
 
 
 If you try to create a dangling (pointing to a non-existent target) link, the link type can't be determined automatically. In these cases, behavior will vary depending on whether the dangling link is being created via `symlink()` or via `dest()`.
 
-For dangling links created via `symlink()`, the incoming Vinyl object represents the target, so its stats will determine the desired link type. If `isDirectory()` returns false then a `'file'` link is created, otherwise a `'junction'` or a `'dir'` link is created depending on the value of the `useJunctions` option.
+For dangling links created via `symlink()`, the incoming Vinyl object represents the target, so its stats will determine the desired link type. If `isDirectory()` returns false then a `'file'` link is created, otherwise a `'junction'` or `'dir'` link is created depending on the value of the `useJunctions` option.
 
 For dangling links created via `dest()`, the incoming Vinyl object represents the link - typically loaded from disk via `src(..., { resolveSymlinks: false })`. In this case, the link type can't be reasonably determined and defaults to using `'file'`. This may cause unexpected behavior when creating a dangling link to a directory. **Avoid this scenario.**
 
