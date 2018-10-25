@@ -9,7 +9,7 @@ sidebar_label: lastRun()
 
 Retrieves the last time a task was successfully completed during the current running process. Most useful on subsequent task runs while a watcher is running.
 
-When combined with `src()`, enables incremental builds to speed up your execution times by skipping files that haven't changed since the last successful task completion.
+When combined with `src()`, enables incremental builds to speed up execution times by skipping files that haven't changed since the last successful task completion.
 
 ## Usage
 
@@ -64,7 +64,7 @@ While there are sensible defaults for the precision of timestamps, they can be r
 * `lastRun(someTask, 100)` returns 1426000001100
 * `lastRun(someTask, 1000)` returns 1426000001000
 
-A file's [mtime stat][fs-stats-concepts] precision may vary depending on the node version and/or the file system used:
+A file's [mtime stat][fs-stats-concepts] precision may vary depending on the node version and/or the file system used.
 
 
 | platform | precision |
