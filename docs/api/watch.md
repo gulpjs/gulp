@@ -46,7 +46,6 @@ When a string or array is passed as `task`, throws an error with the message, "w
 
 ### Options
 
-
 | name | type | default | note |
 |:-------:|:------:|-----------|--------|
 | ignoreInitial | boolean | true | If false, the task is called during instantiation as file paths are discovered. Use to trigger the task during startup.<br>**Note:** This option is passed to [chokidar][chokidar-external] but is defaulted to `true` instead of `false`. |
@@ -130,6 +129,7 @@ Removes globs that are being watched, while the watcher continues with the remai
 | globs | string<br>array | The globs to be removed. |
 
 [chokidar-instance-section]: #chokidar-instance
+[options-section]: #options
 [tasks-concepts]: ../api/concepts.md#tasks
 [globs-concepts]: ../api/concepts.md#globs
 [fs-stats-concepts]: ../api/concepts.md#file-system-stats
