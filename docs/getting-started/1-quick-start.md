@@ -33,7 +33,7 @@ npm install --global gulp-cli
 
 ## Create a project directory and navigate into it
 ```sh
-npx mkdirp my-project
+npx mkdir my-project
 ```
 ```sh
 cd my-project
