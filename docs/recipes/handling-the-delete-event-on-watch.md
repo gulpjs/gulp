@@ -1,10 +1,3 @@
-<!-- front-matter
-id: handling-the-delete-event-on-watch
-title: Handling the Delete Event on Watch
-hide_title: true
-sidebar_label: Handling the Delete Event on Watch
--->
-
 # Handling the Delete Event on Watch
 
 You can listen for `'unlink'` events to fire on the watcher returned from `gulp.watch`.

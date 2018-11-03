@@ -1,10 +1,3 @@
-<!-- front-matter
-id: docs
-title: Docs
-hide_title: true
-sidebar_label: Docs
--->
-
 # gulp documentation
 
 * [Getting Started](getting-started/) - Get started with gulp

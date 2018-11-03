@@ -1,10 +1,3 @@
-<!-- front-matter
-id: pass-arguments-from-cli
-title: Pass Arguments from the CLI
-hide_title: true
-sidebar_label: Pass Arguments from the CLI
--->
-
 # Pass arguments from the command line
 
 ```js

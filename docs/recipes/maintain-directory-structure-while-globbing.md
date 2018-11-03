@@ -1,10 +1,3 @@
-<!-- front-matter
-id: maintain-directory-structure-while-globbing
-title: Maintain Directory Structure while Globbing
-hide_title: true
-sidebar_label: Maintain Directory Structure while Globbing
--->
-
 # Maintain Directory Structure while Globbing
 
 If you are planning to read a few files/folders from a directory and maintain their relative path, you need to pass `{base: '.'}` as the second argument to `gulp.src()`.

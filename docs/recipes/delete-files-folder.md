@@ -1,10 +1,3 @@
-<!-- front-matter
-id: delete-files-folder
-title: Delete files and folders
-hide_title: true
-sidebar_label: Delete files and folders
--->
-
 # Delete files and folders
 
 You might want to delete some files before running your build. Since deleting files doesn't work on the file contents, there's no reason to use a gulp plugin. An excellent opportunity to use a vanilla node module.

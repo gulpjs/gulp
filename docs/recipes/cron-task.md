@@ -1,10 +1,3 @@
-<!-- front-matter
-id: cron-task
-title: Cron Task
-hide_title: true
-sidebar_label: Cron Task
--->
-
 # Run gulp task via cron job
 
 While logged in via a user that has privileges to run `gulp`, run the following:

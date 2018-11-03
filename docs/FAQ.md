@@ -1,10 +1,3 @@
-<!-- front-matter
-id: faq
-title: FAQ
-hide_title: true
-sidebar_label: FAQ
--->
-
 # FAQ
 
 ## Why gulp? Why not ____?

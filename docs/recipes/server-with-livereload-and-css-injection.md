@@ -1,10 +1,3 @@
-<!-- front-matter
-id: server-with-livereload-and-css-inject
-title: Server with Live-Reloading and CSS Injection
-hide_title: true
-sidebar_label: Server with Live-Reloading and CSS Injection
--->
-
 # Server with live-reloading and CSS injection
 
 With [BrowserSync](https://browsersync.io) and gulp, you can easily create a development server that is accessible to any device on the same WiFi network. BrowserSync also has live-reload built in, so there's nothing else to configure.

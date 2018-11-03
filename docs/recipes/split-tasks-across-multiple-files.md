@@ -1,10 +1,3 @@
-<!-- front-matter
-id: split-tasks-across-multiple-files
-title: Split Tasks Across Multiple Files
-hide_title: true
-sidebar_label: Split Tasks Across Multiple Files
--->
-
 # Split tasks across multiple files
 
 If your `gulpfile.js` is starting to grow too large, you can split the tasks

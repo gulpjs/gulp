@@ -1,10 +1,3 @@
-<!-- front-matter
-id: dealing-with-streams
-title: Dealing with Streams
-hide_title: true
-sidebar_label: Dealing with Streams
--->
-
 # Dealing with streams
 
 > It is highly recommended to write plugins supporting streams. Here is some information on creating a gulp plugin that supports streams.

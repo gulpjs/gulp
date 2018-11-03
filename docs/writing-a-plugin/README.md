@@ -1,10 +1,3 @@
-<!-- front-matter
-id: writing-a-plugin
-title: Writing a Plugin
-hide_title: true
-sidebar_label: Writing a Plugin
--->
-
 # Writing a plugin
 
 If you plan to create your own Gulp plugin, you will save time by reading the full documentation.

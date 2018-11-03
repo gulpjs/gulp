@@ -1,10 +1,3 @@
-<!-- front-matter
-id: cli
-title: CLI
-hide_title: true
-sidebar_label: CLI
--->
-
 ## gulp CLI docs
 
 ### Flags

@@ -1,10 +1,3 @@
-<!-- front-matter
-id: recipes
-title: Recipes
-hide_title: true
-sidebar_label: Recipes
--->
-
 # Recipes
 
 * [Automate release workflow](automate-release-workflow.md)

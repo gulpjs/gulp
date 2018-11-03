@@ -1,10 +1,3 @@
-<!-- front-matter
-id: make-stream-from-buffer
-title: Make Stream from Buffer
-hide_title: true
-sidebar_label: Make Stream from Buffer
--->
-
 # Make stream from buffer (memory contents)
 
 Sometimes you may need to start a stream with files that their contents are in a variable and not in a physical file. In other words, how to start a 'gulp' stream without using `gulp.src()`.
