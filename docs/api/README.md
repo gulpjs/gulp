@@ -4,7 +4,7 @@
 * [src()](src.md)
 * [dest()](dest.md)
 * [symlink()](symlink.md)
-* [lastRun()](lastRun.md)
+* [lastRun()](last-run.md)
 * [series()](series.md)
 * [parallel()](parallel.md)
 * [watch()](watch.md)
