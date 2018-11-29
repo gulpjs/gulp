@@ -57,9 +57,11 @@ npm install --save-dev gulp@next
 gulp --version
 ```
 
-Ensure the output matches the screenshot below or you might need to restart the steps in this guide.
+Ensure the output matches the screenshot below or you might need to restart the steps in this guide. If you are still having problems and your local version is showing a previous version (e.g. `Local version 3.9.1`) then follow the next section 'Create a gulpfile' and then run `gulp --version` again.
 
 ![Output: CLI version 2.0.1 & Local version 4.0.0][img-gulp-version-command]
+
+
 
 ## Create a gulpfile
 Using your text editor, create a file named gulpfile.js in your project root with these contents:
