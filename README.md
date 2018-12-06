@@ -28,18 +28,17 @@
 
 ## Installation
 
-There are a few ways to install:
+Follow our [Quick Start guide][quick-start].
 
-* gulp v4.0.0 - `npm install gulp@next`
-* gulp v4.0.0-alpha.3 - `npm install gulpjs/gulp#v4.0.0-alpha.3`
-* gulp v3.9.1 - `npm install gulp`
+## Roadmap
+
+Find out about all our work-in-progress and outstanding issues at https://github.com/orgs/gulpjs/projects.
 
 ## Documentation
 
-For a Getting started guide, API docs, recipes, making a plugin, etc. check out our docs!
+Check out our [Getting Started guide][getting-started-guide] and [API docs][api-docs] on our website!
 
-- Check out the [documentation for v4.0.0](/docs/README.md)! __Excuse our dust; these docs might be behind while we get everything updated. Please open an issue if something isn't working.__
-- Using the older v3.9.1? Check out the [documentation at the v3.9.1 tag](https://github.com/gulpjs/gulp/tree/v3.9.1/docs)!
+__Excuse our dust; All other docs will be behind until we get everything updated. Please open an issue if something isn't working.__
 
 ## Sample `gulpfile.js`
 
@@ -105,27 +104,22 @@ function watch() {
 }
 
 /*
+ * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
+ */
+var build = gulp.series(clean, gulp.parallel(styles, scripts));
+
+/*
  * You can use CommonJS `exports` module notation to declare tasks
  */
 exports.clean = clean;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.watch = watch;
-
-/*
- * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
- */
-var build = gulp.series(clean, gulp.parallel(styles, scripts));
-
-/*
- * You can still use `gulp.task` to expose tasks
- */
-gulp.task('build', build);
-
+exports.build = build;
 /*
  * Define default task that can be called by just running `gulp` from cli
  */
-gulp.task('default', build);
+exports.default = build;
 ```
 
 ## Use latest JavaScript version in your gulpfile
@@ -204,13 +198,7 @@ function watchFiles() {
 }
 export { watchFiles as watch };
 
-/*
- * You can still use `gulp.task`
- * for example to set task names that would otherwise be invalid
- */
 const build = gulp.series(clean, gulp.parallel(styles, scripts));
-gulp.task('build', build);
-
 /*
  * Export a default task
  */
@@ -243,40 +231,6 @@ function watch() {
 Task run times are saved in memory and are lost when gulp exits. It will only
 save time during the `watch` task when running the `images` task
 for a second time.
-
-If you want to compare modification time between files instead, we recommend these plugins:
-- [gulp-changed];
-- or [gulp-newer] - supports many:1 source:dest.
-
-[gulp-newer] example:
-```js
-function images() {
-  var dest = 'build/img';
-  return gulp.src(paths.images)
-    .pipe(newer(dest))  // pass through newer images only
-    .pipe(imagemin({optimizationLevel: 5}))
-    .pipe(gulp.dest(dest));
-}
-```
-
-If you can't simply filter out unchanged files, but need them in a later phase
-of the stream, we recommend these plugins:
-- [gulp-cached] - in-memory file cache, not for operation on sets of files
-- [gulp-remember] - pairs nicely with gulp-cached
-
-[gulp-remember] example:
-```js
-function scripts() {
-  return gulp.src(scriptsGlob)
-    .pipe(cache('scripts'))    // only pass through changed files
-    .pipe(header('(function () {')) // do special things to the changed files...
-    .pipe(footer('})();'))     // for example,
-                               // add a simple module wrap to each file
-    .pipe(remember('scripts')) // add back all files to the stream
-    .pipe(concat('app.js'))    // do things that require all files
-    .pipe(gulp.dest('public/'))
-}
-```
 
 ## Want to contribute?
 
@@ -320,7 +274,6 @@ Become a sponsor to get your logo on our README on Github.
 [backers-image]: https://opencollective.com/gulpjs/backers.svg
 [sponsors-image]: https://opencollective.com/gulpjs/sponsors.svg
 
-[gulp-cached]: https://github.com/contra/gulp-cached
-[gulp-remember]: https://github.com/ahaurw01/gulp-remember
-[gulp-changed]: https://github.com/sindresorhus/gulp-changed
-[gulp-newer]: https://github.com/tschaub/gulp-newer
+[quick-start]: https://gulpjs.com/docs/en/getting-started/quick-start
+[getting-started-guide]: https://gulpjs.com/docs/en/getting-started/quick-start
+[api-docs]: https://gulpjs.com/docs/en/api/concepts
