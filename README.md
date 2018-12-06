@@ -36,9 +36,9 @@ Find out about all our work-in-progress and outstanding issues at https://github
 
 ## Documentation
 
-Check out our [Getting Started guide][getting-started-guide] and [API docs][api-docs] on our website!
+Check out the [Getting Started guide][getting-started-guide] and [API docs][api-docs] on our website!
 
-__Excuse our dust; All other docs will be behind until we get everything updated. Please open an issue if something isn't working.__
+__Excuse our dust! All other docs will be behind until we get everything updated. Please open an issue if something isn't working.__
 
 ## Sample `gulpfile.js`
 
