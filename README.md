@@ -15,6 +15,17 @@
 - **Strong Ecosystem** - Use npm modules to do anything you want + over 2000 curated plugins for streaming file transformations
 - **Simple** - By providing only a minimal API surface, gulp is easy to learn and simple to use
 
+## What's new in 4.0?!
+
+* The task system was rewritten from the ground-up, allowing task composition using `series()` and `parallel()` methods
+* The watcher was updated, now using chokidar (no more need for gulp-watch!), with feature parity to our task system
+* First-class support was added for incremental builds using `lastRun()`
+* A `symlink()` method was exposed to create symlinks instead of copying files
+* Built-in support for sourcemaps was added - the gulp-sourcemaps plugin is no longer necessary!
+* Task registration of exported functions - using node or ES exports - is now recommended
+* Custom registries were designed, allowing for shared tasks or augmented functionality
+* Stream implementations were improved, allowing for better conditional and phased builds
+
 ## Installation
 
 There are a few ways to install:
