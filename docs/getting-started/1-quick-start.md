@@ -48,7 +48,7 @@ This will guide you through giving your project a name, version, description, et
 
 ## Install the gulp package in your devDependencies
 ```sh
-npm install --save-dev gulp@next
+npm install --save-dev gulp
 ```
 
 ## Verify your gulp versions
