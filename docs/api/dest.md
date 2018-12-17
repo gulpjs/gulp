@@ -5,7 +5,7 @@ hide_title: true
 sidebar_label: dest()
 -->
 
-# dest()   
+# dest()     
 
 Creates a stream for writing [Vinyl][vinyl-concepts] objects to the file system.
 
