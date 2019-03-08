@@ -24,7 +24,7 @@ jobs:
         Node_v0_10:
           node_version: 0.10
     steps:
-      - template: .azure-pipelines/steps.yml
+      - template: .azure-pipelines-steps.yml
 
   - job: Test_Windows
     displayName: Run Tests on Windows
@@ -48,7 +48,7 @@ jobs:
           node_version: 0.10
           npm_version: 2
     steps:
-      - template: .azure-pipelines/steps.yml
+      - template: .azure-pipelines-steps.yml
 
   - job: Test_MacOS
     displayName: Run Tests on MacOS
@@ -63,4 +63,4 @@ jobs:
         Node_v0_10:
           node_version: 0.10
     steps:
-      - template: .azure-pipelines/steps.yml
+      - template: .azure-pipelines-steps.yml
