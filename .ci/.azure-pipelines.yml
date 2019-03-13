@@ -58,8 +58,14 @@ jobs:
       matrix:
         Node_v10:
           node_version: 10
+        Node_v8:
+          node_version: 8
+        Node_v6:
+          node_version: 6
         Node_v4:
           node_version: 4
+        Node_v0_12:
+          node_version: 0.12
         Node_v0_10:
           node_version: 0.10
     steps:
