@@ -21,7 +21,10 @@ steps:
   displayName: Run tests
   condition: ne(variables['run_coveralls'], true)
 
+- script: npm run azure-pipelines
+  displayName: Write tests to xml
+
 - task: PublishTestResults@2
   inputs:
-    testResultsFiles: '**/xunit.xml'
+    testResultsFiles: '**/test.xunit'
   condition: succeededOrFailed()
