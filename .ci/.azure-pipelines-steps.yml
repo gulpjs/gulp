@@ -17,7 +17,7 @@ steps:
   displayName: Run coveralls
   condition: eq(variables['run_coveralls'], true)
 
-- script: npm test
+- script: npm run azure-pipelines
   displayName: Run tests
   condition: ne(variables['run_coveralls'], true)
 
