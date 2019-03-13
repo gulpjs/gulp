@@ -26,5 +26,5 @@ steps:
 
 - task: PublishTestResults@2
   inputs:
-    testResultsFiles: '**/xunit.xml'
+    testResultsFiles: '**/test.xunit.xml'
   condition: succeededOrFailed()
