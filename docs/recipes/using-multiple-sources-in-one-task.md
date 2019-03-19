@@ -1,32 +1,37 @@
 # Using multiple sources in one task
 
 ```js
-// npm install --save-dev gulp@next merge-stream
+// npm install --save-dev gulp merge-stream
 
-var gulp = require('gulp');
-var merge = require('merge-stream');
+const { src, dest } = require('gulp');
+const merge = require('merge-stream');
 
-gulp.task('test', function() {
-  var bootstrap = gulp.src('bootstrap/js/*.js')
-    .pipe(gulp.dest('public/bootstrap'));
+function test() {
+  const bootstrap = src('bootstrap/js/**/*.js')
+    .pipe(dest('public/bootstrap'));
 
-  var jquery = gulp.src('jquery.cookie/jquery.cookie.js')
-    .pipe(gulp.dest('public/jquery'));
+  const jquery = src('jquery.cookie/jquery.cookie.js')
+    .pipe(dest('public/jquery'));
 
   return merge(bootstrap, jquery);
-});
+}
+
+exports.test = test;
 ```
 
-`gulp.src` will emit files in the order they were added:
+`src` will emit files in the order they were added:
 
 ```js
-// npm install gulp@next gulp-concat
+// npm install --save-dev gulp gulp-concat
 
-var gulp = require('gulp');
-var concat = require('gulp-concat');
+const { src, dest } = require('gulp');
+const concat = require('gulp-concat');
 
-gulp.task('default', function() {
-  return gulp.src(['foo/*', 'bar/*'])
+function test() {
+  return src(['foo/*', 'bar/*'])
     .pipe(concat('result.txt'))
-    .pipe(gulp.dest('build'));
-});
+    .pipe(dest('build'));
+}
+
+exports.default = test;
+```

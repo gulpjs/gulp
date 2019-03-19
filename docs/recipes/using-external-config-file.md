@@ -1,6 +1,6 @@
 # Using external config file
 
-Beneficial because it's keeping tasks DRY and config.json can be used by another task runner, like `grunt`.
+Beneficial because it keeps tasks DRY and `config.json` can be used by another task runner, like `grunt`.
 
 -
 
@@ -30,24 +30,22 @@ Beneficial because it's keeping tasks DRY and config.json can be used by another
 ###### `gulpfile.js`
 
 ```js
-// npm install --save-dev gulp@next gulp-uglify merge-stream
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var merge = require('merge-stream');
+// npm install --save-dev gulp gulp-uglify
 
-var config = require('./config.json');
+const { src, dest, parallel } = require('gulp');
+const uglify = require('gulp-uglify');
 
-function doStuff(cfg) {
-  return gulp.src(cfg.src)
+const config = require('./config.json');
+
+function test(cfg) {
+  return src(cfg.src)
     .pipe(uglify())
-    .pipe(gulp.dest(cfg.dest));
+    .pipe(dest(cfg.dest));
 }
 
-gulp.task('dry', function() {
-  // return a stream to signal completion
-  return merge([
-    doStuff(config.desktop),
-    doStuff(config.mobile)
-  ])
-});
+exports.default = function(cb) {
+  test(config.desktop),
+  test(config.mobile),
+  cb();
+};
 ```
