@@ -26,6 +26,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "mocha --async-only",
+    "azure-pipelines": "mocha --async-only --reporter xunit -O output=test.xunit",
     "cover": "istanbul cover _mocha --report lcovonly",
     "coveralls": "npm run cover && istanbul-coveralls"
   },
