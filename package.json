@@ -25,9 +25,9 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "mocha --async-only",
-    "cover": "istanbul cover _mocha --report lcovonly",
-    "coveralls": "npm run cover && istanbul-coveralls"
+    "test": "nyc mocha --async-only",
+    "azure-pipelines": "nyc mocha --async-only --reporter xunit -O output=test.xunit",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
     "glob-watcher": "^5.0.0",
@@ -36,13 +36,13 @@
     "vinyl-fs": "^3.0.0"
   },
   "devDependencies": {
+    "coveralls": "github:phated/node-coveralls#2.x",
     "eslint": "^2.13.1",
     "eslint-config-gulp": "^3.0.1",
     "expect": "^1.20.2",
-    "istanbul": "^0.4.3",
-    "istanbul-coveralls": "^1.0.3",
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.0",
+    "nyc": "^10.3.2",
     "rimraf": "^2.2.5"
   },
   "keywords": [
