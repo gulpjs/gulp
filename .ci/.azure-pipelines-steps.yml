@@ -11,7 +11,7 @@ steps:
 - script: npm install
   displayName: npm install
 
-- script: npm run cover && istanbul-coveralls
+- script: istanbul cover _mocha --report lcovonly && istanbul-coveralls
   env:
     COVERALLS_REPO_TOKEN: $(COVERALLS_REPO_TOKEN_SECRET)
   displayName: Run coveralls
