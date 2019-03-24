@@ -23,7 +23,7 @@ steps:
     APPVEYOR_BUILD_ID: $(Agent.OS)_$(node_version)
     APPVEYOR_REPO_COMMIT: $(Build.SourceVersion)
     APPVEYOR_REPO_BRANCH: $(Build.SourceBranchName)
-    # Overwrite the GitLab Service Name
+    # Overwrite the AppVeyor Service Name
     COVERALLS_SERVICE_NAME: Azure Pipelines
     COVERALLS_REPO_TOKEN: $(COVERALLS_REPO_TOKEN_SECRET)
     COVERALLS_PARALLEL: true
