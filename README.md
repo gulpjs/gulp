@@ -5,7 +5,7 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
 
 
 ## What is gulp?
@@ -251,6 +251,9 @@ Become a sponsor to get your logo on our README on Github.
 [downloads-image]: https://img.shields.io/npm/dm/gulp.svg
 [npm-url]: https://www.npmjs.com/package/gulp
 [npm-image]: https://img.shields.io/npm/v/gulp.svg
+
+[azure-pipelines-url]: https://dev.azure.com/gulpjs/gulp/_build/latest?definitionId=1&branchName=master
+[azure-pipelines-image]: https://dev.azure.com/gulpjs/gulp/_apis/build/status/gulp?branchName=master
 
 [travis-url]: https://travis-ci.org/gulpjs/gulp
 [travis-image]: https://img.shields.io/travis/gulpjs/gulp.svg?label=travis-ci
