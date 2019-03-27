@@ -15,7 +15,7 @@ A gulpfile is a file in your project directory titled `gulpfile.js` (or capitali
 
 ## Transpilation
 
-You can write a gulpfile using a language that requires transpilation, like TypeScript or Babel, by changing the extension on your `gulpfile.js` file or folder ( see Splitting a gulpfile ) to indicate the language and install the matching transpiler module.
+You can write a gulpfile using a language that requires transpilation, like TypeScript or Babel, by changing the extension on your `gulpfile.js` to indicate the language and install the matching transpiler module.
 
 * For TypeScript, rename to `gulpfile.ts` and install the [ts-node][ts-node-module] module.
 * For Babel, rename to `gulpfile.babel.js` and install the [@babel/register][babel-register-module] module.
