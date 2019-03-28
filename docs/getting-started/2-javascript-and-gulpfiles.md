@@ -28,7 +28,7 @@ Many users start by adding all logic to a gulpfile. If it ever grows too big, it
 
 Each task can be split into its own file, then imported into your gulpfile for composition. Not only does this keep things organized, but it allows you to test each task independently or vary composition based on conditions.
 
-Node's module resolution allows you to replace your `gulpfile.js` file with a directory named `gulpfile.js` that contains an `index.js` file which is treated as a `gulpfile.js`. This directory could then contain your individual modules for tasks.  If you are using a transpiler then name the folder and file accordingly.
+Node's module resolution allows you to replace your `gulpfile.js` file with a directory named `gulpfile.js` that contains an `index.js` file which is treated as a `gulpfile.js`. This directory could then contain your individual modules for tasks.  If you are using a transpiler, name the folder and file accordingly.
 
 [gulpfile-transpilation-advanced]: ../documentation-missing.md
 [ts-node-module]: https://www.npmjs.com/package/ts-node
