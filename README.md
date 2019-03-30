@@ -124,7 +124,7 @@ exports.default = build;
 
 ## Use latest JavaScript version in your gulpfile
 
-Node already supports a lot of __ES2015+__ features, but to avoid compatibility problems we suggest to install Babel and rename your `gulpfile.js` as `gulpfile.babel.js`.
+Node already supports a lot of __ES2015+__ features, but to avoid compatibility problems we suggest to install Babel and rename your `gulpfile.js` to `gulpfile.babel.js`.
 
 ```sh
 npm install --save-dev @babel/register @babel/core @babel/preset-env
