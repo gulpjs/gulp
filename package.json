@@ -30,9 +30,9 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
-    "glob-watcher": "^5.0.0",
-    "gulp-cli": "^2.0.0",
-    "undertaker": "^1.0.0",
+    "glob-watcher": "^5.0.3",
+    "gulp-cli": "^2.2.0",
+    "undertaker": "^1.2.1",
     "vinyl-fs": "^3.0.0"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.0",
     "nyc": "^10.3.2",
-    "rimraf": "^2.2.5"
+    "rimraf": "^2.6.3"
   },
   "keywords": [
     "build",
