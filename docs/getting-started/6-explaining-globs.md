@@ -52,13 +52,13 @@ Here, the glob is appropriately restricted to the `scripts/` directory. It will 
 Since globs are matched in array order, a negative glob must follow at least one non-negative glob in an array. The first finds a set of matches, then the negative glob removes a portion of those results. These are most performant when they only include literal characters.
 
 ```js
-['script/**/*.js', '!scripts/vendor/']
+['scripts/**/*.js', '!scripts/vendor/']
 ```
 
 If any non-negative globs follow a negative, nothing will be removed from the later set of matches.
 
 ```js
-['script/**/*.js', '!scripts/vendor/', 'scripts/vendor/react.js']
+['scripts/**/*.js', '!scripts/vendor/', 'scripts/vendor/react.js']
 ```
 
 Negative globs can be used as an alternative for restricting double-star globs.
