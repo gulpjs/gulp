@@ -30,7 +30,7 @@ Beneficial because it's keeping tasks DRY and config.json can be used by another
 ###### `gulpfile.js`
 
 ```js
-// npm install --save-dev gulp@next gulp-uglify merge-stream
+// npm install --save-dev gulp gulp-uglify merge-stream
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var merge = require('merge-stream');

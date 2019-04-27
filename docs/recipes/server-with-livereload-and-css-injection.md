@@ -5,7 +5,7 @@ With [BrowserSync](https://browsersync.io) and gulp, you can easily create a dev
 First install the modules:
 
 ```sh
-$ npm install --save-dev gulp@next browser-sync
+$ npm install --save-dev gulp browser-sync
 ```
 
 Then, considering the following file structure...

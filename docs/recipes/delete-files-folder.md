@@ -5,7 +5,7 @@ You might want to delete some files before running your build. Since deleting fi
 Let's use the [`del`](https://github.com/sindresorhus/del) module for this example as it supports multiple files and [globbing](https://github.com/sindresorhus/multimatch#globbing-patterns):
 
 ```sh
-$ npm install --save-dev gulp@next del
+$ npm install --save-dev gulp del
 ```
 
 Imagine the following file structure:
@@ -49,7 +49,7 @@ You might want to delete some files after processing them in a pipeline.
 We'll use [vinyl-paths](https://github.com/sindresorhus/vinyl-paths) to easily get the file path of files in the stream and pass it to the `del` method.
 
 ```sh
-$ npm install --save-dev gulp@next del vinyl-paths
+$ npm install --save-dev gulp del vinyl-paths
 ```
 
 Imagine the following file structure:

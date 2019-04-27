@@ -3,7 +3,7 @@
 ### Passing shared module in all tests
 
 ```js
-// npm install gulp@next gulp-mocha
+// npm install gulp gulp-mocha
 
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
@@ -22,7 +22,7 @@ gulp.task('default', function() {
 ### Running mocha tests when files change
 
 ```js
-// npm install gulp@next gulp-mocha gulplog
+// npm install gulp gulp-mocha gulplog
 
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
