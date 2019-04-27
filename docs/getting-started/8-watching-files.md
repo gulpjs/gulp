@@ -29,10 +29,12 @@ function css(cb) {
   cb();
 }
 
-// You can use a single task
-watch('src/*.css', css);
-// Or a composed task
-watch('src/*.js', series(clean, javascript));
+exports.default = function() {
+  // You can use a single task
+  watch('src/*.css', css);
+  // Or a composed task
+  watch('src/*.js', series(clean, javascript));
+};
 ```
 
 ## Warning: avoid synchronous
@@ -49,11 +51,13 @@ If you need to use different events, you can use the `events` option when callin
 ```js
 const { watch } = require('gulp');
 
-// All events will be watched
-watch('src/*.js', { events: 'all' }, function(cb) {
-  // body omitted
-  cb();
-});
+exports.default = function() {
+  // All events will be watched
+  watch('src/*.js', { events: 'all' }, function(cb) {
+    // body omitted
+    cb();
+  });
+};
 ```
 
 ## Initial execution
@@ -65,11 +69,13 @@ To execute tasks before the first file change, set the `ignoreInitial` option to
 ```js
 const { watch } = require('gulp');
 
-// The task will be executed upon startup
-watch('src/*.js', { ignoreInitial: false }, function(cb) {
-  // body omitted
-  cb();
-});
+exports.default = function() {
+  // The task will be executed upon startup
+  watch('src/*.js', { ignoreInitial: false }, function(cb) {
+    // body omitted
+    cb();
+  });
+};
 ```
 
 ## Queueing
@@ -81,11 +87,13 @@ To disable queueing, set the `queue` option to `false`.
 ```js
 const { watch } = require('gulp');
 
-// The task will be run (concurrently) for every change made
-watch('src/*.js', { queue: false }, function(cb) {
-  // body omitted
-  cb();
-});
+exports.default = function() {
+  // The task will be run (concurrently) for every change made
+  watch('src/*.js', { queue: false }, function(cb) {
+    // body omitted
+    cb();
+  });
+};
 ```
 
 ## Delay
@@ -97,11 +105,13 @@ To adjust the delay duration, set the `delay` option to a positive integer.
 ```js
 const { watch } = require('gulp');
 
-// The task won't be run until 500ms have elapsed since the first change
-watch('src/*.js', { delay: 500 }, function(cb) {
-  // body omitted
-  cb();
-});
+exports.default = function() {
+  // The task won't be run until 500ms have elapsed since the first change
+  watch('src/*.js', { delay: 500 }, function(cb) {
+    // body omitted
+    cb();
+  });
+};
 ```
 
 ## Using the watcher instance
