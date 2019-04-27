@@ -20,6 +20,8 @@ You can write a gulpfile using a language that requires transpilation, like Type
 * For TypeScript, rename to `gulpfile.ts` and install the [ts-node][ts-node-module] module.
 * For Babel, rename to `gulpfile.babel.js` and install the [@babel/register][babel-register-module] module.
 
+__Most new versions of node support most features that TypeScript or Babel provide, except the `import`/`export` syntax. When only that syntax is desired, rename to `gulpfile.esm.js` and install the [esm][esm-module] module.__
+
 For a more advanced dive into this topic and the full list of supported extensions, see our [gulpfile transpilation][gulpfile-transpilation-advanced] documentation.
 
 ##  Splitting a gulpfile
@@ -33,3 +35,4 @@ Node's module resolution allows you to replace your `gulpfile.js` file with a di
 [gulpfile-transpilation-advanced]: ../documentation-missing.md
 [ts-node-module]: https://www.npmjs.com/package/ts-node
 [babel-register-module]: https://www.npmjs.com/package/@babel/register
+[esm-module]: https://www.npmjs.com/package/esm

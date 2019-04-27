@@ -124,6 +124,8 @@ exports.default = build;
 
 ## Use latest JavaScript version in your gulpfile
 
+__Most new versions of node support most features that Babel provides, except the `import`/`export` syntax. When only that syntax is desired, rename to `gulpfile.esm.js`, install the [esm][esm-module] module, and skip the Babel portion below.__
+
 Node already supports a lot of __ES2015+__ features, but to avoid compatibility problems we suggest to install Babel and rename your `gulpfile.js` to `gulpfile.babel.js`.
 
 ```sh
