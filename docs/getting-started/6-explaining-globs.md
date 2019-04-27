@@ -49,25 +49,25 @@ Here, the glob is appropriately restricted to the `scripts/` directory. It will 
 
 ## Special character: ! (negative)
 
-Since globs are matched in array order, a negative glob must follow at least one non-negative glob in an array. The first finds a set of matches, then the negative glob removes a portion of those results. These are most performant when they only include literal characters.
+Since globs are matched in array order, a negative glob must follow at least one non-negative glob in an array. The first finds a set of matches, then the negative glob removes a portion of those results. When excluding all files within a directory, you must add `/**` after the directory name, which the globbing library optimizes internally.
 
 ```js
-['scripts/**/*.js', '!scripts/vendor/']
+['scripts/**/*.js', '!scripts/vendor/**']
 ```
 
 If any non-negative globs follow a negative, nothing will be removed from the later set of matches.
 
 ```js
-['scripts/**/*.js', '!scripts/vendor/', 'scripts/vendor/react.js']
+['scripts/**/*.js', '!scripts/vendor/**', 'scripts/vendor/react.js']
 ```
 
 Negative globs can be used as an alternative for restricting double-star globs.
 
 ```js
-['**/*.js', '!node_modules/']
+['**/*.js', '!node_modules/**']
 ```
 
-<small>In the previous example, if the negative glob was `!node_modules/**/*.js`, every match would have to be compared against the negative glob, which would be extremely slow.</small>
+<small>In the previous example, if the negative glob was `!node_modules/**/*.js`, the globbing library wouldn't optimize the negation and every match would have to be compared against the negative glob, which would be extremely slow. To ignore all files in a directory, only add the `/**` glob after the directory name.</small>
 
 ## Overlapping globs
 
