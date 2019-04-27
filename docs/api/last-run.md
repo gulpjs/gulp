@@ -23,11 +23,9 @@ function images() {
     .pipe(dest('build/img/'));
 }
 
-function watch() {
+exports.default = function() {
   watch('src/images/**/*.jpg', images);
-}
-
-exports.watch = watch;
+};
 ```
 
 
