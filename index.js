@@ -16,6 +16,9 @@ function Gulp() {
   this.registry = this.registry.bind(this);
   this.tree = this.tree.bind(this);
   this.lastRun = this.lastRun.bind(this);
+  this.src = this.src.bind(this);
+  this.dest = this.dest.bind(this);
+  this.symlink = this.symlink.bind(this);
 }
 util.inherits(Gulp, Undertaker);
 
