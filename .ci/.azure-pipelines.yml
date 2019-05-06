@@ -9,6 +9,8 @@ jobs:
       vmImage: "Ubuntu 16.04"
     strategy:
       matrix:
+        Node_v12:
+          node_version: 12
         Node_v10:
           node_version: 10
         Node_v8:
@@ -30,6 +32,8 @@ jobs:
       vmImage: vs2017-win2016
     strategy:
       matrix:
+        Node_v12:
+          node_version: 12
         Node_v10:
           node_version: 10
         Node_v8:
@@ -54,6 +58,8 @@ jobs:
       vmImage: macos-10.13
     strategy:
       matrix:
+        Node_v12:
+          node_version: 12
         Node_v10:
           node_version: 10
         Node_v8:
