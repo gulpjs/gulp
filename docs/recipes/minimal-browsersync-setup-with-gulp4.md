@@ -110,7 +110,7 @@ $ gulp
 ```
 
 Now if you go to [http://localhost:3000](http://localhost:3000), which is the default address of the
-BrowserSync server, you will see that the end result in the browser is updated everytime you change
+BrowserSync server, you will see that the end result in the browser is updated every time you change
 the content of the source file. Here is the whole gulpfile:
 
 ```javascript

@@ -83,7 +83,7 @@ gulp.task('compress', function () {
 This is a lot of complexity to add in each of your gulp tasks, and it’s easy to
 forget to do it. In addition, it’s still not perfect, as it doesn’t properly
 signal to gulp’s task system that the task has failed. We can fix this, and we
-can handle the other pesky issues with error propogations with streams, but it’s
+can handle the other pesky issues with error propagations with streams, but it’s
 even more work!
 
 ## Using pump
