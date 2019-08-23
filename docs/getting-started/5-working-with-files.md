@@ -87,8 +87,8 @@ exports.default = function() {
 `src()` can operate in three modes: buffering, streaming, and empty. These are configured with the `buffer` and `read` [options][src-options-api-docs] on `src()`.
 
 * Buffering mode is the default and loads the file contents into memory. Plugins usually operate in buffering mode and many don't support streaming mode.
-* Streaming mode exists mainly to operate on large files that can't fit in memory, like giant images or movies. The contents are streamed from the filesystem in small chunks instead of loaded all at once. If you need to use streaming mode, look for a plugin that supports it or write your own.
-* Empty mode contains no contents and is useful when only working with file metadata.
+* Streaming mode exists mainly to operate on large files that can't fit in memory, like giant images or movies. The file contents are streamed from the filesystem in small chunks instead of loaded all at once. If you need to use streaming mode, look for a plugin that supports it or write your own.
+* Empty mode contains no content and is useful when only working with file metadata.
 
 [explaining-globs-docs]: ../getting-started/6-explaining-globs.md
 [creating-tasks-docs]: ../getting-started/3-creating-tasks.md
