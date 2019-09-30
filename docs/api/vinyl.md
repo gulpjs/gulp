@@ -40,7 +40,7 @@ file.stem = 'foo';
 file.path === '/specs/foo.txt';
 file.extname === '.txt';
 file.extname = '.js';
-file.path === '/specs/file.js';
+file.path === '/specs/foo.js';
 ```
 
 ## Signature
