@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "nyc mocha --async-only",
+    "test": "nyc mocha --async-only --timeout 1000 --exit",
     "azure-pipelines": "nyc mocha --async-only --reporter xunit -O output=test.xunit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -36,13 +36,13 @@
     "vinyl-fs": "^3.0.0"
   },
   "devDependencies": {
-    "coveralls": "github:phated/node-coveralls#2.x",
-    "eslint": "^2.13.1",
+    "coveralls": "^3.0.7",
+    "eslint": "^6.5.1",
     "eslint-config-gulp": "^3.0.1",
     "expect": "^1.20.2",
     "mkdirp": "^0.5.1",
-    "mocha": "^3.0.0",
-    "nyc": "^10.3.2",
+    "mocha": "^6.2.1",
+    "nyc": "^14.1.1",
     "rimraf": "^2.6.3"
   },
   "keywords": [

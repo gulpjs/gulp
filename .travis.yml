@@ -8,5 +8,12 @@ node_js:
   - '4'
   - '0.12'
   - '0.10'
+install:
+  - npm install -g grunt-cli
+  - npm install
+  - npm run test
 after_script:
   - npm run coveralls
+notifications:
+  email:
+    on_success: never
