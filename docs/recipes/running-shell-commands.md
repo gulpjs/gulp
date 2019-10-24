@@ -21,6 +21,21 @@ gulp.task('reset', function() {
 ```js
 'use strict';
 
+const { spawn } = require('child_process');
+const gulp = require('gulp');
+
+gulp.task('list', function() {
+    const cmd = spawn('ls');
+    cmd.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    });
+    return cmd;
+});
+```
+
+```js
+'use strict';
+
 var gulp = require('gulp');
 var exec = require('gulp-exec');
 
