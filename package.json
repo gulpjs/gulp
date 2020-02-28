@@ -56,5 +56,13 @@
     "series",
     "parallel",
     "streaming"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/gulpjs/gulp/issues"
+  },
+  "homepage": "https://github.com/gulpjs/gulp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gulpjs/gulp.git"
+  }
 }
