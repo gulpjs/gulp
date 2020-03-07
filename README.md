@@ -290,3 +290,4 @@ Become a sponsor to get your logo on our README on Github.
 [quick-start]: https://gulpjs.com/docs/en/getting-started/quick-start
 [getting-started-guide]: https://gulpjs.com/docs/en/getting-started/quick-start
 [api-docs]: https://gulpjs.com/docs/en/api/concepts
+[esm-module]: https://github.com/standard-things/esm
