@@ -5,8 +5,7 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
-
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url] [![Issue resolution][resolution-time-image]][isitmaintained-url] [![Open issues][open-percentage-image]][isitmaintained-url]
 
 ## What is gulp?
 
@@ -291,3 +290,7 @@ Become a sponsor to get your logo on our README on Github.
 [getting-started-guide]: https://gulpjs.com/docs/en/getting-started/quick-start
 [api-docs]: https://gulpjs.com/docs/en/api/concepts
 [esm-module]: https://github.com/standard-things/esm
+
+[isitmaintained-url]: https://isitmaintained.com/project/gulpjs/gulp
+[open-percentage-image]: https://isitmaintained.com/badge/open/gulpjs/gulp.svg
+[resolution-time-image]: https://isitmaintained.com/badge/resolution/gulpjs/gulp.svg
