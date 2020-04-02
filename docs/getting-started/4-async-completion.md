@@ -127,7 +127,7 @@ When not using any of the previous options, you can define your task as an [`asy
 const fs = require('fs');
 
 async function asyncAwaitTask() {
-  const { version } = fs.readFileSync('package.json');
+  const { version } = JSON.parse(fs.readFileSync('package.json', 'utf8'));
   console.log(version);
   await Promise.resolve('some result');
 }
