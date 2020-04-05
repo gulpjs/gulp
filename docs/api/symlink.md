@@ -32,7 +32,7 @@ symlink(directory, [options])
 
 | parameter | type | note |
 |:--------------:|:-----:|--------|
-| directory<br>**(required)** | string<br>function | The path of the output directory where symbolic links will be created. If a function is used, the function will be called with each Vinyl object and must return a string directory path. |
+| directory<br />**(required)** | string<br />function | The path of the output directory where symbolic links will be created. If a function is used, the function will be called with each Vinyl object and must return a string directory path. |
 | options | object | Detailed in [Options][options-section] below. |
 
 ### Returns
@@ -63,15 +63,15 @@ When `directory` is a function that returns an empty string or `undefined`, emit
 
 | name | type | default | note |
 |:-------:|:------:|-----------|-------|
-| cwd | string<br>function | `process.cwd()` |The directory that will be combined with any relative path to form an absolute path. Is ignored for absolute paths. Use to avoid combining `directory` with `path.join()`. |
-| dirMode | number<br>function | | The mode used when creating directories. If not set, the process' mode will be used. |
-| overwrite | boolean<br>function | true | When true, overwrites existing files with the same path. |
-| relativeSymlinks | boolean<br>function | false | When false, any symbolic links created will be absolute.<br>**Note**: Ignored if a junction is being created, as they must be absolute. |
-| useJunctions | boolean<br>function | true | This option is only relevant on Windows and ignored elsewhere. When true, creates directory symbolic link as a junction. Detailed in [Symbolic links on Windows][symbolic-links-section] below. |
+| cwd | string<br />function | `process.cwd()` |The directory that will be combined with any relative path to form an absolute path. Is ignored for absolute paths. Use to avoid combining `directory` with `path.join()`. |
+| dirMode | number<br />function | | The mode used when creating directories. If not set, the process' mode will be used. |
+| overwrite | boolean<br />function | true | When true, overwrites existing files with the same path. |
+| relativeSymlinks | boolean<br />function | false | When false, any symbolic links created will be absolute.<br />**Note**: Ignored if a junction is being created, as they must be absolute. |
+| useJunctions | boolean<br />function | true | This option is only relevant on Windows and ignored elsewhere. When true, creates directory symbolic link as a junction. Detailed in [Symbolic links on Windows][symbolic-links-section] below. |
 
 ## Symbolic links on Windows
 
-When creating symbolic links on Windows, a `type` argument is passed to Node's `fs.symlink()` method which specifies the type of target being linked. The link type is set to:  
+When creating symbolic links on Windows, a `type` argument is passed to Node's `fs.symlink()` method which specifies the type of target being linked. The link type is set to:
 * `'file'` when the target is a regular file
 * `'junction'` when the target is a directory
 * `'dir'` when the target is a directory and the user disables the `useJunctions` option

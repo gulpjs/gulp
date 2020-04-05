@@ -39,7 +39,7 @@ lastRun(task, [precision])
 
 | parameter | type | note |
 |:--------------:|:------:|-------|
-| task<br>**(required)** | function<br>string | The task function or the string alias of a registered task. |
+| task<br />**(required)** | function<br />string | The task function or the string alias of a registered task. |
 | precision | number | Default: `1000` on Node v0.10, `0` on Node v0.12+. Detailed in [Timestamp precision][timestamp-precision-section] section below. |
 
 ### Returns

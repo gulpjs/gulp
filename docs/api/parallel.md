@@ -37,7 +37,7 @@ parallel(...tasks)
 
 | parameter | type | note |
 |:--------------:|:------:|-------|
-| tasks<br>**(required)** | function<br>string | Any number of task functions can be passed as individual arguments. Strings can be used if you've registered tasks previously, but this is not recommended. |
+| tasks<br />**(required)** | function<br />string | Any number of task functions can be passed as individual arguments. Strings can be used if you've registered tasks previously, but this is not recommended. |
 
 ### Returns
 
