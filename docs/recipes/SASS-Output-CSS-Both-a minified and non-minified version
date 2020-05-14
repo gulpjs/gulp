@@ -1,0 +1,40 @@
+# Output CSS both a minified and non-minified version
+Outputting both a minified and non-minified version of your combined JavaScript files can be achieved by using `gulp-rename` and piping to `dest` twice (once before minifying and once after minifying):
+
+```js
+'use strict';
+
+const
+gulp = require('gulp')
+gutil = require('gulp-util'),
+  rename = require('gulp-rename'),  
+  concat = require('gulp-concat')
+  sass = require('gulp-sass');
+  
+
+gulp.task('css', () => {
+
+ 
+    return gulp.src('./resources/front-end/sass/**/*.scss')
+        .pipe(sass({
+            outputStyle     : 'compressed',
+            // imagePath       : images.build,
+            precision       : 3,
+            errLogToConsole : true
+        }))
+        .pipe(gulp.dest('./assets/front-end/css'))
+        .pipe(sass({
+            outputStyle     : 'compressed',
+            // imagePath       : images.build,
+            precision       : 3,
+            errLogToConsole : true
+        }))
+
+         .pipe(rename({ extname: '.min.css' }))
+        .pipe(gulp.dest('./assets/front-end/css'))
+        .pipe(gutil.noop());
+});
+```
+
+
+if you prefer to compile all CSS file into one fill minified. Just replace ` .pipe(rename({ extname: '.min.js' }))` to ` .pipe(concat('compiled.min.css'))`
