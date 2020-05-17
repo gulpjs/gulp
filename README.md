@@ -230,7 +230,7 @@ const paths = {
 
 function images() {
   return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
-    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(imagemin())
     .pipe(gulp.dest(paths.images.dest));
 }
 
