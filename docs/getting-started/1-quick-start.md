@@ -5,11 +5,11 @@ hide_title: true
 sidebar_label: Quick Start
 -->
 
-# Quick Start
+# Szybki start
 
-If you've previously installed gulp globally, run `npm rm --global gulp` before following these instructions. For more information, read this [Sip][sip-article].
+Jeśli wcześniej instalowałeś gulp globalnie, uruchom `npm rm --global gulp` przed wykonaniem tych instrukcji. Aby uzyskać więcej informacji, przeczytaj to [Sip][sip-article].
 
-## Check for node, npm, and npx
+## Sprawdź dla node, npm, oraz npx
 ```sh
 node --version
 ```
@@ -25,13 +25,13 @@ npx --version
 
 If they are not installed, follow the instructions [here][node-install].
 
-## Install the gulp command line utility
+## Zainstaluj narzędzie wiersza poleceń gulp
 ```sh
 npm install --global gulp-cli
 ```
 
 
-## Create a project directory and navigate into it
+## Utwórz katalog projektu i przejdź do niego
 ```sh
 npx mkdirp my-project
 ```
@@ -39,30 +39,30 @@ npx mkdirp my-project
 cd my-project
 ```
 
-## Create a package.json file in your project directory
+## Utwórz plik package.json w katalogu projektu
 ```sh
 npm init
 ```
 
-This will guide you through giving your project a name, version, description, etc.
+To poprowadzi cię przez nadanie projektowi nazwy, wersji, opisu itp.
 
-## Install the gulp package in your devDependencies
+## Zainstaluj pakiet gulp w swoich devDependencies
 ```sh
 npm install --save-dev gulp
 ```
 
-## Verify your gulp versions
+## Sprawdź swoje wersje gulp
 
 ```sh
 gulp --version
 ```
 
-Ensure the output matches the screenshot below or you might need to restart the steps in this guide.
+Upewnij się, że dane wyjściowe odpowiadają zrzutowi ekranu poniżej, w przeciwnym razie może być konieczne ponowne uruchomienie kroków opisanych w tym przewodniku.
 
 ![Output: CLI version 2.0.1 & Local version 4.0.0][img-gulp-version-command]
 
-## Create a gulpfile
-Using your text editor, create a file named gulpfile.js in your project root with these contents:
+## Stwórz gulpfile
+Za pomocą edytora tekstu utwórz plik o nazwie gulpfile.js w katalogu głównym projektu z następującymi treściami:
 ```js
 function defaultTask(cb) {
   // place code for your default task here
@@ -72,15 +72,15 @@ function defaultTask(cb) {
 exports.default = defaultTask
 ```
 
-## Test it
-Run the gulp command in your project directory:
+## Przetestuj to
+Uruchom polecenie gulp w katalogu projektu:
 ```sh
 gulp
 ```
-To run multiple tasks, you can use `gulp <task> <othertask>`.
+Aby uruchomić wiele zadań, możesz użyć `gulp <task> <othertask>`.
 
-## Result
-The default task will run and do nothing.
+## Wynik
+Zadanie domyślne zostanie uruchomione i nic nie zrobi.
 ![Output: Starting default & Finished default][img-gulp-command]
 
 [sip-article]: https://medium.com/gulpjs/gulp-sips-command-line-interface-e53411d4467
