@@ -5,32 +5,32 @@ hide_title: true
 sidebar_label: JavaScript and Gulpfiles
 -->
 
-# JavaScript and Gulpfiles
+# JavaScript oraz Gulpfiles
 
-Gulp allows you to use existing JavaScript knowledge to write gulpfiles or to use your experience with gulpfiles to write plain JavaScript. Although a few utilities are provided to simplify working with the filesystem and command line, everything else you write is pure JavaScript.
+Gulp umożliwia wykorzystanie istniejącej wiedzy o języku JavaScript do pisania plików gulpfiles lub wykorzystanie doświadczenia z plikami gulpfiles do pisania zwykłego kodu JavaScript. Chociaż dostępnych jest kilka narzędzi upraszczających pracę z systemem plików i wierszem poleceń, wszystko, co piszesz, to czysty JavaScript.
 
-## Gulpfile explained
+## Gulpfile wytłumaczony
 
-A gulpfile is a file in your project directory titled `gulpfile.js` (or capitalized as `Gulpfile.js`, like Makefile), that automatically loads when you run the `gulp` command. Within this file, you'll often see gulp APIs, like `src()`, `dest()`, `series()`, or `parallel()` but any vanilla JavaScript or Node modules can be used. Any exported functions will be registered into gulp's task system.
+Plik gulpfile to plik w katalogu projektu o nazwie `gulpfile.js` (lub pisany wielkimi literami jako `Gulpfile.js`, jak Makefile), który automatycznie ładuje się po uruchomieniu polecenia `gulp`. W tym pliku często zobaczysz interfejsy API gulp, takie jak `src ()`, `dest ()`, `series ()` lub `parallel ()`, ale można użyć dowolnego waniliowego modułu JavaScript lub Node. Wszelkie wyeksportowane funkcje zostaną zarejestrowane w systemie zadań gulp.
 
-## Transpilation
+## Transpilacja
 
-You can write a gulpfile using a language that requires transpilation, like TypeScript or Babel, by changing the extension on your `gulpfile.js` to indicate the language and install the matching transpiler module.
+Możesz napisać plik gulpfile przy użyciu języka wymagającego transpilacji, takiego jak TypeScript lub Babel, zmieniając rozszerzenie w swoim `gulpfile.js` aby wskazać język i zainstalować odpowiedni moduł transpilatora.
 
-* For TypeScript, rename to `gulpfile.ts` and install the [ts-node][ts-node-module] module.
-* For Babel, rename to `gulpfile.babel.js` and install the [@babel/register][babel-register-module] module.
+* Dla TypeScript, zmień nazwę `gulpfile.ts` i zaintaluj moduł [ts-node][ts-node-module].
+* Dla Babel, zmień nazwę na `gulpfile.babel.js` i zainstaluj moduł [@babel/register][babel-register-module].
 
-__Most new versions of node support most features that TypeScript or Babel provide, except the `import`/`export` syntax. When only that syntax is desired, rename to `gulpfile.esm.js` and install the [esm][esm-module] module.__
+__Większość nowych wersji node obsługuje większość funkcji udostępnianych przez TypeScript lub Babel, z wyjątkiem składni `import`/`export`. Jeśli pożądana jest tylko ta składnia, zmień nazwę na `gulpfile.esm.js` i zainstaluj moduł [esm][esm-module].__
 
-For a more advanced dive into this topic and the full list of supported extensions, see our [gulpfile transpilation][gulpfile-transpilation-advanced] documentation.
+Aby uzyskać bardziej zaawansowane informacje na ten temat i pełną listę obsługiwanych rozszerzeń, zobacz naszą dokumentację [gulpfile transpilation][gulpfile-transpilation-advanced].
 
-##  Splitting a gulpfile
+##  Dzielenie pliku gulpfile
 
-Many users start by adding all logic to a gulpfile. If it ever grows too big, it can be refactored into separate files.
+Wielu użytkowników zaczyna od dodania całej logiki do pliku gulpfile. Jeśli kiedykolwiek stanie się zbyt duży, można go przekształcić w osobne pliki.
 
-Each task can be split into its own file, then imported into your gulpfile for composition. Not only does this keep things organized, but it allows you to test each task independently or vary composition based on conditions.
+Każde zadanie można podzielić na własny plik, a następnie zaimportować do pliku gulp w celu złożenia. Pozwala to nie tylko utrzymać porządek, ale umożliwia testowanie każdego zadania niezależnie lub różnicowanie składu w zależności od warunków.
 
-Node's module resolution allows you to replace your `gulpfile.js` file with a directory named `gulpfile.js` that contains an `index.js` file which is treated as a `gulpfile.js`. This directory could then contain your individual modules for tasks.  If you are using a transpiler, name the folder and file accordingly.
+Moduł Node'a pozwala zastąpić twój plik `gulpfile.js` z katalogiem o nazwie `gulpfile.js` który zawiera plik `index.js` który jest traktowany jako `gulpfile.js`. Ten katalog może następnie zawierać poszczególne moduły zadań. Jeśli używasz transpilatora, odpowiednio nazwij folder i plik.
 
 [gulpfile-transpilation-advanced]: ../documentation-missing.md
 [ts-node-module]: https://www.npmjs.com/package/ts-node
