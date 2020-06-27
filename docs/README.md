@@ -7,7 +7,7 @@
 * [Why Use Pump?](why-use-pump/README.md) - Why to use the `pump` module instead of calling `.pipe` yourself
 * [Simplified Chinese documentation][SimplifiedChineseDocs] - gulp 简体中文文档
 * [Korean documentation][KoreanDocs] - gulp 한국어 참조 문서
-* [Polish documentation](locale/pl_PL/readme.md) - gulp Dokumentacja
+* [Polish documentation](/locale/pl_PL/README.md) - gulp Dokumentacja
 
 
 ## FAQ
