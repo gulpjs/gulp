@@ -36,7 +36,8 @@ var buffer = require('vinyl-buffer');
 gulp.task('rollup', function() {
   return rollup({
       entry: './src/main.js',
-      sourceMap: true
+      sourceMap: true,
+      format: 'umd'
     })
 
     // point to the entry file.
