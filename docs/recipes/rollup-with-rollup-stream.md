@@ -11,7 +11,7 @@ var source = require('vinyl-source-stream');
 
 gulp.task('rollup', function() {
   return rollup({
-      entry: './src/main.js'
+      input: './src/main.js'
     })
 
     // give the file the name you want to output with
@@ -35,8 +35,8 @@ var buffer = require('vinyl-buffer');
 
 gulp.task('rollup', function() {
   return rollup({
-      entry: './src/main.js',
-      sourceMap: true,
+      input: './src/main.js',
+      sourcemap: true,
       format: 'umd'
     })
 
