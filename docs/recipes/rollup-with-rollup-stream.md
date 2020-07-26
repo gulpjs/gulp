@@ -24,7 +24,7 @@ gulp.task('rollup', function() {
 
 ## Usage with sourcemaps
 ```js
-// npm install --save-dev gulp rollup-stream gulp-sourcemaps vinyl-source-stream vinyl-buffer
+// npm install --save-dev gulp rollup-stream@ gulp-sourcemaps vinyl-source-stream vinyl-buffer
 // optional: npm install --save-dev gulp-rename
 var gulp = require('gulp');
 var rollup = require('rollup-stream');
