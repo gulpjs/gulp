@@ -4,6 +4,7 @@ var util = require('util');
 var Undertaker = require('undertaker');
 var vfs = require('vinyl-fs');
 var watch = require('glob-watcher');
+var fs = require('fs');
 
 function Gulp() {
   Undertaker.call(this);
@@ -47,6 +48,25 @@ Gulp.prototype.watch = function(glob, opt, task) {
 
   return watch(glob, opt, fn);
 };
+
+Gulp.prototype.copy = function(pathOrArray, dest) {
+
+    function make(item) {
+        if(fs.lstatSync(item).isDirectory()) {
+            this.src(`${item}/**`).pipe(this.dest(`${dest}/${item}`))
+        } else {
+            this.src(item).pipe(this.dest(dest))
+        }
+    }
+
+    if(Array.isArray(pathOrArray)) {
+        while(pathOrArray.length != 0) {
+            make(pathOrArray.shift())
+        }
+    } else {
+        make(pathOrArray)
+    }
+}
 
 // Let people use this class from our instance
 Gulp.prototype.Gulp = Gulp;
