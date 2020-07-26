@@ -4,7 +4,7 @@ Like Browserify, [Rollup](https://rollupjs.org/) is a bundler and thus only fits
 
 ## Basic usage
 ```js
-// npm install --save-dev gulp rollup-stream vinyl-source-stream
+// npm install --save-dev gulp rollup-stream@1 vinyl-source-stream
 var gulp = require('gulp');
 var rollup = require('rollup-stream');
 var source = require('vinyl-source-stream');
