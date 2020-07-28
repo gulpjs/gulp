@@ -11,7 +11,7 @@ Gulp umożliwia wykorzystanie istniejącej wiedzy o języku JavaScript do pisani
 
 ## Gulpfile wytłumaczony
 
-Plik gulpfile to plik w katalogu projektu o nazwie `gulpfile.js` (lub pisany wielkimi literami jako `Gulpfile.js`, jak Makefile), który automatycznie ładuje się po uruchomieniu polecenia `gulp`. W tym pliku często zobaczysz interfejsy API gulp, takie jak `src ()`, `dest ()`, `series ()` lub `parallel ()`, ale można użyć dowolnego waniliowego modułu JavaScript lub Node. Wszelkie wyeksportowane funkcje zostaną zarejestrowane w systemie zadań gulp.
+Plik gulpfile to plik w katalogu projektu o nazwie `gulpfile.js` (lub pisany wielkimi literami jako `Gulpfile.js`, jak Makefile), który automatycznie ładuje się po uruchomieniu polecenia `gulp`. W tym pliku często zobaczysz interfejsy API gulp, takie jak `src ()`, `dest ()`, `series ()` lub `parallel ()`, ale można użyć dowolnego standardowego modułu JavaScript lub Node. Wszelkie wyeksportowane funkcje zostaną zarejestrowane w systemie zadań gulp.
 
 ## Transpilacja
 
