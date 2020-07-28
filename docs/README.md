@@ -15,9 +15,9 @@
 Zobacz [FAQ](FAQ.md) aby uzyskać odpowiedzi na najczęściej zadawane pytania.
 
 
-## Przepisy
+## Receptury
 
-Społeczność napisała [przepisy kulinarne](recipes#recipes) dla typowych przypadków użycia gulp.
+Społeczność napisała [receptury](recipes#recipes) dla typowych przypadków użycia gulp.
 
 
 ## Nadal masz pytania?
