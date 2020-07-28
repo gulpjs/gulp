@@ -26,7 +26,7 @@ Adapter udostępnia:
 
 ## Zadania
 
-Każde zadanie gulp to asynchroniczna funkcja JavaScript, która albo przyjmuje wywołanie zwrotne z pierwszym błędem, albo zwraca strumień, obietnicę, emiter zdarzeń, proces potomny lub observable. Z powodu pewnych ograniczeń platformy zadania synchroniczne nie są obsługiwane.
+Każde zadanie gulp to asynchroniczna funkcja JavaScript, która albo przyjmuje wywołanie zwrotne z pierwszym błędem, albo zwraca strumień, obietnicę, emiter zdarzeń, proces podrzędny lub observable. Z powodu pewnych ograniczeń platformy zadania synchroniczne nie są obsługiwane.
 
 Aby uzyskać bardziej szczegółowe wyjaśnienie, patrz [Tworzenie zadań][creating-tasks-doc].
 
