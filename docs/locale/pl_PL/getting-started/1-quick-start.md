@@ -1,10 +1,3 @@
-<!-- front-matter
-id: quick-start
-title: Quick Start
-hide_title: true
-sidebar_label: Quick Start
--->
-
 # Szybki start
 
 Jeśli wcześniej instalowałeś gulp globalnie, uruchom `npm rm --global gulp` przed wykonaniem tych instrukcji. Aby uzyskać więcej informacji, przeczytaj to [Sip][sip-article].

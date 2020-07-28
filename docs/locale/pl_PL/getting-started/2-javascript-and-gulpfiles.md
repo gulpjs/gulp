@@ -1,10 +1,3 @@
-<!-- front-matter
-id: javascript-and-gulpfiles
-title: JavaScript and Gulpfiles
-hide_title: true
-sidebar_label: JavaScript and Gulpfiles
--->
-
 # JavaScript oraz Gulpfiles
 
 Gulp umożliwia wykorzystanie istniejącej wiedzy o języku JavaScript do pisania plików gulpfiles lub wykorzystanie doświadczenia z plikami gulpfiles do pisania zwykłego kodu JavaScript. Chociaż dostępnych jest kilka narzędzi upraszczających pracę z systemem plików i wierszem poleceń, wszystko, co piszesz, to czysty JavaScript.

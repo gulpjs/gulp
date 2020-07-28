@@ -1,23 +1,23 @@
 # Dokumentacja gulp
 
 * [Pierwsze kroki](getting-started/) - Pierwsze kroki z gulp
-* [Dokumentacja API](api/) - Interfejs programowania, zdefiniowany
-* [Dokumentacja CLI](CLI.md) - Dowiedz się, jak wywoływać taski i korzystać z kompilatorów
-* [Pisanie wtyczki](writing-a-plugin/) - Podstawy pisania wtyczki gulp
-* [Czemu używać Pump?](why-use-pump/README.md) - Dlaczego używać modułu `pump` zamiast wywoływać `.pipe` yourself
+* [Dokumentacja API](/docs/api/) - Interfejs programowania, zdefiniowany
+* [Dokumentacja CLI](/docs/CLI.md) - Dowiedz się, jak wywoływać taski i korzystać z kompilatorów
+* [Pisanie wtyczki](/docs/writing-a-plugin/) - Podstawy pisania wtyczki gulp
+* [Czemu używać Pump?](/docs/why-use-pump/README.md) - Dlaczego używać modułu `pump` zamiast wywoływać `.pipe` yourself
 * [Dokumentacja język chiński uproszczony][SimplifiedChineseDocs] - gulp 简体中文文档
 * [Dokumentacja język koreański][KoreanDocs] - gulp 한국어 참조 문서
-* [Dokumentacja język polski](https://github.com/mbiesiad/gulp/tree/pl_PL/docs) - gulp Dokumentacja
+* [Dokumentacja język polski][PolishDocs] - gulp Dokumentacja
 
 
 ## FAQ
 
-Zobacz [FAQ](FAQ.md) aby uzyskać odpowiedzi na najczęściej zadawane pytania.
+Zobacz [FAQ](/docs/FAQ.md) aby uzyskać odpowiedzi na najczęściej zadawane pytania.
 
 
 ## Receptury
 
-Społeczność napisała [receptury](recipes#recipes) dla typowych przypadków użycia gulp.
+Społeczność napisała [receptury](/docs/recipes#recipes) dla typowych przypadków użycia gulp.
 
 
 ## Nadal masz pytania?
@@ -63,4 +63,4 @@ W zakresie, w jakim jest to możliwe na mocy prawa, [Fractal](http://wearefracta
 [SpanishDocs]: https://github.com/bucaran/gulp-docs-es
 [SimplifiedChineseDocs]: https://github.com/lisposter/gulp-docs-zh-cn
 [KoreanDocs]: https://github.com/preco21/gulp-docs-ko
-[PolishDocs]: https://github.com/mbiesiad/gulp/tree/pl_PL/docs
+[PolishDocs]: /docs/locale/pl_PL/README.md

@@ -1,10 +1,3 @@
-<!-- front-matter
-id: concepts
-title: API Concepts
-hide_title: true
-sidebar_label: Concepts
--->
-
 # Pojęcia
 
 Poniższe pojęcia są niezbędne do zrozumienia dokumentacji API. Będą się do nich odwoływać w całości, wróć do tej strony, aby uzyskać szczegółowe wyjaśnienia.
