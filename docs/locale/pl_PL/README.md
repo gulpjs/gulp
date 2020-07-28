@@ -1,38 +1,38 @@
-# gulp documentation
+# Dokumentacja gulp
 
-* [Getting Started](getting-started/) - Get started with gulp
-* [API documentation](api/) - The programming interface, defined
-* [CLI documentation](CLI.md) - Learn how to call tasks and use compilers
-* [Writing a Plugin](writing-a-plugin/) - The essentials of writing a gulp plugin
-* [Why Use Pump?](why-use-pump/README.md) - Why to use the `pump` module instead of calling `.pipe` yourself
-* [Simplified Chinese documentation][SimplifiedChineseDocs] - gulp 简体中文文档
-* [Korean documentation][KoreanDocs] - gulp 한국어 참조 문서
-* [Polish documentation](/docs/locale/pl_PL/README.md) - gulp Dokumentacja
+* [Pierwsze kroki](getting-started/) - Pierwsze kroki z gulp
+* [Dokumentacja API](/docs/api/) - Interfejs programowania, zdefiniowany
+* [Dokumentacja CLI](/docs/CLI.md) - Dowiedz się, jak wywoływać taski i korzystać z kompilatorów
+* [Pisanie wtyczki](/docs/writing-a-plugin/) - Podstawy pisania wtyczki gulp
+* [Czemu używać Pump?](/docs/why-use-pump/README.md) - Dlaczego używać modułu `pump` zamiast wywoływać `.pipe` yourself
+* [Dokumentacja język chiński uproszczony][SimplifiedChineseDocs] - gulp 简体中文文档
+* [Dokumentacja język koreański][KoreanDocs] - gulp 한국어 참조 문서
+* [Dokumentacja język polski][PolishDocs] - gulp Dokumentacja
 
 
 ## FAQ
 
-See the [FAQ](FAQ.md) for the answers to commonly asked questions.
+Zobacz [FAQ](/docs/FAQ.md) aby uzyskać odpowiedzi na najczęściej zadawane pytania.
 
 
-## Recipes
+## Receptury
 
-The community has written [recipes](recipes#recipes) for common gulp use-cases.
+Społeczność napisała [receptury](/docs/recipes#recipes) dla typowych przypadków użycia gulp.
 
 
-## Still got questions?
+## Nadal masz pytania?
 
-Post on [StackOverflow with a #gulp tag](https://stackoverflow.com/questions/tagged/gulp) or come chat with us in [#gulpjs](https://webchat.freenode.net/?channels=gulpjs) on [Freenode](https://freenode.net/).
+Napisz post na [StackOverflow z tagiem #gulp](https://stackoverflow.com/questions/tagged/gulp) lub wpadnij z nami na czat [#gulpjs](https://webchat.freenode.net/?channels=gulpjs) na [Freenode](https://freenode.net/).
 
-## Videos
-* [Intro to Gulp 4](https://youtu.be/N42LQ2dLoA8) presented by @addyosmani and @gauntface
+## Wideo
+* [Wstęp do Gulp 4](https://youtu.be/N42LQ2dLoA8) prezentowany przez @addyosmani oraz @gauntface
 
-## Books
+## Książki
 * [Developing a gulp Edge](http://shop.oreilly.com/product/9781939902146.do)
 * [Getting Started with Gulp – Second Edition](https://www.packtpub.com/application-development/getting-started-gulp-%E2%80%93-second-edition) - Travis Maynard, Packt (April 2017)
 
 
-## Articles
+## Artykuły
 * [Tagtree intro to gulp video](http://tagtree.io/gulp)
 * [Introduction to node.js streams](https://github.com/substack/stream-handbook)
 * [Video introduction to node.js streams](https://www.youtube.com/watch?v=QgEuZ52OZtU)
@@ -47,19 +47,20 @@ Post on [StackOverflow with a #gulp tag](https://stackoverflow.com/questions/tag
 * [Automate Your Tasks Easily with Gulp.js ](https://scotch.io/tutorials/automate-your-tasks-easily-with-gulp-js)
 * [How to upgrade to Gulp v4](https://www.liquidlight.co.uk/blog/article/how-do-i-update-to-gulp-4/)
 
-## Examples
+## Przykłady
 
 - [Web Starter Kit gulpfile](https://github.com/google/web-starter-kit/blob/master/gulpfile.babel.js)
 
 
-## License
+## Licencja
 
-All the documentation is covered by the CC0 license *(do whatever you want with it - public domain)*.
+Cała dokumentacja objęta jest licencją CC0 *(rób co chcesz - domena publiczna)*.
 
 [![CC0](https://i.creativecommons.org/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
 
-To the extent possible under law, [Fractal](http://wearefractal.com) has waived all copyright and related or neighboring rights to this work.
+W zakresie, w jakim jest to możliwe na mocy prawa, [Fractal](http://wearefractal.com) zrzekł się wszelkich praw autorskich i pokrewnych lub powiązanych do tego dzieła.
 
 [SpanishDocs]: https://github.com/bucaran/gulp-docs-es
 [SimplifiedChineseDocs]: https://github.com/lisposter/gulp-docs-zh-cn
 [KoreanDocs]: https://github.com/preco21/gulp-docs-ko
+[PolishDocs]: /docs/locale/pl_PL/README.md
