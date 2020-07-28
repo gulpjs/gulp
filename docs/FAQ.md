@@ -30,6 +30,10 @@ Probably. Ask yourself:
 
 Always use `\n` to prevent diff issues between operating systems.
 
+## I installed gulp as a dependency from package.json file by running `npm install` but I keep getting `command not found` whenever I try running a gulp command, why doesn't it work?
+
+Upon installing gulp as a project dependency, you need to add that to your PATH environment variable so that when you run a command, the system can find it. An easy solution is to install gulp globally, so that its binaries end up in your PATH environment variable. To install gulp globally, use the command `npm install gulp-cli -g`
+
 ## Where can I get updates on gulp?
 
 gulp updates can be found on the following twitters:
