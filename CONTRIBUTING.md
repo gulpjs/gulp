@@ -30,7 +30,7 @@ of the content
 
 # Project structure
 
-Gulp itself is tiny: index.js contains [very few lines of code](https://github.com/gulpjs/gulp/blob/4.0/index.js).
+Gulp itself is tiny: index.js contains [very few lines of code](https://github.com/gulpjs/gulp/blob/master/index.js).
 It is powered by a few other libraries which each handle a few specific tasks
 each.
 
