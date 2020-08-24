@@ -11,64 +11,64 @@ Allows custom registries to be plugged into the task system, which can provide s
 
 ## Structure
 
-In order to be properly set up, custom registries need to follow a specific format to be accepted by Gulp.
+In order to be accepted by gulp, custom registries must follow a specific format.
 
 ```js
 // as a function
 function TestRegistry() {}
 
-TestRegistry.prototype.init = function (taker) {}
+TestRegistry.prototype.init = function (gulpInst) {}
 TestRegistry.prototype.get = function (name) {}
 TestRegistry.prototype.set = function (name, fn) {}
 TestRegistry.prototype.tasks = function () {}
 
 // as a class
 class TestRegistry {
-    init(taker) {}
+  init(gulpInst) {}
 
-    get(name) {}
+  get(name) {}
 
-    set(name, fn) {}
+  set(name, fn) {}
 
-    tasks() {}
+  tasks() {}
 }
 ```
 
-If a registry instance passed to `registry()` doesn't have these 4 methods available, it will throw an error.
+If a registry instance passed to `registry()` doesn't have all four methods, an error will be thrown.
 
 ## Registration
 
-If we want to register our example registry from above, we wil need to pass an instance of it to `registry()`.
+If we want to register our example registry from above, we will need to pass an instance of it to `registry()`.
 
-```js 
+```js
 const { registry } = require('gulp');
 
 // ... TestRegistry setup code
 
+// good!
+registry(new TestRegistry())
+
 // bad!
 registry(TestRegistry())
 // This will trigger an error: 'Custom registries must be instantiated, but it looks like you passed a constructor'
-
-// good!
-registry(new TestRegistry())
 ```
 
 ## Methods
 
-### `init(taker)`
+### `init(gulpInst)`
 
-The `init()` method of a registry is called at the very end of the `registry()` function. The Undertaker instance passed with `taker`
-can be used to pre-define tasks using `taker.task(taskName, fn)`.
+The `init()` method of a registry is called at the very end of the `registry()` function. The gulp instance passed as the only argument (`gulpInst`) can be used to pre-define tasks using
+`gulpInst.task(taskName, fn)`.
 
 #### Parameters
 
 | parameter | type | note |
 |:---------:|:----:|------|
-| taker | object | Instance of Undertaker. |
+| gulpInst | object | Instance of gulp. |
 
 ### `get(name)`
 
-The `get()` method retrieves the task `name` from the registry (or `undefined` if no task with that name exists). 
+The `get()` method receives a task `name` for the custom registry to resolve and return, or `undefined` if no task with that name exists.
 
 #### Parameters
 
@@ -78,12 +78,9 @@ The `get()` method retrieves the task `name` from the registry (or `undefined` i
 
 ### `set(name, fn)`
 
-The `set()` method sets a task `name` to `fn`. This is called internally by `task()`, the only way how tasks
-can be provided to custom registries.
+The `set()` method receives a task `name` and `fn`. This is called internally by `task()` to provide user-registered tasks to custom registries.
 
 #### Parameters
-
-_In short, the same parameters [`task()`](task) also supports._
 
 | parameter | type | note |
 |:---------:|:----:|------|
@@ -92,15 +89,15 @@ _In short, the same parameters [`task()`](task) also supports._
 
 ### `tasks()`
 
-Returns an object listing all tasks in the registry.
+Must return an object listing all tasks in the registry.
 
 ## Use Cases
 
 ### Sharing Tasks
 
-To share common tasks with all your projects, you can expose an init method on the registry prototype and it will receive the `Undertaker` instance as the only argument. You can then use `taker.task(name, fn)` to register pre-defined tasks.
+To share common tasks with all your projects, you can expose an `init` method on the registry and it will receive the an instance of gulp as the only argument. You can then use `gulpInst.task(name, fn)` to register pre-defined tasks.
 
-For example you might want to share a `clean` task:
+For example, you might want to share a `clean` task:
 
 ```js
 const fs = require('fs');
@@ -119,7 +116,7 @@ function CommonRegistry(opts){
 
 util.inherits(CommonRegistry, DefaultRegistry);
 
-CommonRegistry.prototype.init = function(taker) {
+CommonRegistry.prototype.init = function(gulpInst) {
   const buildDir = this.buildDir;
   const exists = fs.existsSync(buildDir);
 
@@ -127,7 +124,7 @@ CommonRegistry.prototype.init = function(taker) {
     throw new Error('Cannot initialize common tasks. ' + buildDir + ' directory exists.');
   }
 
-  taker.task('clean', function(){
+  gulpInst.task('clean', function(){
     return del([buildDir]);
   });
 }
@@ -153,7 +150,7 @@ task('build', series('clean', function build(cb) {
 
 By controlling how tasks are added to the registry, you can decorate them.
 
-For example if you wanted all tasks to share some data, you can use a custom registry to bind them to that data. Be sure to return the altered task, as per the description of registry methods above:
+For example, if you wanted all tasks to share some data, you can use a custom registry to bind them to that data. Be sure to return the altered task, as per the description of registry methods above:
 
 ```js
 const { registry, series, task } = require('gulp');
