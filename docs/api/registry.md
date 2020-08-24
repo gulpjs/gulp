@@ -60,4 +60,4 @@ When a registry without an `init` method is passed as `registryInstance`, throws
 
 When a registry without a `tasks` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `tasks` function".
 
-[creating-custom-registries]: ../documentation-missing.md
+[creating-custom-registries]: ../advanced/creating-custom-registries.md
