@@ -7,7 +7,7 @@ sidebar_label: Creating Custom Registries
 
 # Creating Custom Registries
 
-Allows custom registries to be plugged into the task system, which can provide shared tasks or augmented functionality. Registries are registered using [`registry()`](registry).
+Allows custom registries to be plugged into the task system, which can provide shared tasks or augmented functionality. Registries are registered using [`registry()`][registry-api-docs].
 
 ## Structure
 
@@ -194,6 +194,11 @@ task('default', series('clean', 'build', 'serve', function(cb) {
 
 ## Examples
 
-* [`undertaker-registry`](https://github.com/gulpjs/undertaker-registry): The Gulp 4 default registry.
-* [`undertaker-common-tasks`](https://github.com/gulpjs/undertaker-common-tasks): Proof-of-concept custom registry that pre-defines tasks.
-* [` undertaker-task-metadata`](https://github.com/gulpjs/undertaker-task-metadata): Proof-of-concept custom registry that attaches metadata to each task.
+* [undertaker-registry][undertaker-registry-example]: The Gulp 4 default registry.
+* [undertaker-common-tasks][undertaker-common-tasks-example]: Proof-of-concept custom registry that pre-defines tasks.
+* [undertaker-task-metadata][undertaker-task-metadata-example]: Proof-of-concept custom registry that attaches metadata to each task.
+
+[registry-api-docs]: ../api/registry.md
+[undertaker-registry-example]: https://github.com/gulpjs/undertaker-registry
+[undertaker-common-tasks-example]: https://github.com/gulpjs/undertaker-common-tasks
+[undertaker-task-metadata-example]: https://github.com/gulpjs/undertaker-task-metadata
