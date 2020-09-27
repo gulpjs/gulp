@@ -31,7 +31,7 @@ Provavelmente. Pergunte a si:
 
 Sempre use `\n` para evitar problemas de diferenciação entre sistemas operacionais.
 
-## Eu instalei o gulp como dependência a partir de um arquivo package.json ao rodar `npm install`, mas eu continuo recebendo a mensagem `command not found` toda vez que eu rodo um comando gulp, porquê isso não funciona?
+## Eu instalei o gulp como dependência a partir de um arquivo package.json ao rodar `npm install`, mas eu continuo recebendo a mensagem `command not found` toda vez que eu rodo um comando gulp, porque isso não funciona?
 
 Ao instalar gulp como uma dependência de projeto, você precisa adicioná-lo à sua variável de ambiente PATH, para que quando você rode um comando, o sistema possa encontrá-lo. Um solução fácil é instalar gulp globalmente, para que seus binários sejam inclusos na sua variável de desenvolvimento PATH. Para instalar gulp globalmente, rode o comando `npm install gulp-cli -g`.
 
