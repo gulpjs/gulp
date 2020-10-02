@@ -5,13 +5,13 @@ hide_title: true
 sidebar_label: Working with Files
 -->
 
-# Working with Files
+# Trabalhando com arquivos
 
-The `src()` and `dest()` methods are exposed by gulp to interact with files on your computer.
+Os métodos `src()` e `dest()` são expostos pelo gulp para interagirem com arquivos, sem seu computador.
 
-`src()` is given a [glob][explaining-globs-docs] to read from the file system and produces a [Node stream][node-streams-docs]. It locates all matching files and reads them into memory to pass through the stream.
+`src()` recebe um [glob][explaining-globs-docs] para conseguir ler o sistema de arquivos e produzir uma [Node stream][node-streams-docs]. O método localiza todos os arquivos correspondentes ao _glob_ e lê eles na memória, para passar pela _stream_.
 
-The stream produced by `src()` should be returned from a task to signal async completion, as mentioned in [Creating Tasks][creating-tasks-docs].
+A _stream_ produzida por `src()` tem que ser retornada pela tarefa para sinalizar a conclusão assíncrona, como já foi falado em [Criando Tarefas][creating-tasks-docs].
 
 ```js
 const { src, dest } = require('gulp');
@@ -22,7 +22,7 @@ exports.default = function() {
 }
 ```
 
-The main API of a stream is the `.pipe()` method for chaining Transform or Writable streams.
+A principal API de uma _stream_ é o método `.pipe()`, usado para encadeamento de transformações ou escrita de _streams_.
 
 ```js
 const { src, dest } = require('gulp');
@@ -35,15 +35,23 @@ exports.default = function() {
 }
 ```
 
-`dest()` is given an output directory string and also produces a [Node stream][node-streams-docs] which is generally used as a terminator stream. When it receives a file passed through the pipeline, it writes the contents and other details out to the filesystem at a given directory.  The `symlink()` method is also available and operates like `dest()`, but creates links instead of files (see [`symlink()`][symlink-api-docs] for details).
+`dest()` recebe uma string correspondente à um diretório de output e produz uma [Node stream][node-streams-docs] (normalmente, usada como uma _stream terminadora_).
 
-Most often plugins will be placed between `src()` and `dest()` using the `.pipe()` method and will transform the files within the stream.
+Quando ele recebe um arquivo passado pela _pipeline_, escreve os conteúdos e outros detalhes no sistema de arquivos do diretório correspondente.
 
-## Adding files to the stream
+O método `symlink()` também está disponível para uso e funciona como o `dest()`, mas cria _links_ invés de arquivos (veja [`symlink()`][symlink-api-docs], para mais detalhes).
 
-`src()` can also be placed in the middle of a pipeline to add files to the stream based on the given globs. The additional files will only be available to transformations later in the stream.  If [globs overlap][overlapping-globs-docs], the files will be added again.
+Geralmente, plugins são colocados entre `src()` e `dest()` (usando o método `.pipe()`) e fazem uma transformação nos arquivos da _stream_.
 
-This can be useful for transpiling some files before adding plain JavaScript files to the pipeline and uglifying everything.
+## Adicionando arquivos a stream
+
+`src()` também pode ser usado no meio de uma _pipeline_, para adicionar arquivos a _stream_ com base nos _globs_ passados.
+
+Os arquivos adicionais só ficam disponíveis para transformações na _stream_, depois.
+
+Quando os [globs se sobrepõem][overlapping-globs-docs], os arquivos são adicionados novamente.
+
+Isso pode ser útil para transpilar alguns arquivos, antes de adicionar arquivos JavaScript à _pipeline_ e _uglyficar_ tudo.
 
 ```js
 const { src, dest } = require('gulp');
@@ -59,11 +67,13 @@ exports.default = function() {
 }
 ```
 
-## Output in phases
+## Output por partes
 
-`dest()` can be used in the middle of a pipeline to write intermediate states to the filesystem. When a file is received, the current state is written out to the filesystem, the path is updated to represent the new location of the output file, then that file continues down the pipeline.
+`dest()` pode ser usado no meio de uma _pipeline_ para criar estados intermediários no sistema de arquivos.
 
-This feature can be useful to create unminified and minified files with the same pipeline.
+Quando um arquivo é recebido: o atual estado é escrito no sistema de arquivos, o _path_ é atualizado para refletir a nova localização do arquivo do output e, então, esse arquivo é passado para o resto da _pipeline_.
+
+Esse recurso pode ser útil para criar arquivos _minificados_ e não _minificados_, ao mesmo tempo (usando a mesma _pipeline_).
 
 ```js
 const { src, dest } = require('gulp');
@@ -82,13 +92,13 @@ exports.default = function() {
 }
 ```
 
-## Modes: streaming, buffered, and empty
+## Modos: streaming, buffered e empty
 
-`src()` can operate in three modes: buffering, streaming, and empty. These are configured with the `buffer` and `read` [options][src-options-api-docs] on `src()`.
+`src()` pode funcionar de três modos: _buffering_, _streaming_ e _empty_. Isso é configurado usando as [opções][src-options-api-docs] `buffer` and `read`, em `src()`.
 
-* Buffering mode is the default and loads the file contents into memory. Plugins usually operate in buffering mode and many don't support streaming mode.
-* Streaming mode exists mainly to operate on large files that can't fit in memory, like giant images or movies. The contents are streamed from the filesystem in small chunks instead of loaded all at once. If you need to use streaming mode, look for a plugin that supports it or write your own.
-* Empty mode contains no contents and is useful when only working with file metadata.
+* O modo _buffering_ é o padrão e carrega o conteúdo do arquivo na memória. Geralmente, os plugins funcionam neste modo e não suportam o modo _streaming_.
+* Já o modo _streaming_ existe, principalmente, para operar em arquivos grandes que não cabem na memória (tipo filmes e images grandes). Os conteúdos são _streamados_ à partir do sistema de arquivos, em pequenas partes (invés de carregar tudo de uma vez). Se precisar deste modo, procure por um plugin que suporte ele ou faça o seu próprio.
+* O modo _empty_ não contém conteúdos e é útil quando se trabalha com metadado de arquivos.
 
 [explaining-globs-docs]: ../getting-started/6-explaining-globs.md
 [creating-tasks-docs]: ../getting-started/3-creating-tasks.md
