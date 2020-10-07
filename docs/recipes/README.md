@@ -11,7 +11,6 @@
 * [Generating a file per folder](running-task-steps-per-folder.md)
 * [Server with live-reloading and CSS injection](server-with-livereload-and-css-injection.md)
 * [Sharing streams with stream factories](sharing-streams-with-stream-factories.md)
-* [Using external config file](using-external-config-file.md)
 * [Using multiple sources in one task](using-multiple-sources-in-one-task.md)
 * [Browserify + Uglify with sourcemaps](browserify-uglify-sourcemap.md)
 * [Browserify + Globs](browserify-with-globs.md)
