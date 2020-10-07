@@ -21,7 +21,6 @@
 * [Output both a minified and non-minified version](minified-and-non-minified.md)
 * [Templating with Swig and YAML front-matter](templating-with-swig-and-yaml-front-matter.md)
 * [Run Grunt Tasks from Gulp](run-grunt-tasks-from-gulp.md)
-* [Exports as tasks](exports-as-tasks.md)
 * [Rollup with rollup-stream](rollup-with-rollup-stream.md)
 * [Run gulp task via cron job](cron-task.md)
 * [Running shell commands](running-shell-commands.md)
