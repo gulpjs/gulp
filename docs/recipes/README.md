@@ -9,7 +9,6 @@
 * [Mocha test-runner with gulp](mocha-test-runner-with-gulp.md)
 * [Pass parameters from the command line](pass-arguments-from-cli.md)
 * [Generating a file per folder](running-task-steps-per-folder.md)
-* [Running tasks in series](running-tasks-in-series.md)
 * [Server with live-reloading and CSS injection](server-with-livereload-and-css-injection.md)
 * [Sharing streams with stream factories](sharing-streams-with-stream-factories.md)
 * [Specifying a new cwd (current working directory)](specifying-a-cwd.md)
