@@ -1,7 +1,8 @@
-# Automate release workflow
+# Automatize o workflow de release
 
-If your project follows a semantic versioning, it may be a good idea to automatize the steps needed to do a release.
-Below you have a simple recipe that bumps the project version, commits the changes to git and creates a new tag.
+Se seu projeto possui versionamento semântico, pode ser legal automatizar o processo de release.
+
+Abaixo, você encontra uma receita para fazer upgrade da versão do projeto, _commitar_ as alterações e criar uma nova tag.
 
 ``` javascript
 
@@ -18,7 +19,7 @@ gulp.task('changelog', function () {
     buffer: false
   })
     .pipe(conventionalChangelog({
-      preset: 'angular' // Or to any other commit message convention you use.
+      preset: 'angular' // ou mude para qualquer outra convenção de mensagem de commit que voce gosta
     }))
     .pipe(gulp.dest('./'));
 });
@@ -26,16 +27,20 @@ gulp.task('changelog', function () {
 gulp.task('github-release', function(done) {
   conventionalGithubReleaser({
     type: "oauth",
-    token: 'abcdefghijklmnopqrstuvwxyz1234567890' // change this to your own GitHub token or use an environment variable
+    token: 'abcdefghijklmnopqrstuvwxyz1234567890' // troque isso por seu próprio token GitHub ou use uma variável de ambiente
   }, {
-    preset: 'angular' // Or to any other commit message convention you use.
+    preset: 'angular' // ou mude para qualquer outra convenção de mensagem de commit que voce gosta
   }, done);
 });
 
 gulp.task('bump-version', function () {
-// We hardcode the version change type to 'patch' but it may be a good idea to
-// use minimist (https://www.npmjs.com/package/minimist) to determine with a
-// command argument whether you are doing a 'major', 'minor' or a 'patch' change.
+/* Nós fizemos com que os upgrades de versões sejam 
+ * do tipo 'patch', mas pode ser uma boa ideia usar
+ * minimist (https://www.npmjs.com/package/minimist).
+ * 
+ * Usando um argumento junto ao comando, esse pacote 
+ * ajuda a determinar se o upgrade é do tipo 'major',
+ * 'minor' ou 'patch'. */
   return gulp.src(['./bower.json', './package.json'])
     .pipe(bump({type: "patch"}).on('error', log.error))
     .pipe(gulp.dest('./'));
@@ -61,8 +66,9 @@ gulp.task('create-new-tag', function (done) {
   });
 
   function getPackageJsonVersion () {
-    // We parse the json file instead of using require because require caches
-    // multiple calls so the version number won't be updated
+    /* Invés de usar require, nós usamos parse porque 
+     * require usa cache quando há múltiplas invocações, 
+     * oquê evitaria atualizar o número da versão. */
     return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
   };
 });
