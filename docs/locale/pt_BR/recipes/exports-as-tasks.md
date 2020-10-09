@@ -1,22 +1,22 @@
-# Exports as Tasks
+# Exportar tarefas com módulos ES2015
 
-Using the ES2015 module syntax you can use your exports as tasks.
+Usando a sintaxe de módulos do ES2015, você pode usar exportações com tarefas.
 
 ```js
 import gulp from 'gulp';
 import babel from 'gulp-babel';
 
-// named task
+// tarefa nomeada
 export function build() {
   return gulp.src('src/*.js')
     .pipe(babel())
     .pipe(gulp.dest('lib'));
 }
 
-// default task
+// tarefa padrão
 export default function dev() {
   gulp.watch('src/*.js', ['build']);
 }
 ```
 
-This will **not** work with the gulp-cli version bundled with gulp 3.x. You must use the latest published version.
+Isso **não vai** funcionar com o `gulp-cli` das versões 3.x do gulp. Você tem que usar alguma versão publicada, recentemente.
