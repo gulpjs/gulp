@@ -1,14 +1,14 @@
-# Delete files and folders
+# Delete arquivos e pastas
 
-You might want to delete some files before running your build. Since deleting files doesn't work on the file contents, there's no reason to use a gulp plugin. An excellent opportunity to use a vanilla node module.
+Uma hora ou outra, você vai querer deletar alguns arquivos, antes de rodar a build. No entanto, já que o processo de deletar arquivos não opera no conteúdo deles, não há razão para usar plugins. Por isso, essa é uma ótima oportunidade para usar algum módulo _vanilla_.
 
-Let's use the [`del`](https://github.com/sindresorhus/del) module for this example as it supports multiple files and [globbing](https://github.com/sindresorhus/multimatch#globbing-patterns):
+Vamos usar o módulo [`del`](https://github.com/sindresorhus/del), nesse exemplo, já que ele suporta deletar múltiplos arquivos e [globbing](https://github.com/sindresorhus/multimatch#globbing-patterns):
 
 ```sh
 $ npm install --save-dev gulp del
 ```
 
-Imagine the following file structure:
+Agora, imagine a seguinte estrutura de arquivos:
 
 ```
 .
@@ -22,7 +22,7 @@ Imagine the following file structure:
 └── src
 ```
 
-In the gulpfile we want to clean out the contents of the `mobile` folder before running our build:
+Usando o gulpfile, nós vamos deletar os conteúdos da pasta `mobile`, antes de executar nossa build:
 
 ```js
 var gulp = require('gulp');
@@ -31,9 +31,11 @@ var del = require('del');
 gulp.task('clean:mobile', function () {
   return del([
     'dist/report.csv',
-    // here we use a globbing pattern to match everything inside the `mobile` folder
+    /* aqui, nós usamos um padrão de globbing que 
+     * dá match em tudo que está dentro da pasta `mobile` */
     'dist/mobile/**/*',
-    // we don't want to clean this file though so we negate the pattern
+    /* no entanto, como não queremos deletar deploy.json, 
+     * vamos usar um padrão de negação */
     '!dist/mobile/deploy.json'
   ]);
 });
@@ -42,17 +44,17 @@ gulp.task('default', gulp.series('clean:mobile'));
 ```
 
 
-## Delete files in a pipeline
+## Deletando arquivos em uma pipeline
 
-You might want to delete some files after processing them in a pipeline.
+Você também pode querer deletar alguns arquivos, depois de processá-los em uma _pipeline_.
 
-We'll use [vinyl-paths](https://github.com/sindresorhus/vinyl-paths) to easily get the file path of files in the stream and pass it to the `del` method.
+Para isso, vamos usar [vinyl-paths](https://github.com/sindresorhus/vinyl-paths) para termos acesso aos caminhos dos arquivos da stream (com facilidade) e passá-los para o método `del`.
 
 ```sh
 $ npm install --save-dev gulp del vinyl-paths
 ```
 
-Imagine the following file structure:
+Agora, imagine a seguinte estrutura de arquivos:
 
 ```
 .
@@ -64,7 +66,8 @@ Imagine the following file structure:
 
 ```js
 var gulp = require('gulp');
-var stripDebug = require('gulp-strip-debug'); // only as an example
+// usamos gulp-strip-debug só para exemplificar
+var stripDebug = require('gulp-strip-debug');
 var del = require('del');
 var vinylPaths = require('vinyl-paths');
 
@@ -78,7 +81,6 @@ gulp.task('clean:tmp', function () {
 gulp.task('default', gulp.series('clean:tmp'));
 ```
 
-This will only delete the tmp dir.
+Isso vai deletar o diretório `tmp`, mas só ele.
 
-
-Only do this if you're already using other plugins in the pipeline, otherwise just use the module directly as `gulp.src` is costly.
+Só faça isso se você já estiver usando outro plugin, na _pipeline_. Caso contrário, úse o módulo diretamente, já que `gulp.src` é um processo que custa caro.
