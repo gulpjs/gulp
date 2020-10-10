@@ -20,3 +20,4 @@
 * [Run Grunt Tasks from Gulp](run-grunt-tasks-from-gulp.md)
 * [Rollup with rollup-stream](rollup-with-rollup-stream.md)
 * [Run gulp task via cron job](cron-task.md)
+* [Sass and Nunjucks with static asset revisioning](sass-and-nunjucks-with-static-asset-revisioning.md)
