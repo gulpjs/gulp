@@ -1,8 +1,6 @@
-# Handling the Delete Event on Watch
+# Manipulando o evento Delete enquanto observa arquivos
 
-You can listen for `'unlink'` events to fire on the watcher returned from `gulp.watch`.
-This gets fired when files are removed, so you can delete the file from your destination
-directory, using something like:
+Você pode esperar pela ativação de eventos `'unlink'`, usando o observador retornado pelo `gulp.watch`. Eles são ativados quando arquivos são removidos, para que você possa deletar o arquivo do diretório de destino, usando algo como isso:
 
 ```js
 'use strict';
@@ -25,7 +23,8 @@ gulp.task('watch', function () {
 
   watcher.on('unlink', function (filepath) {
     var filePathFromSrc = path.relative(path.resolve('src'), filepath);
-    // Concatenating the 'build' absolute path used by gulp.dest in the scripts task
+    /* concatena o caminho absoluto da 'build', usado por
+     * gulp.dest na tarefa "scripts" */
     var destFilePath = path.resolve('build', filePathFromSrc);
     del.sync(destFilePath);
   });
