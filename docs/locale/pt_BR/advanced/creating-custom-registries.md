@@ -58,7 +58,7 @@ registry(TestRegistry())
 
 ### `init(gulpInst)`
 
-O método `init()` de um registro é chamado ao fim da função `registry()`. A instância gulp passada como o único argumento (`gulpInst`) pode ser usado para pré-definir tarefas usando `gulpInst.task(taskName, fn)`.
+O método `init()` de um registro é chamado ao fim da função `registry()`. A instância gulp passada como o único argumento (`gulpInst`) pode ser usada para pré-definir tarefas usando `gulpInst.task(taskName, fn)`.
 
 #### Parâmetros
 
@@ -148,7 +148,7 @@ task('build', series('clean', function build(cb) {
 
 ### Funcionalidade de compartilhamento
 
-Ao controlar como tasks são adicionadas ao registro, você pode decorá-las.
+Ao controlar como as tasks são adicionadas ao registro, você pode decorá-las.
 
 Por exemplo, se você deseja que todas as tasks compartilhem alguns dados, você pode usar um registro customizado para vinculá-los a esses dados. Não esqueça de retornar a task alterada, seguindo a descrição dos métodos de registro acima:
 
@@ -178,7 +178,7 @@ registry(new BuildRegistry());
 registry(new ServeRegistry());
 
 // `registry` irá resetar cada tarefa no registro com
-// `ConfigRegistry.prototype.set` que irá vinculá-los ao objeto de configuração.
+// `ConfigRegistry.prototype.set`, que irá vinculá-los ao objeto de configuração.
 registry(new ConfigRegistry({
   src: './src',
   build: './build',
@@ -192,7 +192,7 @@ task('default', series('clean', 'build', 'serve', function(cb) {
 }));
 ```
 
-## Examplos
+## Exemplos
 
 * [undertaker-registry][undertaker-registry-example]: O registro padrão do Gulp 4.
 * [undertaker-common-tasks][undertaker-common-tasks-example]: Um registro customizado (Proof-of-concept) que pré-define tasks.
