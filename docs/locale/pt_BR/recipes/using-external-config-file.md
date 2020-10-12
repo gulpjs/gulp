@@ -1,6 +1,6 @@
-# Using external config file
+# Usando um arquivo de configuração externo
 
-Beneficial because it's keeping tasks DRY and config.json can be used by another task runner, like `grunt`.
+É bom porque mantém tarefas usando o princípio DRY e `config.json` pode ser usado por outro _task runner_, como `grunt`.
 
 -
 
@@ -44,7 +44,7 @@ function doStuff(cfg) {
 }
 
 gulp.task('dry', function() {
-  // return a stream to signal completion
+  // retorna uma stream para sinalizar conclusão
   return merge([
     doStuff(config.desktop),
     doStuff(config.mobile)
