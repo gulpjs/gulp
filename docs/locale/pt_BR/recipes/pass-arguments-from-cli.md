@@ -1,4 +1,4 @@
-# Pass arguments from the command line
+# Passar argumentos da linha de comando
 
 ```js
 // npm install --save-dev gulp gulp-if gulp-uglify minimist
@@ -18,12 +18,11 @@ var options = minimist(process.argv.slice(2), knownOptions);
 
 gulp.task('scripts', function() {
   return gulp.src('**/*.js')
-    .pipe(gulpif(options.env === 'production', uglify())) // only minify in production
+    .pipe(gulpif(options.env === 'production', uglify())) // só minimiza em produção
     .pipe(gulp.dest('dist'));
 });
 ```
-
-Then run gulp with:
+Então, rode gulp com:
 
 ```sh
 $ gulp scripts --env development
