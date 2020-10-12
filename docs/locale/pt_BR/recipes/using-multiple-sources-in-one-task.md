@@ -1,4 +1,4 @@
-# Using multiple sources in one task
+# Usando múltiplos recursos em uma tarefa
 
 ```js
 // npm install --save-dev gulp merge-stream
@@ -17,7 +17,7 @@ gulp.task('test', function() {
 });
 ```
 
-`gulp.src` will emit files in the order they were added:
+`gulp.src` emite arquivos, na ordem de inserção:
 
 ```js
 // npm install gulp gulp-concat
