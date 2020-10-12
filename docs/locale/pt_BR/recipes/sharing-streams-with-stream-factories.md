@@ -1,10 +1,12 @@
-# Sharing streams with stream factories
+# Compartilhando streams usando fábricas de stream
 
-If you use the same plugins in multiple tasks you might find yourself getting that itch to DRY things up. This method will allow you to create factories to split out your commonly used stream chains.
+Se você usa os mesmos plugins em várias tarefas, você pode se encontrar querendo implementar o princípio DRY.
 
-We'll use [lazypipe](https://github.com/OverZealous/lazypipe) to get the job done.
+Usando o método que será descrito, você poderá criar fábricas de _streams_ para modularizar suas cadeias de streams mais recorrentes.
 
-This is our sample file:
+Para alcançarmos nosso objetivo, vamos usar [lazypipe](https://github.com/OverZealous/lazypipe).
+
+Este é nosso arquivo de exemplo:
 
 ```js
 var gulp = require('gulp');
@@ -31,7 +33,7 @@ gulp.task('coffee', function() {
 });
 ```
 
-and our file after using lazypipe looks like this:
+Depois de usar lazypipe, nosso arquivo vai ficar parecido com isso:
 
 ```js
 var gulp = require('gulp');
@@ -41,7 +43,7 @@ var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var lazypipe = require('lazypipe');
 
-// give lazypipe
+// dá o lazypipe
 var jsTransform = lazypipe()
   .pipe(jshint)
   .pipe(jshint.reporter, stylish)
@@ -61,4 +63,8 @@ gulp.task('coffee', function() {
 });
 ```
 
-You can see we split out our JavaScript pipeline (JSHint + Uglify) that was being reused in multiple tasks into a factory. These factories can be reused in as many tasks as you want. You can also nest factories and you can chain factories together for great effect. Splitting out each shared pipeline also gives you one central location to modify if you decide to change up your workflow.
+Perceba que nós modularizamos nossa _pipeline_ JavaScript (JSHint + Uglify) que estava sendo reusada em várias tarefas, criando uma fábrica.
+
+Essas fábricas podem ser usadas, em quantas tarefas você quiser. Também é possível aninhar fábricas, além de criar cadeias, para obter um código melhor.
+
+Modularizar cada pipeline compartilhada também te permite ter um só local para fazer modificações, caso precise mudar seu workflow.
