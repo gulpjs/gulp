@@ -1,15 +1,15 @@
-# Templating with Swig and YAML front-matter
-Templating can be setup using `gulp-swig` and `gulp-front-matter`:
+# Fazendo templates com Swig e YAML front-matter
+Templates podem ser configurados, usando `gulp-swig` e `gulp-front-matter`:
 
 ##### `page.html`
 
 ```html
 ---
-title: Things to do
+title: Coisas à fazer
 todos:
-    - First todo
-    - Another todo item
-    - A third todo item
+    - Primeira coisa
+    - Outra coisa
+    - Uma terceira coisa
 ---
 <html>
     <head>
