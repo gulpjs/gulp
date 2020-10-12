@@ -1,8 +1,12 @@
-# Rollup with rollup-stream
+# Rollup com rollup-stream
 
-Like Browserify, [Rollup](https://rollupjs.org/) is a bundler and thus only fits naturally into gulp if it's at the start of the pipeline. Unlike Browserify, Rollup doesn't natively produce a stream as output and needs to be wrapped before it can take this position. [rollup-stream](https://github.com/Permutatrix/rollup-stream) does this for you, producing output just like that of Browserify's `bundle()` method&mdash;as a result, most of the Browserify recipes here will also work with rollup-stream.
+Tal qual Browserify, [Rollup](https://rollupjs.org/) é um bundler e, portanto, só se comporta bem no gulp se for colocado no início da pipeline. 
 
-## Basic usage
+Diferente do Browserify, Rollup não produz uma stream como output (nativamente) e precisa ser envolto por algo, antes que possa fazer isso.
+
+O [rollup-stream](https://github.com/Permutatrix/rollup-stream) é capaz de fazer isso por você: produzindo output igual ao feito pelo método `bundle()` do Browserify. Devido a isso, a maioria das receitas para Browserify que aqui estão também vão funcionar com _rollup-stream_.
+
+## Modo de uso básico
 ```js
 // npm install --save-dev gulp @rollup/stream@1 vinyl-source-stream
 var gulp = require('gulp');
@@ -14,18 +18,18 @@ gulp.task('rollup', function() {
       input: './src/main.js'
     })
 
-    // give the file the name you want to output with
+    // nomeie o arquivo de output
     .pipe(source('app.js'))
 
-    // and output to ./dist/app.js as normal.
+    // faz output em ./dist/app.js, como sempre.
     .pipe(gulp.dest('./dist'));
 });
 ```
 
-## Usage with sourcemaps
+## Modo de uso com sourcemaps
 ```js
 // npm install --save-dev gulp @rollup/stream@1 gulp-sourcemaps vinyl-source-stream vinyl-buffer
-// optional: npm install --save-dev gulp-rename
+// opcionalmente: npm install --save-dev gulp-rename
 var gulp = require('gulp');
 var rollup = require('rollup-stream');
 var sourcemaps = require('gulp-sourcemaps');
@@ -40,24 +44,28 @@ gulp.task('rollup', function() {
       format: 'umd'
     })
 
-    // point to the entry file.
+    // indica o arquivo de entrada.
     .pipe(source('main.js', './src'))
 
-    // buffer the output. most gulp plugins, including gulp-sourcemaps, don't support streams.
+    /* faz buffer do output.
+     * a maioria dos plugins gulp não suporta streams.
+     * (incluindo gulp-sourcemaps) */
     .pipe(buffer())
 
-    // tell gulp-sourcemaps to load the inline sourcemap produced by rollup-stream.
+    /* pede para gulp-sourcemaps carregar o inline 
+     * sourcemap, produzido pelo rollup-stream. */
     .pipe(sourcemaps.init({loadMaps: true}))
 
-        // transform the code further here.
+        // faça mais transformações no código, aqui.
 
-    // if you want to output with a different name from the input file, use gulp-rename here.
+    /* se você quiser fazer output com um nome diferente
+     * do arquivo de input, use gulp-rename aqui. */
     //.pipe(rename('index.js'))
 
-    // write the sourcemap alongside the output file.
+    // cria o sourcemap, junto ao arquivo de output.
     .pipe(sourcemaps.write('.'))
 
-    // and output to ./dist/main.js as normal.
+    // faz output em ./dist/main.js, como sempre.
     .pipe(gulp.dest('./dist'));
 });
 ```
