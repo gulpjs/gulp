@@ -1,6 +1,6 @@
-## Table of Contents
+## Tabela de Conteúdos
 
-* [API Concepts](concepts.md)
+* [Conceitos da API](concepts.md)
 * [src()](src.md)
 * [dest()](dest.md)
 * [symlink()](symlink.md)
