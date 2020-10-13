@@ -7,29 +7,29 @@ sidebar_label: tree()
 
 # tree()
 
-Fetches the current task dependency tree - in the rare case that it is needed.
+Mostra a ávore de dependências de tarefas atual (nos raros casos em que precisamos).
 
-Generally, `tree()` won't be used by gulp consumers, but it is exposed so the CLI can show the dependency graph of the tasks defined in a gulpfile.
+Geralmente, `tree()` não é usado por usuários do Gulp, mas é exposto para que o CLI possa mostrar o gráfico de dependências das tarefas definidas em um gulpfile.
 
-## Usage
+## Modo de uso
 
-Example gulpfile:
+Exemplo de gulpfile:
 ```js
 
 const { series, parallel } = require('gulp');
 
 function one(cb) {
-  // body omitted
+  // código omitido
   cb();
 }
 
 function two(cb) {
-  // body omitted
+  // código omitido
   cb();
 }
 
 function three(cb) {
-  // body omitted
+  // código omitido
   cb();
 }
 
@@ -37,7 +37,7 @@ const four = series(one, two);
 
 const five = series(four,
   parallel(three, function(cb) {
-    // Body omitted
+    // código omitido
     cb();
   })
 );
@@ -45,7 +45,7 @@ const five = series(four,
 module.exports = { one, two, three, four, five };
 ```
 
-Output for `tree()`:
+Output de `tree()`:
 ```js
 {
   label: 'Tasks',
@@ -54,7 +54,7 @@ Output for `tree()`:
 ```
 
 
-Output for `tree({ deep: true })`:
+Output de `tree({ deep: true })`:
 ```js
 {
   label: "Tasks",
@@ -148,31 +148,31 @@ Output for `tree({ deep: true })`:
 }
 ```
 
-## Signature
+## Assinatura
 
 ```js
 tree([options])
 ```
 
-### Parameters
+### Parâmetros
 
-| parameter | type | note |
+| parâmetro | tipo | descrição |
 |:--------------:|------:|--------|
-| options | object | Detailed in [Options][options-section] below. |
+| options | object | Mais detalhes em [Opções][options-section]. |
 
-### Returns
+### Retorna
 
-An object detailing the tree of registered tasks - containing nested objects with `'label'` and `'nodes'` properties (which is [archy][archy-external] compatible).
+Um objeto detalhando a árvore de tarefas registradas, contendo objetos aninhados com propriedades `'label'` e `'nodes'` (os quais são compatíveis com [archy][archy-external]).
 
-Each object may have a `type` property that can be used to determine if the node is a `task` or `function`.
+Cada objeto pode ter uma propriedades `type` que pode ser usada para determinar se o nó é uma tarefa ou função.
 
-Each object may have a `branch` property that, when `true`, indicates the node was created using `series()` or `parallel()`.
+Cada objeto pode ter uma propriedade `branch` que, quando atribuída `true`, indica se o nó foi criado usando `series()` ou `parallel()`.
 
-### Options
+### Opções
 
-| name | type | default | note |
+| nome | tipo | padrão | descrição |
 |:-------:|:-------:|------------|--------|
-| deep | boolean | false | If true, the entire tree will be returned. When false, only top level tasks will be returned. |
+| deep | boolean | false | Se for `true`, toda a árvore será retornada. Quando for `false`, só tarefas de topo de nível serão retornadas. |
 
-[options-section]: #options
+[options-section]: #opções
 [archy-external]: https://www.npmjs.com/package/archy
