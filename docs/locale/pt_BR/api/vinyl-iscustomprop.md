@@ -7,11 +7,11 @@ sidebar_label: Vinyl.isCustomProp()
 
 # Vinyl.isCustomProp()
 
-Determines if a property is internally managed by Vinyl. Used by Vinyl when setting values inside the constructor or when copying properties in the `clone()` instance method.
+Determina se uma propriedade é gerenciada por Vinyl, internamente. É usado por Vinyl, quando configurando valores dentro do construtor ou quando copiando propriedades no método da instância de `clone()`.
 
-This method is useful when extending the Vinyl class. Detailed in [Extending Vinyl][extending-vinyl-section] below.
+Esse método é útil, quando extendemos a classe Vinyl. Mais detalhes, em [Extendendo Vinyl][extending-vinyl-section], abaixo.
 
-## Usage
+## Modo de uso
 
 ```js
 const Vinyl = require('vinyl');
@@ -20,25 +20,25 @@ Vinyl.isCustomProp('sourceMap') === true;
 Vinyl.isCustomProp('path') === false;
 ```
 
-## Signature
+## Assinatura
 
 ```js
 Vinyl.isCustomProp(property)
 ```
 
-### Parameters
+### Parâmetros
 
-| parameter | type | note |
+| parâmetro | tipo | descrição |
 |:--------------:|:------:|-------|
-| property | string | The property name to check. |
+| property | string | O nome da propriedade a se conferir. |
 
-### Returns
+### Retorno
 
-True if the property is not internally managed.
+Retorna `true`, se a propriedade não estiver sendo gerenciada internamente.
 
-## Extending Vinyl
+## Extendendo Vinyl
 
-When custom properties are managed internally, the static `isCustomProp` method must be extended and return false when one of the custom properties is queried.
+Quando propriedades customizadas são gerenciadas internamente, o método estático `isCustomProp` tem que ser extendido e retornar `false` quando um das propriedades customizadas forem requisitadas.
 
 ```js
 const Vinyl = require('vinyl');
@@ -48,7 +48,7 @@ const builtInProps = ['foo', '_foo'];
 class SuperFile extends Vinyl {
   constructor(options) {
     super(options);
-    this._foo = 'example internal read-only value';
+    this._foo = 'exemplo de valor read-only interno';
   }
 
   get foo() {
@@ -61,8 +61,8 @@ class SuperFile extends Vinyl {
 }
 ```
 
-In the example above, `foo` and `_foo` will not be assigned to the new object when cloning or passed in `options` to `new SuperFile(options)`.
+No exemplo acima, `foo` e `_foo` não serão atribuídos ao novo objeto quando clonando ou passados para `options` em `new SuperFile(options)`.
 
-If your custom properties or logic require special handling during cloning, override the `clone` method while extending Vinyl.
+Se suas propriedades customizadas ou lógica requer uma manipulação especial durante a clonagem, sobrescreva o méotodo quando extender Vinyl.
 
 [extending-vinyl-section]: #extending-vinyl
