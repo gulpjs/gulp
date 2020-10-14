@@ -7,11 +7,11 @@ sidebar_label: Vinyl.isVinyl()
 
 # Vinyl.isVinyl()
 
-Determines if an object is a Vinyl instance. Use this method instead of `instanceof`.
+Determina se um objeto é uma instância Vinyl. Use esse método, invés de `instanceof`.
 
-**Note**: This method uses an internal property that some older versions of Vinyl didn't expose resulting in a false negative if using an outdated version.
+**Nota**: este método usa uma propriedade interna que algumas versões antigas do Vinyl não tinha exposto, oquê resulta em _falsos negativos_ se usarmos uma versão desatualizada.
 
-## Usage
+## Modo de uso
 
 ```js
 const Vinyl = require('vinyl');
@@ -23,19 +23,19 @@ Vinyl.isVinyl(file) === true;
 Vinyl.isVinyl(notAFile) === false;
 ```
 
-## Signature
+## Assinatura
 
 ```js
 Vinyl.isVinyl(file);
 ```
 
-### Parameters
+### Parâmetros
 
-| parameter | type | note |
+| paâmetro | tipo | descrição |
 |:--------------:|:------:|-------|
-| file | object | The object to check. |
+| file | object | O objeto para se conferir. |
 
-### Returns
+### Retorno
 
-True if the `file` object is a Vinyl instance.
+Retorna `true`, se o objeto `file` for uma instância Vinyl.
 

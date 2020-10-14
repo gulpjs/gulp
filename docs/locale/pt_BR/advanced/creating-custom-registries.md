@@ -5,16 +5,16 @@ hide_title: true
 sidebar_label: Creating Custom Registries
 -->
 
-# Creating Custom Registries
+# Criando registros personalizados
 
-Allows custom registries to be plugged into the task system, which can provide shared tasks or augmented functionality. Registries are registered using [`registry()`][registry-api-docs].
+Permite que registros personalizados sejam plugados ao sistema de tasks, onde podem prover tasks compartilhadas ou funcionalidades expandidas. Registros são realizados usando [`registry()`][registry-api-docs].
 
-## Structure
+## Estrutura
 
-In order to be accepted by gulp, custom registries must follow a specific format.
+Para que possam ser aceitos pelo gulp, registros personalizados devem seguir um formato específico.
 
 ```js
-// as a function
+// como uma função
 function TestRegistry() {}
 
 TestRegistry.prototype.init = function (gulpInst) {}
@@ -22,7 +22,7 @@ TestRegistry.prototype.get = function (name) {}
 TestRegistry.prototype.set = function (name, fn) {}
 TestRegistry.prototype.tasks = function () {}
 
-// as a class
+// como uma classe
 class TestRegistry {
   init(gulpInst) {}
 
@@ -34,33 +34,33 @@ class TestRegistry {
 }
 ```
 
-If a registry instance passed to `registry()` doesn't have all four methods, an error will be thrown.
+Se a instância de um registro passado a `registry()` não inclui todos os quatro métodos, um erro será disparado.
 
-## Registration
+## Registro
 
-If we want to register our example registry from above, we will need to pass an instance of it to `registry()`.
+Se nós queremos registrar o nosso exemplo de registro acima, é necessário passar uma instância da mesma para `registry()`.
 
 ```js
 const { registry } = require('gulp');
 
-// ... TestRegistry setup code
+// ... código inicial do TestRegistry
 
-// good!
+// bom!
 registry(new TestRegistry())
 
-// bad!
+// ruim!
 registry(TestRegistry())
-// This will trigger an error: 'Custom registries must be instantiated, but it looks like you passed a constructor'
+// Irá disparar um erro: 'Custom registries must be instantiated, but it looks like you passed a constructor'
+// Traduzindo: 'Registros personalizados devem ser instanciados, no entanto parece que você passou um construtor'.
 ```
 
-## Methods
+## Métodos
 
 ### `init(gulpInst)`
 
-The `init()` method of a registry is called at the very end of the `registry()` function. The gulp instance passed as the only argument (`gulpInst`) can be used to pre-define tasks using
-`gulpInst.task(taskName, fn)`.
+O método `init()` de um registro é chamado ao fim da função `registry()`. A instância gulp passada como o único argumento (`gulpInst`) pode ser usada para pré-definir tarefas usando `gulpInst.task(taskName, fn)`.
 
-#### Parameters
+#### Parâmetros
 
 | parameter | type | note |
 |:---------:|:----:|------|
@@ -68,9 +68,9 @@ The `init()` method of a registry is called at the very end of the `registry()` 
 
 ### `get(name)`
 
-The `get()` method receives a task `name` for the custom registry to resolve and return, or `undefined` if no task with that name exists.
+O método `get()` recebe uma task `name` para o registro customizado resolver e retornar, ou `undefined` caso nenhuma task com esse nome exista.
 
-#### Parameters
+#### Parâmetros
 
 | parameter | type | note |
 |:---------:|:----:|------|
@@ -78,9 +78,9 @@ The `get()` method receives a task `name` for the custom registry to resolve and
 
 ### `set(name, fn)`
 
-The `set()` method receives a task `name` and `fn`. This is called internally by `task()` to provide user-registered tasks to custom registries.
+O método `set()` recebe uma task `name` e `fn`. É chamado internamente por `task()` para prover tasks registradas pelo usuário aos registros personalizados.
 
-#### Parameters
+#### Parâmetros
 
 | parameter | type | note |
 |:---------:|:----:|------|
@@ -89,15 +89,15 @@ The `set()` method receives a task `name` and `fn`. This is called internally by
 
 ### `tasks()`
 
-Must return an object listing all tasks in the registry.
+Deve retornar um objeto listando todas as tasks no registro.
 
-## Use Cases
+## Casos de uso
 
-### Sharing Tasks
+### Compartilhando Tasks
 
-To share common tasks with all your projects, you can expose an `init` method on the registry and it will receive the an instance of gulp as the only argument. You can then use `gulpInst.task(name, fn)` to register pre-defined tasks.
+Para compartilhar tasks comuns a todos os seus projetos, você pode expor um método `init` no registro e o mesmo irá receber uma instância do gulp como o único argumento. Então, você pode usar `gulpInst.task(name, fn)` para registrar tasks pré-definidas.
 
-For example, you might want to share a `clean` task:
+Por examplo, você pode querer compartilhar uma task `clean`:
 
 ```js
 const fs = require('fs');
@@ -132,7 +132,7 @@ CommonRegistry.prototype.init = function(gulpInst) {
 module.exports = CommonRegistry;
 ```
 
-Then to use it in a project:
+Entâo, para usá-la em um projeto:
 
 ```js
 const { registry, series, task } = require('gulp');
@@ -141,23 +141,23 @@ const CommonRegistry = require('myorg-common-tasks');
 registry(new CommonRegistry({ buildDir: '/dist' }));
 
 task('build', series('clean', function build(cb) {
-  // do things
+  // fazer algo
   cb();
 }));
 ```
 
-### Sharing Functionality
+### Funcionalidade de compartilhamento
 
-By controlling how tasks are added to the registry, you can decorate them.
+Ao controlar como as tasks são adicionadas ao registro, você pode decorá-las.
 
-For example, if you wanted all tasks to share some data, you can use a custom registry to bind them to that data. Be sure to return the altered task, as per the description of registry methods above:
+Por exemplo, se você deseja que todas as tasks compartilhem alguns dados, você pode usar um registro customizado para vinculá-los a esses dados. Não esqueça de retornar a task alterada, seguindo a descrição dos métodos de registro acima:
 
 ```js
 const { registry, series, task } = require('gulp');
 const util = require('util');
 const DefaultRegistry = require('undertaker-registry');
 
-// Some task defined somewhere else
+// Alguma task, definida em algum lugar
 const BuildRegistry = require('./build.js');
 const ServeRegistry = require('./serve.js');
 
@@ -169,7 +169,7 @@ function ConfigRegistry(config){
 util.inherits(ConfigRegistry, DefaultRegistry);
 
 ConfigRegistry.prototype.set = function set(name, fn) {
-  // The `DefaultRegistry` uses `this._tasks` for storage.
+  // O `DefaultRegistry` usa `this._tasks` para armazenamento.
   var task = this._tasks[name] = fn.bind(this.config);
   return task;
 };
@@ -177,8 +177,8 @@ ConfigRegistry.prototype.set = function set(name, fn) {
 registry(new BuildRegistry());
 registry(new ServeRegistry());
 
-// `registry` will reset each task in the registry with
-// `ConfigRegistry.prototype.set` which will bind them to the config object.
+// `registry` irá resetar cada tarefa no registro com
+// `ConfigRegistry.prototype.set`, que irá vinculá-los ao objeto de configuração.
 registry(new ConfigRegistry({
   src: './src',
   build: './build',
@@ -192,11 +192,11 @@ task('default', series('clean', 'build', 'serve', function(cb) {
 }));
 ```
 
-## Examples
+## Exemplos
 
-* [undertaker-registry][undertaker-registry-example]: The Gulp 4 default registry.
-* [undertaker-common-tasks][undertaker-common-tasks-example]: Proof-of-concept custom registry that pre-defines tasks.
-* [undertaker-task-metadata][undertaker-task-metadata-example]: Proof-of-concept custom registry that attaches metadata to each task.
+* [undertaker-registry][undertaker-registry-example]: O registro padrão do Gulp 4.
+* [undertaker-common-tasks][undertaker-common-tasks-example]: Um registro customizado (Proof-of-concept) que pré-define tasks.
+* [undertaker-task-metadata][undertaker-task-metadata-example]: Um registro customizado (Proof-of-concept) o qual incorpora metadados para cada task.
 
 [registry-api-docs]: ../api/registry.md
 [undertaker-registry-example]: https://github.com/gulpjs/undertaker-registry

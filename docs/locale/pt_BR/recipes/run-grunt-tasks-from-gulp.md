@@ -1,10 +1,14 @@
-# Run Grunt Tasks from Gulp
+# Executar tarefas Grunt no Gulp
 
-It is possible to run Grunt tasks / Grunt plugins from within Gulp. This can be useful during a gradual migration from Grunt to Gulp or if there's a specific plugin that you need. With the described approach no Grunt CLI and no Gruntfile is required.
+É possível executar tarefas ou plugins Grunt, dentro do Gulp.
 
-**This approach requires Grunt >=1.0.0**
+Isso pode ser útil durante uma migração gradual do Grunt para o Gulp ou se houver algum plugin especial que você precisa.
 
-very simple example `gulpfile.js`:
+Com a abordagem descrita, não é necessário ter Grunt CLI ou Gruntfile.
+
+**Esta abordagem requer Grunt >=1.0.0**
+
+Um exemplo bem simples de `gulpfile.js`:
 
 ```js
 // npm install gulp grunt grunt-contrib-copy --save-dev
@@ -24,25 +28,34 @@ grunt.loadNpmTasks('grunt-contrib-copy');
 
 gulp.task('copy', function (done) {
     grunt.tasks(
-        ['copy:main'],    //you can add more grunt tasks in this array
-        {gruntfile: false}, //don't look for a Gruntfile - there is none. :-)
+        // você pode adicionar mais tarefas grunt, nessa array
+        ['copy:main'],
+        // não precisa procurar por um Gruntfile,
+        // já que ele não existe :-)
+        {gruntfile: false},
         function () {done();}
     );
 });
 
 ```
 
-Now start the task with:
-`gulp copy`
+Agora, inicie a tarefa com: `gulp copy`
 
-With the aforementioned approach the grunt tasks get registered within gulp's task system. **Keep in mind grunt tasks are usually blocking (unlike gulp), therefore no other task (not even a gulp task) can run until a grunt task is completed.**
+Com a abordagem mostrada, as tarefas Grunt são registradas dentro do sistema de tarefas do Gulp. 
+
+**Mantenha em mente que tarefas Grunt travam a execução (diferente do Gulp). Por isso, nenhuma outra tarefa conseguirá rodar (incluindo tarefas Gulp), até que a tarefa Grunt em questão finalize.**
 
 
-### A few words on alternatives
+### Um resumo sobre outras alternativas
 
-There's a *gulpfriendly* node module `gulp-grunt` [available](https://www.npmjs.org/package/gulp-grunt) which takes a different approach. It spawns child processes and within them the grunt tasks are executed. The way it works implies some limitations though:
+Existe um módulo *gulpfriendly* chamado [gulp-grunt](https://www.npmjs.org/package/gulp-grunt) e que possui uma abordagem diferente.
 
-* It is at the moment not possible to pass options / cli args etc. to the grunt tasks via `gulp-grunt`
-* All grunt tasks have to be defined in a separate Gruntfile
-* You need to have the Grunt CLI installed
-* The output of some grunt tasks gets malformatted (.i.e. color coding).
+Esse módulo gera processos filhos e dentro deles as tarefas Grunt são executadas.
+
+No entando, a forma como isso funciona traz algumas limitações:
+
+* No momento, não é possível passar opções e argumentos via CLI para as tarefas Grunt;
+* Todas as tarefas Grunt precisam ser definidas, em um Gruntfile separado;
+* Você precisa ter o Grunt CLI instalado;
+* O output de algumas tarefas Grunt é mal formatado.
+  * Por exemplo: código de cores.

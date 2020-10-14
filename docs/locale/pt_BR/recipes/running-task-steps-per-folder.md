@@ -1,6 +1,6 @@
-# Generating a file per folder
+# Gerando um arquivo por pasta
 
-If you have a set of folders, and wish to perform a set of tasks on each, for instance...
+Se você tem um punhado de pastas e quer executar um conjunto de tarefas em cada, como nesse caso:
 
 ```
 /scripts
@@ -8,7 +8,7 @@ If you have a set of folders, and wish to perform a set of tasks on each, for in
 /scripts/angularjs/*.js
 ```
 
-...and want to end up with...
+Que depois é transformado nisso:
 
 ```
 /scripts
@@ -16,7 +16,7 @@ If you have a set of folders, and wish to perform a set of tasks on each, for in
 /scripts/angularjs.min.js
 ```
 
-...you'll need to do something like the following...
+Você precisará fazer algo como isso:
 
 ``` javascript
 var fs = require('fs');
@@ -38,23 +38,24 @@ function getFolders(dir) {
 
 gulp.task('scripts', function(done) {
    var folders = getFolders(scriptsPath);
-   if (folders.length === 0) return done(); // nothing to do!
+   if (folders.length === 0) return done(); // nada à fazer!
    var tasks = folders.map(function(folder) {
       return gulp.src(path.join(scriptsPath, folder, '/**/*.js'))
-        // concat into foldername.js
+        // concatena em foldername.js
         .pipe(concat(folder + '.js'))
-        // write to output
+        // escreve no output
         .pipe(gulp.dest(scriptsPath))
-        // minify
+        // minimiza
         .pipe(uglify())
-        // rename to folder.min.js
+        // renomeia para folder.min.js
         .pipe(rename(folder + '.min.js'))
-        // write to output again
+        // escreve no output, novamente
         .pipe(gulp.dest(scriptsPath));
    });
 
-   // process all remaining files in scriptsPath root into main.js and main.min.js files
-   var root = gulp.src(path.join(scriptsPath, '/*.js'))
+  /* processa os arquivos restantes, na raíz de scriptsPath 
+   * e coloca nos arquivos main.js e main.min.js */
+  var root = gulp.src(path.join(scriptsPath, '/*.js'))
         .pipe(concat('main.js'))
         .pipe(gulp.dest(scriptsPath))
         .pipe(uglify())
@@ -65,7 +66,7 @@ gulp.task('scripts', function(done) {
 });
 ```
 
-A few notes:
+Notas:
 
-- `folders.map` - executes the function once per folder, and returns the async stream
-- `merge` - combines the streams and ends only when all streams emitted end
+- `folders.map` - executa a função uma vez por pasta e retorna a _stream_ assíncrona;
+- `merge` - combina as _streams_ e só finaliza quando todas elas emitirem conclusão.

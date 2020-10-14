@@ -1,6 +1,6 @@
-# Specifying a new cwd (current working directory)
+# Especificando um novo cwd (current working directory)
 
-This is helpful for projects using a nested directory structure, such as:
+Isso é útil para projetos que usam uma estrutura de diretórios aninhada, como essa:
 
 ```
 /project
@@ -8,15 +8,15 @@ This is helpful for projects using a nested directory structure, such as:
   /layer2
 ```
 
-You can use the gulp CLI option `--cwd`.
+Para isso você pode usar a opção do gulp CLI: `--cwd`.
 
-From the `project/` directory:
+Dentro de um diretório chamado `project/`, seria assim:
 
 ```sh
 gulp --cwd layer1
 ```
 
-If you only need to specify a cwd for a certain glob, you can use the `cwd` option on a [glob-stream](https://github.com/gulpjs/glob-stream):
+Se você precisa especificar um cwd para um glob em específico, você pode usar a opção `cwd` em uma [glob-stream](https://github.com/gulpjs/glob-stream):
 
 ```js
 gulp.src('./some/dir/**/*.js', { cwd: 'public' });

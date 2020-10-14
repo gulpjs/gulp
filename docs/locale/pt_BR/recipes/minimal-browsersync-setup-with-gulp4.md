@@ -1,17 +1,16 @@
-# Minimal BrowserSync setup with Gulp 4
+# Configuração mínima para usar BrowserSync com Gulp 4
 
-[BrowserSync](https://www.browsersync.io/) is a great tool to streamline
-the development process with the ability to reflect code changes instantaneously
-in the browser through live-reloading. Setting up a live-reloading
-BrowserSync server with Gulp 4 is very clean and easy.
+[BrowserSync](https://www.browsersync.io/) é uma ótima ferramenta para simplificar o processo de desenvolvimento com a habilidade de refletir alterações no código, instantaneamente, no browser (usando _live-reloading_).
 
-## Step 1: Install the dependencies
+Configurar um servidor BrowserSync com _live-reloading_ usando Gulp 4 é bem fácil e claro.
+
+## Passo 1: instale as dependências
 
 ```
 npm install --save-dev browser-sync
 ```
 
-## Step 2: Setup the project structure
+## Passo 2: configure a estrutura do projeto
 
 ```
 src/
@@ -23,20 +22,21 @@ index.html
 gulpfile.babel.js
 ```
 
-The goal here is to be able to:
-- Build the source script file in `src/scripts/`, e.g. compiling with babel, minifying, etc.
-- Put the compiled version in `dist/scripts` for use in `index.html`
-- Watch for changes in the source file and rebuild the `dist` package
-- With each rebuild of the `dist` package, reload the browser to immediately reflect the changes
+O objetivo aqui é conseguir:
 
-## Step 3: Write the gulpfile
+- Fazer build do código fonte em `src/scripts/`;
+  - Por exemplo: compilar com Babel, minimizar e etc.
+- Colocar a versão compilada em `dist/scripts`, para usar no `index.html`;
+- Observar alterações no código fonte e refazer a build no diretório `dist`;
+- Toda vez que refizermos a build em `dist`, atualizar o navegador para refletir as mudanças, imediatamente.
 
-The gulpfile could be broken in 3 parts.
+## Passo 3: criar o gulpfile
 
-### 1. Write the task to prepare the dist package as usual
+O gulpfile pode ser dividido, em três partes.
 
-Refer to the main [README](https://github.com/gulpjs/gulp/blob/4.0/README.md#use-last-javascript-version-in-your-gulpfile)
-for more information.
+### 1. Crie a tarefa para preparar a pasta dist
+
+Para mais informações, leia noss [README](https://github.com/gulpjs/gulp/blob/4.0/README.md#use-last-javascript-version-in-your-gulpfile) principal.
 
 ```javascript
 import babel from 'gulp-babel';
@@ -63,9 +63,9 @@ function scripts() {
 }
 ```
 
-### 2. Setup the BrowserSync server
+### 2. Configurar o servidor BrowserSync
 
-And write the tasks to serve and reload the server accordingly.
+Crie as tarefas para servir e recarregar o servidor.
 
 ```javascript
 import browserSync from 'browser-sync';
@@ -86,32 +86,32 @@ function serve(done) {
 }
 ```
 
-### 3. Watch for source change, rebuild the scripts and reload the server
+### 3. Observar mudanças no código fonte, refazer build dos scripts e recarregar o servidor
 
-This is trivially accomplished with `gulp.series`
+Isso é facilmente feito com `gulp.series`.
 
 ```javascript
 const watch = () => gulp.watch(paths.scripts.src, gulp.series(scripts, reload));
 ```
 
-## Step 4: Bring it all together
+## Passo 4: juntar tudo
 
-The last step is to expose the default task
+O último passo é: exportar a tarefa padrão e...
 
 ```javascript
 const dev = gulp.series(clean, scripts, serve, watch);
 export default dev;
 ```
 
-And profit
+...aproveitar.
 
 ```bash
 $ gulp
 ```
 
-Now if you go to [http://localhost:3000](http://localhost:3000), which is the default address of the
-BrowserSync server, you will see that the end result in the browser is updated everytime you change
-the content of the source file. Here is the whole gulpfile:
+Agora, se você for até [http://localhost:3000](http://localhost:3000), que é o endereço padrão do servidor BrowserSync, verá que o resultado final no navegador é atualizado toda vez que você altera o conteúdo do código fonte.
+
+Assim que ficou, todo o gulpfile:
 
 ```javascript
 import babel from 'gulp-babel';

@@ -1,10 +1,8 @@
 # Browserify + Transforms
 
-[Browserify](https://github.com/browserify/browserify) has become an important and indispensable
-tool but requires being wrapped before working well with gulp. Below is a simple recipe for using
-Browserify with transforms.
+[Browserify](https://github.com/browserify/browserify) se tornou uma ferramenta importante e indispensável, mas requer que seja envolvida em algo, para trabalhar bem com o gulp. Abaixo, temos uma receita simples para usar Browserify com _transforms_.
 
-See also: the [Combining Streams to Handle Errors](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) recipe for handling errors with browserify or uglify in your stream.
+Veja também: a receita de [Combinar Streams para Lidar com Erros](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) e entenda como lidar com erros usando browserify ou uglify, em sua stream.
 
 ``` javascript
 'use strict';
@@ -19,11 +17,11 @@ var sourcemaps = require('gulp-sourcemaps');
 var reactify = require('reactify');
 
 gulp.task('javascript', function () {
-  // set up the browserify instance on a task basis
+  // configure uma instância do browserify, em uma tarefa
   var b = browserify({
     entries: './entry.js',
     debug: true,
-    // defining transforms here will avoid crashing your stream
+    // definir transforms aqui, evitará que sua stream sofra crash
     transform: [reactify]
   });
 
@@ -31,7 +29,7 @@ gulp.task('javascript', function () {
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
+        // adicione tarefas de transformação à pipeline, aqui
         .pipe(uglify())
         .on('error', log.error)
     .pipe(sourcemaps.write('./'))
