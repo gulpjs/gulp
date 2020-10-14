@@ -1,14 +1,16 @@
-# Server with live-reloading and CSS injection
+# Sevidor com live-reloading e injeção de CSS
 
-With [BrowserSync](https://browsersync.io) and gulp, you can easily create a development server that is accessible to any device on the same WiFi network. BrowserSync also has live-reload built in, so there's nothing else to configure.
+Com [BrowserSync](https://browsersync.io) e Gulp, você pode facilmente criar um servidor de desenvolvimento acessível à qualquer dispositivo disponível na rede WiFi.
 
-First install the modules:
+BrowserSync também possui _live-reloading_ integrado, para que não haja mais nada para configurar.
+
+Primeiro, instale os módulos:
 
 ```sh
 $ npm install --save-dev gulp browser-sync
 ```
 
-Then, considering the following file structure...
+Depois, considerando a seguinte estrutura de arquivos...
 
 ```
 gulpfile.js
@@ -20,14 +22,16 @@ app/
   index.html
 ```
 
-... you can easily serve files from the `app` directory and have all browsers reload when any of them change with the following in `gulpfile.js`:
+...você pode facilmente servir arquivos à partir do diretório `app` e ter todos os navegadores atualizando por conta própria, quando algum desses arquivos alterarem.
+
+Para isso, use o seguinte `gulpfile.js`:
 
 ```js
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
-// watch files for changes and reload
+// observa alterações em arquivos e atualiza o navegador
 gulp.task('serve', function() {
   browserSync({
     server: {
@@ -40,7 +44,7 @@ gulp.task('serve', function() {
 
 ```
 
-and including the CSS in `index.html`:
+Também é preciso incluir o CSS, em `index.html`:
 
 ```html
 <html>
@@ -51,18 +55,20 @@ and including the CSS in `index.html`:
 
 ```
 
-to serve your files and launch a browser window pointing to the default URL (http://localhost:3000) run:
+Para servir seus arquivos e abrir o navegador na URL padrão, execute:
 
 ```bash
 gulp serve
 ```
 
 
-## + CSS pre-processors
+## + Pré-processadores CSS
 
-A common use-case is to reload CSS files after they've been pre-processed. Using Sass as an example, this is how you can instruct browsers to reload the CSS without doing a full-page refresh.
+Um caso de uso comum é recarregar arquivos CSS, depois que eles forem pré-processados.
 
-Considering this updated file structure...
+Usando Sass como exemplo, é assim que você pode instruir os navegadores à recarregar o CSS, sem fazer _full-page refresh_.
+
+Considerando esta estrutura de arquivos atualizada...
 
 ```
 gulpfile.js
@@ -73,7 +79,10 @@ app/
     main.js
   index.html
 ```
-... you can easily watch Sass files from the `scss` directory and have all browsers reload when any of them change with the following in `gulpfile.js`:
+
+...você pode facilmente observar arquivos Sass do diretório `scss` e ter todos os navegadores atualizando, quando algum desses arquivos alterarem.
+
+Para isso, use o seguinte `gulpfile.js`:
 
 ```js
 var gulp = require('gulp');
@@ -87,7 +96,9 @@ gulp.task('sass', function() {
     .pipe(reload({ stream:true }));
 });
 
-// watch Sass files for changes, run the Sass preprocessor with the 'sass' task and reload
+/* observa alterações em arquivos Sass, executa o 
+ * pré-processador Sass usando a tarefa 'sass' e 
+ * recarrega a página. */
 gulp.task('serve', gulp.series('sass', function() {
   browserSync({
     server: {
@@ -99,7 +110,7 @@ gulp.task('serve', gulp.series('sass', function() {
 }));
 ```
 
-and including the pre-processed CSS in `index.html`:
+Também é preciso incluir o CSS, em `index.html`:
 
 ```html
 <html>
@@ -110,13 +121,13 @@ and including the pre-processed CSS in `index.html`:
 
 ```
 
-to serve your files and launch a browser window pointing to the default URL (http://localhost:3000) run:
+Para servir seus arquivos e abrir o navegador na URL padrão, execute:
 
 ```bash
 gulp serve
 ```
 
-## Extras
+## Bônus
 
-- Live reload, CSS injection and scroll/form syncing works seamlessly inside of [BrowserStack](https://www.browserstack.com/) virtual machines.
-- Set `tunnel: true` to view your local site at a public URL (complete with all BrowserSync features).
+- Live reload, injeção de CSS e sincronização de scroll/formulário funciona muito bem em máquinas virtuais [BrowserStack](https://www.browserstack.com/).
+- Use `tunnel: true` para ver seu site local em uma URL pública (completo com todos os recursos do BrowserSync).

@@ -1,10 +1,10 @@
-# Fast browserify builds with watchify
+# Builds rápidas com browserify usando watchify
 
-As a [browserify](https://github.com/browserify/browserify) project begins to expand, the time to bundle it slowly gets longer and longer. While it might start at 1 second, it's possible to be waiting 30 seconds for your project to build on particularly large projects.
+Na medida que um projeto [browserify](https://github.com/browserify/browserify) expande, o tempo para fazer bundle dele cresce mais e mais. Pode começar exigindo 1 segundo para fazer build, mas acabar te fazendo esperar 30 segundos em um projeto grande.
 
-That's why [substack](https://github.com/substack) wrote [watchify](https://github.com/browserify/watchify), a persistent browserify bundler that watches files for changes and *only rebuilds what it needs to*. This way, that first build might still take 30 seconds, but subsequent builds can still run in under 100ms – which is a huge improvement.
+Por causa disso, o pessoal do [substack](https://github.com/substack) fez o [watchify](https://github.com/browserify/watchify): um _browserify bundler_ persistente que observa mudanças em arquivos e *só faz rebuild daquilo que é necessário*. Graças à isso, a primeira build ainda pode levar 30 segundos, mas as próximas podem levar menos de 100ms (oquê é uma grande melhoria).
 
-Watchify doesn't have a gulp plugin, and it doesn't need one: you can use [vinyl-source-stream](https://github.com/hughsk/vinyl-source-stream) to pipe the bundle stream into your gulp pipeline.
+Watchify não possui um plugin gulp e não precisa de um: você pode usar [vinyl-source-stream](https://github.com/hughsk/vinyl-source-stream) para fazer _pipe_ da stream do bundle, adentro de sua _pipeline_.
 
 ``` javascript
 'use strict';
@@ -18,7 +18,7 @@ var log = require('gulplog');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 
-// add custom browserify options here
+// cria configurações customizadas para o browserify
 var customOpts = {
   entries: ['./src/index.js'],
   debug: true
@@ -26,24 +26,28 @@ var customOpts = {
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));
 
-// add transformations here
-// i.e. b.transform(coffeeify);
+// adicione transformações aqui
+// por exemplo: b.transform(coffeeify);
 
-gulp.task('js', bundle); // so you can run `gulp js` to build the file
-b.on('update', bundle); // on any dep update, runs the bundler
-b.on('log', log.info); // output build logs to terminal
+// permite rodar `gulp js`, para fazer build do arquivo
+gulp.task('js', bundle); 
+// roda o bundler, depois de qualquer atualização
+b.on('update', bundle);
+// faz output de logs da build, no terminal
+b.on('log', log.info);
 
 function bundle() {
   return b.bundle()
-    // log errors if they happen
+    // cria log de erros, se ocorrer algum
     .on('error', log.error.bind(log, 'Browserify Error'))
     .pipe(source('bundle.js'))
-    // optional, remove if you don't need to buffer file contents
+    // opcional: remova, se você não precisa fazer buffer do conteúdo de arquivos
     .pipe(buffer())
-    // optional, remove if you dont want sourcemaps
-    .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
-       // Add transformation tasks to the pipeline here.
-    .pipe(sourcemaps.write('./')) // writes .map file
+    // opcional: remova, se você não quer sourcemaps
+    // loadMaps carrega os mapas à partir do arquivo browserify
+    .pipe(sourcemaps.init({loadMaps: true}))
+    // adicione tarefas de transformação à pipeline, aqui.
+    .pipe(sourcemaps.write('./')) // cria o arquivo .map
     .pipe(gulp.dest('./dist'));
 }
 ```

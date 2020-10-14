@@ -1,8 +1,8 @@
-# Running tasks in series
+# Executando tarefas em série
 
-By default, gulp CLI run tasks with maximum concurrency - e.g. it launches
-all the tasks at once and waits for nothing. If you want to create a series
-where tasks run in a particular order, you should use `gulp.series`;
+Por padrão, Gulp CLI executa tarefas em concorrência máxima. Isso quer dizer que Gulp roda todas de uma vez e não espera por nada.
+
+Se quiser criar um série, onde tarefas executam em uma ordem específica: você deve usar `gulp.series`.
 
 ```js
 var gulp = require('gulp');
@@ -15,53 +15,55 @@ gulp.task('one', function(done) {
 });
 
 gulp.task('two', function(done) {
-  // do things
+  // faça alguma coisa qualquer, aqui
   done();
 });
 
 gulp.task('default', gulp.series('one', 'two'));
 ```
 
-Another example, using a dependency pattern. It uses
-[`async-once`](https://www.npmjs.com/package/async-once) to run the `clean`
-task operations only once:
+Outro exemplo, usando um padrão de dependência: ele usa [`async-once`](https://www.npmjs.com/package/async-once) para rodar operações da tarefa `clean`, uma vez só:
+
 ```js
 var gulp = require('gulp');
 var del = require('del'); // rm -rf
 var once = require('async-once');
 
 gulp.task('clean', once(function(done) {
-  // run only once.
-  // for the next call to the clean task, once will call done with
-  // the same arguments as the first call.
+  // só roda uma vez.
+  // para a próxima invocação da tarefa clean:
+  // vai invocar done com os mesmos argumentos da primeira invocação.
   del(['output'], done);
 }));
 
 gulp.task('templates', gulp.series('clean', function() {
   return gulp.src(['src/templates/*.hbs'])
-    // do some concatenation, minification, etc.
+    // faz algumas concatenações, minimizações, etc.
     .pipe(gulp.dest('output/templates/'));
 }));
 
 gulp.task('styles', gulp.series('clean', function() {
   return gulp.src(['src/styles/app.less'])
-    // do some hinting, minification, etc.
+    // faz algumas concatenações, minimizações, etc.
     .pipe(gulp.dest('output/css/app.css'));
 }));
 
-// templates and styles will be processed in parallel.
-// `clean` will be guaranteed to complete before either start.
-// `clean` operations will not be run twice,
-// even though it is called as a dependency twice.
+/* templates e styles serão processadas, em paralelo.
+ *
+ * `clean` finalizará antes das duas tarefas anteriores.
+ *
+ * As operações de `clean` não serão executadas duas vezes, 
+ * apesar de serem invocadas como dependências, duas vezes. */
 gulp.task('build', gulp.parallel('templates', 'styles'));
 
-// an alias.
+// um alias.
 gulp.task('default', gulp.parallel('build'));
 ```
 
-Note that it's an anti-pattern in Gulp 4 and the logs will show the clean task
-running twice. Instead, `templates` and `style` should use dedicated `clean:*`
-tasks:
+Note que isso é um anti-padrão em Gulp 4 e os logs mostrarão a tarefa `clean` rodando duas vezes.
+
+Invés disso, as tarefas `templates` e `style` devem usar tarefas `clean:*` dedicadas:
+
 ```js
 var gulp = require('gulp');
 var del = require('del');

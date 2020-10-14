@@ -1,9 +1,8 @@
 # Browserify + Globs
 
-[Browserify + Uglify2](https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md) shows how to setup a basic gulp task to bundle a JavaScript file with its dependencies, and minify the bundle with UglifyJS while preserving source maps.
-It does not, however, show how one may use gulp and Browserify with multiple entry files.
+[Browserify + Uglify2](https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md)  mostra como configurar uma tarefa básica para fazer _bundle_ de um arquivo JavaScript e suas dependências e minimizar o _bundle_ com UglifyJS, enquato preservamos sourcemaps. Essa página não mostra como usar gulp e Browserify com múltiples _entry files_, no entanto.
 
-See also: the [Combining Streams to Handle Errors](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) recipe for handling errors with Browserify or UglifyJS in your stream.
+Veja também: a receita de [Combinar Streams para Lidar com Erros](https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md) e entenda como lidar com erros usando browserify ou uglify, em sua stream.
 
 ``` javascript
 'use strict';
@@ -20,42 +19,46 @@ var sourcemaps = require('gulp-sourcemaps');
 var reactify = require('reactify');
 
 gulp.task('javascript', function () {
-  // gulp expects tasks to return a stream, so we create one here.
+  /* gulp espera que tarefas retornem uma stream, então, 
+   * criamos uma aqui */
   var bundledStream = through();
 
   bundledStream
-    // turns the output bundle stream into a stream containing
-    // the normal attributes gulp plugins expect.
+    /* converte a stream do output bundle em uma stream
+     * contendo os atributos regulares que o plugin
+     * gulp espera */
     .pipe(source('app.js'))
-    // the rest of the gulp task, as you would normally write it.
-    // here we're copying from the Browserify + Uglify2 recipe.
+    // o resto da tarefa, como você faria normalmente...
+    // aqui, só estamos copiando a receita Browserify + Uglify2.
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-      // Add gulp plugins to the pipeline here.
+      // adicione plugins gulp à pipeline, aqui.
       .pipe(uglify())
       .on('error', log.error)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/js/'));
 
-  // "globby" replaces the normal "gulp.src" as Browserify
-  // creates it's own readable stream.
+  /* "globby" substitui "gulp.src", enquanto Browserify
+   * cria sua própria stream de leitura. */
   globby(['./entries/*.js']).then(function(entries) {
-    // create the Browserify instance.
+    // cria a instância do Browserify.
     var b = browserify({
       entries: entries,
       debug: true,
       transform: [reactify]
     });
 
-    // pipe the Browserify stream into the stream we created earlier
-    // this starts our gulp pipeline.
+    /* faz pipe da stream do Browserify, adentro da stream
+     * que nós criamos antes.
+     * isso vai iniciar nossa pipeline. */
     b.bundle().pipe(bundledStream);
   }).catch(function(err) {
-    // ensure any errors from globby are handled
+    // certifique-se de lidar com qualquer erro vindo do globby
     bundledStream.emit('error', err);
   });
 
-  // finally, we return the stream, so gulp knows when this task is done.
+  /* finalmente, retornaremos a stream para gulp saber
+   * quando a tarefa conclui */
   return bundledStream;
 });
 ```

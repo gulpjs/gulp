@@ -1,6 +1,6 @@
-# Rebuild only files that change
+# Refazer build só de arquivos alterados
 
-With [`gulp-watch`](https://github.com/floatdrop/gulp-watch):
+Use [`gulp-watch`](https://github.com/floatdrop/gulp-watch):
 
 ```js
 var gulp = require('gulp');

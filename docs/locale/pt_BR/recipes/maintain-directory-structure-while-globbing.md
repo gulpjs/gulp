@@ -1,13 +1,12 @@
-# Maintain Directory Structure while Globbing
+# Manter Estrutura Original do Diretório Enquanto usa Globs
 
-If you are planning to read a few files/folders from a directory and maintain their relative path, you need to pass `{base: '.'}` as the second argument to `gulp.src()`.
+Se você está planejando ler alguns arquivos/pastas de algum diretório, enquanto mantém os caminhos relativos: você precisa passar `{base: '.'}` como o segundo argumento de `gulp.src()`.
 
-
-For example, if you have a directory structure like
+Por exemplo, se você tem uma estrutura de diretório como essa...
 
 ![Dev setup](https://cloud.githubusercontent.com/assets/2562992/3178498/bedf75b4-ec1a-11e3-8a71-a150ad94b450.png)
 
-and want to read only a few files say
+...e só quer ler alguns arquivos, como esses...
 
 ```js
 [ 'index.html',
@@ -19,11 +18,13 @@ and want to read only a few files say
  ]
 ```
 
-In this case, Gulp will read all the sub-folders of (_say_) `css` folder and arrange them relative to your root folder and they will no longer be the sub-folder of `css`. The output after globbing would look like
+...Gulp vai ler todos os sub-diretórios da pasta (digamos) `css` e organizá-los em relação ao seu diretório raíz, fazendo com que eles não sejam mais sub-diretórios de `css`.
+
+O output, depois de usar globs, seria algo como isso:
 
 ![Zipped-Unzipped](https://cloud.githubusercontent.com/assets/2562992/3178614/27208c52-ec1c-11e3-852e-8bbb8e420c7f.png)
 
-If you want to maintain the structure, you need to pass `{base: '.'}` to `gulp.src()`. Like
+Agora, se você quiser manter a estrutura original, é preciso passar `{base: '.'}` para `gulp.src()`:
 
 ```js
 gulp.task('task', function () {
@@ -38,6 +39,6 @@ gulp.task('task', function () {
        .pipe(operation2());
 });
 ```
-And the input to your `operation1()` will be a folder structure like
+Dessa forma, o input de `operation1()` vai criar uma estrutura como essa:
 
 ![with-base](https://cloud.githubusercontent.com/assets/2562992/3178607/053d6722-ec1c-11e3-9ba8-7ce39e1a480e.png)

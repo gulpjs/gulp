@@ -1,18 +1,19 @@
-# Make stream from buffer (memory contents)
+# Criar stream à partir de buffer (conteúdos na memória)
 
-Sometimes you may need to start a stream with files that their contents are in a variable and not in a physical file. In other words, how to start a 'gulp' stream without using `gulp.src()`.
+Às vezes, você pode precisar iniciar uma stream com arquivos em que seus conteúdos estão em uma variável, mas não em um arquivo físico. Em outras palavras: _como iniciar uma gulp stream, sem usar `gulp.src()`?_
 
-Let's say for example that we have a directory with js lib files and another directory with versions of some module. The target of the build would be to create one js file for each version, containing all the libs and the version of the module concatenated.
+Vamos imaginar, por exemplo, que temos um diretório `lib` com arquivos JS e outro diretório com versões de algum módulo. O objetivo da build seria criar um arquivo `.js` para cada versão, contendo todas as libs e a versão do módulo concatenada.
 
-Logically we would break it down like this:
+De maneira lógica, nós descreveríamos o processo assim:
 
-* load the lib files
-* concatenate the lib file contents
-* load the versions files
-* for each version file, concatenate the libs' contents and the version file contents
-* for each version file, output the result in a file
+* carregar os arquivos em `lib`;
+* concatenar os conteúdos dos arquivos de `lib`;
+* carregar os arquivos de versão;
+* para cada arquivo de versão:
+  * concatenar os conteúdos de `lib` e os conteúdos do arquivo de versão.
+  * fazer o output do resultado, em um arquivo.
 
-Imagine this file structure:
+Com essa estrutura de arquivos:
 
 ```sh
 ├── libs
@@ -23,7 +24,7 @@ Imagine this file structure:
     └── version.2.js
 ```
 
-You should get:
+Você obteria isso:
 
 ```sh
 └── output
@@ -31,7 +32,7 @@ You should get:
     └── version.2.complete.js # lib1.js + lib2.js + version.2.js
 ```
 
-A simple and modular way to do this would be the following:
+Uma forma simples e modular de fazer isso, seria assim:
 
 ```js
 var gulp = require('gulp');
@@ -43,65 +44,66 @@ var size = require('gulp-size');
 var path = require('path');
 var es = require('event-stream');
 
-var memory = {}; // we'll keep our assets in memory
+var memory = {}; // vamos manter nossos assets, na memória
 
-// task of loading the files' contents in memory
+// tarefa para salvar o conteúdo dos arquivos, na memória
 gulp.task('load-lib-files', function() {
-  // read the lib files from the disk
+  // lê os arquivos de lib, à partir do disco
   return gulp.src('src/libs/*.js')
-    // concatenate all lib files into one
+    // concatena todos os arquivos de lib, em um único
     .pipe(concat('libs.concat.js'))
-    // tap into the stream to get each file's data
+    // usa tap na stream para capturar os dados de cada arquivo
     .pipe(tap(function(file) {
-      // save the file contents in memory
+      // salva os conteúdos dos arquivos, na memória
       memory[path.basename(file.path)] = file.contents.toString();
     }));
 });
 
 gulp.task('load-versions', function() {
   memory.versions = {};
-  // read the version files from the disk
+  // lê os arquivos de versão, à partir do disco
   return gulp.src('src/versions/version.*.js')
-  // tap into the stream to get each file's data
+  // usa tap na stream para capturar os dados de cada arquivo
   .pipe( tap(function(file) {
-    // save the file contents in the assets
+    // salva os conteúdos dos arquivos, nos assets
     memory.versions[path.basename(file.path)] = file.contents.toString();
   }));
 });
 
 gulp.task('write-versions', function() {
-  // we store all the different version file names in an array
+  // armazenamos todas os nomes dos diferentes arquivos de versões, em uma array
   var availableVersions = Object.keys(memory.versions);
-  // we make an array to store all the stream promises
+  // fazemos uma array para armazenar todas as promises de streams
   var streams = [];
 
   availableVersions.forEach(function(v) {
-    // make a new stream with fake file name
+    // cria uma nova stream, usando um nome de arquivo falso
     var stream = source('final.' + v);
 
     var streamEnd = stream;
 
-    // we load the data from the concatenated libs
+    // carregamos os dados dos arquivos lib concatenados
     var fileContents = memory['libs.concat.js'] +
-      // we add the version's data
+      // adicionamos os dados das versões
       '\n' + memory.versions[v];
 
-    // write the file contents to the stream
+    // escreve os conteúdos dos arquivos, na stream
     stream.write(fileContents);
 
     process.nextTick(function() {
-      // in the next process cycle, end the stream
+      // no próximo ciclo do processo, finalize a stream
       stream.end();
     });
 
     streamEnd = streamEnd
-    // transform the raw data into the stream, into a vinyl object/file
+    /* transforma os dados crus adentro da stream, 
+     * adentro de um objeto/arquivo vinyl */
     .pipe(vinylBuffer())
-    //.pipe(tap(function(file) { /* do something with the file contents here */ }))
+    //.pipe(tap(function(file) { /* faça algo com o conteúdo dos arquivos, aqui */ }))
     .pipe(gulp.dest('output'));
 
-    // add the end of the stream, otherwise the task would finish before all the processing
-    // is done
+    /* adiciona o fim da stream, caso contrário, a tarefa 
+     * seria finalizada antes de todo processamento acabar. */
     streams.push(streamEnd);
 
   });
@@ -109,18 +111,18 @@ gulp.task('write-versions', function() {
   return es.merge.apply(this, streams);
 });
 
-//============================================ our main task
+//============================================ nossa tarefa principal
 gulp.task('default', gulp.series(
-    // load the files in parallel
+    // carrega os arquivos, em paralelo
     gulp.parallel('load-lib-files', 'load-versions'),
-    // ready to write once all resources are in memory
+    // escreve todas os recursos (uma vez), na memória
     'write-versions'
   )
 );
 
-//============================================ our watcher task
-// only watch after having run 'default' once so that all resources
-// are already in memory
+//============================================ nossa tarefa para observar arquivos
+/* só observa depois de executar 'default' uma vez, 
+ * para que todos os recursos já estejam na memória. */
 gulp.task('watch', gulp.series(
   'default',
   function() {
