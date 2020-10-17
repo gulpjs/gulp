@@ -7,9 +7,9 @@ sidebar_label: lastRun()
 
 # lastRun()
 
-Retrieves the last time a task was successfully completed during the current running process. Most useful on subsequent task runs while a watcher is running.
+Retorna a última vez que uma tarefa conseguiu finalizar com sucesso, durante o atual processo em execução. Esse método é mais útil em subsequentes execuções de tarefas, enquanto um observador está rodando.
 
-When combined with `src()`, enables incremental builds to speed up execution times by skipping files that haven't changed since the last successful task completion.
+Quando combinado com `src()`, ativa builds incrementais para reduzir os tempos de execução: pulando arquivos que não alteraram desde a última tarefa que conseguiu finalizar com sucesso.
 
 ## Usage
 
@@ -28,53 +28,56 @@ exports.default = function() {
 };
 ```
 
-
-## Signature
+## Assinatura
 
 ```js
 lastRun(task, [precision])
 ```
 
-### Parameters
+### Parâmetros
 
-| parameter | type | note |
+| parâmetro | tipo | descrição |
 |:--------------:|:------:|-------|
-| task<br />**(required)** | function<br />string | The task function or the string alias of a registered task. |
-| precision | number | Default: `1000` on Node v0.10, `0` on Node v0.12+. Detailed in [Timestamp precision][timestamp-precision-section] section below. |
+| task<br />**(obrigatório)** | function<br />string | A função de uma tarefa ou o alias de uma tarefa registrada. |
+| precision | number | Padrão: `1000` no Node v0.10, `0` no Node v0.12+. Mais detalhes em [Timestamp precision][timestamp-precision-section]. |
 
-### Returns
+### Retorno
 
-A timestamp (in milliseconds), matching the last completion time of the task. If the task has not been run or has failed, returns `undefined`.
+Uma timestamp (em milissegundos), indicando o tempo da última conclusão da tarefa. Se a tarefa não tiver sido executada ou falhar, retorna `undefined`.
 
-To avoid an invalid state being cached, the returned value will be `undefined` if a task errors.
+O valor retornado é `undefined`, quando uma tarefa falha, para evitar fazer cache de estados inválidos.
 
-### Errors
+### Erros
 
-When called with a value other than a string or function, throws an error with the message, "Only functions can check lastRun".
+Quando invocamos com um valor que não seja uma string ou função, um erro é lançado com a seguinte mensagem:
 
-When called on a non-extensible function and Node is missing WeakMap, throws an error with the message, "Only extensible functions can check lastRun".
+> Only functions can check lastRun.
 
-## Timestamp precision
+Quando invocamos em uma função não-extensível e Node não possui WeakMap, um erro é lançado com a seguinte mensagem:
 
-While there are sensible defaults for the precision of timestamps, they can be rounded using the `precision` parameter. Useful if your file system or Node version has a lossy precision on file time attributes.
+> Only extensible functions can check lastRun.
 
-* `lastRun(someTask)` returns 1426000001111
-* `lastRun(someTask, 100)` returns 1426000001100
-* `lastRun(someTask, 1000)` returns 1426000001000
+## Precisão da timestamp
 
-A file's [mtime stat][fs-stats-concepts] precision may vary depending on the node version and/or the file system used.
+Apesar de existir configurações decentes para calibrar a precisão de timestamps, elas podem ser melhoradas usando o parâmetro `precision`. Isso pode ser útil se seu sistema de arquivos ou versão Node possui uma precisão fraca para atributos de tempo de arquivos.
+
+* `lastRun(someTask)` retorna 1426000001111
+* `lastRun(someTask, 100)` retorna 1426000001100
+* `lastRun(someTask, 1000)` retorna 1426000001000
+
+A precisão [mtime stat][fs-stats-concepts] de um arquivo pode variar, dependendo da versão Node e/ou sistema de arquivos utilizado.
 
 
-| platform | precision |
+| plataforma | precisão |
 |:-----------:|:------------:|
 | Node v0.10 | 1000ms |
 | Node v0.12+ | 1ms |
-| FAT32 file system | 2000ms |
-| HFS+ or Ext3 file systems | 1000ms |
-| NTFS using Node v0.10 | 1s |
-| NTFS using Node 0.12+ | 100ms |
-| Ext4 using Node v0.10 | 1000ms |
-| Ext4 using Node 0.12+ | 1ms |
+| sistema de arquivos  FAT32| 2000ms |
+| sistema de arquivos HFS+ ou Ext3 | 1000ms |
+| NTFS usando Node v0.10 | 1s |
+| NTFS usando Node 0.12+ | 100ms |
+| Ext4 usando Node v0.10 | 1000ms |
+| Ext4 usando Node 0.12+ | 1ms |
 
 
 [timestamp-precision-section]: #timestamp-precision
