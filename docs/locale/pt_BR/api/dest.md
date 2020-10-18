@@ -7,9 +7,9 @@ sidebar_label: dest()
 
 # dest()
 
-Creates a stream for writing [Vinyl][vinyl-concepts] objects to the file system.
+Cria uma _stream_ para escrever objetos [Vinyl][vinyl-concepts] no sistema de arquivos.
 
-## Usage
+## Modo de Uso
 
 ```js
 const { src, dest } = require('gulp');
@@ -22,66 +22,75 @@ function copy() {
 exports.copy = copy;
 ```
 
-## Signature
+## Assinatura
 
 ```js
 dest(directory, [options])
 ```
 
-### Parameters
+### Parâmetros
 
-| parameter | type | note |
+| parâmetro | tipo | descrição |
 |:--------------:|:-----:|--------|
-| directory<br />**(required)** | string<br />function | The path of the output directory where files will be written. If a function is used, the function will be called with each Vinyl object and must return a string directory path. |
-| options | object | Detailed in [Options][options-section] below. |
+| directory<br />**(obrigatório)** | string<br />function | O caminho do diretório de output de arquivos. Se usar uma função, ela será invocada com cada objeto Vinyl e tem que retornar uma _string_ com o caminho do diretório. |
+| options | object | Mais detalhes em [Opções][options-section]. |
 
-### Returns
+### Retorno
 
-A stream that can be used in the middle or at the end of a pipeline to create files on the file system.
-Whenever a Vinyl object is passed through the stream, it writes the contents and other details out to the file system at the given directory. If the Vinyl object has a `symlink` property, a symbolic link will be created instead of writing the contents. After the file is created, its [metadata will be updated][metadata-updates-section] to match the Vinyl object.
+Uma stream que pode ser usada no meio ou final de uma pipeline, para criar arquivos no sistema de arquivos.
 
-Whenever a file is created on the file system, the Vinyl object will be modified.
-* The `cwd`, `base`, and `path` properties will be updated to match the created file.
-* The `stat` property will be updated to match the file on the file system.
-* If the `contents` property is a stream, it will be reset so it can be read again.
+Sempre que um objeto Vinyl passa pela _stream_, ele escreve o conteúdo e outros detalhes no sistema de arquivos, no diretório passado. Se o objeto Vinyl tiver a propriedade `symlink`, um link simbólico será criado, invés de escrever conteúdos.
 
-### Errors
+Depois do arquivo ser criado, seus [metadados serão atualizados][metadata-updates-section] para combinar com o objeto Vinyl.
 
-When `directory` is an empty string, throws an error with the message, "Invalid dest() folder argument. Please specify a non-empty string or a function."
+Sempre que um arquivo é criado no sistema de arquivos, o objeto Vinyl será modificado:
 
-When `directory` is not a string or function, throws an error with the message, "Invalid dest() folder argument. Please specify a non-empty string or a function."
+* As propriedades `cwd`, `base` e `path` serão atualizadas para combinar com o arquivo criado;
+* A propriedades `stat` será atualizada para combinar com o arquivo no sistema de arquivos.
+* Se a propriedade `contents` for uma _stream_, ela será resetada para que possa ser lida novamente.
 
-When `directory` is a function that returns an empty string or `undefined`, emits an error with the message, "Invalid output folder".
+### Erros
 
-### Options
+Quando `directory` for uma _stream_ vazia, um erro será lançado com a seguinte mensagem:
 
+> Invalid dest() folder argument. Please specify a non-empty string or a function.
 
-**For options that accept a function, the passed function will be called with each Vinyl object and must return a value of another listed type.**
+Quando `directory` não for um _string_ ou _function_, um erro será lançado com a seguinte mensagem:
 
-| name | type | default | note |
+> Invalid dest() folder argument. Please specify a non-empty string or a function.
+
+Quando `directory` for uma função que retorna uma _string_ vazia ou `undefined`, um erro será emitido com a seguinte mensage:
+
+> Invalid output folder
+
+### Opções
+
+**Sobre opções que aceitam funções: a função passada será invocada com cada objeto Vinyl e tem que retornar um valor de um outro tipo listado.**
+
+| nome | tipo | padrão | descrição |
 |:-------:|:------:|-----------|-------|
-| cwd | string<br />function | `process.cwd()` | The directory that will be combined with any relative path to form an absolute path. Is ignored for absolute paths. Use to avoid combining `directory` with `path.join()`. |
-| mode | number<br />function | `stat.mode` of the Vinyl object | The mode used when creating files. If not set and `stat.mode` is missing, the process' mode will be used instead. |
-| dirMode | number<br />function | | The mode used when creating directories. If not set, the process' mode will be used. |
-| overwrite | boolean<br />function | true | When true, overwrites existing files with the same path. |
-| append | boolean<br />function | false | If true, adds contents to the end of the file, instead of replacing existing contents. |
-| sourcemaps | boolean<br />string<br />function | false | If true, writes inline sourcemaps to the output file. Specifying a `string` path will write external [sourcemaps][sourcemaps-section] at the given path. |
-| relativeSymlinks | boolean<br />function | false | When false, any symbolic links created will be absolute.<br />**Note**: Ignored if a junction is being created, as they must be absolute. |
-| useJunctions | boolean<br />function | true | This option is only relevant on Windows and ignored elsewhere. When true, creates directory symbolic link as a junction. Detailed in [Symbolic links on Windows][symbolic-links-section] below. |
+| cwd | string<br />function | `process.cwd()` | O diretório que será combinado com algum caminho relativo, para formar um caminho absoluto. Será ignorado em caminhos absolutos. Use para evitar combinar `directory` com `path.join()`. |
+| mode | number<br />function | `stat.mode` do objeto Vinyl | O modo a ser usado para criar arquivos. Invés disso: se não usar este parâmetro e `stat.mode` não existir, o modo do processo será usado. |
+| dirMode | number<br />function | | O modo usado para criar diretórios. Se o parâmetro não for usado, o modo do processo será usado. |
+| overwrite | boolean<br />function | true | Quando for `true`, sobrescreve arquivos existentes com o mesmo caminho. |
+| append | boolean<br />function | false | Se for `true`, adiciona conteúdo ao final do arquivo, invés de substituir arquivos existentes. |
+| sourcemaps | boolean<br />string<br />function | false | Se for `true`, cria _inline sourcemaps_ no arquivo de output. Já se você especificar uma `string` com um caminho: cria [sourcemaps][sourcemaps-section] externos, neste caminho. |
+| relativeSymlinks | boolean<br />function | false | Quando `false`, qualquer link simbólico criado será absoluto. <br />**Observação**: é ignorado se uma junção está sendo criada, já que devem ser absolutas. |
+| useJunctions | boolean<br />function | true | Esta opção só é relevante no Windows e ignorada em outros sistemas operacionais. Quando for `true`, cria link simbólico de diretório como uma junção. Mais detalhes em [Links simbólicos no Windows][symbolic-links-section]. |
 
-## Metadata updates
+## Atualização de Metadados
 
-Whenever the `dest()` stream creates a file, the Vinyl object's `mode`, `mtime`, and `atime` are compared to the created file. If they differ, the created file will be updated to reflect the Vinyl object's metadata. If those properties are the same, or gulp doesn't have permissions to make changes, the attempt is skipped silently.
+Sempre que a stream de `dest()` cria um arquivo, o modo do objeto Vinyl, `mtime` e `atime` são comparados ao arquivo criado. Se forem diferentes, o arquivo criado será atualizado para combinar com os metadados do objeto Vinyl. Se estas propriedades forem iguais ou Gulp não tiver permissões para fazer alterações, a comparação é evitada silenciosamente.
 
-This functionality is disabled on Windows or other operating systems that don't support Node's `process.getuid()` or `process.geteuid()` methods. This is due to Windows having unexpected results through usage of `fs.fchmod()` and `fs.futimes()`.
+Esta funcionalidade está desativada no Windows e outros sistemas operacionais que não suportam os métodos `process.getuid()` e `process.geteuid()` do Node. Isso acontece porque o Windows possui resultados inesperados, quando usa `fs.fchmod()` e `fs.futimes()`.
 
-**Note**: The `fs.futimes()` method internally converts `mtime` and `atime` timestamps to seconds. This division by 1000 may cause some loss of precision on 32-bit operating systems.
+**Observação**: o método `fs.futimes()` converte as timestamps `mtime` e `atime` para segundos, internamente. Essa divisão por 1000 pode causar perca de precisão em sistemas operacionais 32-bit.
 
 ## Sourcemaps
 
-Sourcemap support is built directly into `src()` and `dest()`, but it is disabled by default. Enable it to produce inline or external sourcemaps.
+O suporte a _sourcemaps_ foi criado diretamente em `src()` e `dest()`, mas é desativado por padrão. Ative-o para produzir _sourcemaps inline_ ou externos.
 
-Inline sourcemaps:
+Sourcemaps inline:
 ```js
 const { src, dest } = require('gulp');
 const uglify = require('gulp-uglify');
@@ -91,7 +100,7 @@ src('input/**/*.js', { sourcemaps: true })
   .pipe(dest('output/', { sourcemaps: true }));
 ```
 
-External sourcemaps:
+Sourcemaps externos:
 ```js
 const { src, dest } = require('gulp');
 const uglify = require('gulp-uglify');
@@ -101,19 +110,22 @@ src('input/**/*.js', { sourcemaps: true })
   .pipe(dest('output/', { sourcemaps: '.' }));
 ```
 
-## Symbolic links on Windows
-
-When creating symbolic links on Windows, a `type` argument is passed to Node's `fs.symlink()` method which specifies the kind of target being linked. The link type is set to:
-* `'file'` when the target is a regular file
-* `'junction'` when the target is a directory
-* `'dir'` when the target is a directory and the user disables the `useJunctions` option
+## Links simbólicos no Windows
 
 
-If you try to create a dangling (pointing to a non-existent target) link, the link type can't be determined automatically. In these cases, behavior will vary depending on whether the dangling link is being created via `symlink()` or via `dest()`.
+Quando for criar links simbólicos no Windows, um argumento `type` é passado para o método `fs.symlink()` do Node, o qual especifica o tipo do alvo sendo _linkado_.
 
-For dangling links created via `symlink()`, the incoming Vinyl object represents the target, so its stats will determine the desired link type. If `isDirectory()` returns false then a `'file'` link is created, otherwise a `'junction'` or a `'dir'` link is created depending on the value of the `useJunctions` option.
+O tipo do link é configurado como:
 
-For dangling links created via `dest()`, the incoming Vinyl object represents the link - typically loaded from disk via `src(..., { resolveSymlinks: false })`. In this case, the link type can't be reasonably determined and defaults to using `'file'`. This may cause unexpected behavior if you are creating a dangling link to a directory. **Avoid this scenario.**
+* `'file'`, quando o alvo for um arquivo comum;
+* `'junction'`, quando o alvo for um diretório;
+* `'dir'`, quando o alvo for um diretório e o usuário desativa a opção `useJunctions`.
+
+Se você tentar criar um _dangling link_ (apontando para um alvo inexistente), o tipo do link não pode ser determinado, automaticamente. Nestes casos, o comportamento varia dependendo se o _dangling link_ está sendo criado via `symlink()` ou via `dest()`.
+
+No caso de _dangling links_ criados via `symlink()`, o objeto Vinyl recebido representa o alvo, então, seus status determinarão o tipo de link desejado. Se `isDirectory()` retornar `false`, então, um link de tipo `'file'` é criado. Caso contrário, um link do tipo `'junction'` ou `'dir'` é criado, dependendo do valor da opção `useJunctions`.
+
+Já quando falamos de _dangling links_ criados via `dest()`: o objeto Vinyl recebido representa o link (normalmente, carregado do disco usando `src(..., { resolveSymlinks: false })`). Neste caso, o tipo do link não pode ser determinado razoavelmente e acaba sendo `'file'`. Isso pode causar comportamentos inesperados, se você estiver criando um _dangling link_ em um diretório. **Evite este tipo de situação!**
 
 [sourcemaps-section]: #sourcemaps
 [symbolic-links-section]: #symbolic-links-on-windows
