@@ -1,4 +1,11 @@
-# Automate release workflow
+<!-- front-matter
+id: automate-releases
+title: Automate Releases
+hide_title: true
+sidebar_label: Automate Releases 
+-->
+
+# Automate Releases
 
 If your project follows a semantic versioning, it may be a good idea to automatize the steps needed to do a release.
 The recipe below bumps the project version, commits the changes to git and creates a new GitHub release.
