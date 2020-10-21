@@ -1,79 +1,100 @@
-# Automate release workflow
+<!-- front-matter
+id: automate-releases
+title: Automate Releases
+hide_title: true
+sidebar_label: Automate Releases 
+-->
+
+# Automate Releases
 
 If your project follows a semantic versioning, it may be a good idea to automatize the steps needed to do a release.
-Below you have a simple recipe that bumps the project version, commits the changes to git and creates a new tag.
+The recipe below bumps the project version, commits the changes to git and creates a new GitHub release.
 
-``` javascript
+For publishing a GitHub release you'll need to [create a personal access token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) and add it to your project. However, we don't want to commit it, so we'll use [`dotenv`](https://www.npmjs.com/package/dotenv) to load it from a git-ignored `.env` file:
 
-var gulp = require('gulp');
-var conventionalChangelog = require('gulp-conventional-changelog');
-var conventionalGithubReleaser = require('conventional-github-releaser');
-var bump = require('gulp-bump');
-var log = require('gulplog');
-var git = require('gulp-git');
-var fs = require('fs');
+```
+GH_TOKEN=ff34885...
+```
 
-gulp.task('changelog', function () {
-  return gulp.src('CHANGELOG.md', {
-    buffer: false
-  })
-    .pipe(conventionalChangelog({
-      preset: 'angular' // Or to any other commit message convention you use.
-    }))
-    .pipe(gulp.dest('./'));
-});
+Don't forget to add `.env` to your `.gitignore`.
 
-gulp.task('github-release', function(done) {
-  conventionalGithubReleaser({
-    type: "oauth",
-    token: 'abcdefghijklmnopqrstuvwxyz1234567890' // change this to your own GitHub token or use an environment variable
-  }, {
-    preset: 'angular' // Or to any other commit message convention you use.
-  }, done);
-});
+Next, install all the necessary dependencies for this recipe:
 
-gulp.task('bump-version', function () {
-// We hardcode the version change type to 'patch' but it may be a good idea to
-// use minimist (https://www.npmjs.com/package/minimist) to determine with a
-// command argument whether you are doing a 'major', 'minor' or a 'patch' change.
-  return gulp.src(['./bower.json', './package.json'])
-    .pipe(bump({type: "patch"}).on('error', log.error))
-    .pipe(gulp.dest('./'));
-});
+```sh
+npm install --save-dev conventional-recommended-bump conventional-changelog-cli conventional-github-releaser dotenv execa
+```
 
-gulp.task('commit-changes', function () {
-  return gulp.src('.')
-    .pipe(git.add())
-    .pipe(git.commit('[Prerelease] Bumped version number'));
-});
+Based on your environment, setup and preferences, your release workflow might look something like this:
 
-gulp.task('push-changes', function (done) {
-  git.push('origin', 'master', done);
-});
+``` js
+const gulp = require('gulp');
+const conventionalRecommendedBump = require('conventional-recommended-bump');
+const conventionalGithubReleaser = require('conventional-github-releaser');
+const execa = require('execa');
+const fs = require('fs');
+const { promisify } = require('util');
+const dotenv = require('dotenv');
 
-gulp.task('create-new-tag', function (done) {
-  var version = getPackageJsonVersion();
-  git.tag(version, 'Created Tag for version: ' + version, function (error) {
-    if (error) {
-      return done(error);
-    }
-    git.push('origin', 'master', {args: '--tags'}, done);
+// load environment variables
+const result = dotenv.config();
+
+if (result.error) {
+  throw result.error;
+}
+
+// Conventional Changelog preset
+const preset = 'angular';
+// print output of commands into the terminal
+const stdio = 'inherit';
+
+async function bumpVersion() {
+  // get recommended version bump based on commits
+  const { releaseType } = await promisify(conventionalRecommendedBump)({ preset });
+  // bump version without committing and tagging
+  await execa('npm', ['version', releaseType, '--no-git-tag-version'], {
+    stdio,
   });
+}
 
-  function getPackageJsonVersion () {
-    // We parse the json file instead of using require because require caches
-    // multiple calls so the version number won't be updated
-    return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-  };
-});
+async function changelog() {
+  await execa(
+    'npx',
+    [
+      'conventional-changelog',
+      '--preset',
+      preset,
+      '--infile',
+      'CHANGELOG.md',
+      '--same-file',
+    ],
+    { stdio }
+  );
+}
 
-gulp.task('release', gulp.series(
-  'bump-version',
-  'changelog',
-  'commit-changes',
-  'push-changes',
-  'create-new-tag',
-  'github-release'
-));
+async function commitTagPush() {
+  // even though we could get away with "require" in this case, we're taking the safe route
+  // because "require" caches the value, so if we happen to use "require" again somewhere else
+  // we wouldn't get the current value, but the value of the last time we called "require"
+  const { version } = JSON.parse(await promisify(fs.readFile)('package.json'));
+  const commitMsg = `chore: release ${version}`;
+  await execa('git', ['add', '.'], { stdio });
+  await execa('git', ['commit', '--message', commitMsg], { stdio });
+  await execa('git', ['tag', `v${version}`], { stdio });
+  await execa('git', ['push', '--follow-tags'], { stdio });
+}
 
+function githubRelease(done) {
+  conventionalGithubReleaser(
+    { type: 'oauth', token: process.env.GH_TOKEN },
+    { preset },
+    done
+  );
+}
+
+exports.release = gulp.series(
+  bumpVersion,
+  changelog,
+  commitTagPush,
+  githubRelease
+);
 ```
