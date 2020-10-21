@@ -49,31 +49,31 @@ If a `registryInstance` is passed, nothing will be returned. If no arguments are
 
 ### Errors
 
-#### Incorrect Parameter
+#### Incorrect parameter
 
 When a constructor (instead of an instance) is passed as `registryInstance`, throws an error with the message:
 
 > Custom registries must be instantiated, but it looks like you passed a constructor.
 
-#### Missing get Method
+#### Missing `get` method
 
 When a registry without a `get` method is passed as `registryInstance`, throws an error with the message:
 
 > Custom registry must have `get` function.
 
-#### Missing set Method
+#### Missing `set` method
 
 When a registry without a `set` method is passed as `registryInstance`, throws an error with the message:
 
 > Custom registry must have `set` function.
 
-#### Missing init Method
+#### Missing `init` method
 
 When a registry without an `init` method is passed as `registryInstance`, throws an error with the message:
 
 > Custom registry must have `init` function"
 
-#### Missing tasks Method
+#### Missing `tasks` method
 
 When a registry without a `tasks` method is passed as `registryInstance`, throws an error with the message:
 
