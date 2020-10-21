@@ -7,7 +7,6 @@ sidebar_label: registry()
 
 # registry()
 
-
 Allows custom registries to be plugged into the task system, which can provide shared tasks or augmented functionality.
 
 **Note:** Only tasks registered with `task()` will be provided to the custom registry. The task functions passed directly to `series()` or `parallel()` will not be provided - if you need to customize the registry behavior, compose tasks with string references.
@@ -50,14 +49,34 @@ If a `registryInstance` is passed, nothing will be returned. If no arguments are
 
 ### Errors
 
-When a constructor (instead of an instance) is passed as `registryInstance`, throws an error with the message, "Custom registries must be instantiated, but it looks like you passed a constructor".
+#### Incorrect Parameter
 
-When a registry without a `get` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `get` function".
+When a constructor (instead of an instance) is passed as `registryInstance`, throws an error with the message:
 
-When a registry without a `set` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `set` function".
+> Custom registries must be instantiated, but it looks like you passed a constructor.
 
-When a registry without an `init` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `init` function"
+#### Missing get Method
 
-When a registry without a `tasks` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `tasks` function".
+When a registry without a `get` method is passed as `registryInstance`, throws an error with the message:
+
+> Custom registry must have `get` function.
+
+#### Missing set Method
+
+When a registry without a `set` method is passed as `registryInstance`, throws an error with the message:
+
+> Custom registry must have `set` function.
+
+#### Missing init Method
+
+When a registry without an `init` method is passed as `registryInstance`, throws an error with the message:
+
+> Custom registry must have `init` function"
+
+#### Missing tasks Method
+
+When a registry without a `tasks` method is passed as `registryInstance`, throws an error with the message:
+
+> Custom registry must have `tasks` function.
 
 [creating-custom-registries]: ../advanced/creating-custom-registries.md
