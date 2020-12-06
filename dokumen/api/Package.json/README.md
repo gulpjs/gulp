@@ -58,3 +58,33 @@
     "streaming"
   ]
 }
+## Table of Contents
+
+   * [API Concepts] (concepts.md)
+   * [src ()] (src.md)
+   * [dest ()] (dest.md)
+   * [symlink ()] (symlink.md)
+   * [lastRun ()] (last-run.md)
+   * [series ()] (series.md)
+   * [parallel ()] (parallel.md)
+   * [watch ()] (watch.md)
+   * [task ()] (task.md)
+   * [registry ()] (registry.md)
+   * [tree ()] (tree.md)
+   * [Vinyl] (vinyl.md)
+   * [Vinyl.isVinyl ()] (vinyl-isvinyl.md)
+   * [Vinyl.isCustomProp ()] (vinyl-iscustomprop.md)
+  # Security Policy
+
+  ## Supported Versions
+
+  |  Version |  Supported |
+  |  ------- |  ------------------ |
+  |  4.x.x |  : white_check_mark: |
+  |  <4.0 |  : x: |
+
+  ## Reporting a Vulnerability
+
+  To report a security vulnerability, please use the
+  [Tidelift security contact] (https://tidelift.com/security).
+  Tidelift will coordinate the fix and disclosure.
