@@ -1,6 +1,6 @@
 # Recipes
 
-* [Automate release workflow](automate-release-workflow.md)
+* [Automate release workflow](automate-releases.md)
 * [Combining streams to handle errors](combining-streams-to-handle-errors.md)
 * [Delete files and folders](delete-files-folder.md)
 * [Fast browserify builds with watchify](fast-browserify-builds-with-watchify.md)
