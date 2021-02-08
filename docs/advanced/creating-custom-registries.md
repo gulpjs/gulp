@@ -95,7 +95,7 @@ Must return an object listing all tasks in the registry.
 
 ### Sharing Tasks
 
-To share common tasks with all your projects, you can expose an `init` method on the registry and it will receive the an instance of gulp as the only argument. You can then use `gulpInst.task(name, fn)` to register pre-defined tasks.
+To share common tasks with all your projects, you can expose an `init` method on the registry and it will receive an instance of gulp as the only argument. You can then use `gulpInst.task(name, fn)` to register pre-defined tasks.
 
 For example, you might want to share a `clean` task:
 
