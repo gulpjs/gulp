@@ -1,0 +1,56 @@
+20/02/2021 - 18:14 
+
+manoel@worktool ~/Público/gulp $ git glone https://github.com/manoelmaciel/gulp.git
+git: 'glone' não é um comando git. Veja 'git --help'.
+
+Você quis dizer isso?
+	clone
+manoel@worktool ~/Público/gulp $ git clone https://github.com/manoelmaciel/gulp.git
+Cloning into 'gulp'...
+remote: Enumerating objects: 34, done.
+remote: Counting objects: 100% (34/34), done.
+remote: Compressing objects: 100% (27/27), done.
+remote: Total 5006 (delta 17), reused 12 (delta 7), pack-reused 4972
+Receiving objects: 100% (5006/5006), 1.06 MiB | 799.00 KiB/s, done.
+Resolving deltas: 100% (3090/3090), done.
+Checking connectivity... done.
+manoel@worktool ~/Público/gulp $ git status
+fatal: Not a git repository (or any parent up to mount point /home)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+manoel@worktool ~/Público/gulp $ ls
+gulp
+manoel@worktool ~/Público/gulp $ cd gulp
+manoel@worktool ~/Público/gulp/gulp $ git status
+No ramo master
+Your branch is up-to-date with 'origin/master'.
+nada a submeter, diretório de trabalho vazio
+manoel@worktool ~/Público/gulp/gulp $ git log
+commit f91c388beb265e5008202f11100309549162247a
+Author: roydukkey <roydukkey@users.noreply.github.com>
+Date:   Mon Feb 8 15:22:24 2021 -0500
+
+    Docs: Remove typo in custom registry docs (#2543)
+
+commit df252509b52acd712300b3b5d00bf7aedf0dbd40
+Author: Anderson Samir Corrêa Paz de Camargo <andergtk@users.noreply.github.com>
+Date:   Sun Jan 10 20:13:16 2021 -0300
+
+    Docs: Fix typo in task docs (#2524)
+
+commit b6d6d7c8c37f4be846cf796d3929fe25c5329808
+Author: azu <azu@users.noreply.github.com>
+Date:   Mon Jan 11 07:49:51 2021 +0900
+
+    Docs: fix recipe link (#2526)
+
+commit c26ebcb1c9842251c8dd716461d735e26feb862a
+Author: Blaine Bublitz <blaine.bublitz@gmail.com>
+Date:   Wed Oct 21 12:25:54 2020 -0700
+
+    Docs: Cleanup registry error message subtitles
+manoel@worktool ~/Público/gulp/gulp $ git branch
+* master
+manoel@worktool ~/Público/gulp/gulp $ git checkout -b iprove_method_watch
+Switched to a new branch 'iprove_method_watch'
+manoel@worktool ~/Público/gulp/gulp $ 
+
