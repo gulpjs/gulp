@@ -7,16 +7,15 @@ sidebar_label: registry()
 
 # registry()
 
+Permite que registros customizados se conectem ao sistema de tarefas, os quais podem disponibilizar tarefas compartilhadas ou melhorar funcionalidades.
 
-Allows custom registries to be plugged into the task system, which can provide shared tasks or augmented functionality.
+**Observação:** somente tarefas registradas com `task()` ficarão disponíveis neste registro customizado. As tarefas passadas diretamente para `series()` ou `parallel()`, não ficam disponíveis. Se você precisar customizar o comportamento do registro, faça uma composição de tarefas usando _string references_.
 
-**Note:** Only tasks registered with `task()` will be provided to the custom registry. The task functions passed directly to `series()` or `parallel()` will not be provided - if you need to customize the registry behavior, compose tasks with string references.
+Quando for adicionar um novo registro: cada tarefa do atual registro será transferida e o atual registro será substituído pelo novo. Isso permite adicionar vários registros customizados, em ordem de sequência.
 
-When assigning a new registry, each task from the current registry will be transferred and the current registry will be replaced with the new one. This allows for adding multiple custom registries in sequential order.
+Leia: [Criando registros personalizados][creating-custom-registries], para mais detalhes.
 
-See [Creating Custom Registries][creating-custom-registries] for details.
-
-## Usage
+## Modo de Uso
 
 ```js
 const { registry, task, series } = require('gulp');
@@ -27,37 +26,47 @@ registry(FwdRef());
 task('default', series('forward-ref'));
 
 task('forward-ref', function(cb) {
-  // body omitted
+  // código omitido
   cb();
 });
 ```
 
-## Signature
+## Assinatura
 
 ```js
 registry([registryInstance])
 ```
 
-### Parameters
+### Parâmetros
 
-| parameter | type | note |
+| parâmetro | tipo | descrição |
 |:--------------:|:-----:|--------|
-| registryInstance | object | An instance - not the class - of a custom registry. |
+| registryInstance | object | A instância de um registro customizado. (não é a classe!) |
 
-### Returns
+### Retorno
 
-If a `registryInstance` is passed, nothing will be returned. If no arguments are passed, returns the current registry instance.
+Se o argumento `registryInstance` for passado: nada será retornado. Se nenhum argumento for passado: retorna a instância do atual registro.
 
-### Errors
+### Erros
 
-When a constructor (instead of an instance) is passed as `registryInstance`, throws an error with the message, "Custom registries must be instantiated, but it looks like you passed a constructor".
+Quando um construtor é passado como `registryInstance` (invés de uma instância), um erro será lançado com a seguinte mensagem:
 
-When a registry without a `get` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `get` function".
+> Custom registries must be instantiated, but it looks like you passed a constructor.
 
-When a registry without a `set` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `set` function".
+Quando um registro sem algum método `get` é passado como `registryInstance`, um erro será lançado com a seguinte mensagem:
 
-When a registry without an `init` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `init` function"
+> Custom registry must have `get` function.
 
-When a registry without a `tasks` method is passed as `registryInstance`, throws an error with the message, "Custom registry must have `tasks` function".
+Quando um registro sem algum método `set` é passado como `registryInstance`, um erro será lançado com a seguinte mensagem:
+
+> Custom registry must have `set` function.
+
+Quando um registro sem algum método `init` é passado como `registryInstance`, um erro será lançado com a seguinte mensagem:
+
+> Custom registry must have `init` function.
+
+Quando um registro sem algum método `tasks` é passado como `registryInstance`, um erro será lançado com a seguinte mensagem:
+
+> Custom registry must have `tasks` function.
 
 [creating-custom-registries]: ../advanced/creating-custom-registries.md
