@@ -1,4 +1,4 @@
-## Tabela de Conteúdos
+## Tabela de Conteúdo
 
 * [Conceitos da API](concepts.md)
 * [src()](src.md)
