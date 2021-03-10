@@ -45,7 +45,7 @@ Instâncias Vinyl geradas por `src()` são construídas com o glob base definido
 
 Para mais informações a fundo, veja o repositório [glob-parent][glob-parent-external].
 
-## Estado do sistema de arquivos
+## Estado no sistema de arquivos
 
 Metadados de arquivos são provenientes de uma instância do [`fs.Stats`][fs-stats-external], existente no Node. Ele está disponível como a propriedade `stat` nas suas instâncias Vinyl e são usadas internamento para determinar se um objeto Vinyl representa um diretório ou um link simbólico. Quando escrito para o sistema de arquivos, permissões e valores temporais são sincronizados a partir da propriedade `stat`, proveniente do objeto Vinyl.
 
