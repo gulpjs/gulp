@@ -169,8 +169,11 @@ function ConfigRegistry(config){
 util.inherits(ConfigRegistry, DefaultRegistry);
 
 ConfigRegistry.prototype.set = function set(name, fn) {
+  var bound = fn.bind(this.config);
+  // Preserve internal properties and task metadata.
+  var task = Object.assign(bound, fn);
   // The `DefaultRegistry` uses `this._tasks` for storage.
-  var task = this._tasks[name] = fn.bind(this.config);
+  this._tasks[name] = task;
   return task;
 };
 
