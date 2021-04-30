@@ -35,7 +35,7 @@ The gulpfile could be broken in 3 parts.
 
 ### 1. Write the task to prepare the dist package as usual
 
-Refer to the main [README](https://github.com/gulpjs/gulp/blob/4.0/README.md#use-last-javascript-version-in-your-gulpfile)
+Refer to the main [README](https://github.com/gulpjs/gulp/blob/master/docs/README.md)
 for more information.
 
 ```javascript
