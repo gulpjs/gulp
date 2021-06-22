@@ -49,8 +49,16 @@ const build = task('build');
 
 ## Signature
 
+Explicitly provide a name for the task.
+
 ```js
-task([taskName], taskFunction)
+task(taskName, taskFunction)
+```
+
+Implicitly determine the `taskName` from the `Function.name` property of the `taskFunction`. [Learn more about this behavior below.][parameters-section]
+
+```js
+task(taskFunction)
 ```
 
 ### Parameters
@@ -108,3 +116,4 @@ task(build);
 [task-concepts]: ../api/concepts.md#tasks
 [creating-tasks-docs]: ../getting-started/3-creating-tasks.md
 [function-name-external]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name
+[parameters-section]: #parameters
