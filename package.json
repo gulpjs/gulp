@@ -30,6 +30,7 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
+    "glob-parent": "^5.1.2",
     "glob-watcher": "^5.0.3",
     "gulp-cli": "^2.2.0",
     "undertaker": "^1.2.1",
@@ -41,8 +42,8 @@
     "eslint-config-gulp": "^3.0.1",
     "expect": "^1.20.2",
     "mkdirp": "^0.5.1",
-    "mocha": "^3.0.0",
-    "nyc": "^10.3.2",
+    "mocha": "^9.0.1",
+    "nyc": "^15.1.0",
     "rimraf": "^2.6.3"
   },
   "keywords": [
