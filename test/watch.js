@@ -27,7 +27,7 @@ function updateTempFile(path) {
 
 describe('gulp.watch()', function() {
   beforeEach(rimraf.bind(null, outpath));
-  beforeEach(mkdirp.bind(null, outpath));
+  beforeEach(mkdirp.bind(null, outpath, undefined));
   afterEach(rimraf.bind(null, outpath));
 
   it('should call the function when file changes: no options', function(done) {

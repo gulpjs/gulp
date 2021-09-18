@@ -1,3 +1,6 @@
 {
-  "extends": "gulp/test"
+  "extends": "gulp/test",
+  "rules": {
+    "no-prototype-builtins": "off"
+  }
 }
