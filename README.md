@@ -5,7 +5,7 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
 
 
 ## What is gulp?
@@ -268,8 +268,8 @@ Become a sponsor to get your logo on our README on Github.
 [travis-url]: https://travis-ci.org/gulpjs/gulp
 [travis-image]: https://img.shields.io/travis/gulpjs/gulp.svg?label=travis-ci
 
-[appveyor-url]: https://ci.appveyor.com/project/gulpjs/gulp
-[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/gulp.svg?label=appveyor
+<!--[appveyor-url]: https://ci.appveyor.com/project/gulpjs/gulp
+[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/gulp.svg?label=appveyor-->
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg
