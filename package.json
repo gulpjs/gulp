@@ -30,7 +30,7 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
-    "glob-watcher": "^5.0.3",
+    "glob-watcher": "^5.0.5",
     "gulp-cli": "^2.2.0",
     "undertaker": "^1.2.1",
     "vinyl-fs": "^3.0.0"
