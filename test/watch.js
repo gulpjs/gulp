@@ -1,6 +1,7 @@
 'use strict';
 
 /* eslint-disable no-use-before-define */
+/* eslint-env mocha */
 
 var fs = require('fs');
 var path = require('path');

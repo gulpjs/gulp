@@ -1,3 +1,3 @@
 {
-  "extends": "gulp/test"
+  "extends": "gulp"
 }

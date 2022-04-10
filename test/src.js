@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-env mocha */
+
 var path = require('path');
 
 var expect = require('expect');

@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-env mocha */
+
 var fs = require('fs');
 var path = require('path');
 
