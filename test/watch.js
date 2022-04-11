@@ -130,7 +130,8 @@ describe('gulp.watch()', function() {
 
   it('should work without options or callback', function(done) {
     // TODO: check we return watcher?
-    gulp.watch('x');
+    var watcher = gulp.watch('x');
+    watcher.close();
     done();
   });
 
