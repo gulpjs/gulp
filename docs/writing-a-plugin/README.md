@@ -193,7 +193,7 @@ if (someCondition) {
 
 If you're unfamiliar with streams, you will need to read up on them:
 
-* https://github.com/substack/stream-handbook (a MUST read)
+* https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/
 * https://nodejs.org/api/stream.html
 
 Other libraries that are not file manipulating through streams but are made for use with gulp are tagged with the [gulpfriendly](https://npmjs.org/browse/keyword/gulpfriendly) keyword on npm.
