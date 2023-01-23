@@ -1,3 +1,8 @@
 {
-  "extends": "gulp/test"
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "no-prototype-builtins": "warn"
+  }
 }
