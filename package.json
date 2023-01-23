@@ -11,7 +11,7 @@
   "repository": "gulpjs/gulp",
   "license": "MIT",
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 14.0.0"
   },
   "main": "index.js",
   "files": [
@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "nyc mocha --async-only",
+    "test": "nyc mocha --async-only --exit",
     "azure-pipelines": "nyc mocha --async-only --reporter xunit -O output=test.xunit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
