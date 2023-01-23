@@ -26,7 +26,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "nyc mocha --async-only --exit",
-    "azure-pipelines": "nyc mocha --async-only --reporter xunit -O output=test.xunit",
+    "azure-pipelines": "nyc mocha --async-only --reporter xunit -O output=test.xunit --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
