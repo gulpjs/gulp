@@ -2,8 +2,8 @@
 
 var util = require('util');
 var Undertaker = require('undertaker');
-var vfs = require('vinyl-fs');
-var watch = require('glob-watcher');
+var vfs = require('@bubblegroup/vinyl-fs');
+var watch = require('@bubblegroup/glob-watcher');
 
 function Gulp() {
   Undertaker.call(this);
