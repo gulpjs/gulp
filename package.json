@@ -1,6 +1,6 @@
 {
-  "name": "gulp",
-  "version": "4.0.2",
+  "name": "@bubblegroup/gulp",
+  "version": "4.0.3",
   "description": "The streaming build system.",
   "homepage": "https://gulpjs.com",
   "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
@@ -8,7 +8,7 @@
     "Eric Schoffstall <yo@contra.io>",
     "Blaine Bublitz <blaine.bublitz@gmail.com>"
   ],
-  "repository": "gulpjs/gulp",
+  "repository": "bubblegroup/gulp",
   "license": "MIT",
   "engines": {
     "node": ">= 0.10"

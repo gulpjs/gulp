@@ -1,5 +1,8 @@
 # gulp changelog
 
+## 4.0.3
+- initial fork, npm audit fix
+
 ## 4.0.0
 
 ### Task system changes
