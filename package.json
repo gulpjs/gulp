@@ -1,14 +1,16 @@
 {
-  "name": "gulp",
+  "name": "@xavescor/gulp",
   "version": "4.0.2",
   "description": "The streaming build system.",
   "homepage": "https://gulpjs.com",
-  "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
+  "author": "Andrew Vassilyev <github@xavescor.dev>",
   "contributors": [
+    "Andrew Vassilyev <github@xavescor.dev>",
+    "Gulp Team <team@gulpjs.com>",
     "Eric Schoffstall <yo@contra.io>",
     "Blaine Bublitz <blaine.bublitz@gmail.com>"
   ],
-  "repository": "gulpjs/gulp",
+  "repository": "xavescor/gulp",
   "license": "MIT",
   "engines": {
     "node": ">= 0.10",

@@ -1,5 +1,9 @@
 # gulp changelog
 
+## 4.0.2
+
+- just fork. nothing changed from original gulp@4.0.2
+
 ## 4.0.0
 
 ### Task system changes
