@@ -1,7 +1,7 @@
 'use strict';
 
 var util = require('util');
-var Undertaker = require('undertaker');
+var Undertaker = require('./src/undertaker');
 var vfs = require('vinyl-fs');
 var watch = require('glob-watcher');
 
