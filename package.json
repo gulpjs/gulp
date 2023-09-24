@@ -13,7 +13,7 @@
   "repository": "xavescor/gulp",
   "license": "MIT",
   "engines": {
-    "node": ">= 0.10",
+    "node": ">= 18",
     "pnpm": "~8.7"
   },
   "main": "index.js",
