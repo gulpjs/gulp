@@ -1,5 +1,11 @@
 # gulp changelog
 
+## 5.0.0
+
+### Breaking changes
+
+- minimum node version is 18
+
 ## 4.0.2
 
 - just fork. nothing changed from original gulp@4.0.2

@@ -1,6 +1,6 @@
 {
   "name": "@xavescor/gulp",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "The streaming build system.",
   "homepage": "https://gulpjs.com",
   "author": "Andrew Vassilyev <github@xavescor.dev>",
