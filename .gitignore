@@ -33,3 +33,5 @@ node_modules
 
 # Test results
 test.xunit
+
+.idea

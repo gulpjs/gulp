@@ -11,7 +11,8 @@
   "repository": "gulpjs/gulp",
   "license": "MIT",
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 0.10",
+    "pnpm": "~8.7"
   },
   "main": "index.js",
   "files": [
