@@ -95,15 +95,18 @@ describe('gulp.watch()', function() {
 
     createTempFile(tempFile);
 
-    var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function() {
-      // TODO: proper fail here
-      expect('Watcher erroneously called');
-    });
-
     setTimeout(function() {
-      watcher.close();
-      done();
-    }, 10);
+      // Chokidar seems to pick up the file we just created, so we wait briefly before setup
+      // I wonder if node hasn't fully flushed the file or something...
+      var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function() {
+        done(new Error('should not each here!'));
+      });
+
+      setTimeout(function () {
+        watcher.close();
+        done();
+      }, 1000);
+    }, 250);
   });
 
   it('should call the function when file changes: w/ options', function(done) {
