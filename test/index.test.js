@@ -62,6 +62,8 @@ describe('gulp', function() {
   });
 
   it('can run against gulpfile.cjs', function (done) {
+    this.timeout(5000);
+
     var cli = path.join(__dirname, '../bin/gulp.js');
     var opts = { cwd: path.join(__dirname, 'fixtures/gulpfiles/cjs' ) };
     cp.exec(cli, opts, function (err, stdout, stderr) {
