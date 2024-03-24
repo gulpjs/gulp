@@ -7,7 +7,7 @@ var path = require('path');
 
 var expect = require('expect');
 var rimraf = require('rimraf');
-var mkdirp = require('mkdirp');
+var mkdirp = require('mkdirp').mkdirp;
 
 var gulp = require('../');
 
@@ -26,9 +26,15 @@ function updateTempFile(path) {
 }
 
 describe('gulp.watch()', function() {
-  beforeEach(rimraf.bind(null, outpath));
-  beforeEach(mkdirp.bind(null, outpath));
-  afterEach(rimraf.bind(null, outpath));
+  beforeEach(function (done) {
+    rimraf(outpath, done);
+  });
+  beforeEach(function () {
+    return mkdirp(outpath);
+  });
+  afterEach(function (done) {
+    rimraf(outpath, done);
+  });
 
   it('should call the function when file changes: no options', function(done) {
     var tempFile = path.join(outpath, 'watch-func.txt');
@@ -118,7 +124,7 @@ describe('gulp.watch()', function() {
 
     var watcher = gulp.watch(relFile, { cwd: cwd })
       .on('change', function(filepath) {
-        expect(filepath).toExist();
+        expect(filepath).toBeDefined();
         expect(path.resolve(cwd, filepath)).toEqual(path.resolve(tempFile));
         watcher.close();
         done();
@@ -128,8 +134,8 @@ describe('gulp.watch()', function() {
   });
 
   it('should work without options or callback', function(done) {
-    // TODO: check we return watcher?
-    gulp.watch('x');
+    var watcher = gulp.watch('x');
+    watcher.close();
     done();
   });
 

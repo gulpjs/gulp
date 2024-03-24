@@ -9,19 +9,20 @@ var gulp = require('../');
 describe('gulp.src()', function() {
   it('should return a stream', function(done) {
     var stream = gulp.src('./fixtures/*.coffee', { cwd: __dirname });
-    expect(stream).toExist();
-    expect(stream.on).toExist();
+    expect(stream).toBeDefined();
+    expect(stream.on).toBeDefined();
     done();
   });
+
   it('should return a input stream from a flat glob', function(done) {
     var stream = gulp.src('./fixtures/*.coffee', { cwd: __dirname });
     stream.on('error', done);
     stream.on('data', function(file) {
-      expect(file).toExist();
-      expect(file.path).toExist();
-      expect(file.contents).toExist();
+      expect(file).toBeDefined();
+      expect(file.path).toBeDefined();
+      expect(file.contents).toBeDefined();
       expect(file.path).toEqual(path.join(__dirname, './fixtures/test.coffee'));
-      expect(file.contents).toEqual('this is a test');
+      expect(file.contents).toEqual(Buffer.from('this is a test'));
     });
     stream.on('end', function() {
       done();
@@ -38,8 +39,8 @@ describe('gulp.src()', function() {
     var files = [];
     stream.on('error', done);
     stream.on('data', function(file) {
-      expect(file).toExist();
-      expect(file.path).toExist();
+      expect(file).toBeDefined();
+      expect(file.path).toBeDefined();
       files.push(file);
     });
     stream.on('end', function() {
@@ -61,8 +62,8 @@ describe('gulp.src()', function() {
     var files = [];
     stream.on('error', done);
     stream.on('data', function(file) {
-      expect(file).toExist();
-      expect(file.path).toExist();
+      expect(file).toBeDefined();
+      expect(file.path).toBeDefined();
       files.push(file);
     });
     stream.on('end', function() {
@@ -76,22 +77,23 @@ describe('gulp.src()', function() {
     var stream = gulp.src('./fixtures/*.coffee', { read: false, cwd: __dirname });
     stream.on('error', done);
     stream.on('data', function(file) {
-      expect(file).toExist();
-      expect(file.path).toExist();
-      expect(file.contents).toNotExist();
+      expect(file).toBeDefined();
+      expect(file.path).toBeDefined();
+      expect(file.contents).toBeNull();
       expect(file.path).toEqual(path.join(__dirname, './fixtures/test.coffee'));
     });
     stream.on('end', function() {
       done();
     });
   });
+
   it('should return a input stream with contents as stream when buffer is false', function(done) {
     var stream = gulp.src('./fixtures/*.coffee', { buffer: false, cwd: __dirname });
     stream.on('error', done);
     stream.on('data', function(file) {
-      expect(file).toExist();
-      expect(file.path).toExist();
-      expect(file.contents).toExist();
+      expect(file).toBeDefined();
+      expect(file.path).toBeDefined();
+      expect(file.contents).toBeDefined();
       var buf = '';
       file.contents.on('data', function(d) {
         buf += d;
@@ -103,20 +105,22 @@ describe('gulp.src()', function() {
       expect(file.path).toEqual(path.join(__dirname, './fixtures/test.coffee'));
     });
   });
+
   it('should return a input stream from a deep glob', function(done) {
     var stream = gulp.src('./fixtures/**/*.jade', { cwd: __dirname });
     stream.on('error', done);
     stream.on('data', function(file) {
-      expect(file).toExist();
-      expect(file.path).toExist();
-      expect(file.contents).toExist();
+      expect(file).toBeDefined();
+      expect(file.path).toBeDefined();
+      expect(file.contents).toBeDefined();
       expect(file.path).toEqual(path.join(__dirname, './fixtures/test/run.jade'));
-      expect(file.contents).toEqual('test template');
+      expect(file.contents).toEqual(Buffer.from('test template'));
     });
     stream.on('end', function() {
       done();
     });
   });
+
   it('should return a input stream from a deeper glob', function(done) {
     var stream = gulp.src('./fixtures/**/*.dmc', { cwd: __dirname });
     var a = 0;
@@ -136,11 +140,11 @@ describe('gulp.src()', function() {
     stream.on('error', done);
     stream.on('data', function(file) {
       ++a;
-      expect(file).toExist();
-      expect(file.path).toExist();
-      expect(file.contents).toExist();
+      expect(file).toBeDefined();
+      expect(file.path).toBeDefined();
+      expect(file.contents).toBeDefined();
       expect(file.path).toEqual(path.join(__dirname, './fixtures/test.coffee'));
-      expect(file.contents).toEqual('this is a test');
+      expect(file.contents).toEqual(Buffer.from('this is a test'));
     });
     stream.on('end', function() {
       expect(a).toEqual(1);
