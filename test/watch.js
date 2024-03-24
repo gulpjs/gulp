@@ -25,6 +25,12 @@ function updateTempFile(path) {
   }, 125);
 }
 
+function removeTempFile(path) {
+  setTimeout(function() {
+    fs.rmSync(path);
+  }, 125);
+}
+
 describe('gulp.watch()', function() {
   beforeEach(function (done) {
     rimraf(outpath, done);
@@ -112,6 +118,22 @@ describe('gulp.watch()', function() {
     });
 
     updateTempFile(tempFile);
+  });
+
+  it('should not call the function when ignored file changes', function(done) {
+    var tempFile = path.join(outpath, 'ignored.txt');
+
+    createTempFile(tempFile);
+
+    var watcher = gulp.watch(['*', '!ignored.txt'], { cwd: outpath }, function() {
+      done(new Error('should not each here!'));
+    });
+
+    removeTempFile(tempFile);
+    setTimeout(function () {
+      watcher.close();
+      done();
+    }, 1000);
   });
 
   it('should not drop options when no callback specified', function(done) {
