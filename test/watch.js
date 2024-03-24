@@ -120,6 +120,24 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
+  it('should call the function when file changes at a path with japanese characters', function(done) {
+    var japaneseDir = path.join(outpath, 'フォルダ');
+
+    fs.mkdirSync(japaneseDir);
+
+    var tempFile = path.join(japaneseDir, 'foobar.txt');
+
+    createTempFile(tempFile);
+
+    var watcher = gulp.watch('フォルダ/*', { cwd: outpath }, function(cb) {
+      watcher.close();
+      cb();
+      done();
+    });
+
+    updateTempFile(tempFile);
+  });
+
   it('should not call the function when ignored file changes', function(done) {
     var tempFile = path.join(outpath, 'ignored.txt');
 
