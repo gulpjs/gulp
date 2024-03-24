@@ -27,7 +27,7 @@ function updateTempFile(path) {
 
 function removeTempFile(path) {
   setTimeout(function() {
-    fs.rmSync(path);
+    fs.unlinkSync(path);
   }, 125);
 }
 
