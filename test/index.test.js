@@ -66,7 +66,7 @@ describe('gulp', function() {
 
     var cli = path.join(__dirname, '../bin/gulp.js');
     var opts = { cwd: path.join(__dirname, 'fixtures/gulpfiles/cjs' ) };
-    cp.exec(cli, opts, function (err, stdout, stderr) {
+    cp.exec('node ' + cli, opts, function (err, stdout, stderr) {
       expect(err).toBeNull();
       expect(stdout).toMatch('gulpfile.cjs');
       expect(stderr).toEqual('');
