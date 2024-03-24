@@ -1,5 +1,8 @@
 'use strict';
 
+var cp = require('child_process');
+var path = require('path');
+
 var expect = require('expect');
 
 var gulp = require('../');
@@ -54,6 +57,17 @@ describe('gulp', function() {
 
     it('registry', function(done) {
       expect(Object.prototype.hasOwnProperty.call(gulp, 'registry')).toEqual(true);
+      done();
+    });
+  });
+
+  it('can run against gulpfile.cjs', function (done) {
+    var cli = path.join(__dirname, '../bin/gulp.js');
+    var opts = { cwd: path.join(__dirname, 'fixtures/gulpfiles/cjs' ) };
+    cp.exec(cli, opts, function (err, stdout, stderr) {
+      expect(err).toBeNull();
+      expect(stdout).toMatch('gulpfile.cjs');
+      expect(stderr).toEqual('');
       done();
     });
   });
