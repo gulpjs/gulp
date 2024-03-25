@@ -75,15 +75,16 @@ describe('gulp', function() {
   });
 
   it('can run against gulpfile.mjs', function (done) {
+    // Node v10 didn't support `exports` in package.json
+    if (process.version.startsWith('v10.')) {
+      this.skip();
+    }
+
     this.timeout(5000);
 
     var cli = path.join(__dirname, '../bin/gulp.js');
     var opts = { cwd: path.join(__dirname, 'fixtures/gulpfiles/mjs' ) };
-    var node = 'node ';
-    if (process.version.startsWith('v10.')) {
-      node += '--experimental-modules '
-    }
-    cp.exec(node + cli, opts, function (err, stdout, stderr) {
+    cp.exec('node ' + cli, opts, function (err, stdout, stderr) {
       expect(err).toBeNull();
       expect(stdout).toMatch('gulpfile.mjs');
       expect(stderr).toEqual('');
