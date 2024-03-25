@@ -79,7 +79,11 @@ describe('gulp', function() {
 
     var cli = path.join(__dirname, '../bin/gulp.js');
     var opts = { cwd: path.join(__dirname, 'fixtures/gulpfiles/mjs' ) };
-    cp.exec('node ' + cli, opts, function (err, stdout, stderr) {
+    var node = 'node ';
+    if (process.version.startsWith('v10.')) {
+      node += '--experimental-modules '
+    }
+    cp.exec(node + cli, opts, function (err, stdout, stderr) {
       expect(err).toBeNull();
       expect(stdout).toMatch('gulpfile.mjs');
       expect(stderr).toEqual('');
