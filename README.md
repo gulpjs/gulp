@@ -112,26 +112,12 @@ exports.default = build;
 
 ## Use latest JavaScript version in your gulpfile
 
-__Most new versions of node support most features that Babel provides, except the `import`/`export` syntax. When only that syntax is desired, rename to `gulpfile.esm.js`, install the [esm][esm-module] module, and skip the Babel portion below.__
+Gulp provides a wrapper that will be loaded in your ESM code, so you can name your gulpfile as `gulpfile.mjs` or with `"type": "module"` specified in your `package.json` file.
 
-Node already supports a lot of __ES2015+__ features, but to avoid compatibility problems we suggest to install Babel and rename your `gulpfile.js` to `gulpfile.babel.js`.
-
-```sh
-npm install --save-dev @babel/register @babel/core @babel/preset-env
-```
-
-Then create a **.babelrc** file with the preset configuration.
+And here's the same sample from above written in **ESNext**.
 
 ```js
-{
-  "presets": [ "@babel/preset-env" ]
-}
-```
-
-And here's the same sample from above written in **ES2015+**.
-
-```js
-import gulp from 'gulp';
+import { src, dest, watch } from 'gulp';
 import less from 'gulp-less';
 import babel from 'gulp-babel';
 import concat from 'gulp-concat';
@@ -160,7 +146,7 @@ export const clean = () => del([ 'assets' ]);
  * You can also declare named functions and export them as tasks
  */
 export function styles() {
-  return gulp.src(paths.styles.src)
+  return src(paths.styles.src)
     .pipe(less())
     .pipe(cleanCSS())
     // pass in options to the stream
@@ -168,23 +154,23 @@ export function styles() {
       basename: 'main',
       suffix: '.min'
     }))
-    .pipe(gulp.dest(paths.styles.dest));
+    .pipe(dest(paths.styles.dest));
 }
 
 export function scripts() {
-  return gulp.src(paths.scripts.src, { sourcemaps: true })
+  return src(paths.scripts.src, { sourcemaps: true })
     .pipe(babel())
     .pipe(uglify())
     .pipe(concat('main.min.js'))
-    .pipe(gulp.dest(paths.scripts.dest));
+    .pipe(dest(paths.scripts.dest));
 }
 
  /*
   * You could even use `export as` to rename exported tasks
   */
 function watchFiles() {
-  gulp.watch(paths.scripts.src, scripts);
-  gulp.watch(paths.styles.src, styles);
+  watch(paths.scripts.src, scripts);
+  watch(paths.styles.src, styles);
 }
 export { watchFiles as watch };
 
