@@ -73,4 +73,17 @@ describe('gulp', function() {
       done();
     });
   });
+
+  it('can run against gulpfile.mjs', function (done) {
+    this.timeout(5000);
+
+    var cli = path.join(__dirname, '../bin/gulp.js');
+    var opts = { cwd: path.join(__dirname, 'fixtures/gulpfiles/mjs' ) };
+    cp.exec('node ' + cli, opts, function (err, stdout, stderr) {
+      expect(err).toBeNull();
+      expect(stdout).toMatch('gulpfile.mjs');
+      expect(stderr).toEqual('');
+      done();
+    });
+  });
 });
