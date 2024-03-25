@@ -1,5 +1,28 @@
 # gulp changelog
 
+## [5.0.0](https://www.github.com/gulpjs/gulp/compare/v4.0.2...v5.0.0) (2024-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Normalize repository, dropping node <10.13 support (#2758)
+
+### Features
+
+* Provide an ESM export ([#2760](https://www.github.com/gulpjs/gulp/issues/2760)) ([b00de68](https://www.github.com/gulpjs/gulp/commit/b00de681f5ef6ade283d544f62f770f6b27a9e52))
+* Support `.cjs` extension for gulpfiles ([72668c6](https://www.github.com/gulpjs/gulp/commit/72668c61e445c81fad23bc6ed24967a3238a648d))
+
+
+### Bug Fixes
+
+* Ensure watch allows japanese characters in globs ([72668c6](https://www.github.com/gulpjs/gulp/commit/72668c61e445c81fad23bc6ed24967a3238a648d))
+* Ensure watch does not trigger on negated globs ([72668c6](https://www.github.com/gulpjs/gulp/commit/72668c61e445c81fad23bc6ed24967a3238a648d))
+
+
+### Miscellaneous Chores
+
+* Normalize repository, dropping node <10.13 support ([#2758](https://www.github.com/gulpjs/gulp/issues/2758)) ([72668c6](https://www.github.com/gulpjs/gulp/commit/72668c61e445c81fad23bc6ed24967a3238a648d))
+
 ## 4.0.0
 
 ### Task system changes
