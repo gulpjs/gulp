@@ -1,0 +1,3 @@
+coverage/
+.nyc_output/
+CHANGELOG.md

@@ -5,8 +5,7 @@
   <p align="center">The streaming build system</p>
 </p>
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![OpenCollective Backers][backer-badge]][backer-url] [![OpenCollective Sponsors][sponsor-badge]][sponsor-url] [![Gitter chat][gitter-image]][gitter-url]
-
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][ci-image]][ci-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
 ## What is gulp?
 
@@ -14,25 +13,6 @@
 - **Platform-agnostic** - Integrations are built into all major IDEs and people are using gulp with PHP, .NET, Node.js, Java, and other platforms.
 - **Strong Ecosystem** - Use npm modules to do anything you want + over 3000 curated plugins for streaming file transformations.
 - **Simple** - By providing only a minimal API surface, gulp is easy to learn and simple to use.
-
-## What's new in 4.0?!
-
-* The task system was rewritten from the ground-up, allowing task composition using `series()` and `parallel()` methods.
-* The watcher was updated, now using chokidar (no more need for gulp-watch!), with feature parity to our task system.
-* First-class support was added for incremental builds using `lastRun()`.
-* A `symlink()` method was exposed to create symlinks instead of copying files.
-* Built-in support for sourcemaps was added - the gulp-sourcemaps plugin is no longer necessary!
-* Task registration of exported functions - using node or ES exports - is now recommended.
-* Custom registries were designed, allowing for shared tasks or augmented functionality.
-* Stream implementations were improved, allowing for better conditional and phased builds.
-
-
-## gulp for enterprise
-
-Available as part of the Tidelift Subscription
-
-The maintainers of gulp and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-gulp?utm_source=npm-gulp&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
-
 
 ## Installation
 
@@ -246,48 +226,21 @@ for a second time.
 
 Anyone can help make this project better - check out our [Contributing guide](/CONTRIBUTING.md)!
 
-## Backers
-
-Support us with a monthly donation and help us continue our activities.
-
-[![Backers][backers-image]][support-url]
-
-## Sponsors
-
-Become a sponsor to get your logo on our README on Github.
-
-[![Sponsors][sponsors-image]][support-url]
-
-[downloads-image]: https://img.shields.io/npm/dm/gulp.svg
-[npm-url]: https://www.npmjs.com/package/gulp
-[npm-image]: https://img.shields.io/npm/v/gulp.svg
-
-[azure-pipelines-url]: https://dev.azure.com/gulpjs/gulp/_build/latest?definitionId=1&branchName=master
-[azure-pipelines-image]: https://dev.azure.com/gulpjs/gulp/_apis/build/status/gulp?branchName=master
-
-[travis-url]: https://travis-ci.org/gulpjs/gulp
-[travis-image]: https://img.shields.io/travis/gulpjs/gulp.svg?label=travis-ci
-
-[appveyor-url]: https://ci.appveyor.com/project/gulpjs/gulp
-[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/gulp.svg?label=appveyor
-
-[coveralls-url]: https://coveralls.io/r/gulpjs/gulp
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg
-
-[gitter-url]: https://gitter.im/gulpjs/gulp
-[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
-
-[backer-url]: #backers
-[backer-badge]: https://opencollective.com/gulpjs/backers/badge.svg?color=blue
-[sponsor-url]: #sponsors
-[sponsor-badge]: https://opencollective.com/gulpjs/sponsors/badge.svg?color=blue
-
-[support-url]: https://opencollective.com/gulpjs#support
-
-[backers-image]: https://opencollective.com/gulpjs/backers.svg
-[sponsors-image]: https://opencollective.com/gulpjs/sponsors.svg
-
+<!-- prettier-ignore-start -->
 [quick-start]: https://gulpjs.com/docs/en/getting-started/quick-start
 [getting-started-guide]: https://gulpjs.com/docs/en/getting-started/quick-start
 [api-docs]: https://gulpjs.com/docs/en/api/concepts
 [esm-module]: https://github.com/standard-things/esm
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+[downloads-image]: https://img.shields.io/npm/dm/gulp.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/gulp
+[npm-image]: https://img.shields.io/npm/v/gulp.svg?style=flat-square
+
+[ci-url]: https://github.com/gulpjs/gulp/actions?query=workflow:dev
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/gulp/dev.yml?branch=master&style=flat-square
+
+[coveralls-url]: https://coveralls.io/r/gulpjs/gulp
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg?style=flat-square
+<!-- prettier-ignore-end -->

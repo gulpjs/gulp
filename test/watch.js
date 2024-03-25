@@ -7,7 +7,7 @@ var path = require('path');
 
 var expect = require('expect');
 var rimraf = require('rimraf');
-var mkdirp = require('mkdirp');
+var mkdirp = require('mkdirp').mkdirp;
 
 var gulp = require('../');
 
@@ -25,10 +25,22 @@ function updateTempFile(path) {
   }, 125);
 }
 
+function removeTempFile(path) {
+  setTimeout(function() {
+    fs.unlinkSync(path);
+  }, 125);
+}
+
 describe('gulp.watch()', function() {
-  beforeEach(rimraf.bind(null, outpath));
-  beforeEach(mkdirp.bind(null, outpath));
-  afterEach(rimraf.bind(null, outpath));
+  beforeEach(function (done) {
+    rimraf(outpath, done);
+  });
+  beforeEach(function () {
+    return mkdirp(outpath);
+  });
+  afterEach(function (done) {
+    rimraf(outpath, done);
+  });
 
   it('should call the function when file changes: no options', function(done) {
     var tempFile = path.join(outpath, 'watch-func.txt');
@@ -83,15 +95,18 @@ describe('gulp.watch()', function() {
 
     createTempFile(tempFile);
 
-    var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function() {
-      // TODO: proper fail here
-      expect('Watcher erroneously called');
-    });
-
     setTimeout(function() {
-      watcher.close();
-      done();
-    }, 10);
+      // Chokidar seems to pick up the file we just created, so we wait briefly before setup
+      // I wonder if node hasn't fully flushed the file or something...
+      var watcher = gulp.watch('watch-func.txt', { cwd: outpath }, function() {
+        done(new Error('should not each here!'));
+      });
+
+      setTimeout(function () {
+        watcher.close();
+        done();
+      }, 1000);
+    }, 250);
   });
 
   it('should call the function when file changes: w/ options', function(done) {
@@ -108,6 +123,40 @@ describe('gulp.watch()', function() {
     updateTempFile(tempFile);
   });
 
+  it('should call the function when file changes at a path with japanese characters', function(done) {
+    var japaneseDir = path.join(outpath, 'フォルダ');
+
+    fs.mkdirSync(japaneseDir);
+
+    var tempFile = path.join(japaneseDir, 'foobar.txt');
+
+    createTempFile(tempFile);
+
+    var watcher = gulp.watch('フォルダ/*', { cwd: outpath }, function(cb) {
+      watcher.close();
+      cb();
+      done();
+    });
+
+    updateTempFile(tempFile);
+  });
+
+  it('should not call the function when ignored file changes', function(done) {
+    var tempFile = path.join(outpath, 'ignored.txt');
+
+    createTempFile(tempFile);
+
+    var watcher = gulp.watch(['*', '!ignored.txt'], { cwd: outpath }, function() {
+      done(new Error('should not each here!'));
+    });
+
+    removeTempFile(tempFile);
+    setTimeout(function () {
+      watcher.close();
+      done();
+    }, 1000);
+  });
+
   it('should not drop options when no callback specified', function(done) {
     var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
     // By passing a cwd option, ensure options are not lost to gaze
@@ -118,7 +167,7 @@ describe('gulp.watch()', function() {
 
     var watcher = gulp.watch(relFile, { cwd: cwd })
       .on('change', function(filepath) {
-        expect(filepath).toExist();
+        expect(filepath).toBeDefined();
         expect(path.resolve(cwd, filepath)).toEqual(path.resolve(tempFile));
         watcher.close();
         done();
@@ -128,8 +177,8 @@ describe('gulp.watch()', function() {
   });
 
   it('should work without options or callback', function(done) {
-    // TODO: check we return watcher?
-    gulp.watch('x');
+    var watcher = gulp.watch('x');
+    watcher.close();
     done();
   });
 
