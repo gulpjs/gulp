@@ -23,6 +23,7 @@
   "files": [
     "LICENSE",
     "index.js",
+    "index.mjs",
     "bin"
   ],
   "bin": {
