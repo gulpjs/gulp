@@ -1,5 +1,108 @@
 # gulp changelog
 
+## [5.0.0](https://www.github.com/gulpjs/gulp/compare/v4.0.2...v5.0.0) (2024-03-29)
+
+We've tried to provide a high-level changelog for gulp v5 below, but it
+doesn't contain all changes from the 60+ dependencies that we maintain.
+
+Please see [individual changelogs](#individual-changelogs) to drill down
+into all changes that were made.
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for Node.js <10.13
+* Default stream encoding to UTF-8
+* Standardized on `anymatch` library for globbing paths. All globs should work the same between `src` and `watch` now!
+* Removed support for ordered globs. This aligns with the chokidar globbing implementation. If you need your globs to be ordered, you can use `ordered-read-stream`
+* All globs and paths are normalized to unix-like filepaths
+* Only allow JS variants for `.gulp.*` config files
+* Removed support for alpha releases of v4 from `gulp-cli`
+* Removed the `--verify` flag
+* Renamed the `--require` flag to `--preload` to avoid conflicting with Node.js flags
+* Removed many legacy and deprecated loaders
+* Upgrade to chokidar v3
+* Clone `Vinyl` objects with stream contents using `teex`, but no longer wait for all streams to flow before cloned streams will receive data
+* Stop using `process.umask()` to make directories, instead falling back to Node's default mode
+* Throw on non-function, non-string option coercers
+* Drop support of Node.js snake_case flags
+* Use a Symbol for attaching the `gulplog` namespace to the store
+* Use a Symbol for attaching the `gulplog` store to the global
+* Use sha256 to hash the `v8flags` cache into a filename
+
+### Features
+
+* Streamlined the dependency tree
+* Switch all streams implementation to Streamx
+* Rewrote `glob-stream` to use a custom directory walk that relies on newer Node.js features and is more performant than old implementation
+* Implement translation support for all CLI messages and all messages passing through gulplog
+* Allow users to customize or remove the timestamp from their logs
+* Upgraded gulplog to v2. Messages logged via v1 will also display a deprecated warning. Plugins should update to v2 as the community upgrades to gulp 5
+* Added support for `gulpile.cjs` and `gulpfile.mjs`
+* Add support for `swc`, `esbuild`, `sucrase`, and `mdx` loaders
+* Provide an ESM export ([#2760](https://www.github.com/gulpjs/gulp/issues/2760)) ([b00de68](https://www.github.com/gulpjs/gulp/commit/b00de681f5ef6ade283d544f62f770f6b27a9e52))
+* Support sourcemap handling on streaming `Vinyl` contents
+* Support `extends` syntax for `.gulp.*` config file
+* Allow overriding `gulpfile` and `preloads` via `.gulp.*` config file
+
+### Bug Fixes
+
+* Resolve bugs related to symlinks on various platforms
+* Resolved some reported ReDoS CVEs and improved performance in glob-parent
+* Rework errors surfaced when encountering files or symlinks when trying to create directories
+* Ensure watch allows japanese characters in globs ([72668c6](https://www.github.com/gulpjs/gulp/commit/72668c61e445c81fad23bc6ed24967a3238a648d))
+* Ensure watch does not trigger on negated globs ([72668c6](https://www.github.com/gulpjs/gulp/commit/72668c61e445c81fad23bc6ed24967a3238a648d))
+* Improve handling of BOM at the beginning of a stream
+* Properly handle function coercer in array of option coercers
+* Fork `to-absolute-glob` to:
+  - Check negative patterns before trimming
+  - Ensure glob-like characters are escaped in cwd & root options
+  - Resolve `../` at the beginning of globs
+
+### Miscellaneous Chores
+
+* Remove lazystream dependency
+* Updated various stream test suites to test against Node.js core `stream`, `readable-stream`, and `streamx`
+* Normalize repository, dropping node <10.13 support ([#2758](https://www.github.com/gulpjs/gulp/issues/2758)) ([72668c6](https://www.github.com/gulpjs/gulp/commit/72668c61e445c81fad23bc6ed24967a3238a648d))
+
+### Individual Changelogs
+
+We created and maintain various projects that gulp depends upon. You can find their changelogs linked below:
+
+* [undertaker](https://github.com/gulpjs/undertaker/blob/master/CHANGELOG.md#200-2024-03-22)
+* [vinyl-fs](https://github.com/gulpjs/vinyl-fs/blob/master/CHANGELOG.md#400-2023-06-11)
+* [glob-stream](https://github.com/gulpjs/glob-stream/blob/master/CHANGELOG.md#801-2024-03-25)
+* [gulp-cli](https://github.com/gulpjs/gulp-cli/blob/master/CHANGELOG.md#300-2024-03-24)
+* [interpret](https://github.com/gulpjs/interpret/blob/master/CHANGELOG.md#311-2022-06-29)
+* [glob-parent](https://github.com/gulpjs/glob-parent/blob/main/CHANGELOG.md#602-2021-09-29)
+* [glob-watcher](https://github.com/gulpjs/glob-watcher/blob/master/CHANGELOG.md#600-2023-05-31)
+* [vinyl](https://github.com/gulpjs/vinyl/blob/master/CHANGELOG.md#300-2022-09-26)
+* [fs-mkdirp-stream](https://github.com/gulpjs/fs-mkdirp-stream/blob/master/CHANGELOG.md#201-2022-09-17)
+* [lead](https://github.com/gulpjs/lead/blob/master/CHANGELOG.md#400-2022-09-22)
+* [vinyl-sourcemap](https://github.com/gulpjs/vinyl-sourcemap/blob/master/CHANGELOG.md#200-2022-10-17)
+* [to-through](https://github.com/gulpjs/to-through/blob/master/CHANGELOG.md#300-2022-09-07)
+* [resolve-options](https://github.com/gulpjs/resolve-options/blob/master/CHANGELOG.md#200-2022-06-24)
+* [remove-bom-stream](https://github.com/gulpjs/remove-bom-stream/blob/master/CHANGELOG.md#200-2022-04-19)
+* [value-or-function](https://github.com/gulpjs/value-or-function/blob/master/CHANGELOG.md#400-2022-01-30)
+* [now-and-later](https://github.com/gulpjs/now-and-later/blob/master/CHANGELOG.md#300-2022-06-25)
+* [@gulpjs/to-absolute-glob](https://github.com/gulpjs/to-absolute-glob/blob/master/CHANGELOG.md#400-2023-01-03)
+* [fined](https://github.com/gulpjs/fined/blob/master/CHANGELOG.md#200-2021-10-31)
+* [mute-stdout](https://github.com/gulpjs/mute-stdout/blob/master/CHANGELOG.md#200-2021-11-22)
+* [semver-greatest-satisfied-range](https://github.com/gulpjs/semver-greatest-satisfied-range/blob/master/CHANGELOG.md#200-2022-01-31)
+* [flagged-respawn](https://github.com/gulpjs/flagged-respawn/blob/master/CHANGELOG.md#200-2021-11-21)
+* [rechoir](https://github.com/gulpjs/rechoir/blob/master/CHANGELOG.md#080-2021-07-24)
+* [gulplog](https://github.com/gulpjs/gulplog/blob/master/CHANGELOG.md#220-2024-03-23)
+* [glogg](https://github.com/gulpjs/glogg/blob/master/CHANGELOG.md#220-2024-03-23)
+* [@gulpjs/messages](https://github.com/gulpjs/messages/blob/master/CHANGELOG.md#110-2024-03-24)
+* [sparkles](https://github.com/gulpjs/sparkles/blob/master/CHANGELOG.md#210-2024-03-23)
+* [liftoff](https://github.com/gulpjs/liftoff/blob/main/CHANGELOG.md#500-2024-03-16)
+* [v8flags](https://github.com/gulpjs/v8flags/blob/master/CHANGELOG.md#401-2023-09-03)
+* [bach](https://github.com/gulpjs/bach/blob/master/CHANGELOG.md#201-2022-08-29)
+* [undertaker-registry](https://github.com/gulpjs/undertaker-registry/blob/master/CHANGELOG.md#200-2021-12-29)
+* [async-settle](https://github.com/gulpjs/async-settle/blob/master/CHANGELOG.md#200-2022-06-25)
+* [last-run](https://github.com/gulpjs/last-run/blob/master/CHANGELOG.md#200-2022-01-10)
+* [async-done](https://github.com/gulpjs/async-done/blob/master/CHANGELOG.md#200-2022-06-25)
+* [replace-homedir](https://github.com/gulpjs/replace-homedir/blob/master/CHANGELOG.md#200-2022-01-31)
+
 ## 4.0.0
 
 ### Task system changes
