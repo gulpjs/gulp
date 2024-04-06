@@ -55,6 +55,7 @@ When an invalid glob is given in `globs`, throws an error with the message, "Inv
 
 | name | type | default | note |
 |:--------:|:------:|------------|--------|
+| encoding | string<br />boolean | "utf8" | When false, file contents are treated as binary. When a string, this is used as the text encoding. |
 | buffer | boolean<br />function | true | When true, file contents are buffered into memory. If false, the Vinyl object's `contents` property will be a paused stream. It may not be possible to buffer the contents of large files.<br />**Note:** Plugins may not implement support for streaming contents. |
 | read | boolean<br />function | true | If false, files will be not be read and their Vinyl objects won't be writable to disk via `.dest()`. |
 | since | date<br />timestamp<br />function | | When set, only creates Vinyl objects for files modified since the specified time. |
