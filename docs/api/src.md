@@ -68,27 +68,15 @@ When an invalid glob is given in `globs`, throws an error with the message, "Inv
 | root | string | | The root path that `globs` are resolved against.<br />_This option is passed directly to [glob-stream][glob-stream-external]._ |
 | allowEmpty | boolean | false | When false, `globs` which can only match one file (such as `foo/bar.js`) causes an error to be thrown if they don't find a match. If true, suppresses glob failures.<br />_This option is passed directly to [glob-stream][glob-stream-external]._ |
 | uniqueBy | string<br />function | `'path'` | Remove duplicates from the stream by comparing the string property name or the result of the function.<br />**Note:** When using a function, the function receives the streamed data (objects containing `cwd`, `base`, `path` properties). |
-| dot | boolean | false | If true, compare globs against dot files, like `.gitignore`.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| silent | boolean | true | When true, suppresses warnings from printing on `stderr`.<br />**Note:** This option is passed directly to [node-glob][node-glob-external] but defaulted to `true` instead of `false`. |
-| mark | boolean | false | If true, a `/` character will be appended to directory matches. Generally not needed because paths are normalized within the pipeline.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| nosort | boolean | false | If true, disables sorting the glob results.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| stat | boolean | false | If true, `fs.stat()` is called on all results. This adds extra overhead and generally should not be used.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| strict | boolean | false | If true, an error will be thrown if an unexpected problem is encountered while attempting to read a directory.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| nounique | boolean | false | When false, prevents duplicate files in the result set.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| debug | boolean | false | If true, debugging information will be logged to the command line.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| nobrace | boolean | false | If true, avoids expanding brace sets - e.g. `{a,b}` or `{1..3}`.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| noglobstar | boolean | false | If true, treats double-star glob character as single-star glob character.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| noext | boolean | false | If true, avoids matching [extglob][extglob-docs] patterns - e.g. `+(ab)`.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| nocase | boolean | false | If true, performs a case-insensitive match.<br />**Note:** On case-insensitive file systems, non-magic patterns will match by default.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| matchBase | boolean | false | If true and globs don't contain any `/` characters, traverses all directories and matches that glob - e.g. `*.js` would be treated as equivalent to `**/*.js`.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| nodir | boolean | false | If true, only matches files, not directories.<br />**Note:** To match only directories, end your glob with a `/`.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| ignore | string<br />array | | Globs to exclude from matches. This option is combined with negated `globs`.<br />**Note:** These globs are always matched against dot files, regardless of any other settings.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| follow | boolean | false | If true, symlinked directories will be traversed when expanding `**` globs.<br />**Note:** This can cause problems with cyclical links.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| realpath | boolean | false | If true, `fs.realpath()` is called on all results. This may result in dangling links.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| cache | object | | A previously generated cache object - avoids some file system calls.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| statCache | object | | A previously generated cache of `fs.Stat` results - avoids some file system calls.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| symlinks | object | | A previously generated cache of symbolic links - avoids some file system calls.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
-| nocomment | boolean | false | When false, treat a `#` character at the start of a glob as a comment.<br />_This option is passed directly to [node-glob][node-glob-external]._ |
+| dot | boolean | false | If true, compare globs against dot files, like `.gitignore`.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| nounique | boolean | false | When false, prevents duplicate files in the result set.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| debug | boolean | false | If true, debugging information will be logged to the command line.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| nobrace | boolean | false | If true, avoids expanding brace sets - e.g. `{a,b}` or `{1..3}`.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| noglobstar | boolean | false | If true, treats double-star glob character as single-star glob character.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| noext | boolean | false | If true, avoids matching [extglob][extglob-docs] patterns - e.g. `+(ab)`.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| nocase | boolean | false | If true, performs a case-insensitive match.<br />**Note:** On case-insensitive file systems, non-magic patterns will match by default.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| matchBase | boolean | false | If true and globs don't contain any `/` characters, traverses all directories and matches that glob - e.g. `*.js` would be treated as equivalent to `**/*.js`.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
+| ignore | string<br />array | | Globs to exclude from matches. This option is combined with negated `globs`.<br />**Note:** These globs are always matched against dot files, regardless of any other settings.<br />_This option is passed directly to [anymatch][anymatch-external]._ |
 
 ## Sourcemaps
 
@@ -120,5 +108,5 @@ src('input/**/*.js', { sourcemaps: true })
 [glob-base-concepts]: ../api/concepts.md#glob-base
 [globs-concepts]: ../api/concepts.md#globs
 [extglob-docs]: ../documentation-missing.md
-[node-glob-external]: https://github.com/isaacs/node-glob
+[anymatch-external]: https://github.com/micromatch/anymatch
 [glob-stream-external]: https://github.com/gulpjs/glob-stream
