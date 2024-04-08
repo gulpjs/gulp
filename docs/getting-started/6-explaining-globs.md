@@ -9,7 +9,7 @@ sidebar_label: Explaining Globs
 
 A glob is a string of literal and/or wildcard characters used to match filepaths. Globbing is the act of locating files on a filesystem using one or more globs.
 
-The `src()` method expects a single glob string or an array of globs to determine which files your pipeline will operate on. At least one match must be found for your glob(s) otherwise `src()` will error. When an array of globs is used, they are matched in array order - especially useful for negative globs.
+The `src()` method expects a single glob string or an array of globs to determine which files your pipeline will operate on. At least one match must be found for your glob(s) otherwise `src()` will error. When an array of globs is used, any negative globs will remove matches from any positive glob.
 
 ## Segments and separators
 
@@ -49,16 +49,12 @@ Here, the glob is appropriately restricted to the `scripts/` directory. It will 
 
 ## Special character: ! (negative)
 
-Since globs are matched in array order, a negative glob must follow at least one non-negative glob in an array. The first finds a set of matches, then the negative glob removes a portion of those results. When excluding all files within a directory, you must add `/**` after the directory name, which the globbing library optimizes internally.
+Globs prefixed with the `!` character will "negate" the glob, excluding the match completely. All negative globs are applied to every positive glob, which is a departure from gulp versions before v5.
+
+Here, the `scripts/` directory will be traversed for all files ending in `.js`, but all files from the `scripts/vendor/` directory will be excluded.
 
 ```js
 ['scripts/**/*.js', '!scripts/vendor/**']
-```
-
-If any non-negative globs follow a negative, nothing will be removed from the later set of matches.
-
-```js
-['scripts/**/*.js', '!scripts/vendor/**', 'scripts/vendor/react.js']
 ```
 
 Negative globs can be used as an alternative for restricting double-star globs.
@@ -67,7 +63,22 @@ Negative globs can be used as an alternative for restricting double-star globs.
 ['**/*.js', '!node_modules/**']
 ```
 
-<small>In the previous example, if the negative glob was `!node_modules/**/*.js`, the globbing library wouldn't optimize the negation and every match would have to be compared against the negative glob, which would be extremely slow. To ignore all files in a directory, only add the `/**` glob after the directory name.</small>
+## Ordered globs
+
+Versions of gulp before v5 allowed "ordered globs"; however, that has been removed to align with most globbing libraries in the ecosystem.
+
+If you need the "ordered glob" functionality, you can use the [ordered-read-streams][ordered-read-streams-docs] library to combine streams:
+
+```js
+const order = require("ordered-read-streams");
+
+exports.default = function () {
+  return order([
+    gulp.src("input/jquery/dist/jquery.js"),
+    gulp.src("input/detect_swipe/jquery.detect_swipe.js"),
+  ]).pipe(gulp.dest('output/'));
+}
+```
 
 ## Overlapping globs
 
@@ -86,3 +97,4 @@ Most of what you'll need to work with globs in gulp is covered here. If you'd li
 [glob-primer-docs]: https://github.com/isaacs/node-glob#glob-primer
 [begin-globbing-docs]: https://github.com/begin/globbing#what-is-globbing
 [wikipedia-glob]: https://en.wikipedia.org/wiki/Glob_(programming)
+[ordered-read-streams-docs]: https://github.com/gulpjs/ordered-read-streams#orderedstreams-options
