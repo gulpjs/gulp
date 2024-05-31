@@ -124,7 +124,7 @@ import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
 import rename from 'gulp-rename';
 import cleanCSS from 'gulp-clean-css';
-import del from 'del';
+import {deleteAsync} from 'del';
 
 const paths = {
   styles: {
@@ -140,7 +140,7 @@ const paths = {
 /*
  * For small tasks you can export arrow functions
  */
-export const clean = () => del([ 'assets' ]);
+export const clean = () => deleteAsync([ 'assets' ]);
 
 /*
  * You can also declare named functions and export them as tasks
