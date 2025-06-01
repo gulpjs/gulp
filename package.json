@@ -38,7 +38,7 @@
     "glob-watcher": "^6.0.0",
     "gulp-cli": "^3.1.0",
     "undertaker": "^2.0.0",
-    "vinyl-fs": "^4.0.1"
+    "vinyl-fs": "^4.0.2"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
