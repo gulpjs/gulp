@@ -1,5 +1,14 @@
 # gulp changelog
 
+### [5.0.1](https://www.github.com/gulpjs/gulp/compare/v5.0.0...v5.0.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* Avoid globbing before read stream is opened ([#2839](https://www.github.com/gulpjs/gulp/issues/2839)) ([19122f3](https://www.github.com/gulpjs/gulp/commit/19122f3d9eefccaadcf0e96313a7d3b83348348b))
+* Avoid Node.js deprecation warning for `fs.Stats` ([#2838](https://www.github.com/gulpjs/gulp/issues/2838)) ([69a5d0e](https://www.github.com/gulpjs/gulp/commit/69a5d0e904278dde61c835a0b198d7d1c5a15b95))
+* Support top-level await on Node 22.12+ ([#2836](https://www.github.com/gulpjs/gulp/issues/2836)) ([04b4a74](https://www.github.com/gulpjs/gulp/commit/04b4a74aec63302f603f0cca3826f75b1bda64ad))
+
 ## [5.0.0](https://www.github.com/gulpjs/gulp/compare/v4.0.2...v5.0.0) (2024-03-29)
 
 We've tried to provide a high-level changelog for gulp v5 below, but it
