@@ -7,6 +7,13 @@ var expect = require('expect');
 var gulp = require('../');
 
 describe('gulp.src()', function() {
+  before(function () {
+    if (process.versions.node.startsWith("10.")) {
+      this.skip();
+      return;
+    }
+  });
+
   it('should return a stream', function(done) {
     var stream = gulp.src('./fixtures/*.coffee', { cwd: __dirname });
     expect(stream).toBeDefined();

@@ -31,8 +31,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [10, 12, 14, 16]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [10, 12, 14, 16, 18, 20, 22, 24]
+        os: [ubuntu-latest, windows-latest, macos-13]
 
     steps:
       - name: Clone repository

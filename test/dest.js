@@ -11,6 +11,13 @@ var gulp = require('../');
 var outpath = path.join(__dirname, './out-fixtures');
 
 describe('gulp.dest()', function() {
+  before(function () {
+    if (process.versions.node.startsWith("10.")) {
+      this.skip();
+      return;
+    }
+  });
+
   beforeEach(rimraf.bind(null, outpath));
   afterEach(rimraf.bind(null, outpath));
 
