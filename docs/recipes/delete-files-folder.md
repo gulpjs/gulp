@@ -65,8 +65,8 @@ Imagine the following file structure:
 ```js
 var gulp = require('gulp');
 var stripDebug = require('gulp-strip-debug'); // only as an example
-var del = require('del');
-var vinylPaths = require('vinyl-paths');
+var { deleteAsync: del } = require('del');
+var { default: vinylPaths } = require('vinyl-paths');
 
 gulp.task('clean:tmp', function () {
   return gulp.src('tmp/*')
