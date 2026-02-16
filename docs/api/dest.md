@@ -60,6 +60,7 @@ When `directory` is a function that returns an empty string or `undefined`, emit
 
 | name | type | default | note |
 |:-------:|:------:|-----------|-------|
+| encoding | string<br />boolean | "utf8" | When false, file contents are treated as binary. When a string, this is used as the text encoding. |
 | cwd | string<br />function | `process.cwd()` | The directory that will be combined with any relative path to form an absolute path. Is ignored for absolute paths. Use to avoid combining `directory` with `path.join()`. |
 | mode | number<br />function | `stat.mode` of the Vinyl object | The mode used when creating files. If not set and `stat.mode` is missing, the process' mode will be used instead. |
 | dirMode | number<br />function | | The mode used when creating directories. If not set, the process' mode will be used. |
