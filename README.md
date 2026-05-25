@@ -230,3 +230,4 @@ Anyone can help make this project better - check out our [Contributing guide](/C
 [coveralls-url]: https://coveralls.io/r/gulpjs/gulp
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/gulp/master.svg?style=flat-square
 <!-- prettier-ignore-end -->
+<!-- F66: Fix comment -->
