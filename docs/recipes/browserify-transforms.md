@@ -15,6 +15,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var log = require('gulplog');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 var reactify = require('reactify');
 
 gulp.task('javascript', function () {
@@ -27,11 +28,13 @@ gulp.task('javascript', function () {
   });
 
   return b.bundle()
-    .pipe(source('app.js', { sourcemaps: true }))
+    .pipe(source('app.js'))
     .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
         .pipe(uglify())
         .on('error', log.error)
-    .pipe(gulp.dest('./dist/js/', { sourcemaps: '../sourcemaps/' }));
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist/js/'));
 });
 ```
