@@ -1,5 +1,9 @@
 # Recipes
 
+A recipe is a practical example of using Gulp to solve a specific build or
+automation problem, such as bundling JavaScript or running tests. Adapt these
+examples to your own project.
+
 * [Automate release workflow](automate-releases.md)
 * [Combining streams to handle errors](combining-streams-to-handle-errors.md)
 * [Delete files and folders](delete-files-folder.md)
